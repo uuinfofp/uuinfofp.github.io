@@ -1,5 +1,3 @@
 ---
-title: Home
+title: Latest news
 ---
-
-## Latest news
