@@ -10,12 +10,16 @@ main = hakyll $ do
     match "images/*" $ do
         route   idRoute
         compile copyFileCompiler
+    
+    match "slides/*" $ do
+        route   idRoute
+        compile copyFileCompiler
 
     match "css/*" $ do
         route   idRoute
         compile compressCssCompiler
 
-    match (fromList ["index.md", "penpaper.md", "exercises.md"]) $ do
+    match "*.md" $ do
         route   $ setExtension "html"
         compile $ pandocCompiler
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
