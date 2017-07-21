@@ -165,3 +165,15 @@ These exercises are taken from the [Lecture Notes](http://www.cs.uu.nl/people/ju
 8. Write a function that computes a list of nodes that occur on one of the longest paths from the root up to a leaf. Try to keep the solution linear with respect to the size of the tree.
 
 ### Lecture 7 - Case studies
+
+1. Define a function `printProp :: Prop -> String` which turns the proposition into a printable `String`.
+    - Define a new `printProp' :: Prop -> String` which uses as few parentheses as possible. For example, `Var 'A' :\/: (Var 'B' :\/: Var 'C')` should be printed as `A \/ B \/ C`. Hint: define an auxiliary function `printProp'' :: Prop -> (String, LogicalOp)` which remembers the top symbol of the formula.
+
+2. Define a function `satisfiable :: Prop -> Bool` which returns `True` is the proposition is satisfiable, that is, if there is at least one assignment of truth values to variables which make the proposition true.
+    - Refine the function to return the assignment which makes the proposition satisfiable. Which should be the type given to such a function?
+
+3. Extend the definition of `ArithExpr` and `RPN` to include exponentiation and factorial functions. How should the evaluation functions change to support them?
+
+4. Refine the solution for Countdown to return the expression which gives the nearest result to the target, instead of only returning those which give the exact answer.
+
+5. Define a function `rpnToExpr :: RPN -> ArithExpr` which converts an expression in Reverse Polish Notation to an expression in usual infix notation.
