@@ -53,4 +53,10 @@ title: Lectures
 <td><a href="slides/fp-07-case-studies.pdf">7. Case studies</a></td>
 <td>Chapters 8.6-8.7 and 9</td>
 </tr>
+<tr>
+<td>?</td>
+<td><a href="slides/fp-08a-project.pdf">8a. Project management</a>
+<br><a href="slides/fp-08b-design.pdf">8b. Design and DSLs</a></td>
+<td>Chapter 16 from the <a href="http://www.staff.science.uu.nl/~hage0101/FP-elec.pdf">Lecture Notes</a></td>
+</tr>
 </table>
