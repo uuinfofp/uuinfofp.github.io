@@ -32,6 +32,16 @@ title: Labs
 </tr>
 </table>
 
+### Editors
+
+* Simpler and graphical
+    * [Visual Studio Code](https://code.visualstudio.com/): after downloading the program, click on the *Extensions* tab (the fifth icon in the left side), search for "[Haskell Syntax Highlighting](https://marketplace.visualstudio.com/items?itemName=justusadam.language-haskell)" and click *Install*
+    * [Atom](https://atom.io/) with [Haskell syntax highlighting](https://atom.io/packages/language-haskell)
+    * [Notepad++](https://notepad-plus-plus.org/download/)
+* For the adventurous, keyboard-oriented
+    * Emacs: the [official website](https://www.gnu.org/software/emacs/) provides versions for Windows and Linux, for Mac OS X the [following version](https://emacsformacosx.com/) is suggested
+    * [Vim](http://www.vim.org/)
+
 ### Coding style
 
 The most important question you should ask yourself to judge your own coding style is to ask yourself the question **"If another proficient Haskell programmer reads my code, would this be the most readable code I could have written?"** Where *readable* can be understood as the time it would take him or her to understand what your code tries to accomplish and how it accomplishes this.
