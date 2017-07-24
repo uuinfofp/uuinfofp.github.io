@@ -20,3 +20,5 @@ cabal.sandbox.config
 _cache/
 _site/
 slides/*.pdf
+practicals/*.pdf
+practicals/*.hs

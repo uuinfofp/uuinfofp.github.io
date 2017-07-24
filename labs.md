@@ -4,6 +4,34 @@ title: Labs
 
 ### Assignments
 
+<table class="table table-stripped" style="font-size: 15px;">
+<tr>
+<th>Date</th>
+<th>Assignment</th>
+<th>Starting framework</th>
+</tr>
+<tr>
+<td>?</td>
+<td><a href="practicals/Assignment0.pdf">0. Introduction</a></td>
+<td>None</td>
+</tr>
+<tr>
+<td>?</td>
+<td><a href="practicals/Assignment1.pdf">1. Lists</a></td>
+<td><a href="practicals/Assignment1.hs"><tt>Assignment1.hs</tt></a></td>
+</tr>
+<tr>
+<td>?</td>
+<td><a href="practicals/Assignment2.pdf">2. Data structures</a></td>
+<td><a href="practicals/Assignment2.hs"><tt>Assignment2.hs</tt></a></td>
+</tr>
+<tr>
+<td>?</td>
+<td><a href="practicals/Assignment3.pdf">3. Type classes</a></td>
+<td><a href="practicals/Assignment3.hs"><tt>Assignment3.hs</tt></a></td>
+</tr>
+</table>
+
 ### Coding style
 
 The most important question you should ask yourself to judge your own coding style is to ask yourself the question **"If another proficient Haskell programmer reads my code, would this be the most readable code I could have written?"** Where *readable* can be understood as the time it would take him or her to understand what your code tries to accomplish and how it accomplishes this.

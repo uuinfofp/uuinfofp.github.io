@@ -7,15 +7,12 @@ import           Hakyll
 --------------------------------------------------------------------------------
 main :: IO ()
 main = hakyll $ do
-    match "images/*" $ do
-        route   idRoute
-        compile copyFileCompiler
+    match "images/*" copyAsIs
+    match "slides/*.pdf" copyAsIs
+    match "practicals/*.pdf" copyAsIs
+    match "practicals/*.hs" copyAsIs
     
-    match "slides/*" $ do
-        route   idRoute
-        compile copyFileCompiler
-
-    match "css/*" $ do
+    match "css/*" $ do 
         route   idRoute
         compile compressCssCompiler
 
@@ -26,3 +23,7 @@ main = hakyll $ do
             >>= relativizeUrls
 
     match "templates/*" $ compile templateCompiler
+
+copyAsIs = do 
+    route   idRoute
+    compile copyFileCompiler
