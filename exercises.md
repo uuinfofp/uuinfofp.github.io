@@ -4,6 +4,8 @@ title: Pen-and-paper - Exercises
 
 These exercises are taken from the [Lecture Notes](http://www.cs.uu.nl/people/jur/FP-elec.pdf) from previous years. The exercises at the end of each chapter of *Programming in Haskell* by Graham Hutton are also suggested.
 
+If you like a more interactive approach, [exercism.io](http://exercism.io/languages/haskell) provides Haskell exercises which are automatically corrected.
+
 ### Lectures 1 and 2 - Functions and types
 
 1. Write two version of a function `noOfSol` that, for some `a`, `b`, and `c`, determines the number of solutions of the equation `ax² + bx + c = 0`:
@@ -177,3 +179,30 @@ These exercises are taken from the [Lecture Notes](http://www.cs.uu.nl/people/ju
 4. Refine the solution for Countdown to return the expression which gives the nearest result to the target, instead of only returning those which give the exact answer.
 
 5. Define a function `rpnToExpr :: RPN -> ArithExpr` which converts an expression in Reverse Polish Notation to an expression in usual infix notation.
+
+### Lecture 9 - Input and output
+
+1. Extend the "guess a number" game to generate the bounds randomly.
+
+2. Write `sequence` and `sequence_` using `(>>=)` instead of `do`-notation.
+
+3. Write a function which prompts for a filename, reads the file with this name, splits the file into a number of lines, splits each line in a number of words separated by `' '` (a space), and prints the total number of lines and words.
+
+4. Given the function `getInt :: IO Int`, which reads an integer value from standard input, write a program that results in the following input/output behaviour (the `3` has been typed in by the user):
+
+    ```
+    Give a number: 3
+    1 * 3 = 3
+    2 * 3 = 6
+    3 * 3 = 9
+    ...
+    10 * 3 = 30
+    Goodbye
+    ```
+ 
+    Try to use `sequence_`, `mapM_` or `forM_`.
+
+5. Write a function of type `[FilePath] −> FilePath −> IO ()` which concatenates a list of files to a specific target file: the first parameter is a list of filenames and the second parameter the name of the target file. Do not use the function `appendFile`.
+
+    - Write a program that first asks for the name of the target file, and then continues asking for names of files to be appended to that file until an empty line is entered. Note that the target files may be one of the source files!
+    - If we know that none of the source files equals the target file we may do a bit better using the function [`appendFile` from `System.IO`](https://hackage.haskell.org/package/base/docs/System-IO.html#v:appendFile). Change the function you have written above using this function. What are the advantages and disadvantages of this approach?
