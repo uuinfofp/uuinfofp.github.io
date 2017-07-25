@@ -59,4 +59,9 @@ title: Lectures
 <br><a href="slides/fp-08b-design.pdf">8b. Design and DSLs</a></td>
 <td>Chapter 16 from the <a href="http://www.staff.science.uu.nl/~hage0101/FP-elec.pdf">Lecture Notes</a></td>
 </tr>
+<tr>
+<td>?</td>
+<td><a href="slides/fp-09-io.pdf">9. Input and output</a></td>
+<td>Chapter 10</td>
+</tr>
 </table>
