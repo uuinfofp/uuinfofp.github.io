@@ -6,29 +6,39 @@ title: Labs
 
 <table class="table table-stripped" style="font-size: 15px;">
 <tr>
-<th>Date</th>
+<th>Deadline</th>
 <th>Assignment</th>
 <th>Starting framework</th>
 </tr>
 <tr>
-<td>?</td>
+<td>Fri 15 Sep</td>
 <td><a href="practicals/Assignment0.pdf">0. Introduction</a></td>
 <td>None</td>
 </tr>
 <tr>
-<td>?</td>
+<td>Fri 22 Sep</td>
 <td><a href="practicals/Assignment1.pdf">1. Lists</a></td>
 <td><a href="practicals/Assignment1.hs"><tt>Assignment1.hs</tt></a></td>
 </tr>
 <tr>
-<td>?</td>
+<td>Fri 29 Sep</td>
 <td><a href="practicals/Assignment2.pdf">2. Data structures</a></td>
 <td><a href="practicals/Assignment2.hs"><tt>Assignment2.hs</tt></a></td>
 </tr>
 <tr>
-<td>?</td>
+<td>Fri 13 Oct</td>
 <td><a href="practicals/Assignment3.pdf">3. Type classes</a></td>
 <td><a href="practicals/Assignment3.hs"><tt>Assignment3.hs</tt></a></td>
+</tr>
+<tr>
+<td>Fri 20 Oct</td>
+<td><a href="practicals/Game1.pdf">4. Game, design</a></td>
+<td></td>
+</tr>
+<tr>
+<td>Fri 3 Nov</td>
+<td><a href="practicals/Game2.pdf">5. Game, implementation</a></td>
+<td></td>
 </tr>
 </table>
 
