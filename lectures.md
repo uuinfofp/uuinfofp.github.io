@@ -91,17 +91,17 @@ title: Lectures
 </tr>
 <tr>
 <td>Thu 26 Oct</td>
-<td><a>14. Lazy evaluation</a></td>
+<td><a>Swift</a> <i>by Wouter Swierstra</i></td>
 <td></td>
 </tr>
 <tr>
 <td>Tue 31 Oct</td>
-<td>??</td>
+<td><a>14. Lazy evaluation</a></td>
 <td></td>
 </tr>
 <tr>
 <td>Thu 2 Nov</td>
-<td>??</td>
+<td>Review</td>
 <td></td>
 </tr>
 <tr class="warning">

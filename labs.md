@@ -42,6 +42,10 @@ title: Labs
 </tr>
 </table>
 
+### Practicals from previous years
+
+Even if you passed the practicals last year, you still need to submit the solutions via DOMJudge and do the new game practical.
+
 ### Editors
 
 * Simpler and graphical
