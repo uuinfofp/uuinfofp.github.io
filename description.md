@@ -24,35 +24,31 @@ The load per week is:
 
 * 2 × 2 h. [lectures](lectures.html), on Tuesdays and Thursdays
 * 1 × 2 h. [practicals](labs.html), on Tuesdays
-* 1 × 2 h. [werkcollege](penpaper.html), on Thursdays
+* 1 × 2 h. [werkcollege](exercises.html), on Thursdays
 
-Attendance is not strictly mandatory (albeit recommended), except for *werkcollege* every two weeks.
+Attendance is not strictly mandatory (albeit recommended).
 
 ## Assignments
 
-There are three kinds of **mandatory** assignments:
+There are two kinds of **mandatory** assignments:
 
 * [Lab assignments](labs.html) pose programming problems with the aim of practicing your Haskell skills. These assignments are automatically corrected by [DOMJudge](https://domjudge.cs.uu.nl/dj/fp/team/). You can ask any of the teaching assistants to suggest improvements to your code style during labs sessions.
-* [Pen-and-paper assignments](penpaper.html) are solved every two weeks during werkcollege sessions. Each of those sessions begins with a teaching assistants solving an example exercise, and then handing over the statement of the problem. At the end of the session the problems are collected.
 * The [final programming project](labs.html) consists of programming a small game in Haskell. The code is graded for correctness, design and style.
 
-In addition to those three mandatory assignments, there is an **optional** assignment to be made in groups to get some extra points in the grade. The assignment involves exploring and presenting some [language extension](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/lang.html) or [Haskell library](http://hackage.haskell.org/).
+In addition to those mandatory assignments, there is an **optional** assignment to be made in groups to get some extra points in the grade. The assignment involves exploring and presenting some [language extension](https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/lang.html) or [Haskell library](http://hackage.haskell.org/).
 
 ## Grading
 
-In order to pass the course, it is necessary to pass all the lab assignments and attend the wercollege sessions with assignments. The final grade depends on the two exams and the assignments.
+The final grade depends on the two exams and the assignments.
 
 - The *theory* grade is T = 0.3 × grade of mid-term + 0.7 × grade of final exam. You need T >= 5 to pass the course.
-- The *practical* grade is P = 2 + 0.8 × grade of final programming project. You need P >= 5 to pass the course.
-- The *werkcollege* grade W is the average of all pen-and-paper assignments.
+- The *practical* grade is P = 0.2 × average of the lab assignments + 0.8 × grade of final programming project. You need to pass at least two out of three lab assignments and obtain P >= 5 to pass the course.
 - The *optional assignment* grade is O.
 
-The *final grade* is computed as F = min( 0.5 × T + 0.5 × P + 0.05 × W + 0.05 × O, 10 ). The *final result* R of the course is:
+The *final grade* is computed as F = min( 0.5 × T + 0.5 × P + 0.05 × O, 10 ). The *final result* of the course is:
 
-- Passed with R = F if F >= 5.5, T >= 5, P >= 5.
-- Passed with R = 5.0 if F >= 5.5 but T < 5 or P < 5.
-- Not passed with R = F, if the student has submitted all mandatory assignments and taken part in the final exam.
-- Not passed with R = min(F, 4), if the student has submitted all mandatory assignments but not taken part in the final exam.
-- NVD (Niet VolDaan) if the student has not submitted all mandatory assignments.
-
-To qualify for the re-exam you need at least a 4 as final grade.
+- Passed with grade F (rounded to half points) if F >= 5.5, T >= 5, P >= 5 and you passed at least two out of three lab assignments.
+- Not passed with AANV if F >= 4.0, but T < 5 or P < 5 or you passed fewer than two of the lab assignments.
+    * In this case you are entitled to *aanvullende toets*, to be determined per student.
+    * If you need to re-submit the final programming exercise, that grade is a 6 maximum.
+- Not passed with NVD otherwise.

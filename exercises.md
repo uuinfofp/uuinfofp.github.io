@@ -1,5 +1,5 @@
 ---
-title: Pen-and-paper - Exercises
+title: Exercises
 ---
 
 These exercises are taken from the [Lecture Notes](http://www.cs.uu.nl/people/jur/FP-elec.pdf) from previous years. The exercises at the end of each chapter of *Programming in Haskell* by Graham Hutton are also suggested.
