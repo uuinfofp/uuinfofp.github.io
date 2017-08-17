@@ -76,13 +76,13 @@ title: Lectures
 </tr>
 <tr>
 <td>Tue 17 Oct</td>
-<td><a>11. Functors and monads, part 1</a></td>
-<td></td>
+<td><a href="slides/fp-11-monads-one.pdf">11. Functors and monads</a></td>
+<td>Chapter 12 (except 12.2)</td>
 </tr>
 <tr>
 <td>Thu 19 Oct</td>
-<td><a>12. Functors and monads, part 2</a></td>
-<td></td>
+<td><a href="slides/fp-12-monads-two.pdf">12. More monads, applicatives and traversables</a></td>
+<td>Chapters 12.2 and 14.3</td>
 </tr>
 <tr>
 <td>Tue 24 Oct</td>
