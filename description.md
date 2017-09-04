@@ -18,15 +18,68 @@ The language Haskell imposes a strong separation between pure computations and t
     - [*Learn You a Haskell for Great Good*](http://learnyouahaskell.com/) by Miran Lipovača
     - [*Haskell Wikibook*](https://en.wikibooks.org/wiki/Haskell)
 
-## Schedule
+## <a name="schedule"></a>Schedule
 
-The load per week is:
+The load per week is 2 × 2 h. [lectures](lectures.html), 1 × 2 h. [practicals](labs.html) and 1 × 2 h. [werkcollege](exercises.html). Attendance is not strictly mandatory (albeit recommended).
 
-* 2 × 2 h. [lectures](lectures.html), on Tuesdays and Thursdays
-* 1 × 2 h. [practicals](labs.html), on Tuesdays
-* 1 × 2 h. [werkcollege](exercises.html), on Thursdays
-
-Attendance is not strictly mandatory (albeit recommended).
+<table class="table">
+<tr>
+<td>
+<table class="table" style="font-size: 15px;">
+<tr>
+<th>Werkcollege (Tuesday 11-13)</th>
+<th>Weeks 37 to 44</th>
+</tr>
+<tr>
+<td>Group 1</td>
+<td>BBG-169</td>
+</tr>
+<tr>
+<td>Group 2</td>
+<td>BBG-165</td>
+</tr>
+<tr>
+<td>Group 3</td>
+<td>BBG-079</td>
+</tr>
+</table>
+</td>
+<td>
+<table class="table" style="font-size: 15px;">
+<tr>
+<th>Practicals (Thursday 15-17)</th>
+<th>Week 36</th>
+<th>Weeks 37 to 44</th>
+</tr>
+<tr>
+<td>Group 1</td>
+<td>BBG-115</td>
+<td>BBG-112</td>
+</tr>
+<tr>
+<td>Group 2</td>
+<td>KBG-228</td>
+<td>KBG-228</td>
+</tr>
+<tr>
+<td>Group 3</td>
+<td>BBG-079</td>
+<td>BBG-079</td>
+</tr>
+<tr>
+<td>Group 4</td>
+<td>BBG-165</td>
+<td>BBG-169</td>
+</tr>
+<tr>
+<td>Group 5</td>
+<td>BBG-103</td>
+<td>DDW-042</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
 
 ## Assignments
 

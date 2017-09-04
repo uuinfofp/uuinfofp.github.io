@@ -20,7 +20,8 @@ title: Lectures
 </tr>
 <tr>
 <td>Thu 7 Sep</td>
-<td><a href="slides/fp-01-intro.pdf">1. FP? Haskell?</a></td>
+<td><a href="slides/fp-00-course-intro.pdf">0. Course introduction</a>
+<br><a href="slides/fp-01-intro.pdf">1. FP? Haskell?</a></td>
 <td>Chapters 1 and 2</td>
 </tr>
 <tr>
