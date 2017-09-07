@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Restricted Content"
+AuthUserFile /home/staff/f100183/www/fp/pw/.htpasswd
+Require valid-user

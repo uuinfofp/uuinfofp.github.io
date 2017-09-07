@@ -12,6 +12,15 @@ main = hakyll $ do
     match "practicals/*.pdf" copyAsIs
     match "practicals/*.hs" copyAsIs
     
+    -- Password-protected
+    match "pw/*.html" copyAsIs
+    match "pw/htaccess" $ do
+        route   (constRoute "pw/.htaccess")
+        compile copyFileCompiler
+    match "pw/htpasswd" $ do
+        route   (constRoute "pw/.htpasswd")
+        compile copyFileCompiler
+
     match "css/*" $ do 
         route   idRoute
         compile compressCssCompiler
