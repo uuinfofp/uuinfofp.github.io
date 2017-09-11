@@ -87,8 +87,10 @@ title: Lectures
 </tr>
 <tr>
 <td>Tue 24 Oct</td>
-<td><a>13. Correctness</a></td>
-<td></td>
+<td><a href="slides/fp-13a-types.pdf">13a. Types and inference</a>
+<br><a href="slides/fp-13b-quickcheck.pdf">13b. Testing with QuickCheck</a></td>
+<td>Chapter 5 from the <a href="http://www.staff.science.uu.nl/~hage0101/FP-elec.pdf">Lecture Notes</a>
+<br><a href="http://book.realworldhaskell.org/read/testing-and-quality-assurance.html">Chapter 11 of <i>Real World Haskell</i></td>
 </tr>
 <tr>
 <td>Thu 26 Oct</td>

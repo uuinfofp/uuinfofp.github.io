@@ -11,6 +11,7 @@ main = hakyll $ do
     match "slides/*.pdf" copyAsIs
     match "practicals/*.pdf" copyAsIs
     match "practicals/*.hs" copyAsIs
+    match "exams/*.pdf" copyAsIs
     
     -- Password-protected
     match "pw/*.html" copyAsIs

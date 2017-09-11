@@ -6,6 +6,8 @@ These exercises are taken from the [Lecture Notes](http://www.cs.uu.nl/people/ju
 
 If you like a more interactive approach, [exercism.io](http://exercism.io/languages/haskell) provides Haskell exercises which are automatically corrected.
 
+### [Exams from previous years](exams.html)
+
 ### Lectures 1 and 2 - Functions and types
 
 1. Write two version of a function `noOfSol` that, for some `a`, `b`, and `c`, determines the number of solutions of the equation `ax² + bx + c = 0`:
@@ -270,3 +272,184 @@ If you like a more interactive approach, [exercism.io](http://exercism.io/langua
     ```
 
     - Hint: proceed by induction on the list, and in the `z:zs` case distinguish between `z` being `Nothing` or `Just w`.
+
+### Lectures 11 and 12 - Functors, monads, applicatives and traversables
+
+1. Show that the definition of the arithmetic evaluator using `next` in Lecture 11 is the same as the one using nested `case` clauses by expanding the definition of the former.
+
+2. Define a function `tuple :: m a -> m b -> m (a, b)` using explicit `(>>=)`, `do`-notation and applicative operators.
+    - What does the function do in the `Maybe` case?
+
+3. Define the following set of actions for `State s a`:
+    - `get :: State s a -> a` obtains the current value of the state.
+    - `modify :: (s -> s) -> State s ()` updates the current state using the given function.
+    - `put :: s -> State s ()` overwrites the current state with the given value.
+    - Define `modify` using `get` and `put`, and vice versa.
+    Update the definition of `relabel` in the slides using these actions.
+
+4. Explain the behavior of `sequence` for the `Maybe` monad.
+
+5. Define a monadic generalisation of `foldr`:
+
+    ```haskell
+    foldM :: Monad m => (a -> b -> m a) -> a -> [b] -> m a
+    ```
+
+6. Show that the `Maybe` monad satisfies the monad laws.
+
+7. Given the type:
+
+    ```haskell
+    data Expr a = Var a | Val Int | Add (Expr a) (Expr a)
+    ```
+
+    of expressions built from variables of type `a`, show that this type is monadic by completing the following declaration:
+
+    ```haskell
+    instance Monad Expr where
+      -- return :: a -> Expr a
+      return x = ...
+
+      -- (>>=) :: Expr a -> (a -> Expr b) -> Expr b
+      (Var a)   >>= f = ...
+      (Val n)   >>= f = ...
+      (Add x y) >>= f = ...
+    ```
+
+    With the aid of an example, explain what the `(>>=)` operator for this type does.
+
+### Lecture 13a - Types and inference
+
+1. What is the type of `foldr map`?
+    a. `[a] -> [a -> a] -> [a]`
+    b. `[a] -> [[a -> a]] -> [a]`
+    c. `[a] -> [[a -> a] -> [a]]`
+    d. `[[a]] -> [a -> a] -> [a]`
+
+2. What is the type of `map . foldr`?
+    a. `(a -> a -> a) -> [a] -> [[a] -> a]`
+    b. `(a -> a -> a) -> [b] -> [b -> a]`
+    c. `(b -> a -> a) -> [a] -> [[b] -> a]`
+    d. `(b -> a -> a) -> [b] -> [[a] -> a]`
+
+3. Which of the following is the type of `concat . concat`?
+    a. `[[a]] -> [[a]] -> [[a]]`
+    b. `[[a]] -> [[a]] -> [a]`
+    c. `[[[a]]] -> [a]`
+    d. `[a] -> [[a]] -> [a]`
+
+4. What is the type of `map (map map)`?
+    a. `[[a -> b]] -> [[[a] -> [b]]]`
+    b. `[a -> b] -> [[[a] -> [b]]]`
+    c. `[[a -> b]] -> [[[a -> b]]]`
+    d. `[[a -> b] -> [[a] -> [b]]]`
+
+5. Which observation is correct when comparing the types of `(map  map) map` and `map (map map)?`
+    a. The type of the first is less polymorphic than the type of the second.
+    b. The type of the first is more polymorphic than the type of the second.
+    c. The types are the same, since function composition is associative.
+    d. One of the expressions does not have any type at all.
+
+### Lecture 13b - Testing with QuickCheck
+
+For the exercises below you may want to consult the functions provided by the [QuickCheck library](hackage.haskell.org/package/QuickCheck-2.4.2/docs/Test-QuickCheck.html), in particular functions such as `choose`, `sized`, `elements` and `frequency`. We encourage experimenting with your code in an interpreter session. To be able to experiment with QuickCheck, the first two exercises work better if you can `show` functions. For that you can add the following instance definition to your code:
+
+```haskell
+instance (Enum a, Bounded a, Show  a) => Show (a −> Bool) where
+  show f = intercalate "\n" (map (\x −> "f " ++ show x ++ " = " ++ show (f x)) [minBound .. maxBound])
+```
+
+Also when you run your tests, you sometimes need to specialize the types a bit. For example, the following code calls all kinds of test functions that the exercises below (except for 4) expect you to come up with.
+
+```haskell
+runTests :: IO ()
+runTests = do
+  putStrLn "\nExercise 14.1"
+  quickCheck (propFilterNoLonger      :: (Bool −> Bool) −> [Bool] −> Bool)
+  quickCheck (propFilterNoLongerWrong :: (Bool −> Bool) −> [Bool] −> Bool)
+  quickCheck (propFilterAllSatisfy    :: (Bool −> Bool) −> [Bool] −> Bool)
+  quickCheck (propFilterAllElements   :: (Bool −> Bool) −> [Bool] −> Bool)
+  quickCheck (propFilterCorrect       :: (Bool −> Bool) −> [Bool] −> Bool)
+  putStrLn "\nExercise 14.2"
+  quickCheck (propMapLength :: (Bool −> Bool) −> [Bool] −> Bool)
+  putStrLn "\nExercise 14.3"
+  quickCheck $ once (propPermsLength   :: [Int] −> Bool)
+  quickCheck $ once (propPermsArePerms :: [Int] −> Bool)
+  quickCheck $ once (propPermsCorrect  :: [Int] −> Bool)
+  putStrLn "\nExercise 14.5"
+  quickCheck (forAll genBSTI isSearchTree)    -- Use forAll to use custom generator
+  quickCheck (forAll genBSTI propInsertIsTree)
+  quickCheck (forAll genBSTI propInsertIsTreeWrong)
+```
+
+1. Consider the ubiquitous `filter` function. There are many properties that you can formulate for the input-output behaviour of `filter`.
+    - Formulate the QuickCheck property that the result list cannot be longer than the input.
+    - Formulate the QuickCheck property that all elements in the result list satisfy the given property.
+    - Formulate the QuickCheck property that all elements in the result list are present in the input list.
+    - Formulate a set of QuickCheck properties to completely characterize the `filter` function (you may choose  also from among the three you have just implemented). Make sure to remove properties that are implied by (a subset of) the other properties.
+
+2. Try to come up with a number of QuickCheck-verifiable properties for the `map` function, and implement these. Are there any properties of `map` that are awkward to verify?
+
+3. Consider the function `permutations` from the `Data.List` library, which computes all the possible permutations of elements in a list. We shall be writing QuickCheck tests to verify that this function.
+    - Write a QuickCheck property that checks that the correct number of permutations is generated.
+    - Write a function `isPerm :: [a] −> [a] −> Bool` that  verifies that the two argument lists are permutations of each other.
+    - Write the QuickCheck property that every list in the output of `permutations` is a permutation of the input.
+    - Formulate a set of properties to completely characterize the `permutations` function (you may choose also from among the ones you have just implemented). Make sure to remove properties that are implied by (a subset of) the other properties. Implement the properties that you still need as QuickCheck properties.
+
+4. Do something similar for the function `inits` defined in Lecture 3.
+
+5. Consider the following datatype definition for binary trees that we shall want to use to implement binary search trees:
+
+    ```haskell
+    data Tree a = Branch a (Tree a) (Tree a) | Leaf
+    ```
+
+    In order to test operations on binary search trees we need to randomly generate binary search trees. Write a generator `genBSTI :: Gen (Tree Int)` for binary search trees that contain integers. We suggest the following approach:
+
+    1. generate the tree from the root, unfolding it as you go,
+    2. randomly generate the content of the branch nodes, making sure that the randomly generated value does not break search tree property,
+    3. you must ensure that unfolding the search tree eventually stops. You can do so by, as it were, randomly flipping a coin, and if it's head choose a `Leaf` at that point in the tree, and a `Branch` otherwise. Note that you may want to tweak the chances of getting leaf a bit.
+
+    To test your generator write a function `isSearchTree :: Tree a −> Bool` that verifies that its argument is a binary search tree. Then use your test generator to test the property that given a binary search tree `t`, inserting a value into the tree results in yet another binary search tree. The code for inserting a new value into the tree is:
+
+    ```haskell
+    insertTree :: Ord a => a −> Tree a −> Tree a
+    insertTree e Leaf = Branch e Leaf Leaf
+    insertTree e (Branch x li re)
+      | e <= x = Branch x (insertTree e li) re
+      | e >  x = Branch x li (insertTree e re)
+    ```
+
+    Experiment with mutating the implementation of `insertTree` to find out whether your generator and property can in fact discover that the mutated implementation no longer maps binary search trees to binary search trees.
+
+### Lecture 14 - Lazy evaluation
+
+1. In an older version of the base library the function `intersperse`, which places an element between all elements of a list, was defined as:
+
+    ```haskell
+    intersperse e []       = []
+    intersperse e [x]      = [x]
+    intersperse e (x:y:ys) = x : e : intersperse e (y:ys)
+    ```
+
+    - What would you expect the result of the expression `intersperse 'a' ('b':undefined)` to be?
+    - Can you give a definition of `intersperse` which is less strict?
+
+2. Given the data type of binary trees:
+
+    ```haskell
+    data Tree a = Leaf a | Node (Tree a) (Tree a)
+    ```
+
+    we define the function `tja`:
+
+    ```haskell
+    tja t = let tja' (Leaf a)   n ls = (0, if n == 0 then a : ls else ls)
+                tja' (Node l r) n ls = let (lm, ll) = tja' l (n-1) rl
+                                           (rm, rl) = tja' r (n-1) ls
+                                        in ((lm `min` rm) + 1, ll)
+                (m, r) = tja' t m []
+             in r
+    ```
+
+    If this code computes something explain what it computes, maybe with the aid of a small example. If it does not compute anything, explain why this is the case.
