@@ -4,15 +4,13 @@ title: Exercises
 
 These exercises are taken from the [Lecture Notes](http://www.cs.uu.nl/people/jur/FP-elec.pdf) from previous years. The exercises at the end of each chapter of *Programming in Haskell* by Graham Hutton are also suggested.
 
-If you like a more interactive approach, [exercism.io](http://exercism.io/languages/haskell) provides Haskell exercises which are automatically corrected.
+If you like a more interactive approach, [Ask-Elle](http://ideas.cs.uu.nl/AskElle/) and [exercism.io](http://exercism.io/languages/haskell) provide Haskell exercises which are automatically corrected.
 
 ### [Exams from previous years](exams.html)
 
 ### Lectures 1 and 2 - Functions and types
 
-1. Write two version of a function `noOfSol` that, for some `a`, `b`, and `c`, determines the number of solutions of the equation `ax² + bx + c = 0`:
-    * with case distinction
-    * by combining standard functions
+1. Write a function `noOfSol` that, for some `a`, `b`, and `c`, determines the number of solutions of the equation `ax² + bx + c = 0`, using case distinction.
 
 2. What is the type of the following functions? `tail`, `sqrt`, `pi`, `exp`, `(ˆ)`, `(/=)` and `noOfSol`? How can you query the interpreter for the type of an expression and how can you explicitly specify the types of functions in your program?
 
@@ -30,6 +28,47 @@ If you like a more interactive approach, [exercism.io](http://exercism.io/langua
     ```haskell
     map thrice (sums [0 .. 4])
     ```
+
+#### Types and inference
+
+In these exercises you should assume the following types:
+
+```haskell
+foldr  :: (a -> b -> b) -> b -> [a] -> b
+map    :: (a -> b) -> [a] -> [b]
+concat :: [[a]] -> [a]
+(.)    :: (b -> c) -> (a -> b) -> a -> c
+```
+
+1. What is the type of `foldr map`?
+    a. `[a] -> [a -> a] -> [a]`
+    b. `[a] -> [[a -> a]] -> [a]`
+    c. `[a] -> [[a -> a] -> [a]]`
+    d. `[[a]] -> [a -> a] -> [a]`
+
+2. What is the type of `map . foldr`?
+    a. `(a -> a -> a) -> [a] -> [[a] -> a]`
+    b. `(a -> a -> a) -> [b] -> [b -> a]`
+    c. `(b -> a -> a) -> [a] -> [[b] -> a]`
+    d. `(b -> a -> a) -> [b] -> [[a] -> a]`
+
+3. Which of the following is the type of `concat . concat`?
+    a. `[[a]] -> [[a]] -> [[a]]`
+    b. `[[a]] -> [[a]] -> [a]`
+    c. `[[[a]]] -> [a]`
+    d. `[a] -> [[a]] -> [a]`
+
+4. What is the type of `map (map map)`?
+    a. `[[a -> b]] -> [[[a] -> [b]]]`
+    b. `[a -> b] -> [[[a] -> [b]]]`
+    c. `[[a -> b]] -> [[[a -> b]]]`
+    d. `[[a -> b] -> [[a] -> [b]]]`
+
+5. Which observation is correct when comparing the types of `(map  map) map` and `map (map map)?`
+    a. The type of the first is less polymorphic than the type of the second.
+    b. The type of the first is more polymorphic than the type of the second.
+    c. The types are the same, since function composition is associative.
+    d. One of the expressions does not have any type at all.
 
 ### Lecture 3 - Lists and recursion
 
@@ -318,39 +357,7 @@ If you like a more interactive approach, [exercism.io](http://exercism.io/langua
 
     With the aid of an example, explain what the `(>>=)` operator for this type does.
 
-### Lecture 13a - Types and inference
-
-1. What is the type of `foldr map`?
-    a. `[a] -> [a -> a] -> [a]`
-    b. `[a] -> [[a -> a]] -> [a]`
-    c. `[a] -> [[a -> a] -> [a]]`
-    d. `[[a]] -> [a -> a] -> [a]`
-
-2. What is the type of `map . foldr`?
-    a. `(a -> a -> a) -> [a] -> [[a] -> a]`
-    b. `(a -> a -> a) -> [b] -> [b -> a]`
-    c. `(b -> a -> a) -> [a] -> [[b] -> a]`
-    d. `(b -> a -> a) -> [b] -> [[a] -> a]`
-
-3. Which of the following is the type of `concat . concat`?
-    a. `[[a]] -> [[a]] -> [[a]]`
-    b. `[[a]] -> [[a]] -> [a]`
-    c. `[[[a]]] -> [a]`
-    d. `[a] -> [[a]] -> [a]`
-
-4. What is the type of `map (map map)`?
-    a. `[[a -> b]] -> [[[a] -> [b]]]`
-    b. `[a -> b] -> [[[a] -> [b]]]`
-    c. `[[a -> b]] -> [[[a -> b]]]`
-    d. `[[a -> b] -> [[a] -> [b]]]`
-
-5. Which observation is correct when comparing the types of `(map  map) map` and `map (map map)?`
-    a. The type of the first is less polymorphic than the type of the second.
-    b. The type of the first is more polymorphic than the type of the second.
-    c. The types are the same, since function composition is associative.
-    d. One of the expressions does not have any type at all.
-
-### Lecture 13b - Testing with QuickCheck
+### Lecture 13 - Testing with QuickCheck
 
 For the exercises below you may want to consult the functions provided by the [QuickCheck library](hackage.haskell.org/package/QuickCheck-2.4.2/docs/Test-QuickCheck.html), in particular functions such as `choose`, `sized`, `elements` and `frequency`. We encourage experimenting with your code in an interpreter session. To be able to experiment with QuickCheck, the first two exercises work better if you can `show` functions. For that you can add the following instance definition to your code:
 

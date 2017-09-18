@@ -27,7 +27,8 @@ title: Lectures
 <tr>
 <td>Tue 12 Sep</td>
 <td><a href="slides/fp-02-basics.pdf">2. Basics</a></td>
-<td>Chapters 4 (up to 4.4) and 3</td>
+<td>Chapters 4 (up to 4.4) and 3
+<br>Chapter 5 from the <a href="http://www.staff.science.uu.nl/~hage0101/FP-elec.pdf">Lecture Notes</a></td>
 </tr>
 <tr>
 <td>Thu 14 Sep</td>
@@ -87,10 +88,14 @@ title: Lectures
 </tr>
 <tr>
 <td>Tue 24 Oct</td>
-<td><a href="slides/fp-13a-types.pdf">13a. Types and inference</a>
-<br><a href="slides/fp-13b-quickcheck.pdf">13b. Testing with QuickCheck</a></td>
-<td>Chapter 5 from the <a href="http://www.staff.science.uu.nl/~hage0101/FP-elec.pdf">Lecture Notes</a>
-<br><a href="http://book.realworldhaskell.org/read/testing-and-quality-assurance.html">Chapter 11 of <i>Real World Haskell</i></td>
+<td><a href="slides/fp-13-quickcheck.pdf">13. Testing with QuickCheck</a></td>
+<td><a href="http://book.realworldhaskell.org/read/testing-and-quality-assurance.html">Chapter 11</a> of <i>Real World Haskell</i>
+<br>More about correctness (very optional):
+<ul>
+<li><a href="https://www.youtube.com/watch?v=X36ye-1x_HQ">Video about Idris</a></li>
+<li><a href="http://ucsd-progsys.github.io/liquidhaskell-tutorial/">Intro to LiquidHaskell</a></li>
+</ul>
+</td>
 </tr>
 <tr>
 <td>Thu 26 Oct</td>
