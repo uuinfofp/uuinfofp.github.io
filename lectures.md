@@ -104,8 +104,8 @@ title: Lectures
 </tr>
 <tr>
 <td>Tue 31 Oct</td>
-<td><a>14. Lazy evaluation</a></td>
-<td></td>
+<td><a href="slides/fp-14-lazy-eval.pdf">14. Lazy evaluation</a></td>
+<td>Chapter 15</td>
 </tr>
 <tr>
 <td>Thu 2 Nov</td>

@@ -106,7 +106,8 @@ concat :: [[a]] -> [a]
 
 9. Define a function that groups successive duplicate elements in a list into sublists: `[1, 2, 2, 3, 2, 4]` is mapped to `[[1], [2, 2], [3], [2], [4]]`.
 
-10. Define a function that determines the "run-length encoding" of a list: `[1, 2, 2, 3, 2, 4]` is mapped to `[(1, 1),(2, 2),(1, 3),(1, 2),(1, 4)]`.
+10. Define a function that determines the "run-length encoding" of a list: `[1, 2, 2, 3, 2, 4]` is mapped to `[(1, 1),(2, 2),(1, 3),(1, 2),(1, 4)]`. That is, the list is mapped to a list of pairs whose first element says how many times the second component of the pair appears in adjacent positions in the list.
+    - Define a function which constructs the original list given its run-length-encoded version.
 
 11.  Verify that the definition of `(++)` indeed maps `[1, 2] ++ []` to `[1, 2]`. Hint: write `[1, 2]` as `1 : (2 : [ ])`.
 
