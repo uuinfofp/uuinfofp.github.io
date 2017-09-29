@@ -6,7 +6,7 @@ These exercises are taken from the [Lecture Notes](http://www.cs.uu.nl/people/ju
 
 If you like a more interactive approach, [Ask-Elle](http://ideas.cs.uu.nl/AskElle/) and [exercism.io](http://exercism.io/languages/haskell) provide Haskell exercises which are automatically corrected.
 
-### [Exams from previous years](exams.html)
+### [Solutions to selected exercises](solutions.html) - [Exams from previous years](exams.html)
 
 ### Lectures 1 and 2 - Functions and types
 
@@ -196,7 +196,7 @@ concat :: [[a]] -> [a]
 
 2. Write functions that return all values of type `a` in a tree of type `Tree a` in depth-first (pre-order), depth-first (in-order), and breadth-first order.
 
-3. Write a function `showTree` that gives a nice representation as a `String` for a given tree\. Every leaf should be placed on a different line (separated by `"\n"`). Leaves that are deeper in the tree should be further to the right than leaves higher in the tree.
+3. Write a function `showTree` that gives a nice representation as a `String` for a given tree. Every leaf should be placed on a different line (separated by `"\n"`). Leaves that are deeper in the tree should be further to the right than leaves higher in the tree.
 
 4. Write a function `mapTree` and a function `foldTree` that work on a `Tree`, analoguous to `map` and `foldr` on lists. Also give the type of these functions.
 
