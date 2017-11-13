@@ -179,7 +179,7 @@ concat :: [[a]] -> [a]
 
 2. Give a direct definition of the `<` operator on lists. This definition should not use operators like `<=` for lists. (When trying out this definition using `ghci`, do not use the `<` symbol, since it is already defined in the `Prelude`).
 
-3. Define a type `Set a` which consists of elements of type `a`. Define a function `subset :: Set a -> Set a -> Bool` which checks whether all the elements in the first set also belong to the second. Use this to define an `Eq` instance for `Set a`.
+3. Define a type `Set a` which consists of elements of type `a`. Define a function `subset :: Eq a => Set a -> Set a -> Bool` which checks whether all the elements in the first set also belong to the second. Use this to define an `Eq` instance for `Set a`.
 
     - Why do we have to define `Set a` as its own data type, instead of an alias over `[a]`?
 
@@ -317,7 +317,7 @@ concat :: [[a]] -> [a]
 
 1. Show that the definition of the arithmetic evaluator using `next` in Lecture 11 is the same as the one using nested `case` clauses by expanding the definition of the former.
 
-2. Define a function `tuple :: m a -> m b -> m (a, b)` using explicit `(>>=)`, `do`-notation and applicative operators.
+2. Define a function `tuple :: Monad m => m a -> m b -> m (a, b)` using explicit `(>>=)`, `do`-notation and applicative operators.
     - What does the function do in the `Maybe` case?
 
 3. Define the following set of actions for `State s a`:
@@ -329,7 +329,7 @@ concat :: [[a]] -> [a]
 
 4. Explain the behavior of `sequence` for the `Maybe` monad.
 
-5. Define a monadic generalisation of `foldr`:
+5. Define a monadic generalisation of `foldl`:
 
     ```haskell
     foldM :: Monad m => (a -> b -> m a) -> a -> [b] -> m a
@@ -374,7 +374,6 @@ runTests :: IO ()
 runTests = do
   putStrLn "\nExercise 14.1"
   quickCheck (propFilterNoLonger      :: (Bool −> Bool) −> [Bool] −> Bool)
-  quickCheck (propFilterNoLongerWrong :: (Bool −> Bool) −> [Bool] −> Bool)
   quickCheck (propFilterAllSatisfy    :: (Bool −> Bool) −> [Bool] −> Bool)
   quickCheck (propFilterAllElements   :: (Bool −> Bool) −> [Bool] −> Bool)
   quickCheck (propFilterCorrect       :: (Bool −> Bool) −> [Bool] −> Bool)
@@ -435,12 +434,12 @@ runTests = do
 1. In an older version of the base library the function `intersperse`, which places an element between all elements of a list, was defined as:
 
     ```haskell
-    intersperse e []       = []
-    intersperse e [x]      = [x]
+    intersperse _ []       = []
+    intersperse _ [x]      = [x]
     intersperse e (x:y:ys) = x : e : intersperse e (y:ys)
     ```
 
-    - What would you expect the result of the expression `intersperse 'a' ('b':undefined)` to be?
+    - What would you expect the result of the expression `intersperse 'a' ('b' : undefined)` to be?
     - Can you give a definition of `intersperse` which is less strict?
 
 2. Given the data type of binary trees:

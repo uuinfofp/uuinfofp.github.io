@@ -37,14 +37,14 @@ title: Labs
 </tr>
 <tr>
 <td>Fri 20 Oct</td>
-<td><a href="practicals/Game1.pdf">4. Game, design</a></td>
-<td></td>
+<td><a href="practicals/project.pdf">4. Game, design</a></td>
+<td><a href="practicals/gloss-counter.zip">Example game</a></td>
 <td><a href="http://www.cs.uu.nl/docs/submit/">Submit</a></td>
 </tr>
 <tr>
-<td>Fri 3 Nov</td>
-<td><a href="practicals/Game2.pdf">5. Game, implementation</a></td>
-<td></td>
+<td>Sun 12 Nov</td>
+<td><a href="practicals/project.pdf">5. Game, implementation</a></td>
+<td><a href="practicals/gloss-counter.zip">Example game</a></td>
 <td><a href="http://www.cs.uu.nl/docs/submit/">Submit</a></td>
 </tr>
 </table>
