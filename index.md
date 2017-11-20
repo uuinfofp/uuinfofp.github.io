@@ -6,6 +6,8 @@ Please contact <a href="mailto:A.SerranoMena@uu.nl">A.SerranoMena@uu.nl</a> for 
 
 ### Latest news
 
+**20/11/2017**: added model solution for the [final exam](exams.html).
+
 **3/11/2017**: more [solutions](solutions.html) for selected exercises.
 
 **30/10/2017**: added model solution for the [mid-term exam](exams.html).
