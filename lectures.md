@@ -20,21 +20,15 @@ title: Lectures
 </tr>
 <tr>
 <td>Thu 6 Sep</td>
-<td>1. Course introduction</td><td></td>
-<!--
 <td><a href="slides/fp-00-course-intro.pdf">0. Course introduction</a>
 <br><a href="slides/fp-01-intro.pdf">1. FP? Haskell?</a></td>
 <td>Chapters 1 and 2</td>
--->
 </tr>
 <tr>
 <td>Tue 11 Sep</td>
-<td>2. Basics</td><td></td>
-<!--
 <td><a href="slides/fp-02-basics.pdf">2. Basics</a></td>
 <td>Chapters 4 (up to 4.4) and 3
 <br>Chapter 5 from the <a href="http://www.staff.science.uu.nl/~hage0101/FP-elec.pdf">Lecture Notes</a></td>
--->
 </tr>
 <tr>
 <td>Thu 13 Sep</td>
