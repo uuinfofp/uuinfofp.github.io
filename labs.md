@@ -12,38 +12,38 @@ title: Labs
 <th>Hand in</th>
 </tr>
 <tr>
-<td>Fri 15 Sep</td>
+<td>Fri 14 Sep</td>
 <td><a href="practicals/Assignment0.pdf">0. Introduction</a></td>
 <td>None</td>
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 </tr>
 <tr>
-<td>Fri 22 Sep</td>
+<td>Fri 21 Sep</td>
 <td><a href="practicals/Assignment1.pdf">1. Lists</a></td>
 <td><a href="practicals/Assignment1.hs"><tt>Assignment1.hs</tt></a></td>
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 </tr>
 <tr>
-<td>Fri 29 Sep</td>
+<td>Fri 28 Sep</td>
 <td><a href="practicals/Assignment2.pdf">2. Data structures</a></td>
 <td><a href="practicals/Assignment2.hs"><tt>Assignment2.hs</tt></a></td>
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 </tr>
 <tr>
-<td>Fri 13 Oct</td>
+<td>Fri 12 Oct</td>
 <td><a href="practicals/Assignment3.pdf">3. Type classes</a></td>
 <td><a href="practicals/Assignment3.hs"><tt>Assignment3.hs</tt></a></td>
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 </tr>
 <tr>
-<td>Fri 20 Oct</td>
-<td><a href="practicals/project.pdf">4. Game, design</a></td>
+<td>Fri 19 Oct</td>
+<td><a href="javascript:alert('Not yet available');">4. Game, design</a></td>
 <td><a href="practicals/gloss-counter.zip">Example game</a></td>
 <td><a href="http://www.cs.uu.nl/docs/submit/">Submit</a></td>
 </tr>
 <tr>
-<td>Sun 12 Nov</td>
-<td><a href="practicals/project.pdf">5. Game, implementation</a></td>
+<td>Sun 11 Nov</td>
+<td><a href="javascript:alert('Not yet available');">5. Game, implementation</a></td>
 <td><a href="practicals/gloss-counter.zip">Example game</a></td>
 <td><a href="http://www.cs.uu.nl/docs/submit/">Submit</a></td>
 </tr>
@@ -51,17 +51,7 @@ title: Labs
 
 ### Practicals from previous years
 
-Even if you passed the practicals last year, you still need to submit the solutions via DOMJudge and do the new game practical.
-
-### Editors
-
-* Simpler and graphical
-    * [Visual Studio Code](https://code.visualstudio.com/): after downloading the program, click on the *Extensions* tab (the fifth icon in the left side), search for "[Haskell Syntax Highlighting](https://marketplace.visualstudio.com/items?itemName=justusadam.language-haskell)" and click *Install*
-    * [Atom](https://atom.io/) with [Haskell syntax highlighting](https://atom.io/packages/language-haskell)
-    * [Notepad++](https://notepad-plus-plus.org/download/)
-* For the adventurous, keyboard-oriented
-    * Emacs: the [official website](https://www.gnu.org/software/emacs/) provides versions for Windows and Linux, for Mac OS X the [following version](https://emacsformacosx.com/) is suggested
-    * [Vim](http://www.vim.org/)
+Even if you passed the practicals last year, you still need to submit the solutions via DOMJudge and do the new game practical. The new restrictions on style apply, so you might need to modify your submissions from previous years.
 
 ### Coding style
 

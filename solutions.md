@@ -360,6 +360,54 @@ eval m (BinOp o x y) = evalBinOp o (eval m x) (eval m y)
         evalBinOp Exp   = (^^)
 ```
 
+### Lecture 13 - Project management: testing with QuickCheck
+
+#### Exercise 1
+
+```haskell
+propFilterNoLonger :: (a −> a) −> [a] −> Bool
+propFilterNoLonger p xs = length (filter p xs) <= length xs
+
+propFilterAllSatisfy :: (a −> a) −> [a] −> Bool
+propFilterAllSatisfy p xs = all p (filter p xs)
+
+propFilterAllElements :: Eq a => (a −> a) −> [a] −> Bool
+propFilterAllElements p xs = all (`elem` xs) (filter p xs)
+```
+
+In order to completely characterize the `filter` function you should add two properties:
+
+- That the elements which are left out do not satisfy the property.
+- That the result of `filter p xs` is a sublist of `xs`, that is, a copy of `xs` where some elements are removed but the order of the elements is respected.
+
+#### Exercise 2
+
+```haskell
+propMapLength :: (a −> b) −> [a] −> Bool
+propMapLength f xs = length xs == length (map f xs)
+
+propMapId :: Eq a => [a] -> Bool
+propMapId xs = map id xs == xs
+```
+
+One property which is difficult to verify is the distributivity over composition, that is, that `map (f . g) = map f . map g`. This is because generating arbitrary functions is a complicated task.
+
+#### Exercise 3
+
+```haskell
+propPermsLength :: [Int] −> Bool
+propPermsLength xs = length (permutations xs) == factorial (length xs)
+
+isPerm :: [a] −> [a] −> Bool
+isPerm xs ys = length xs == length ys && all (`elem` ys) xs
+
+propPermsArePerms :: [Int] −> Bool
+propPermsArePerms xs = all (isPerm xs) (permutations xs)
+```
+
+An additional property which characterized `permutations` is that given a list without duplicates, the set of permutations does not contain duplicate elements either.
+
+
 ### Lecture 9 - Input and output
 
 #### Exercise 1
@@ -436,7 +484,24 @@ askInputPaths = reverse (askInputPaths' [])
 
 Solutions to several of the exercises can be found in Chapter 16 of the [Lecture Notes](http://www.staff.science.uu.nl/~hage0101/FP-elec.pdf).
 
-### Lectures 11 and 12 - Functors, monads, applicatives and traversables
+### Lecture 11 - Lazy evaluation
+
+#### Exercise 1
+
+Given that definition, when the machine computes the result of `intersperse 'a' ('b' : undefined)`, it first checks whether the constructor for the second argument is `[]` or `(:)`. We know that from the code, so nothing additional needs to be forced. However, to decide between the second and third branches it needs to know the next constructor, since it needs to distinguish `x : []` from `x : (y : zs)`. Because at that point the expression is undefined, the result of `intersperse 'a' ('b' : undefined)` is also undefined.
+
+In order to make the definition less strict, we need to pattern match as little as possible. One way to do this is taking the first element as is, and then prepending the separator to the rest:
+
+```haskell
+intersperse _ []     = []
+intersperse s (x:xs) = x : intersperse' xs
+  where intersperse' []     = []
+        intersperse' (y:ys) = s : y : intersperse' ys
+```
+
+Using this definition, the result of `intersperse` produces two elements before it gets to the undefined part of the list. In other words, the result of the execution is `'b' : 'a' : undefined`.
+
+### Lectures 12 and 13 - Functors, monads, applicatives and traversables
 
 #### Exercise 2
 
@@ -530,88 +595,3 @@ instance Monad Expr where
 ```
 
 This binding operation performs *substitution*. That is, if we have an expression `x` and a function `f` which maps those variables to further expressions, then `x >>= f` is the result of applying that map to `x`.
-
-### Lecture 13 - Testing with QuickCheck
-
-#### Exercise 1
-
-```haskell
-propFilterNoLonger :: (a −> a) −> [a] −> Bool
-propFilterNoLonger p xs = length (filter p xs) <= length xs
-
-propFilterAllSatisfy :: (a −> a) −> [a] −> Bool
-propFilterAllSatisfy p xs = all p (filter p xs)
-
-propFilterAllElements :: Eq a => (a −> a) −> [a] −> Bool
-propFilterAllElements p xs = all (`elem` xs) (filter p xs)
-```
-
-In order to completely characterize the `filter` function you should add two properties:
-
-- That the elements which are left out do not satisfy the property.
-- That the result of `filter p xs` is a sublist of `xs`, that is, a copy of `xs` where some elements are removed but the order of the elements is respected.
-
-#### Exercise 2
-
-```haskell
-propMapLength :: (a −> b) −> [a] −> Bool
-propMapLength f xs = length xs == length (map f xs)
-
-propMapId :: Eq a => [a] -> Bool
-propMapId xs = map id xs == xs
-```
-
-One property which is difficult to verify is the distributivity over composition, that is, that `map (f . g) = map f . map g`. This is because generating arbitrary functions is a complicated task.
-
-#### Exercise 3
-
-```haskell
-propPermsLength :: [Int] −> Bool
-propPermsLength xs = length (permutations xs) == factorial (length xs)
-
-isPerm :: [a] −> [a] −> Bool
-isPerm xs ys = length xs == length ys && all (`elem` ys) xs
-
-propPermsArePerms :: [Int] −> Bool
-propPermsArePerms xs = all (isPerm xs) (permutations xs)
-```
-
-An additional property which characterized `permutations` is that given a list without duplicates, the set of permutations does not contain duplicate elements either.
-
-#### Exercise 5
-
-```haskell
-genBSTI :: Gen (Tree Int)
-genBSTI = do lowerbound <- arbitrary
-             distance   <- arbitrary
-             let upperbound = lowerbound + abs distance
-             genBSTI' lowerbound upperbound
-
-genBSTI' :: Int -> Int -> Gen (Tree Int)
-genBSTI' l u
-  | l >= u    = return Leaf
-  | otherwise = frequency
-                  [ (2, return Leaf)
-                  , (1, do v <- choose (l, u)
-                           left  <- genBSTI' l (v-1)
-                           right <- genBSTI' (v+1) u
-                           return (Branch v left right))
-                  ]
-```
-
-### Lecture 14 - Lazy evaluation
-
-#### Exercise 1
-
-Given that definition, when the machine computes the result of `intersperse 'a' ('b' : undefined)`, it first checks whether the constructor for the second argument is `[]` or `(:)`. We know that from the code, so nothing additional needs to be forced. However, to decide between the second and third branches it needs to know the next constructor, since it needs to distinguish `x : []` from `x : (y : zs)`. Because at that point the expression is undefined, the result of `intersperse 'a' ('b' : undefined)` is also undefined.
-
-In order to make the definition less strict, we need to pattern match as little as possible. One way to do this is taking the first element as is, and then prepending the separator to the rest:
-
-```haskell
-intersperse _ []     = []
-intersperse s (x:xs) = x : intersperse' xs
-  where intersperse' []     = []
-        intersperse' (y:ys) = s : y : intersperse' ys
-```
-
-Using this definition, the result of `intersperse` produces two elements before it gets to the undefined part of the list. In other words, the result of the execution is `'b' : 'a' : undefined`.

@@ -20,7 +20,7 @@ The language Haskell imposes a strong separation between pure computations and t
 
 ## <a name="schedule"></a>Schedule
 
-The load per week is 2 × 2 h. [lectures](lectures.html), 1 × 2 h. [practicals](labs.html) and 1 × 2 h. [werkcollege](exercises.html). Attendance is not strictly mandatory (albeit recommended). Please attend the group according to this [assignment](pw/rooms.html) (username/password: `fp`).
+The load per week is 2 × 2 h. [lectures](lectures.html), 1 × 2 h. [practicals](labs.html) and 1 × 2 h. [werkcollege](exercises.html). Attendance is not strictly mandatory (albeit recommended).
 
 ## Assignments
 

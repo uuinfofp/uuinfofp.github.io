@@ -19,76 +19,78 @@ title: Lectures
 <th>Recommended reading</th>
 </tr>
 <tr>
-<td>Thu 7 Sep</td>
+<td>Thu 6 Sep</td>
+<td>1. Course introduction</td><td></td>
+<!--
 <td><a href="slides/fp-00-course-intro.pdf">0. Course introduction</a>
 <br><a href="slides/fp-01-intro.pdf">1. FP? Haskell?</a></td>
 <td>Chapters 1 and 2</td>
+-->
 </tr>
 <tr>
-<td>Tue 12 Sep</td>
+<td>Tue 11 Sep</td>
+<td>2. Basics</td><td></td>
+<!--
 <td><a href="slides/fp-02-basics.pdf">2. Basics</a></td>
 <td>Chapters 4 (up to 4.4) and 3
 <br>Chapter 5 from the <a href="http://www.staff.science.uu.nl/~hage0101/FP-elec.pdf">Lecture Notes</a></td>
+-->
 </tr>
 <tr>
-<td>Thu 14 Sep</td>
+<td>Thu 13 Sep</td>
+<td>3. Lists and recursion</td><td></td>
+<!--
 <td><a href="slides/fp-03-lists.pdf">3. Lists and recursion</a></td>
 <td>Chapters 5 and 6</td>
+-->
 </tr>
 <tr>
-<td>Tue 19 Sep</td>
+<td>Tue 18 Sep</td>
+<td>4. Higher-order functions</td><td></td>
+<!--
 <td><a href="slides/fp-04-h-o-functions.pdf">4. Higher-order functions</a></td>
 <td>Chapter 7 and 4.5-4.6</td>
+-->
 </tr>
 <tr>
-<td>Thu 21 Sep</td>
+<td>Thu 20 Sep</td>
+<td>5. Data types and type classes</td><td></td>
+<!--
 <td><a href="slides/fp-05-data-classes.pdf">5. Data types and type classes</a></td>
 <td>Chapter 8 (until 8.6)</td>
+-->
 </tr>
 <tr>
-<td>Tue 26 Sep</td>
+<td>Tue 25 Sep</td>
+<td>6. Data structures</td><td></td>
+<!--
 <td><a href="slides/fp-06-data-structures.pdf">6. Data structures</a></td>
 <td></td>
+-->
 </tr>
 <tr>
-<td>Thu 28 Sep</td>
+<td>Thu 27 Sep</td>
+<td>7. Case studies</td><td></td>
+<!--
 <td><a href="slides/fp-07-case-studies.pdf">7. Case studies</a> (slides 1-19 and 41-45)
 <br><a href="slides/fp-qa1.pdf">Q&A session</a></td>
 <td>Chapters 8.6-8.7 and 9</td>
+-->
 </tr>
 <tr class="warning">
-<td>Tue 3 Oct</td>
+<td>Tue 2 Oct</td>
 <td><b>Midterm exam</b></td>
 <td></td>
 </tr>
 <tr>
-<td>Thu 5 Oct</td>
+<td>Thu 4 Oct</td>
+<td>8. Project management, design and testing</td><td></td>
+<!--
 <td><a href="slides/fp-08a-project.pdf">8a. Project management</a>
 <br><a href="slides/fp-08b-design.pdf">8b. Design and DSLs</a></td>
 <td>Chapter 16 from the <a href="http://www.staff.science.uu.nl/~hage0101/FP-elec.pdf">Lecture Notes</a></td>
-</tr>
-<tr>
-<td>Tue 10 Oct</td>
-<td><a href="slides/fp-09-io.pdf">9. Input and output</a></td>
-<td>Chapter 10</td>
-</tr>
-<tr>
-<td>Thu 12 Oct</td>
-<td><a href="slides/fp-10-laws.pdf">10. Laws and induction</a></td>
-<td>Chapter 16 (up to 16.6) <br> Chapter 13 from the <a href="http://www.staff.science.uu.nl/~hage0101/FP-elec.pdf">Lecture Notes</a></td>
-</tr>
-<tr>
-<td>Tue 17 Oct</td>
-<td><a href="slides/fp-11-monads-one.pdf">11. Functors and monads</a></td>
-<td>Chapter 12 (except 12.2)</td>
-</tr>
-<tr>
-<td>Thu 19 Oct</td>
-<td><a href="slides/fp-12-monads-two.pdf">12. More monads, applicatives and traversables</a></td>
-<td>Chapters 12.2 and 14.3</td>
-</tr>
-<tr>
-<td>Tue 24 Oct</td>
+-->
+<!--
 <td><a href="slides/fp-13-quickcheck.pdf">13. Testing with QuickCheck</a></td>
 <td><a href="http://book.realworldhaskell.org/read/testing-and-quality-assurance.html">Chapter 11</a> of <i>Real World Haskell</i>
 <br>More about correctness (very optional):
@@ -97,16 +99,60 @@ title: Lectures
 <li><a href="http://ucsd-progsys.github.io/liquidhaskell-tutorial/">Intro to LiquidHaskell</a></li>
 </ul>
 </td>
+-->
 </tr>
 <tr>
-<td>Thu 26 Oct</td>
+<td>Tue 9 Oct</td>
+<td>9. Input and output</td><td></td>
+<!--
+<td><a href="slides/fp-09-io.pdf">9. Input and output</a></td>
+<td>Chapter 10</td>
+-->
+</tr>
+<tr>
+<td>Thu 11 Oct</td>
+<td>10. Laws and induction</td><td></td>
+<!--
+<td><a href="slides/fp-10-laws.pdf">10. Laws and induction</a></td>
+<td>Chapter 16 (up to 16.6) <br> Chapter 13 from the <a href="http://www.staff.science.uu.nl/~hage0101/FP-elec.pdf">Lecture Notes</a></td>
+-->
+</tr>
+<tr>
+<td>Tue 16 Oct</td>
+<td>11. Lazy evaluation</td><td></td>
+<!--
+<td><a href="slides/fp-14-lazy-eval.pdf">14. Lazy evaluation</a></td>
+<td>Chapter 15</td>
+-->
+</tr>
+<tr>
+<td>Thu 18 Oct</td>
+<td>12. Functors and monads</td><td></td>
+<!--
+<td><a href="slides/fp-11-monads-one.pdf">11. Functors and monads</a></td>
+<td>Chapter 12 (except 12.2)</td>
+-->
+</tr>
+<tr>
+<td>Tue 23 Oct</td>
+<td>13. More monads, applicatives and traversables</td><td></td>
+<!--
+<td><a href="slides/fp-12-monads-two.pdf">12. More monads, applicatives and traversables</a></td>
+<td>Chapters 12.2 and 14.3</td>
+-->
+</tr>
+<tr>
+<td>Thu 25 Oct</td>
 <td><a>Swift</a> <i>by Wouter Swierstra</i></td>
 <td></td>
 </tr>
 <tr>
-<td>Tue 31 Oct</td>
-<td><a href="slides/fp-14-lazy-eval.pdf">14. Lazy evaluation</a></td>
-<td>Chapter 15</td>
+<td>Tue 30 Oct</td>
+<td>14. A web server in Haskell</td><td></td>
+<!--
+<td>Slides</td>
+<td>Chapters 12.2 and 14.3</td>
+-->
 </tr>
 <tr>
 <td>Thu 2 Nov</td>
@@ -114,7 +160,7 @@ title: Lectures
 <td></td>
 </tr>
 <tr class="warning">
-<td>Thu 9 Nov</td>
+<td>Thu 8 Nov</td>
 <td><b>Final exam</b></td>
 <td></td>
 </tr>

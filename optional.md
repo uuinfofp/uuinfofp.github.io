@@ -60,15 +60,11 @@ The following topics are provided as a suggestion, but many other are possible.
 </tr>
 <tr>
 <td><a href="https://dl.acm.org/citation.cfm?id=2500613">Semirings</a></td>
-<td>Max Meijer
-<br>Jens Heuseveldt
-<br>Lisanne Waardenburg
+<td></td>
 </tr>
 <tr>
 <td><a href="https://www.haskell.org/arrows/">Arrows</a></td>
-<td>Marien Raat
-<br>Ruud Verbeek
-<br>Mehul Mistry</td>
+<td></td>
 </tr>
 </table>
 
@@ -88,17 +84,12 @@ The following topics are provided as a suggestion, but many other are possible.
 <tr>
 <td><a href="http://haskell-servant.readthedocs.io/en/stable/"><tt>servant</tt></a></td>
 <td>HTTP server</td>
-<td>Willem Bart Wijnia
-<br>Sanne Maasakkers</td>
+<td></td>
 </tr>
 <tr>
 <td><a href="http://hackage.haskell.org/package/aeson"><tt>aeson</tt></a></td>
 <td>JSON serialization</td>
-<td>Maaike Koninx
-<br>Jordi Wippert
-<br>Kevin Wilbrink
-<br>Jerry Hu
-</td>
+<td></td>
 </tr>
 <tr>
 <td><a href="http://hackage.haskell.org/package/logict"><tt>logict</tt></a></td>
@@ -118,14 +109,10 @@ The following topics are provided as a suggestion, but many other are possible.
 <tr>
 <td><a href="http://hackage.haskell.org/package/monad-par"><tt>monad-par</tt></a></td>
 <td>Parallel programming</td>
-<td>Tijmen van der Beek
-<br>Tim Brussaard 
-<br>Ben Veldhuijzen</td>
+<td></td>
 </tr><tr>
 <td><a href="http://hackage.haskell.org/package/persistent"><tt>persistent</tt></a></td>
 <td>Database access</td>
-<td>Niels Hendrikx
-<br>Lars Werkman
-</td>
+<td></td>
 </tr>
 </table>
