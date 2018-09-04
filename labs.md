@@ -39,13 +39,13 @@ title: Labs
 <td>Fri 19 Oct</td>
 <td><a href="javascript:alert('Not yet available');">4. Game, design</a></td>
 <td><a href="practicals/gloss-counter.zip">Example game</a></td>
-<td><a href="http://www.cs.uu.nl/docs/submit/">Submit</a></td>
+<td>Blackboard</td>
 </tr>
 <tr>
 <td>Sun 11 Nov</td>
 <td><a href="javascript:alert('Not yet available');">5. Game, implementation</a></td>
 <td><a href="practicals/gloss-counter.zip">Example game</a></td>
-<td><a href="http://www.cs.uu.nl/docs/submit/">Submit</a></td>
+<td>Blackboard</td>
 </tr>
 </table>
 
