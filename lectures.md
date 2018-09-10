@@ -32,19 +32,13 @@ title: Lectures
 </tr>
 <tr>
 <td>Thu 13 Sep</td>
-<td>3. Lists and recursion</td><td></td>
-<!--
 <td><a href="slides/fp-03-lists.pdf">3. Lists and recursion</a></td>
 <td>Chapters 5 and 6</td>
--->
 </tr>
 <tr>
 <td>Tue 18 Sep</td>
-<td>4. Higher-order functions</td><td></td>
-<!--
 <td><a href="slides/fp-04-h-o-functions.pdf">4. Higher-order functions</a></td>
 <td>Chapter 7 and 4.5-4.6</td>
--->
 </tr>
 <tr>
 <td>Thu 20 Sep</td>
@@ -137,7 +131,7 @@ title: Lectures
 </tr>
 <tr>
 <td>Thu 25 Oct</td>
-<td><a>Swift</a> <i>by Wouter Swierstra</i></td>
+<td><a>Guest lecture</a> <i>by ?</i></td>
 <td></td>
 </tr>
 <tr>
