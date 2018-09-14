@@ -37,21 +37,21 @@ title: Labs
 </tr>
 <tr>
 <td>Fri 19 Oct</td>
-<td><a href="javascript:alert('Not yet available');">4. Game, design</a></td>
+<td><a href="practicals/project.pdf">4. Game, design document</a></td>
 <td><a href="practicals/gloss-counter.zip">Example game</a></td>
-<td>Blackboard</td>
+<td><a href="http://uu.blackboard.com">Blackboard</a></td>
 </tr>
 <tr>
 <td>Sun 11 Nov</td>
-<td><a href="javascript:alert('Not yet available');">5. Game, implementation</a></td>
+<td><a href="practicals/project.pdf">5. Game, implementation</a></td>
 <td><a href="practicals/gloss-counter.zip">Example game</a></td>
-<td>Blackboard</td>
+<td><a href="http://uu.blackboard.com">Blackboard</a></td>
 </tr>
 </table>
 
 ### Practicals from previous years
 
-Even if you passed the practicals last year, you still need to submit the solutions via DOMJudge and do the new game practical. The new restrictions on style apply, so you might need to modify your submissions from previous years.
+Even if you passed the practicals last year, you still need to submit the solutions via DOMJudge and do a new game practical from scratch. The new restrictions on style apply, so you might need to modify your submissions from previous years.
 
 ### Coding style
 

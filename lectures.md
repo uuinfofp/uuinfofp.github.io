@@ -90,7 +90,7 @@ title: Lectures
 -->
 </tr>
 <tr>
-<td>Tue 9 Oct</td>
+<td>Tue 9 Oct<br /><b>In <a hef="https://www.uu.nl/marinus-ruppertgebouw">Ruppertgebouw</a> Paars/Rood!</b></td>
 <td>9. Input and output</td><td></td>
 <!--
 <td><a href="slides/fp-09-io.pdf">9. Input and output</a></td>
@@ -143,7 +143,7 @@ title: Lectures
 -->
 </tr>
 <tr>
-<td>Thu 2 Nov</td>
+<td>Thu 1 Nov<br /><b>In <a hef="https://www.uu.nl/marinus-ruppertgebouw">Ruppertgebouw</a> Blauw!</b></td>
 <td>Review</td>
 <td></td>
 </tr>
