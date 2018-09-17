@@ -42,28 +42,19 @@ title: Lectures
 </tr>
 <tr>
 <td>Thu 20 Sep</td>
-<td>5. Data types and type classes</td><td></td>
-<!--
 <td><a href="slides/fp-05-data-classes.pdf">5. Data types and type classes</a></td>
 <td>Chapter 8 (until 8.6)</td>
--->
 </tr>
 <tr>
 <td>Tue 25 Sep</td>
-<td>6. Data structures</td><td></td>
-<!--
 <td><a href="slides/fp-06-data-structures.pdf">6. Data structures</a></td>
 <td></td>
--->
 </tr>
 <tr>
 <td>Thu 27 Sep</td>
-<td>7. Case studies</td><td></td>
-<!--
-<td><a href="slides/fp-07-case-studies.pdf">7. Case studies</a> (slides 1-19 and 41-45)
-<br><a href="slides/fp-qa1.pdf">Q&A session</a></td>
+<td><a href="slides/fp-07-case-studies.pdf">7. Case studies</a>
+<!-- <br><a href="slides/fp-qa1.pdf">Q&A session</a> --></td>
 <td>Chapters 8.6-8.7 and 9</td>
--->
 </tr>
 <tr class="warning">
 <td>Tue 2 Oct</td>
@@ -90,7 +81,7 @@ title: Lectures
 -->
 </tr>
 <tr>
-<td>Tue 9 Oct<br /><b>In <a hef="https://www.uu.nl/marinus-ruppertgebouw">Ruppertgebouw</a> Paars/Rood!</b></td>
+<td>Tue 9 Oct<br /><b>In <a href="https://www.uu.nl/marinus-ruppertgebouw">Ruppertgebouw</a> Paars/Rood!</b></td>
 <td>9. Input and output</td><td></td>
 <!--
 <td><a href="slides/fp-09-io.pdf">9. Input and output</a></td>
@@ -143,7 +134,7 @@ title: Lectures
 -->
 </tr>
 <tr>
-<td>Thu 1 Nov<br /><b>In <a hef="https://www.uu.nl/marinus-ruppertgebouw">Ruppertgebouw</a> Blauw!</b></td>
+<td>Thu 1 Nov<br /><b>In <a href="https://www.uu.nl/marinus-ruppertgebouw">Ruppertgebouw</a> Blauw!</b></td>
 <td>Review</td>
 <td></td>
 </tr>
