@@ -37,7 +37,8 @@ title: Lectures
 </tr>
 <tr>
 <td>Tue 18 Sep</td>
-<td><a href="slides/fp-04-h-o-functions.pdf">4. Higher-order functions</a></td>
+<td><a href="slides/fp-04-h-o-functions.pdf">4. Higher-order functions</a>
+<br><a href="applyAllFold.html">Writing <tt>applyAll</tt> as a fold</a></td>
 <td>Chapter 7 and 4.5-4.6</td>
 </tr>
 <tr>
