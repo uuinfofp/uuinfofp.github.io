@@ -54,8 +54,8 @@ title: Lectures
 <tr>
 <td>Thu 27 Sep</td>
 <td><a href="slides/fp-07-case-studies.pdf">7. Case studies</a>
-<!-- <br><a href="slides/fp-qa1.pdf">Q&A session</a> --></td>
-<td>Chapters 8.6-8.7 and 9</td>
+<br><a href="slides/fp-qa-2018.pdf">Q&A session</a></td>
+<td>Chapters 8.6</td>
 </tr>
 <tr class="warning">
 <td>Tue 2 Oct</td>
