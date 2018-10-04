@@ -64,38 +64,24 @@ title: Lectures
 </tr>
 <tr>
 <td>Thu 4 Oct</td>
-<td>8. Project management, design and testing</td><td></td>
-<!--
-<td><a href="slides/fp-08a-project.pdf">8a. Project management</a>
-<br><a href="slides/fp-08b-design.pdf">8b. Design and DSLs</a></td>
-<td>Chapter 16 from the <a href="http://www.staff.science.uu.nl/~hage0101/FP-elec.pdf">Lecture Notes</a></td>
--->
-<!--
-<td><a href="slides/fp-13-quickcheck.pdf">13. Testing with QuickCheck</a></td>
-<td><a href="http://book.realworldhaskell.org/read/testing-and-quality-assurance.html">Chapter 11</a> of <i>Real World Haskell</i>
-<br>More about correctness (very optional):
-<ul>
-<li><a href="https://www.youtube.com/watch?v=X36ye-1x_HQ">Video about Idris</a></li>
-<li><a href="http://ucsd-progsys.github.io/liquidhaskell-tutorial/">Intro to LiquidHaskell</a></li>
-</ul>
-</td>
--->
+<td><a href="slides/fp-08-project-design-test.pdf">8. Project management, design and testing</a></td>
+<td><a href="http://book.realworldhaskell.org/read/testing-and-quality-assurance.html">Chapter 11</a> of <i>Real World Haskell</i></td>
 </tr>
 <tr>
 <td>Tue 9 Oct<br /><b>In <a href="https://www.uu.nl/marinus-ruppertgebouw">Ruppertgebouw</a> Paars/Rood!</b></td>
-<td>9. Input and output</td><td></td>
-<!--
 <td><a href="slides/fp-09-io.pdf">9. Input and output</a></td>
 <td>Chapter 10</td>
--->
 </tr>
 <tr>
 <td>Thu 11 Oct</td>
-<td>10. Laws and induction</td><td></td>
-<!--
 <td><a href="slides/fp-10-laws.pdf">10. Laws and induction</a></td>
-<td>Chapter 16 (up to 16.6) <br> Chapter 13 from the <a href="http://www.staff.science.uu.nl/~hage0101/FP-elec.pdf">Lecture Notes</a></td>
--->
+<td>Chapter 16 (up to 16.6)
+<br> Chapter 13 from the <a href="http://www.staff.science.uu.nl/~hage0101/FP-elec.pdf">Lecture Notes</a>
+<br>More about correctness (optional):
+<ul>
+<li><a href="https://www.youtube.com/watch?v=vQrutfPAERQ">Intro to LiquidHaskell</a></li>
+<li><a href="https://www.youtube.com/watch?v=X36ye-1x_HQ">Intro to Idris</a></li>
+</ul></td>
 </tr>
 <tr>
 <td>Tue 16 Oct</td>
