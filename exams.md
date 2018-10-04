@@ -13,6 +13,12 @@ title: Exams from previous years
 </tr>
 
 <tr>
+<td>2018</td>
+<td><a href="exams/20181002.pdf">No answers</a></td>
+<td><a href="exams/20181002-withanswers.pdf">With answers</a></td>
+<tr>
+
+<tr>
 <td>2017</td>
 <td><a href="exams/20171003.pdf">No answers</a></td>
 <td><a href="exams/20171003-withanswers.pdf">With answers</a></td>
