@@ -85,31 +85,22 @@ title: Lectures
 </tr>
 <tr>
 <td>Tue 16 Oct</td>
-<td>11. Lazy evaluation</td><td></td>
-<!--
-<td><a href="slides/fp-14-lazy-eval.pdf">14. Lazy evaluation</a></td>
+<td><a href="slides/fp-14-lazy-eval.pdf">11. Lazy evaluation</a></td>
 <td>Chapter 15</td>
--->
 </tr>
 <tr>
 <td>Thu 18 Oct</td>
-<td>12. Functors and monads</td><td></td>
-<!--
-<td><a href="slides/fp-11-monads-one.pdf">11. Functors and monads</a></td>
+<td><a href="slides/fp-11-monads-one.pdf">12. Functors and monads</a></td>
 <td>Chapter 12 (except 12.2)</td>
--->
 </tr>
 <tr>
 <td>Tue 23 Oct</td>
-<td>13. More monads, applicatives and traversables</td><td></td>
-<!--
-<td><a href="slides/fp-12-monads-two.pdf">12. More monads, applicatives and traversables</a></td>
+<td><a href="slides/fp-12-monads-two.pdf">13. More monads, applicatives and traversables</a></td>
 <td>Chapters 12.2 and 14.3</td>
--->
 </tr>
 <tr>
 <td>Thu 25 Oct</td>
-<td><a>Guest lecture</a> <i>by ?</i></td>
+<td>Guest lecture about <a>Formal Verification</a> <i>by Victor Cacciari Miraldo</i></td>
 <td></td>
 </tr>
 <tr>
