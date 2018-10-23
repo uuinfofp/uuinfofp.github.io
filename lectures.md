@@ -95,8 +95,8 @@ title: Lectures
 </tr>
 <tr>
 <td>Tue 23 Oct</td>
-<td><a href="slides/fp-12-monads-two.pdf">13. More monads, applicatives and traversables</a></td>
-<td>Chapters 12.2 and 14.3</td>
+<td><a href="slides/fp-12-monads-two.pdf">13. More monads and applicatives</a></td>
+<td>Chapter 12.2</td>
 </tr>
 <tr>
 <td>Thu 25 Oct</td>
@@ -105,11 +105,8 @@ title: Lectures
 </tr>
 <tr>
 <td>Tue 30 Oct</td>
-<td>14. A web server in Haskell</td><td></td>
-<!--
-<td>Slides</td>
-<td>Chapters 12.2 and 14.3</td>
--->
+<td><a href="slides/fp-12b-monads-three.pdf">14. Monadic utilities and traversables</a></td>
+<td>Chapter 13.4</td>
 </tr>
 <tr>
 <td>Thu 1 Nov<br /><b>In <a href="https://www.uu.nl/marinus-ruppertgebouw">Ruppertgebouw</a> Blauw!</b></td>

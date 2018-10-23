@@ -412,17 +412,20 @@ runTests = do
 
 ### Lectures 12 and 13 - Functors, monads, applicatives and traversables
 
-1. Show that the definition of the arithmetic evaluator using `next` in Lecture 11 is the same as the one using nested `case` clauses by expanding the definition of the former.
+1. Show that the definition of the arithmetic evaluator using `next` in Lecture 12 is the same as the one using nested `case` clauses by expanding the definition of the former.
 
 2. Define a function `tuple :: Monad m => m a -> m b -> m (a, b)` using explicit `(>>=)`, `do`-notation and applicative operators.
     - What does the function do in the `Maybe` case?
 
 3. Define the following set of actions for `State s a`:
-    - `get :: State s a -> a` obtains the current value of the state.
+    - `get :: State s s` obtains the current value of the state.
     - `modify :: (s -> s) -> State s ()` updates the current state using the given function.
     - `put :: s -> State s ()` overwrites the current state with the given value.
-    - Define `modify` using `get` and `put`, and vice versa.
-    Update the definition of `relabel` in the slides using these actions.
+    
+    Using those primitive operations:
+    * Define `modify` using `get` and `put`.
+    * Define `put` using `modify`.
+    * Update the definition of `relabel` in the slides using these actions.
 
 4. Explain the behavior of `sequence` for the `Maybe` monad.
 
