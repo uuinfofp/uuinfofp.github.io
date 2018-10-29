@@ -9,6 +9,8 @@ main :: IO ()
 main = hakyll $ do
     match "images/*" copyAsIs
     match "slides/*.pdf" copyAsIs
+    match "slides/*.hs" copyAsIs
+    match "slides/*.agda" copyAsIs
     match "practicals/*.pdf" copyAsIs
     match "practicals/*.hs" copyAsIs
     match "practicals/*.zip" copyAsIs

@@ -100,13 +100,15 @@ title: Lectures
 </tr>
 <tr>
 <td>Thu 25 Oct</td>
-<td>Guest lecture about <a>Formal Verification</a> <i>by Victor Cacciari Miraldo</i></td>
-<td></td>
+<td>Guest lecture about Formal Verification <i>by Victor Cacciari Miraldo</i></td>
+<td><a href="slides/GuestLecture.agda">Source code</a></td>
 </tr>
 <tr>
 <td>Tue 30 Oct</td>
-<td><a href="slides/fp-12b-monads-three.pdf">14. Monadic utilities and traversables</a></td>
-<td>Chapter 13.4</td>
+<td><a href="slides/fp-12b-monads-three.pdf">14. Monadic utilities and traversables</a>
+<br /><a href="slides/fp-extra-web.pdf">14'. A web server in Haskell</a></td>
+<td>Chapter 14.3
+<br /><a href="slides/FpExtraWeb.hs">Source code</a></td>
 </tr>
 <tr>
 <td>Thu 1 Nov<br /><b>In <a href="https://www.uu.nl/marinus-ruppertgebouw">Ruppertgebouw</a> Blauw!</b></td>

@@ -20,5 +20,7 @@ cabal.sandbox.config
 _cache/
 _site/
 slides/*.pdf
+slides/*.hs
+slides/*.agda
 practicals/*.pdf
 practicals/*.hs
