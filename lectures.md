@@ -76,7 +76,7 @@ title: Lectures
 <td>Thu 11 Oct</td>
 <td><a href="slides/fp-10-laws.pdf">10. Laws and induction</a></td>
 <td>Chapter 16 (up to 16.6)
-<br> Chapter 13 from the <a href="http://www.staff.science.uu.nl/~hage0101/FP-elec.pdf">Lecture Notes</a>
+<br>Chapter 13 from the <a href="http://www.staff.science.uu.nl/~hage0101/FP-elec.pdf">Lecture Notes</a>
 <br>More about correctness (optional):
 <ul>
 <li><a href="https://www.youtube.com/watch?v=vQrutfPAERQ">Intro to LiquidHaskell</a></li>
@@ -112,8 +112,9 @@ title: Lectures
 </tr>
 <tr>
 <td>Thu 1 Nov<br /><b>In <a href="https://www.uu.nl/marinus-ruppertgebouw">Ruppertgebouw</a> Blauw!</b></td>
-<td>Review</td>
-<td></td>
+<td><a href="slides/fp-farewell-2018.pdf">Q&A session</a>
+<br>Presentations about <a href="slides/2018-semirings.pdf">semirings</a> and <a href="slides/2018-par.pdf">parallelism</a></td>
+<td><a href="slides/2018Semirings.hs">Source code for semirings</a></td>
 </tr>
 <tr class="warning">
 <td>Thu 8 Nov</td>
