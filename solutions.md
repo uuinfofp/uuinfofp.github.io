@@ -590,8 +590,8 @@ instance Monad Expr where
 
   -- (>>=) :: Expr a -> (a -> Expr b) -> Expr b
   (Var a)   >>= f = f a
-  (Val n)   >>= f = return (Val n)
-  (Add x y) >>= f = Add <$> (x >>= f) <*> (y >>= f)
+  (Val n)   >>= _ = Val n
+  (Add x y) >>= f = Add (x >>= f) (y >>= f)
 ```
 
 This binding operation performs *substitution*. That is, if we have an expression `x` and a function `f` which maps those variables to further expressions, then `x >>= f` is the result of applying that map to `x`.
