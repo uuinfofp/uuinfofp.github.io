@@ -12,37 +12,37 @@ title: Labs
 <th>Hand in</th>
 </tr>
 <tr>
-<td>Fri 14 Sep</td>
+<td>TBA</td>
 <td><a href="practicals/Assignment0.pdf">0. Introduction</a></td>
 <td>None</td>
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 </tr>
 <tr>
-<td>Fri 21 Sep</td>
+<td>TBA</td>
 <td><a href="practicals/Assignment1.pdf">1. Lists</a></td>
 <td><a href="practicals/Assignment1.hs"><tt>Assignment1.hs</tt></a></td>
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 </tr>
 <tr>
-<td>Fri 28 Sep</td>
+<td>TBA</td>
 <td><a href="practicals/Assignment2.pdf">2. Data structures</a></td>
 <td><a href="practicals/Assignment2.hs"><tt>Assignment2.hs</tt></a></td>
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 </tr>
 <tr>
-<td>Fri 12 Oct</td>
+<td>TBA</td>
 <td><a href="practicals/Assignment3.pdf">3. Type classes</a></td>
 <td><a href="practicals/Assignment3.hs"><tt>Assignment3.hs</tt></a></td>
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 </tr>
 <tr>
-<td>Fri 19 Oct</td>
+<td>TBA</td>
 <td><a href="practicals/project.pdf">4. Game, design document</a></td>
 <td><a href="practicals/gloss-counter.zip">Example game</a></td>
 <td><a href="http://uu.blackboard.com">Blackboard</a></td>
 </tr>
 <tr>
-<td>Sun 11 Nov</td>
+<td>TBA</td>
 <td><a href="practicals/project.pdf">5. Game, implementation</a></td>
 <td><a href="practicals/gloss-counter.zip">Example game</a></td>
 <td><a href="http://uu.blackboard.com">Blackboard</a></td>
