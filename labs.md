@@ -12,37 +12,37 @@ title: Labs
 <th>Hand in</th>
 </tr>
 <tr>
-<td>TBA</td>
+<td></td>
 <td><a href="practicals/Assignment0.pdf">0. Introduction</a></td>
 <td>None</td>
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 </tr>
 <tr>
-<td>TBA</td>
+<td>Fri 20 Sept 23:59</td>
 <td><a href="practicals/Assignment1.pdf">1. Lists</a></td>
 <td><a href="practicals/Assignment1.hs"><tt>Assignment1.hs</tt></a></td>
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 </tr>
 <tr>
-<td>TBA</td>
+<td>Fri 4 Oct 23:59</td>
 <td><a href="practicals/Assignment2.pdf">2. Data structures</a></td>
 <td><a href="practicals/Assignment2.hs"><tt>Assignment2.hs</tt></a></td>
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 </tr>
 <tr>
-<td>TBA</td>
-<td><a href="practicals/Assignment3.pdf">3. Type classes</a></td>
-<td><a href="practicals/Assignment3.hs"><tt>Assignment3.hs</tt></a></td>
-<td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
-</tr>
-<tr>
-<td>TBA</td>
+<td>Fri 11 Oct 23:59</td>
 <td><a href="practicals/project.pdf">4. Game, design document</a></td>
 <td><a href="practicals/gloss-counter.zip">Example game</a></td>
 <td><a href="http://uu.blackboard.com">Blackboard</a></td>
 </tr>
 <tr>
-<td>TBA</td>
+<td>Fri 25 Oct 23:59</td>
+<td><a href="practicals/Assignment3.pdf">3. Type classes</a></td>
+<td><a href="practicals/Assignment3.hs"><tt>Assignment3.hs</tt></a></td>
+<td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
+</tr>
+<tr>
+<td>Sun 10 Nov 23:59</td>
 <td><a href="practicals/project.pdf">5. Game, implementation</a></td>
 <td><a href="practicals/gloss-counter.zip">Example game</a></td>
 <td><a href="http://uu.blackboard.com">Blackboard</a></td>
@@ -51,7 +51,10 @@ title: Labs
 
 ### Practicals from previous years
 
-Even if you passed the practicals last year, you still need to submit the solutions via DOMJudge and do a new game practical from scratch. The new restrictions on style apply, so you might need to modify your submissions from previous years.
+Even if you passed the practicals last year, you still need to submit
+the solutions via DOMJudge and do a new game practical from
+scratch. The new restrictions on style apply, so you might need to
+modify your submissions from previous years.
 
 ### Coding style
 

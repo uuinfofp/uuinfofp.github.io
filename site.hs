@@ -6,7 +6,7 @@ import           Hakyll
 
 --------------------------------------------------------------------------------
 main :: IO ()
-main = hakyll $ do
+main = hakyllWith myConfiguration $ do
     match "images/*" copyAsIs
     match "slides/*.pdf" copyAsIs
     match "slides/*.hs" copyAsIs
@@ -42,3 +42,11 @@ main = hakyll $ do
 copyAsIs = do 
     route   idRoute
     compile copyFileCompiler
+
+myConfiguration :: Configuration
+myConfiguration = defaultConfiguration {
+    deployCommand = "rsync -avh _site/* gemini.science.uu.nl:/science/wwwprojects/cs-www/wwwcs/docs/vakken/fp/2019"
+  }
+
+
+    

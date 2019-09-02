@@ -19,60 +19,73 @@ Be aware: the following schedule and the contents of the slides are currently st
 <th>Date</th>
 <th>Slides</th>
 <th>Recommended reading</th>
+<th>Lecturer</th>
 </tr>
 <tr>
 <td>Thu 5 Sep</td>
 <td><a href="slides/fp-00-course-intro.pdf">0. Course introduction</a>
 <br><a href="slides/fp-01-intro.pdf">1. FP? Haskell?</a></td>
 <td>Chapters 1 and 2</td>
+<td>Frank</td>
 </tr>
 <tr>
 <td>Tue 10 Sep</td>
 <td><a href="slides/fp-02-basics.pdf">2. Basics</a></td>
 <td>Chapters 4 (up to 4.4) and 3
-<br>Chapter 5 from the <a href="http://www.staff.science.uu.nl/~hage0101/FP-elec.pdf">Lecture Notes</a></td>
+<br>Chapter 5 from the <a
+href="http://www.staff.science.uu.nl/~hage0101/FP-elec.pdf">Lecture
+Notes</a></td>
+<td>Frank</td>
 </tr>
 <tr>
 <td>Thu 12 Sep</td>
 <td><a href="slides/fp-03-lists.pdf">3. Lists and recursion</a></td>
 <td>Chapters 5 and 6</td>
+<td>Frank</td>
 </tr>
 <tr>
 <td>Tue 17 Sep</td>
 <td><a href="slides/fp-04-h-o-functions.pdf">4. Higher-order functions</a>
 <br><a href="applyAllFold.html">Writing <tt>applyAll</tt> as a fold</a></td>
 <td>Chapter 7 and 4.5-4.6</td>
+<td>Matthijs</td>
 </tr>
 <tr>
 <td>Thu 19 Sep</td>
 <td><a href="slides/fp-05-data-classes.pdf">5. Data types and type classes</a></td>
 <td>Chapter 8 (until 8.6)</td>
+<td>Frank</td>
 </tr>
 <tr>
 <td>Tue 24 Sep</td>
 <td><a href="slides/fp-06-data-structures.pdf">6. Data structures</a></td>
 <td></td>
+<td>Matthijs</td>
 </tr>
 <tr>
 <td>Thu 26 Sep</td>
 <td><a href="slides/fp-07-case-studies.pdf">7. Case studies</a>
 <br><a href="slides/fp-qa-2018.pdf">Q&A session</a></td>
 <td>Chapters 8.6</td>
+<td>Frank</td>
 </tr>
 <tr class="warning">
-<td>TBA</td>
+<td>Tue 1 Oct 11:00-13:00</td>
 <td><b>Midterm exam</b></td>
+<td></td>
 <td></td>
 </tr>
 <tr>
 <td>Thu 3 Oct</td>
 <td><a href="slides/fp-08-project-design-test.pdf">8. Project management, design and testing</a></td>
 <td><a href="http://book.realworldhaskell.org/read/testing-and-quality-assurance.html">Chapter 11</a> of <i>Real World Haskell</i></td>
+<td>Frank</td>
 </tr>
 <tr>
 <td>Tue 8 Oct<br /></td>
 <td><a href="slides/fp-09-io.pdf">9. Input and output</a></td>
 <td>Chapter 10</td>
+<td>Matthijs</td>
 </tr>
 <tr>
 <td>Thu 10 Oct</td>
@@ -84,26 +97,31 @@ Be aware: the following schedule and the contents of the slides are currently st
 <li><a href="https://www.youtube.com/watch?v=vQrutfPAERQ">Intro to LiquidHaskell</a></li>
 <li><a href="https://www.youtube.com/watch?v=X36ye-1x_HQ">Intro to Idris</a></li>
 </ul></td>
+<td>Matthijs</td>
 </tr>
 <tr>
 <td>Tue 15 Oct</td>
 <td><a href="slides/fp-14-lazy-eval.pdf">11. Lazy evaluation</a></td>
 <td>Chapter 15</td>
+<td>Matthijs</td>
 </tr>
 <tr>
 <td>Thu 17 Oct</td>
 <td><a href="slides/fp-11-monads-one.pdf">12. Functors and monads</a></td>
 <td>Chapter 12 (except 12.2)</td>
+<td>Frank</td>
 </tr>
 <tr>
 <td>Tue 22 Oct</td>
 <td><a href="slides/fp-12-monads-two.pdf">13. More monads and applicatives</a></td>
 <td>Chapter 12.2</td>
+<td>Matthijs</td>
 </tr>
 <tr>
 <td>Thu 24 Oct</td>
-<td>Guest lecture about Formal Verification <i>by Victor Cacciari Miraldo</i></td>
-<td><a href="slides/GuestLecture.agda">Source code</a></td>
+<td>Guest lecture</td>
+<td></td>
+<td>?/Matthijs</td>
 </tr>
 <tr>
 <td>Tue 29 Oct</td>
@@ -111,15 +129,15 @@ Be aware: the following schedule and the contents of the slides are currently st
 <br /><a href="slides/fp-extra-web.pdf">14'. A web server in Haskell</a></td>
 <td>Chapter 14.3
 <br /><a href="slides/FpExtraWeb.hs">Source code</a></td>
-</tr>
-<tr>
+<td>Matthijs</td>
+</tr><tr>
 <td>Thu 31 Oct<br /></td>
 <td><a href="slides/fp-farewell-2018.pdf">Q&A session</a>
 <br>Presentations about <a href="slides/2018-semirings.pdf">semirings</a> and <a href="slides/2018-par.pdf">parallelism</a></td>
 <td><a href="slides/2018Semirings.hs">Source code for semirings</a></td>
-</tr>
-<tr class="warning">
-<td>TBA</td>
+<td>Matthijs</td>
+</tr><tr class="warning">
+<td>Thu 7 Nov 13:30-16:30</td>
 <td><b>Final exam</b></td>
 <td></td>
 </tr>
