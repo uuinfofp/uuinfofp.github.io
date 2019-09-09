@@ -89,7 +89,13 @@ Notes</a></td>
 </tr>
 <tr>
 <td>Thu 10 Oct</td>
-<td><a href="slides/fp-10-laws.pdf">10. Laws and induction</a></td>
+<td><a href="slides/fp-11-monads-one.pdf">10. Functors and monads</a></td>
+<td>Chapter 12 (except 12.2)</td>
+<td>Matthijs</td>
+</tr>
+<tr>
+<td>Tue 15 Oct</td>
+<td><a href="slides/fp-10-laws.pdf">11. Laws and induction</a></td>
 <td>Chapter 16 (up to 16.6)
 <br>Chapter 13 from the <a href="http://www.staff.science.uu.nl/~hage0101/FP-elec.pdf">Lecture Notes</a>
 <br>More about correctness (optional):
@@ -100,15 +106,9 @@ Notes</a></td>
 <td>Matthijs</td>
 </tr>
 <tr>
-<td>Tue 15 Oct</td>
-<td><a href="slides/fp-14-lazy-eval.pdf">11. Lazy evaluation</a></td>
-<td>Chapter 15</td>
-<td>Matthijs</td>
-</tr>
-<tr>
 <td>Thu 17 Oct</td>
-<td><a href="slides/fp-11-monads-one.pdf">12. Functors and monads</a></td>
-<td>Chapter 12 (except 12.2)</td>
+<td><a href="slides/fp-14-lazy-eval.pdf">12. Lazy evaluation</a></td>
+<td>Chapter 15</td>
 <td>Frank</td>
 </tr>
 <tr>
@@ -133,8 +133,8 @@ Notes</a></td>
 </tr><tr>
 <td>Thu 31 Oct<br /></td>
 <td><a href="slides/fp-farewell-2018.pdf">Q&A session</a>
-<br>Presentations about <a href="slides/2018-semirings.pdf">semirings</a> and <a href="slides/2018-par.pdf">parallelism</a></td>
-<td><a href="slides/2018Semirings.hs">Source code for semirings</a></td>
+</td>
+<td></td>
 <td>Matthijs</td>
 </tr><tr class="warning">
 <td>Thu 7 Nov 13:30-16:30</td>

@@ -25,26 +25,26 @@ title: Labs
 </tr>
 <tr>
 <td>Fri 4 Oct 23:59</td>
-<td><a href="practicals/Assignment2.pdf">2. Data structures</a></td>
-<td><a href="practicals/Assignment2.hs"><tt>Assignment2.hs</tt></a></td>
+<td>2. Data structures</td>
+<td><tt>Assignment2.hs</tt></td>
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 </tr>
 <tr>
-<td>Fri 11 Oct 23:59</td>
-<td><a href="practicals/project.pdf">4. Game, design document</a></td>
-<td><a href="practicals/gloss-counter.zip">Example game</a></td>
+<td><b>Tue</b> 15 Oct 23:59</td>
+<td>3. Game, design document</td>
+<td>Example game</td>
 <td><a href="http://uu.blackboard.com">Blackboard</a></td>
 </tr>
 <tr>
 <td>Fri 25 Oct 23:59</td>
-<td><a href="practicals/Assignment3.pdf">3. Type classes</a></td>
-<td><a href="practicals/Assignment3.hs"><tt>Assignment3.hs</tt></a></td>
+<td>4. Type classes</td>
+<td><tt>Assignment4.hs</tt></td>
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 </tr>
 <tr>
-<td>Sun 10 Nov 23:59</td>
-<td><a href="practicals/project.pdf">5. Game, implementation</a></td>
-<td><a href="practicals/gloss-counter.zip">Example game</a></td>
+<td><b>Sun</b> 10 Nov 23:59</td>
+<td>5. Game, implementation</td>
+<td>Example game</td>
 <td><a href="http://uu.blackboard.com">Blackboard</a></td>
 </tr>
 </table>
@@ -217,3 +217,42 @@ hlint Assignment.hs
 ```
 
 HLint will then output a list of suggestions for improving your coding style. Most, although not all, of these suggestions will help to improve your coding style and thus your grade. Of course, computer programs sometimes mistake about subjective issues like coding style, so always use your common sense as well. For example, hlint will always suggest you change `map f (map g)` xs into `map (f . g) xs` (this is called map fusion). If `f` and `g` are simple expressions this will generally be an improvement, but if they are already quite complex, this may not help to improve readability.
+
+#### Forbidden functions
+
+For the assignments 0, 1, 2, and 4 the following functions/expressions
+are forbidden:
+
+```
+Conditionals => use guards
+- if-then-else
+
+List => use pattern matching
+- head
+- tail
+- lst !! 0
+- lst == []
+- lst /= []
+- length x == 0
+- length x /= 0
+- length x > 0
+
+Maybe => use pattern matching
+- isJust
+- isNothing
+- fromJust
+- fromMaybe
+- x == Nothing
+- x /= Nothing
+
+Reimplementations
+- of head: f (x:xs) = x
+- of tail: f (x:xs) = xs
+- of isJust: f (Just x) = True
+             f Nothing  = False
+- of isNothing: f (Just x) = False
+                f Nothing  = True
+- of fromJust: f (Just x) = x
+- of fromMaybe: f x (Just y) = y
+                f x Nothing  = x
+```

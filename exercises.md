@@ -8,6 +8,47 @@ If you like a more interactive approach, [Ask-Elle](http://ideas.cs.uu.nl/AskEll
 
 ### [Solutions to selected exercises](solutions.html) - [Exams from previous years](exams.html)
 
+### Schedule
+
+<table class="table table-stripped" style="font-size: 15px;">
+    <tr>
+    <th>Date</th>
+    <th>Exercises</th>
+</tr>
+<tr>
+    <td>Tue 10 Sep</td>
+    <td>Lectures 1 and 2</td>
+</tr>
+<tr>
+    <td>Tue 17 Sep</td>
+    <td>Lectures 3 and 4</td>
+</tr>
+<tr>
+    <td>Tue 24 Sep</td>
+    <td>Lectures 5 and 6</td>
+</tr>
+<tr>
+    <td>Tue 1 Oct</td>
+    <td>-</td>
+</tr>
+<tr>
+    <td>Tue 8 Oct</td>
+    <td>Lectures 7, 8 and 9</td>
+</tr>
+<tr>
+    <td>Tue 15 Oct</td>
+    <td>Lecture 11</td>
+</tr>
+<tr>
+    <td>Tue 22 Oct</td>
+    <td>Lectures 12 and 13</td>
+</tr>
+<tr>
+    <td>Tue 29 Oct</td>
+    <td>Work on anything</td>
+</tr>
+</table>
+
 ### Lectures 1 and 2 - Functions and types
 
 1. Write a function `noOfSol` that, for some `a`, `b`, and `c`, determines the number of solutions of the equation `ax² + bx + c = 0`, using case distinction.
@@ -314,7 +355,7 @@ runTests = do
     - Write a program that first asks for the name of the target file, and then continues asking for names of files to be appended to that file until an empty line is entered. Note that the target files may be one of the source files!
     - If we know that none of the source files equals the target file we may do a bit better using the function [`appendFile` from `System.IO`](https://hackage.haskell.org/package/base/docs/System-IO.html#v:appendFile). Change the function you have written above using this function. What are the advantages and disadvantages of this approach?
 
-### Lecture 10 - Laws and induction
+### Lecture 11 - Laws and induction
 
 1. Finish the proof of `reverse . reverse = id`.
 
@@ -378,7 +419,7 @@ runTests = do
 
     - Hint: proceed by induction on the list, and in the `z:zs` case distinguish between `z` being `Nothing` or `Just w`.
 
-### Lecture 11 - Lazy evaluation
+### Lecture 12 - Lazy evaluation
 
 1. In an older version of the base library the function `intersperse`, which places an element between all elements of a list, was defined as:
 
@@ -410,9 +451,9 @@ runTests = do
 
     If this code computes something explain what it computes, maybe with the aid of a small example. If it does not compute anything, explain why this is the case.
 
-### Lectures 12 and 13 - Functors, monads, applicatives and traversables
+### Lectures 10 and 13 - Functors, monads, applicatives and traversables
 
-1. Show that the definition of the arithmetic evaluator using `next` in Lecture 12 is the same as the one using nested `case` clauses by expanding the definition of the former.
+1. Show that the definition of the arithmetic evaluator using `next` in Lecture 13 is the same as the one using nested `case` clauses by expanding the definition of the former.
 
 2. Define a function `tuple :: Monad m => m a -> m b -> m (a, b)` using explicit `(>>=)`, `do`-notation and applicative operators.
     - What does the function do in the `Maybe` case?
