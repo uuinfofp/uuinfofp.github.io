@@ -11,7 +11,8 @@ By the end of the course you will be able to
     - higher order functions,
     - algebraic data types,
     - monads,
-    - immutable and persistent data structures.
+    - immutable and persistent data structures,
+    - laziness.
 
 * reason about the correctness and the types of functions.
 
