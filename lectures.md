@@ -54,13 +54,13 @@ Notes</a></td>
 <td>Thu 19 Sep</td>
 <td><a href="slides/fp-05-data-classes.pdf">5. Data types and type classes</a></td>
 <td>Chapter 8 (until 8.6)</td>
-<td>Frank</td>
+<td>Matthijs</td>
 </tr>
 <tr>
 <td>Tue 24 Sep</td>
 <td><a href="slides/fp-06-data-structures.pdf">6. Data structures</a></td>
 <td></td>
-<td>Matthijs</td>
+<td>Frank</td>
 </tr>
 <tr>
 <td>Thu 26 Sep</td>

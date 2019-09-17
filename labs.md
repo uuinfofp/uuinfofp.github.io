@@ -25,8 +25,8 @@ title: Labs
 </tr>
 <tr>
 <td>Fri 4 Oct 23:59</td>
-<td>2. Data structures</td>
-<td><tt>Assignment2.hs</tt></td>
+<td><a href="practicals/Assignment2.pdf">2. Data structures</a></td>
+<td><a href="practicals/Assignment2.hs"><tt>Assignment2.hs</tt></a></td>
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 </tr>
 <tr>
