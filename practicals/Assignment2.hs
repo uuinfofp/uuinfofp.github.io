@@ -177,7 +177,7 @@ main = do
                         Just b' -> gameLoop (nextPlayer p) b'
 
         humanMove :: Player -> Board -> IO (Maybe Board)
-        humanMove p b = do
+        humanMove p b =
             case moves p b of
               [] -> return Nothing
               possibleMoves -> do
