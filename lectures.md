@@ -58,7 +58,10 @@ Notes</a></td>
 </tr>
 <tr>
 <td>Tue 24 Sep</td>
-<td><a href="slides/fp-06-data-structures.pdf">6. Data structures</a></td>
+<td><a href="slides/fp-06-data-structures-new.pdf">6. Data
+structures</a><br/>
+<a href="slides/sweep.hs">The Code for the point location example</a>
+</td>
 <td></td>
 <td>Frank</td>
 </tr>

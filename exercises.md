@@ -233,7 +233,8 @@ concat :: [[a]] -> [a]
 
 ### Lecture 6 - Data structures
 
-1. Write a "search tree version" of the function `find`, in the same sense that `elemTree` is a "search tree version" of `elem`. Also write down the type.
+1. Write the function `elemTree` that tests if an element `x` occurs
+   in a binary search tree of type `Tree a`.
 
 2. Write functions that return all values of type `a` in a tree of type `Tree a` in depth-first (pre-order), depth-first (in-order), and breadth-first order.
 

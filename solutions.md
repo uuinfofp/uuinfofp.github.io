@@ -254,15 +254,18 @@ instance (Finite a, Finite b, Eq a) => Finite (a -> b) where
 #### Exercise 1
 
 ```haskell
-findTree :: (a -> Bool) -> Tree a -> Maybe a
-findTree _ Leaf = Nothing
-findTree p (Node x l r)
-  | p x         = Just x
-  | otherwise   = findTree p l <|> findTree p r
+elemTree :: Ord a => a -> Tree a -> Bool
+elemTree q t = succOf q t == q
+```
 
-(<|>) :: Maybe a -> Maybe a -> Maybe a
-Nothing <|> y = y
-Just x  <|> _ = Just x
+or directly:
+
+```haskell
+elemTree :: Ord a => a -> Tree a -> Bool
+elemTree _ Leaf = False
+elemTree q (Node l x r) | q < x     = elemTree q l
+                        | q == x    = True
+                        | otherwise = elemTree q r
 ```
 
 #### Exercise 2
@@ -270,14 +273,14 @@ Just x  <|> _ = Just x
 ```haskell
 traverseTree :: (a -> [a] -> [a]) -> Tree a -> [a]
 traverseTree _       Leaf         = []
-traverseTree combine (Node x l r) =
+traverseTree combine (Node l x r) =
   combine x (traverseTree l) (traverseTree r)
 
 preOrderTraversal :: Tree a -> [a]
-preOrderTraversal = traverseTree (\x l r -> x : (l ++ r))
+preOrderTraversal = traverseTree (\l x r -> x : (l ++ r))
 
 inOrderTraversal :: Tree a -> [a]
-inOrderTraversal = traverseTree (\x l r -> l ++ (x : r))
+inOrderTraversal = traverseTree (\l x r -> l ++ (x : r))
 ```
 
 #### Exercise 7
@@ -285,7 +288,7 @@ inOrderTraversal = traverseTree (\x l r -> l ++ (x : r))
 ```haskell
 paths :: Tree a -> [[a]]
 paths Leaf         = [[]]
-paths (Node x l r) = map (x:) (paths l) ++ map (x:) (paths r)
+paths (Node l x r) = map (x:) (paths l) ++ map (x:) (paths r)
 ```
 
 ### Lecture 7 - Case studies
