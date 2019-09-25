@@ -68,7 +68,7 @@ structures</a><br/>
 <tr>
 <td>Thu 26 Sep</td>
 <td><a href="slides/fp-07-case-studies.pdf">7. Case studies</a>
-<br><a href="slides/fp-qa-2018.pdf">Q&A session</a></td>
+<br><a href="slides/fp-qa-2019.pdf">Q&A session</a></td>
 <td>Chapters 8.6</td>
 <td>Frank</td>
 </tr>

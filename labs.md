@@ -31,8 +31,10 @@ title: Labs
 </tr>
 <tr>
 <td><b>Tue</b> 15 Oct 23:59</td>
-<td>3. Game, design document</td>
-<td>Example game</td>
+<td><a href="practicals/project.pdf">3. Game, design document</a></td>
+<td><a href="practicals/gloss-counter.zip">Example game</a><br/>
+    <a href="practicals/example_design.pdf">Example design document</a>
+</td>
 <td><a href="http://uu.blackboard.com">Blackboard</a></td>
 </tr>
 <tr>
@@ -43,8 +45,8 @@ title: Labs
 </tr>
 <tr>
 <td><b>Sun</b> 10 Nov 23:59</td>
-<td>5. Game, implementation</td>
-<td>Example game</td>
+<td><a href="practicals/project.pdf">5. Game, implementation</a></td>
+<td><a href="practicals/gloss-counter.zip">Example game</a></td>
 <td><a href="http://uu.blackboard.com">Blackboard</a></td>
 </tr>
 </table>
