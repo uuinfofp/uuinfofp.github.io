@@ -25,10 +25,20 @@ By the end of the course you will be able to
 
 ### Latest news
 
-#### *2019-09-20* : Optional Bonus Assignment
+#### *2019-09-26* : Extra type inference exercises 
+
+  Jip, one of our TAs', has compiled a document with extra exercises to practice type inference questions. You can find his
+  exercises [here](practicals/type-inference-exercises.pdf).
+
+  For OS X (High Sierra or newer)
+  [these](https://medium.com/@dogwith1eye/setting-up-haskell-in-vs-code-on-macos-d2cc1ce9f60a)
+  detailed instructions on how to set up your system may be useful.
+
+
+#### *2019-09-26* : Optional Bonus Assignment
 
   To receive extra credit (see Description/Grading for precise grading scheme)
-  we encourage you to work in pairs to make a 5-minute video about a Haskell package or language
+  we encourage you to work in pairs to make a 5-10-minute video about a Haskell package or language
   extension. The point of the video will be to explain the purpose of the package/extension as well
   as to give examples of how to use it. The video should be able to serve as a how-to guide
   for others getting started with Haskell. You can think of the target audience as your co-students. 
