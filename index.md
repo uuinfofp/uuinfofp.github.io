@@ -30,9 +30,6 @@ By the end of the course you will be able to
   Jip, one of our TAs', has compiled a document with extra exercises to practice type inference questions. You can find his
   exercises [here](practicals/type-inference-exercises.pdf).
 
-  For OS X (High Sierra or newer)
-  [these](https://medium.com/@dogwith1eye/setting-up-haskell-in-vs-code-on-macos-d2cc1ce9f60a)
-  detailed instructions on how to set up your system may be useful.
 
 
 #### *2019-09-26* : Optional Bonus Assignment
@@ -50,6 +47,8 @@ By the end of the course you will be able to
   make a video about, please contact <a href="mailto:F.Staals@uu.nl">Frank Staals</a>
   or <a href="mailto:m.i.l.vakar@uu.nl">Matthijs Vákár</a> to ensure that the choice is 
   appropriate.
+
+
 
 #### *2019-09-05* : GHC Instalation Instructions
 
