@@ -1,8 +1,5 @@
----
-title: Solutions to point-free style exercises
----
+-- Solutions to point-free style exercises
 
-```haskell
 \x y -> x y
 -- id
 
@@ -62,4 +59,3 @@ title: Solutions to point-free style exercises
 
 \x y -> compare (f x) (f y)
 -- ((. f) . compare .)
-```

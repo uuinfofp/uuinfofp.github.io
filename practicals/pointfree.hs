@@ -1,8 +1,4 @@
----
-title: Convert the following expressions into point-free style
----
-
-```haskell
+-- Convert the following expressions into point-free style
 \x y -> x y
 
 \x y -> x + 1
@@ -42,4 +38,3 @@ title: Convert the following expressions into point-free style
 \a (b,c) -> a c b
 
 \x y -> compare (f x) (f y)
-```
