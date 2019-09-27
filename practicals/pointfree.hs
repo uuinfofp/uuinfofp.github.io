@@ -1,6 +1,10 @@
 -- Convert the following expressions into point-free style
 \x y -> x y
 
+\x -> f (g x)
+
+\xs -> filter (\x -> not (p x)) xs
+
 \x y -> x + 1
 
 \v1 v2 -> sum (zipWith (*) v1 v2)

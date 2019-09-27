@@ -3,6 +3,12 @@
 \x y -> x y
 -- id
 
+\x -> f (g x)
+-- f . g
+
+\xs -> filter (\x -> not (p x)) xs
+-- filter (not . p)
+
 \x y -> x + 1
 -- const . (1 +)
 
