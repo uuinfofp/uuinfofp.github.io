@@ -24,6 +24,10 @@ By the end of the course you will be able to
 * develop a small, real world game in the functional language Haskell.
 
 ### Latest news
+#### *2019-09-27* : Extra point-free style exercises 
+
+  One of you requested some extra exercises to practice programming in point-free style.
+  You can find a list of expressions to translate into point-free form [here](practicals/pointfree.txt). Solutions to these exercises can be found [here](practicals/pointfree_solutions.txt).
 
 #### *2019-09-26* : Extra type inference exercises 
 
