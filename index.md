@@ -24,11 +24,22 @@ By the end of the course you will be able to
 * develop a small, real world game in the functional language Haskell.
 
 ### Latest news
+#### *2019-09-27* : Extra point-free style exercises 
 
-#### *2019-09-20* : Optional Bonus Assignment
+  One of you requested some extra exercises to practice programming in point-free style.
+  You can find a list of expressions to translate into point-free form [here](practicals/pointfree.md). Solutions to these exercises can be found [here](practicals/pointfree_solutions.md).
+
+#### *2019-09-26* : Extra type inference exercises 
+
+  Jip, one of our TAs', has compiled a document with extra exercises to practice type inference questions. You can find his
+  exercises [here](practicals/type-inference-exercises.pdf).
+
+
+
+#### *2019-09-26* : Optional Bonus Assignment
 
   To receive extra credit (see Description/Grading for precise grading scheme)
-  we encourage you to work in pairs to make a 5-minute video about a Haskell package or language
+  we encourage you to work in pairs to make a 5-10-minute video about a Haskell package or language
   extension. The point of the video will be to explain the purpose of the package/extension as well
   as to give examples of how to use it. The video should be able to serve as a how-to guide
   for others getting started with Haskell. You can think of the target audience as your co-students. 
@@ -40,6 +51,8 @@ By the end of the course you will be able to
   make a video about, please contact <a href="mailto:F.Staals@uu.nl">Frank Staals</a>
   or <a href="mailto:m.i.l.vakar@uu.nl">Matthijs Vákár</a> to ensure that the choice is 
   appropriate.
+
+
 
 #### *2019-09-05* : GHC Instalation Instructions
 
