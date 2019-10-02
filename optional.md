@@ -21,6 +21,14 @@ a video about, please contact <a href="mailto:F.Staals@uu.nl">Frank
 Staals</a> or <a href="mailto:m.i.l.vakar@uu.nl">Matthijs Vákár</a>
 **before 12 October 2019** to ensure that the choice is appropriate.
 
+### Some examples
+
+Here are a few examples of what such a video could look like.
+
+- List comprehensions: https://www.youtube.com/watch?v=qoQsDTzBojs
+- Using servant-client: https://www.youtube.com/watch?v=TQB2JbxNEUI
+- A brief view at lenses: https://www.youtube.com/watch?v=7fbziKgQjnw
+
 ### List of topics
 
 The following topics are provided as a suggestion, but many other are possible.
