@@ -3,12 +3,12 @@ title: Optional assignment
 ---
 
 To receive extra credit (see Description/Grading for precise grading
-scheme) we encourage you to work in pairs to make a 5-minute video
-about a Haskell package or language extension. The point of the video
-will be to explain the purpose of the package/extension as well as to
-give examples of how to use it. The video should be able to serve as a
-how-to guide for others getting started with Haskell. You can think of
-the target audience as your co-students.
+scheme) we encourage you to work in pairs to make a five to ten minute
+video about a Haskell package or language extension. The point of the
+video will be to explain the purpose of the package/extension as well
+as to give examples of how to use it. The video should be able to
+serve as a how-to guide for others getting started with Haskell. You
+can think of the target audience as your co-students.
 
 You can find an overview of Haskell packages on <a
 href="http://hackage.haskell.org/">Hackage</a> and of language
@@ -25,9 +25,9 @@ Staals</a> or <a href="mailto:m.i.l.vakar@uu.nl">Matthijs Vákár</a>
 
 Here are a few examples of what such a video could look like.
 
-- List comprehensions: https://www.youtube.com/watch?v=qoQsDTzBojs
-- Using servant-client: https://www.youtube.com/watch?v=TQB2JbxNEUI
-- A brief view at lenses: https://www.youtube.com/watch?v=7fbziKgQjnw
+- [List comprehensions](https://www.youtube.com/watch?v=qoQsDTzBojs)
+- [Using servant-client](https://www.youtube.com/watch?v=TQB2JbxNEUI)
+- [A brief view at lenses](https://www.youtube.com/watch?v=7fbziKgQjnw)
 
 ### List of topics
 

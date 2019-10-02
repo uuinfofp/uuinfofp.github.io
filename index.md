@@ -24,6 +24,11 @@ By the end of the course you will be able to
 * develop a small, real world game in the functional language Haskell.
 
 ### Latest news
+#### *2019-09-27* : More about the Bonus Assignment
+
+You can find more information and some examples for the Bonus
+assignment [here](optional.html).
+
 #### *2019-09-27* : Extra point-free style exercises 
 
   One of you requested some extra exercises to practice programming in point-free style.
