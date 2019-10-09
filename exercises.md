@@ -258,11 +258,7 @@ concat :: [[a]] -> [a]
 2. Define a function `satisfiable :: Prop -> Bool` which returns `True` is the proposition is satisfiable, that is, if there is at least one assignment of truth values to variables which make the proposition true.
     - Refine the function to return the assignment which makes the proposition satisfiable. Which should be the type given to such a function?
 
-3. Extend the definition of `ArithExpr` and `RPN` to include exponentiation and factorial functions. How should the evaluation functions change to support them?
-
-4. Refine the solution for Countdown to return the expression which gives the nearest result to the target, instead of only returning those which give the exact answer.
-
-5. Define a function `rpnToExpr :: RPN -> ArithExpr` which converts an expression in Reverse Polish Notation to an expression in usual infix notation.
+3. Extend the definition of `ArithExpr` to include exponentiation and factorial functions. How should the evaluation functions change to support them?
 
 ### Lecture 8 - Project management: testing with QuickCheck
 
