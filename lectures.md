@@ -95,7 +95,7 @@ structures</a><br/>
 </tr>
 <tr>
 <td>Thu 10 Oct</td>
-<td><a href="slides/fp-10-monads-one.pdf">10. Functors and monads</a></td>
+<td><a href="slides/fp-10-monads-one.pdf">10. Functors and monads</a>
 <br><a href="slides/Lecture10.hs">Example code from lecture</a></td>
 <td>Chapter 12 (except 12.2)</td>
 <td>Matthijs</td>

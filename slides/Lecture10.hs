@@ -108,14 +108,14 @@ module Lecture10 where
         Nothing `maybeBind` \_ ->
         m `maybeBind` \x ->
         return (x + 1) where 
-            maybeBind Nothing _ = Nothing 
+            maybeBind Nothing _ = Nothing  -- recall definition of >>= for Maybe, as an aside for those who like math: Nothing should be sent to Nothing because we generally want >>= to be a homomorphism. (In this case, note that there also isn't much of another option.)
             maybeBind (Just x) f = f x
   -- is equivalent to -- 
     fNothing2 m =
         maybeBind Nothing (\_ ->
             m `maybeBind` \x ->
             return (x + 1)) where 
-                maybeBind Nothing _ = Nothing -- recall definition of >>= for Maybe, as an aside for those who like math: Nothing should be sent to Nothing because we generally want >>= to be a homomorphism. (In this case, note that there also isn't much of another option.)
+                maybeBind Nothing _ = Nothing
                 maybeBind (Just x) f = f x
   -- is equivalent to -- 
     fNothing3 m =
