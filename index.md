@@ -24,6 +24,14 @@ By the end of the course you will be able to
 * develop a small, real world game in the functional language Haskell.
 
 ### Latest news
+#### *2019-10-11*: Bonus Assignment information
+A gentle reminder that proposals for the bonus assignments should be
+submitted to <a href="mailto:F.Staals@uu.nl">Frank Staals</a>
+  or <a href="mailto:m.i.l.vakar@uu.nl">Matthijs Vákár</a> before
+**before 12 October 2019**. The final video should be submitted
+**before Sun 10 Nov 23:59**.
+
+
 #### *2019-09-27* : More about the Bonus Assignment
 
 You can find more information and some examples for the Bonus
