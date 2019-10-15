@@ -102,7 +102,8 @@ structures</a><br/>
 </tr>
 <tr>
 <td>Tue 15 Oct</td>
-<td><a href="slides/fp-11-laws.pdf">11. Laws and induction</a></td>
+<td><a href="slides/fp-11-laws.pdf">11. Laws and induction</a>
+<br><a href="slides/Lecture11.hs">Example proofs from lecture</a></td>
 <td>Chapter 16 (up to 16.6)
 <br>Chapter 13 from the <a href="http://www.staff.science.uu.nl/~hage0101/FP-elec.pdf">Lecture Notes</a>
 <br>More about correctness (optional):
