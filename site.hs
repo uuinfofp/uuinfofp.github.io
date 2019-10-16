@@ -15,6 +15,7 @@ main = hakyllWith myConfiguration $ do
     match "practicals/*.hs" copyAsIs
     match "practicals/*.zip" copyAsIs
     match "exams/*.pdf" copyAsIs
+    match "exams/*.hs" copyAsIs
     
     -- Password-protected
     {-
