@@ -58,15 +58,8 @@ module Lecture9 where
     getArgs' :: IO' [String]
     getArgs' w@(MkWorld _ _ _ _ a) = (a, w)
     
-    getCurWorld :: World -- evil
-    getCurWorld = undefined -- sys calls to actually perform side effects
-    
-    putCurWorld :: World -> () -- evil
-    putCurWorld = undefined -- sys calls to actually perform side effects
-    
-    unsafePerformIO' :: IO' a -> a -- evil, idea of what unsafePerformIO does, if we pretend that we have access to World
-    unsafePerformIO' f = let (a, w) = f getCurWorld in
-                         putCurWorld w `seq` a 
+    unsafePerformIO' :: IO' a -> a -- evil, for an idea of what unsafePerformIO does: it converts any reads and writes on World to the corresponding syscalls to actually read and write the state of the machine
+    unsafePerformIO' f = undefined
     
     runMain :: IO' () -> ()  -- evil
     runMain = unsafePerformIO'
