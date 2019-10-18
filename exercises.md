@@ -366,7 +366,7 @@ runTests = do
     length . concat   = sum . map length
 
     -- Laws about sum
-    sum (xs ++ ys) = sum xs ++ sum ys
+    sum (xs ++ ys) = sum xs + sum ys
     sum . concat   = sum . map sum
 
     -- Laws about map
