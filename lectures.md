@@ -127,9 +127,9 @@ structures</a><br/>
 </tr>
 <tr>
 <td>Thu 24 Oct</td>
-<td>Guest lecture</td>
+<td>Guest lecture: Functional Programming in Swift</td>
 <td></td>
-<td>?/Matthijs</td>
+<td>Wouter Swierstra</td>
 </tr>
 <tr>
 <td>Tue 29 Oct</td>
