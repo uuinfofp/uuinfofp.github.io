@@ -115,13 +115,14 @@ structures</a><br/>
 </tr>
 <tr>
 <td>Thu 17 Oct</td>
-<td><a href="slides/fp-14-lazy-eval.pdf">12. Lazy evaluation</a></td>
+<td><a href="slides/fp-12-lazy-eval.pdf">12. Lazy evaluation</a></td>
 <td>Chapter 15</td>
 <td>Frank</td>
 </tr>
 <tr>
 <td>Tue 22 Oct</td>
-<td><a href="slides/fp-12-monads-two.pdf">13. More monads and applicatives</a></td>
+<td><a href="slides/fp-13-monads-two.pdf">13. More monads and applicatives</a>
+<br><a href="slides/Lecture13.hs">Example code from lecture</a></td>
 <td>Chapter 12.2</td>
 <td>Matthijs</td>
 </tr>
@@ -133,7 +134,7 @@ structures</a><br/>
 </tr>
 <tr>
 <td>Tue 29 Oct</td>
-<td><a href="slides/fp-12b-monads-three.pdf">14. Monadic utilities and traversables</a>
+<td><a href="slides/fp-14-monads-three.pdf">14. Monadic utilities and traversables</a>
 <br /><a href="slides/fp-extra-web.pdf">14'. A web server in Haskell</a></td>
 <td>Chapter 14.3
 <br /><a href="slides/FpExtraWeb.hs">Source code</a></td>

@@ -2,23 +2,26 @@ module Lecture4 where
 
 -- derivative
 differentiate :: (Double -> Double) -> Double -> Double
-differentiate f a = (f (a + delta) - f a) / delta where delta = 0.00000001
+differentiate f a = (f (a + delta) - f a) / delta
+  where
+    delta = 0.00000001
 
 -- map
 map' :: (a -> b) -> [a] -> [b]
-map' f []       = []
-map' f (x : xs) = f x : map' f xs
+map' f []     = []
+map' f (x:xs) = f x : map' f xs
 
 -- filter
 filter' :: (a -> Bool) -> [a] -> [a]
 filter' p [] = []
-filter' p (x : xs) | p x       = x : filter' p xs
-                   | otherwise = filter' p xs
+filter' p (x:xs)
+  | p x = x : filter' p xs
+  | otherwise = filter' p xs
 
 -- applyAll
 applyAll :: [a -> a] -> a -> a
-applyAll []       a = a
-applyAll (f : fs) a = applyAll fs (f a)
+applyAll [] a     = a
+applyAll (f:fs) a = applyAll fs (f a)
 
 -- filterNot
 filterNot :: (a -> Bool) -> [a] -> [a]
@@ -26,8 +29,8 @@ filterNot p = filter (not . p)
 
 -- applyAll in pointfree style
 applyAll' :: [a -> a] -> a -> a
-applyAll' []       = id
-applyAll' (f : fs) = applyAll fs . f
+applyAll' []     = id
+applyAll' (f:fs) = applyAll fs . f
 
 -- length, using foldr
 length' :: [a] -> Int
