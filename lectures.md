@@ -134,10 +134,9 @@ structures</a><br/>
 </tr>
 <tr>
 <td>Tue 29 Oct</td>
-<td><a href="slides/fp-14-monads-three.pdf">14. Monadic utilities and traversables</a>
-<br /><a href="slides/fp-extra-web.pdf">14'. A web server in Haskell</a></td>
-<td>Chapter 14.3
-<br /><a href="slides/FpExtraWeb.hs">Source code</a></td>
+<td><a href="slides/fp-14-monads-three.pdf">14. Foldables and Traversables</a>
+<br><a href="slides/Lecture14.hs">Example code from lecture</a></td>
+<td>Chapter 14</td>
 <td>Matthijs</td>
 </tr><tr>
 <td>Thu 31 Oct<br /></td>
