@@ -12,7 +12,7 @@ The language Haskell imposes a strong separation between pure computations and t
 
 ### Literature
 
-* Recommended reading: [*Programming in Haskell*](http://www.cs.nott.ac.uk/~pszgmh/pih.html) by Graham Hutton
+* Required reading: [*Programming in Haskell*](http://www.cs.nott.ac.uk/~pszgmh/pih.html) by Graham Hutton
 * Additional material:
     - [*Lecture Notes from 2015/2016*](http://www.cs.uu.nl/people/jur/FP-elec.pdf), mostly in Dutch
     - [*Learn You a Haskell for Great Good*](http://learnyouahaskell.com/) by Miran Lipovača
@@ -41,7 +41,7 @@ The final grade depends on the two exams and the assignments.
 
 The *final grade* is computed as F = min( 0.5 × T + 0.5 × P + 0.05 × O, 10 ). The *final result* of the course is:
 
-- Passed with grade F (rounded to half points) if F >= 5.5, T >= 5, P >= 5 and you passed at least two out of three lab assignments.
+- Passed with grade F (rounded to 0.1 points) if F >= 5.5, T >= 5, P >= 5 and you passed at least two out of three lab assignments.
 - Not passed with AANV if F >= 4.0, but T < 5 or P < 5 or you passed fewer than two of the lab assignments.
     * In this case you are entitled to *aanvullende toets*, to be determined per student.
     * If you need to re-submit the final programming exercise, that grade is a 6 maximum.

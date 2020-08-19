@@ -18,19 +18,19 @@ title: Labs
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 </tr>
 <tr>
-<td>Fri 20 Sept 23:59</td>
+<td>Fri 18 Sept 23:59</td>
 <td><a href="practicals/Assignment1.pdf">1. Lists</a></td>
 <td><a href="practicals/Assignment1.hs"><tt>Assignment1.hs</tt></a></td>
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 </tr>
 <tr>
-<td>Fri 4 Oct 23:59</td>
+<td>Fri 2 Oct 23:59</td>
 <td><a href="practicals/Assignment2.pdf">2. Data structures</a></td>
 <td><a href="practicals/Assignment2.hs"><tt>Assignment2.hs</tt></a></td>
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 </tr>
 <tr>
-<td><b>Tue</b> 15 Oct 23:59</td>
+<td><b>Tue</b> 13 Oct 23:59</td>
 <td><a href="practicals/project.pdf">3. Game, design document</a></td>
 <td><a href="practicals/gloss-counter.zip">Example game</a><br/>
     <a href="practicals/example_design.pdf">Example design document</a>
@@ -38,13 +38,13 @@ title: Labs
 <td><a href="http://uu.blackboard.com">Blackboard</a></td>
 </tr>
 <tr>
-<td>Fri 25 Oct 23:59</td>
+<td>Fri 23 Oct 23:59</td>
 <td><a href="practicals/Assignment4.pdf">4. Type classes</a></td>
 <td><a href="practicals/Assignment4.hs"><tt>Assignment4.hs</tt></a></td>
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 </tr>
 <tr>
-<td><b>Sun</b> 10 Nov 23:59</td>
+<td><b>Sun</b> 8 Nov 23:59</td>
 <td><a href="practicals/project.pdf">5. Game, implementation</a></td>
 <td><a href="practicals/gloss-counter.zip">Example game</a></td>
 <td><a href="http://uu.blackboard.com">Blackboard</a></td>
@@ -222,8 +222,8 @@ HLint will then output a list of suggestions for improving your coding style. Mo
 
 #### Forbidden functions
 
-For the assignments 0, 1, 2, and 4 the following functions/expressions
-are forbidden:
+For the assignments 0, 1, 2, and 4, try to avoid using the following functions/expressions as they 
+are (usually) bad form:
 
 ```
 Conditionals => use guards

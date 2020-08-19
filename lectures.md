@@ -18,18 +18,18 @@ Be aware: the following schedule and the contents of the slides are currently st
 <tr>
 <th>Date</th>
 <th>Slides</th>
-<th>Recommended reading</th>
+<th>Preparatory reading</th>
 <th>Lecturer</th>
 </tr>
 <tr>
-<td>Thu 5 Sep</td>
+<td>Thu 3 Sep</td>
 <td><a href="slides/fp-00-course-intro.pdf">0. Course introduction</a>
 <br><a href="slides/fp-01-intro.pdf">1. FP? Haskell?</a></td>
 <td>Chapters 1 and 2</td>
 <td>Frank</td>
 </tr>
 <tr>
-<td>Tue 10 Sep</td>
+<td>Tue 8 Sep</td>
 <td><a href="slides/fp-02-basics.pdf">2. Basics</a></td>
 <td>Chapters 4 (up to 4.4) and 3
 <br>Chapter 5 from the <a
@@ -38,13 +38,13 @@ Notes</a></td>
 <td>Frank</td>
 </tr>
 <tr>
-<td>Thu 12 Sep</td>
+<td>Thu 10 Sep</td>
 <td><a href="slides/fp-03-lists.pdf">3. Lists and recursion</a></td>
 <td>Chapters 5 and 6</td>
 <td>Frank</td>
 </tr>
 <tr>
-<td>Tue 17 Sep</td>
+<td>Tue 15 Sep</td>
 <td><a href="slides/fp-04-h-o-functions.pdf">4. Higher-order functions</a>
 <br><a href="applyAllFold.html">Writing <tt>applyAll</tt> as a fold</a>
 <br><a href="slides/Lecture4.hs">Example code from lecture</a></td>
@@ -52,14 +52,14 @@ Notes</a></td>
 <td>Matthijs</td>
 </tr>
 <tr>
-<td>Thu 19 Sep</td>
+<td>Thu 17 Sep</td>
 <td><a href="slides/fp-05-data-classes.pdf">5. Data types and type classes</a>
 <br><a href="slides/Lecture5.hs">Example code from lecture</a></td>
 <td>Chapter 8 (until 8.6)</td>
 <td>Matthijs</td>
 </tr>
 <tr>
-<td>Tue 24 Sep</td>
+<td>Tue 22 Sep</td>
 <td><a href="slides/fp-06-data-structures-new.pdf">6. Data
 structures</a><br/>
 <a href="slides/sweep.hs">The Code for the point location example</a>
@@ -68,40 +68,40 @@ structures</a><br/>
 <td>Frank</td>
 </tr>
 <tr>
-<td>Thu 26 Sep</td>
+<td>Thu 24 Sep</td>
 <td><a href="slides/fp-07-case-studies.pdf">7. Case studies</a>
 <br><a href="slides/fp-qa-2019.pdf">Q&A session</a></td>
 <td>Chapters 8.6</td>
 <td>Frank</td>
 </tr>
+<tr>
+<td>Tue 29 Sep</td>
+<td><a href="slides/fp-08-project-design-test.pdf">8. Project management, design and testing</a></td>
+<td><a href="http://book.realworldhaskell.org/read/testing-and-quality-assurance.html">Chapter 11</a> of <i>Real World Haskell</i></td>
+<td>Frank</td>
+</tr>
 <tr class="warning">
-<td>Tue 1 Oct 11:00-13:00</td>
+<td>Thu 1 Oct  www.uu.nl/mytimetable</td>
 <td><b>Midterm exam</b></td>
 <td></td>
 <td></td>
 </tr>
 <tr>
-<td>Thu 3 Oct</td>
-<td><a href="slides/fp-08-project-design-test.pdf">8. Project management, design and testing</a></td>
-<td><a href="http://book.realworldhaskell.org/read/testing-and-quality-assurance.html">Chapter 11</a> of <i>Real World Haskell</i></td>
-<td>Frank</td>
-</tr>
-<tr>
-<td>Tue 8 Oct<br /></td>
+<td>Tue 6 Oct<br /></td>
 <td><a href="slides/fp-09-io.pdf">9. Input and output</a>
 <br><a href="slides/Lecture9.hs">Example code from lecture</a></td>
 <td>Chapter 10</td>
 <td>Matthijs</td>
 </tr>
 <tr>
-<td>Thu 10 Oct</td>
+<td>Thu 8 Oct</td>
 <td><a href="slides/fp-10-monads-one.pdf">10. Functors and monads</a>
 <br><a href="slides/Lecture10.hs">Example code from lecture</a></td>
 <td>Chapter 12 (except 12.2)</td>
 <td>Matthijs</td>
 </tr>
 <tr>
-<td>Tue 15 Oct</td>
+<td>Tue 13 Oct</td>
 <td><a href="slides/fp-11-laws.pdf">11. Laws and induction</a>
 <br><a href="slides/Lecture11.hs">Example proofs from lecture</a></td>
 <td>Chapter 16 (up to 16.6)
@@ -114,38 +114,38 @@ structures</a><br/>
 <td>Matthijs</td>
 </tr>
 <tr>
-<td>Thu 17 Oct</td>
+<td>Thu 15 Oct</td>
 <td><a href="slides/fp-12-lazy-eval.pdf">12. Lazy evaluation</a></td>
 <td>Chapter 15</td>
 <td>Frank</td>
 </tr>
 <tr>
-<td>Tue 22 Oct</td>
+<td>Tue 20 Oct</td>
 <td><a href="slides/fp-13-monads-two.pdf">13. More monads and applicatives</a>
 <br><a href="slides/Lecture13.hs">Example code from lecture</a></td>
 <td>Chapter 12.2</td>
 <td>Matthijs</td>
 </tr>
 <tr>
-<td>Thu 24 Oct</td>
+<td>Thu 22 Oct</td>
 <td>Guest lecture: Functional Programming in Swift</td>
 <td></td>
 <td>Wouter Swierstra</td>
 </tr>
 <tr>
-<td>Tue 29 Oct</td>
+<td>Tue 27 Oct</td>
 <td><a href="slides/fp-14-monads-three.pdf">14. Foldables and Traversables</a>
 <br><a href="slides/Lecture14.hs">Example code from lecture</a></td>
 <td>Chapter 14</td>
 <td>Matthijs</td>
 </tr><tr>
-<td>Thu 31 Oct<br /></td>
+<td>Thu 29 Oct<br /></td>
 <td><a href="slides/fp-farewell-2018.pdf">Q&A session</a>
 </td>
 <td></td>
 <td>Matthijs</td>
 </tr><tr class="warning">
-<td>Thu 7 Nov 13:30-16:30</td>
+<td>Thu 5 Nov 13:30-16:30</td>
 <td><b>Final exam</b></td>
 <td></td>
 </tr>

@@ -23,8 +23,8 @@ By the end of the course you will be able to
 * reason about the correctness and the types of functions.
 * develop a small, real world game in the functional language Haskell.
 
-### Latest news
-#### *2019-10-11*: Bonus Assignment information
+### Announcements
+<!-- #### *2019-10-11*: Bonus Assignment information
 A gentle reminder that proposals for the bonus assignments should be
 submitted to <a href="mailto:F.Staals@uu.nl">Frank Staals</a>
   or <a href="mailto:m.i.l.vakar@uu.nl">Matthijs Vákár</a> before
@@ -35,21 +35,21 @@ submitted to <a href="mailto:F.Staals@uu.nl">Frank Staals</a>
 #### *2019-09-27* : More about the Bonus Assignment
 
 You can find more information and some examples for the Bonus
-assignment [here](optional.html).
+assignment [here](optional.html). -->
 
-#### *2019-09-27* : Extra point-free style exercises 
+<!-- #### *2019-09-27* : Extra point-free style exercises 
 
   One of you requested some extra exercises to practice programming in point-free style.
-  You can find a list of expressions to translate into point-free form [here](practicals/pointfree.hs). Solutions to these exercises can be found [here](practicals/pointfree_solutions.hs).
+  You can find a list of expressions to translate into point-free form [here](practicals/pointfree.hs). Solutions to these exercises can be found [here](practicals/pointfree_solutions.hs). -->
 
-#### *2019-09-26* : Extra type inference exercises 
+<!-- #### *2019-09-26* : Extra type inference exercises 
 
   Jip, one of our TAs', has compiled a document with extra exercises to practice type inference questions. You can find his
-  exercises [here](practicals/type-inference-exercises.pdf).
+  exercises [here](practicals/type-inference-exercises.pdf). -->
 
 
 
-#### *2019-09-26* : Optional Bonus Assignment
+<!-- #### *2019-09-26* : Optional Bonus Assignment
 
   To receive extra credit (see Description/Grading for precise grading scheme)
   we encourage you to work in pairs to make a 5-10-minute video about a Haskell package or language
@@ -63,7 +63,7 @@ assignment [here](optional.html).
   If you have a package or extension in mind that you would like to
   make a video about, please contact <a href="mailto:F.Staals@uu.nl">Frank Staals</a>
   or <a href="mailto:m.i.l.vakar@uu.nl">Matthijs Vákár</a> to ensure that the choice is 
-  appropriate.
+  appropriate. -->
 
 
 
