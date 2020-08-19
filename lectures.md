@@ -81,7 +81,7 @@ structures</a><br/>
 <td>Frank</td>
 </tr>
 <tr class="warning">
-<td>Thu 1 Oct  www.uu.nl/mytimetable</td>
+<td>Thu 1 Oct 13:30-15:30</td>
 <td><b>Midterm exam</b></td>
 <td></td>
 <td></td>
