@@ -1,0 +1,86 @@
+---
+title: Basics
+---
+
+** Syntax
+
+How do ~x = 3~ and ~x == 3~ differ in meaning?
+
+** Evaluation
+
+1. Given the following definitions:
+
+#+BEGIN_SRC haskell
+thrice x = [x, x, x]
+
+sums (x : y : ys) = x : sums (x + y : ys)
+sums xs           = xs
+#+END_SRC
+
+What does the expression ~map thrice (sums [0 .. 4])~ evaluate to?
+Write down the intermediate steps of your computation.
+
+2. A recursive function is only sensible if the condition is that the
+   value of its parameters becomes simpler in each recursive
+   application is met. Consider the following definition of the
+   factorial function:
+
+#+BEGIN_SRC haskell
+fac n | n == 0 = 1
+      | otherwise = n * fac (n − 1)
+#+END_SRC
+
+What happens if you evaluate ~fac (−3)~?
+
+** Writing Functions
+
+1. Write a function ~noOfSol~ that, for some $a$, $b$, and $c$,
+   determines the number of solutions of the equation $ax^2 + bx + c =
+   0$, using case distinction.
+
+2. Write a function ~pow2 :: Int -> Int~ that takes an Int $n$
+     computes $2^n$ using direct recursion.
+
+   #+BEGIN_SRC haskell :solution
+   pow2   :: Int -> Int
+   pow2 0 = 1
+   pow2 n = 2 * pow2 (n - 1)
+   #+END_SRC
+
+3. Write a recursive function ~pow~ that takes two Ints, $x$ and $n$,
+   and computes $x^n$.
+
+4. For any number $x$, and any *even* number $n$ it holds that $x^n =
+   (x^{n/2})^2$. Use this to speed up the implementation of the ~pow~
+   function.
+
+#+BEGIN_SRC haskell :solution
+pow       :: Int -> Int -> Int
+x `pow` 0 = 1
+x `pow` n | even n    = let y = x `pow` (n `div` 2) in y * y
+          | otherwise = x  * (x `pow` (n-1))
+#+END_SRC
+
+5. Which intermediate results are being computed for the computation
+   of ~2 `pow` 10~ in the old and the new definition?
+
+** Basic Types
+
+1. Determine the types of ~3~, ~even~, and ~even 3~.  How can you
+  figure out the latter?
+
+2. Determine also the type of ~head~, ~[1,2,3]~, and ~head
+  [1,2,3]~. What happens when applying a polymorphic function (like
+  head) to monomorphic arguments (like ~[1,2,3]~)?
+
+3. Write down what you think the type of the following functions
+   is. Do not use the interpreter (yet): ~tail~, ~length~, ~noOfSol~,
+   ~po2w~, ~div~, ~(/)~, and ~sqrt~?
+
+4. How can you query the interpreter for the type of an expression?
+
+5. How can you explicitly specify the types of functions in your
+  program?
+
+6. Verify the types of the above expressions with the interpreter. If
+  your answers differ, write down why you think that is the case.

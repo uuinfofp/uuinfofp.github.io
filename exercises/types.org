@@ -1,0 +1,64 @@
+---
+title: Type inference
+---
+
+In these exercises you should assume the following types:
+
+#+BEGIN_SRC haskell
+foldr  :: (a -> b -> b) -> b -> [a] -> b
+map    :: (a -> b) -> [a] -> [b]
+concat :: [[a]] -> [a]
+(.)    :: (b -> c) -> (a -> b) -> a -> c
+#+END_SRC
+
+** ~foldr map~
+
+What is the type of ~foldr map~? Give the type derivation.
+
+    1. ~[a] -> [a -> a] -> [a]~
+    2. ~[a] -> [[a -> a]] -> [a]~
+    3. ~[a] -> [[a -> a] -> [a]]~
+    4. ~[[a]] -> [a -> a] -> [a]~
+
+** ~map . foldr~
+
+What is the type of ~map . foldr~? Give the type derivation.
+
+    1. ~(a -> a -> a) -> [a] -> [[a] -> a]~
+    2. ~(a -> a -> a) -> [b] -> [b -> a]~
+    3. ~(b -> a -> a) -> [a] -> [[b] -> a]~
+    4. ~(b -> a -> a) -> [b] -> [[a] -> a]~
+
+** ~concat . concat~
+
+Which of the following is the type of ~concat . concat~? Give the type derivation.
+
+
+    1. ~[[a]] -> [[a]] -> [[a]]~
+    2. ~[[a]] -> [[a]] -> [a]~
+    3. ~[[[a]]] -> [a]~
+    4. ~[a] -> [[a]] -> [a]~
+
+Give the type derivation.
+
+** ~map (map map)~
+
+What is the type of ~map (map map)~? Give the type derivation.
+
+
+    1. ~[[a -> b]] -> [[[a] -> [b]]]~
+    2. ~[a -> b] -> [[[a] -> [b]]]~
+    3. ~[[a -> b]] -> [[[a -> b]]]~
+    4. ~[[a -> b] -> [[a] -> [b]]]~
+
+Give the type derivation.
+
+** ~map map map~ and brackets
+
+Which observation is correct when comparing the types of ~(map map)
+map~ and ~map (map map)?~
+
+1. The type of the first is less polymorphic than the type of the second.
+2. The type of the first is more polymorphic than the type of the second.
+3. The types are the same, since function composition is associative.
+4. One of the expressions does not have any type at all.
