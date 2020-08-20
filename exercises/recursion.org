@@ -13,23 +13,9 @@ Append two lists.
 (x:xs) ++ ys = x : xs ++ ys
 #+END_SRC
 
-** ~maybeLast :: [a] -> Maybe a~
-Extract the last element of a list. Returns Nothing if the list is empty.
+** ~product :: Num a => [a] -> a~
 
-#+BEGIN_SRC haskell
-maybeLast []     = Nothing
-maybeList (x:xs) = case maybeList xs of
-                     Nothing -> Just x
-                     jl      -> jl
-#+END_SRC
-
-** ~length :: [a] -> Int~
-length returns the length of a finite list as an Int.
-
-#+BEGIN_SRC haskell
-length []     = 0
-length (_:xs) = 1 + length xs
-#+END_SRC
+The product function computes the product of a finite list of numbers.
 
 ** ~map :: (a -> b) -> [a] -> [b]~
 
@@ -38,54 +24,11 @@ map _ []     = []
 map f (x:xs) = f x : map f xs
 #+END_SRC
 
-** ~reverse :: [a] -> [a]~
-
-reverse xs returns the elements of xs in reverse order. xs must be finite.
-
-#+BEGIN_SRC haskell
-reverse []     = []
-reverse (x:xs) = reverse xs ++ [x]
-#+END_SRC
-
 ** ~intersperse :: a -> [a] -> [a]~
 
 The intersperse function takes an element and a list and `intersperses' that element between the elements of the list. For example,
 
  intersperse ',' "abcde" == "a,b,c,d,e"
-
-** ~insertEverywhere :: ~a -> [a] -> [[a]]~
-
-insertEverywhere x ys, inserts x at every position in ys. I.e.:
-
-insertEverywhere 10 [1..5] ==
-[[10,1,2,3,4,5],[1,10,2,3,4,5],[1,2,10,3,4,5],[1,2,3,10,4,5],[1,2,3,4,10,5],[1,2,3,4,5,10]]
-
-#+BEGIN_SRC haskell
-insertEverywhere             :: a -> [a] -> [[a]]
-insertEverywhere x []        = [[x]]
-insertEverywhere x xs@(y:ys) = (x:xs) : map (y:) (insertEverywhere x ys)
-#+END_SRC
-
-**  ~permutations :: [a] -> [[a]]~
-
-
-The permutations function returns the list of all permutations of the
-argument. E.g.:
-
-permutations "abc" == ["abc","bac","bca","acb","cab","cba"]
-
-Note that it is ok if your solution returns the permutations in any
-order. E.g.
-
-permutations "abc" == ["abc","bac","cba","bca","cab","acb"]
-
-is also correct.
-
-#+BEGIN_SRC haskell
-permutations        :: [a] -> [[a]]
-permutations []     = [[]]
-permutations (x:xs) = concatMap (insertEverywhere x) $ permutations xs
-#+END_SRC
 
 ** ~concat :: [[a]] -> [a]~
 
@@ -119,7 +62,11 @@ value at a finite index of a finite or infinite list.
 
 ** ~all :: (a -> Bool) -> [a] -> Bool~
 
-Applied to a predicate and a list, all determines if all elements of the list satisfy the predicate. For the result to be True, the list must be finite; False, however, results from a False value for the predicate applied to an element at a finite index of a finite or infinite list.
+Applied to a predicate and a list, all determines if all elements of
+the list satisfy the predicate. For the result to be True, the list
+must be finite; False, however, results from a False value for the
+predicate applied to an element at a finite index of a finite or
+infinite list.
 
 #+BEGIN_SRC haskell
 all _ []     = True
@@ -134,29 +81,25 @@ must be finite; True, however, results from a True value for the
 predicate applied to an element at a finite index of a finite or
 infinite list.
 
-** ~sum :: Num a => [a] -> a~
+** ~insert :: Ord a => a -> [a] -> [a]~
 
-The sum function computes the sum of a finite list of numbers.
-
-** ~product :: Num a => [a] -> a~
-
-The product function computes the product of a finite list of numbers.
-
-** ~scanr :: (a -> b -> b) -> b -> [a] -> [b]~
-
-scanr is similar to foldr but returns a list of successive reduced
-values from the right:
-
- scanr g z [x_1, x_2, .., x_n] == [x_1 `g` .., .., x_(n-1) `g` z ,x_n `g` z,z]
-
-(i.e., it also returns all intermediate answers of a foldr). Note that
-
- head (scanr f z xs) == foldr f z xs.
+The insert function takes an element and a (sorted) list and inserts
+the element into the list at the last position where it is still less
+than or equal to the next element.
 
 #+BEGIN_SRC haskell
-scanr _ z []     = [z]
-scanr g z (x:xs) = let rs@(r:_) = scanr g z xs
-                   in g x r : rs
+insert q [] = [q]
+insert q (x:xs) | q > x     = x : insert q xs
+                | otherwise = q : x : xs
+#+END_SRC
+
+** ~sort :: Ord a => [a] -> [a]~
+
+The sort function implements a sorting algorithm.
+
+#+BEGIN_SRC haskell
+sort []     = []
+sort (x:xs) = insert x (sort xs)
 #+END_SRC
 
 ** ~takeWhile :: (a -> Bool) -> [a] -> [a]~
@@ -189,17 +132,6 @@ group (x:xs) = case group xs of
                  (ys@(y:_):rs) | x == y    ->      (x:ys) : rs
                                | otherwise -> [x] :    ys : rs
 #+END_SRC
-
-** ~tails :: [a] -> [[a]]~
-
-
-The tails function returns all final segments of the argument, longest first. For example,
-
- tails "abc" == ["abc", "bc", "c",""]
-
-** ~elem :: Eq a => a -> [a] -> Bool~
-
-elem is the list membership predicate, usually written in infix form, e.g., x `elem` xs. For the result to be False, the list must be finite; True, however, results from an element equal to x found at a finite index of a finite or infinite list.
 
 ** ~lookup :: Eq a => a -> [(a, b)] -> Maybe b~
 
@@ -273,23 +205,89 @@ If the first list contains duplicates, so will the result.
 
  [1,2,2,3,4] `intersect` [6,4,4,2] == [2,2,4]
 
-** ~insert :: Ord a => a -> [a] -> [a]~
-
-The insert function takes an element and a (sorted) list and inserts
-the element into the list at the last position where it is still less
-than or equal to the next element.
+** ~maybeLast :: [a] -> Maybe a~
+Extract the last element of a list. Returns Nothing if the list is empty.
 
 #+BEGIN_SRC haskell
-insert q [] = [q]
-insert q (x:xs) | q > x     = x : insert q xs
-                | otherwise = q : x : xs
+maybeLast []     = Nothing
+maybeList (x:xs) = case maybeList xs of
+                     Nothing -> Just x
+                     jl      -> jl
 #+END_SRC
 
-** ~sort :: Ord a => [a] -> [a]~
+** ~insertEverywhere :: ~a -> [a] -> [[a]]~
 
-The sort function implements a (stable) sorting algorithm.
+insertEverywhere x ys, inserts x at every position in ys. I.e.:
+
+insertEverywhere 10 [1..5] ==
+[[10,1,2,3,4,5],[1,10,2,3,4,5],[1,2,10,3,4,5],[1,2,3,10,4,5],[1,2,3,4,10,5],[1,2,3,4,5,10]]
 
 #+BEGIN_SRC haskell
-sort []     = []
-sort (x:xs) = insert x (sort xs)
+insertEverywhere             :: a -> [a] -> [[a]]
+insertEverywhere x []        = [[x]]
+insertEverywhere x xs@(y:ys) = (x:xs) : map (y:) (insertEverywhere x ys)
+#+END_SRC
+
+**  ~permutations :: [a] -> [[a]]~
+
+
+The permutations function returns the list of all permutations of the
+argument. E.g.:
+
+permutations "abc" == ["abc","bac","bca","acb","cab","cba"]
+
+Note that it is ok if your solution returns the permutations in any
+order. E.g.
+
+permutations "abc" == ["abc","bac","cba","bca","cab","acb"]
+
+is also correct.
+
+#+BEGIN_SRC haskell
+permutations        :: [a] -> [[a]]
+permutations []     = [[]]
+permutations (x:xs) = concatMap (insertEverywhere x) $ permutations xs
+#+END_SRC
+
+** ~foldr :: (a -> b -> b) -> b -> [a] -> b~
+
+The function foldr takes a function 'f' and an unit element 'z' and
+"combines" all elements in the list using the function 'f', and
+starting from value 'z'.
+
+Your implementation should satisfy:
+
+foldr (+) 0 xs == sum xs
+
+(for any list of numbers xs)
+
+and
+
+foldr f "" [65..70]
+  where
+    f i s = chr i : s
+==
+"ABCDE"
+
+#+BEGIN_SRC haskell
+foldr _ z []     = z
+foldr f z (x:xs) = f x (foldr f z xs)
+#+END_SRC
+
+** ~scanr :: (a -> b -> b) -> b -> [a] -> [b]~
+
+scanr is similar to foldr but returns a list of successive reduced
+values from the right:
+
+ scanr f z [x_1, x_2, .., x_n] == [x_1 `f` .., .., x_(n-1) `f` z ,x_n `f` z,z]
+
+That is, it also returns all intermediate answers of a foldr. Note in
+particular that
+
+ head (scanr f z xs) == foldr f z xs.
+
+#+BEGIN_SRC haskell
+scanr _ z []     = [z]
+scanr f z (x:xs) = let rs@(r:_) = scanr f z xs
+                   in f x r : rs
 #+END_SRC

@@ -128,7 +128,6 @@ concat = foldr f e
 
 ** ~concatMap :: (a -> [b]) -> [a] -> [b]~
 
-
 Map a function over a list and concatenate the results.
 
 #+BEGIN_SRC haskell
@@ -136,17 +135,6 @@ concatMap g = foldr f e
   where
     f x r = g x ++ r
     e     = []
-#+END_SRC
-
-
-** ~head :: [a] -> a~
-Extract the first element of a list, which must be non-empty.
-
-#+BEGIN_SRC haskell
-head xs = foldr f e xs
-  where
-    f x r = x
-    e = error "empty list"
 #+END_SRC
 
 ** ~maybeLast :: [a] -> Maybe a~
