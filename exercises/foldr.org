@@ -1,82 +1,61 @@
-#+TITLE: Foldr Exercises
+---
+title: Foldr Exercises
+---
 
-* Foldr Exercises
+Write the following functions using the ~foldr~ function. If no type
+signature is given, also give the type of the function.
 
-Write the following functions first using direct recursion, and then
-using foldr.
+** ~length~
 
-** ~length :: [a] -> Int~
-length returns the length of a finite list as an Int.
+length returns the length of a finite list.
 
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :solution
 length = foldr f e
   where
     f _ r = 1 + r
     e     = 0
 #+END_SRC
 
-** ~(++) :: [a] -> [a] -> [a]~
+** ~(++)~
 
 Append two lists.
 
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :solution
 (++) xs ys = foldr f e xs
   where
     f x r = x:r
     e = ys
 #+END_SRC
 
-** ~sum :: Num a => [a] -> a~
-
-The sum function computes the sum of a finite list of numbers.
-
-#+BEGIN_SRC haskell
-sum = foldr f e
-  where
-    f x r = x + r
-    e     = 0
-#+END_SRC
-
-** ~product :: Num a => [a] -> a~
+** ~product~
 
 The product function computes the product of a finite list of numbers.
 
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :solution
 product = foldr f e
   where
     f x r = x * r
     e     = 1
 #+END_SRC
 
-** ~and :: [Bool] -> Bool~
 
-and returns the conjunction of a Boolean list. For the result to be
-True, the list must be finite; False, however, results from a False
-value at a finite index of a finite or infinite list.
+** ~or~
 
-#+BEGIN_SRC haskell
-and = foldr f e
-  where
-    f x r = x && r
-    e     = True
-#+END_SRC
+or returns the disjunction of a Boolean list.
 
-** ~or :: [Bool] -> Bool~
-
-or returns the disjunction of a Boolean list. For the result to be False, the list must be finite; True, however, results from a True value at a finite index of a finite or infinite list.
-
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :solution
 or = foldr f e
   where
     f x r = x || r
     e     = False
 #+END_SRC
 
-** ~any :: (a -> Bool) -> [a] -> Bool~
+** ~any~
 
-Applied to a predicate and a list, any determines if any element of the list satisfies the predicate. For the result to be False, the list must be finite; True, however, results from a True value for the predicate applied to an element at a finite index of a finite or infinite list.
+Applied to a predicate and a list, any determines if any element of
+the list satisfies the predicate.
 
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :solution
 any p = foldr f e
   where
     f x r = p x || r
@@ -84,63 +63,92 @@ any p = foldr f e
 #+END_SRC
 
 
-** ~all :: (a -> Bool) -> [a] -> Bool~
+** ~all~
 
-Applied to a predicate and a list, all determines if all elements of the list satisfy the predicate. For the result to be True, the list must be finite; False, however, results from a False value for the predicate applied to an element at a finite index of a finite or infinite list.
+Applied to a predicate and a list, all determines if all elements of
+the list satisfy the predicate.
 
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :solution
 all p = foldr f e
   where
     f x r = p x && r
     e     = True
 #+END_SRC
 
-** ~map :: (a -> b) -> [a] -> [b]~
+** ~map~
 
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :solution
 map g = foldr f e
   where
     f x r = g x : r
     e     = []
 #+END_SRC
 
-** ~reverse :: [a] -> [a]~
+** ~reverse~
 
 reverse xs returns the elements of xs in reverse order. xs must be finite.
 
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :solution
 reverse = foldr f e
   where
     f x r = r ++ [x]
     e     = []
 #+END_SRC
 
-** ~concat :: [[a]] -> [a]~
+** ~concat~
 
-Concatenate a list of lists.
+Concatenate a list of lists into a single list.
 
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :solution
 concat = foldr f e
   where
     f x r = x ++ r
     e     = []
 #+END_SRC
 
-** ~concatMap :: (a -> [b]) -> [a] -> [b]~
+** ~concatMap~
 
 Map a function over a list and concatenate the results.
 
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :solution
 concatMap g = foldr f e
   where
     f x r = g x ++ r
     e     = []
 #+END_SRC
 
-** ~maybeLast :: [a] -> Maybe a~
-Extract the last element of a list. Returns Nothing if the list is empty.
+** ~elem :: Eq a => a -> [a] -> Bool~
 
-#+BEGIN_SRC haskell
+elem is the list membership predicate, usually written in infix form,
+e.g., x `elem` xs.
+
+#+BEGIN_SRC haskell :solution
+-- Observe that 'elem y = any (== y)' so this is basically the same as any:
+elem y = foldr f e
+  where
+    f x r = (x == y) || r
+    e = False
+#+END_SRC
+
+** ~filter~
+
+filter, applied to a predicate and a list, returns the list of those
+elements that satisfy the predicate; i.e.,
+
+~filter p xs = [ x | x <- xs, p x]~
+
+#+BEGIN_SRC haskell :solution
+filter p = foldr f e
+  where
+    f x r = if p x then x:r else r
+    e = []
+#+END_SRC
+
+** ~maybeLast :: [a] -> Maybe a~
+
+Extract the last element of a list. Returns ~Nothing~ if the list is empty.
+
+#+BEGIN_SRC haskell :solution
 maybeLast = foldr f e xs
   where
     f x r = case r of
@@ -149,65 +157,15 @@ maybeLast = foldr f e xs
     e = Nothing
 #+END_SRC
 
-** ~elem :: Eq a => a -> [a] -> Bool~
+** ~partition~
 
-elem is the list membership predicate, usually written in infix form, e.g., x `elem` xs. For the result to be False, the list must be finite; True, however, results from an element equal to x found at a finite index of a finite or infinite list.
+The partition function takes a predicate a list and returns the pair
+of lists of elements which do and do not satisfy the predicate,
+respectively; i.e.,
 
-#+BEGIN_SRC haskell
--- Observe that 'elem y = any (== y)' so this is basically the same as any:
-elem y = foldr f e
-  where
-    f x r = (x == y) || r
-    e = False
-#+END_SRC
+~partition p xs == (filter p xs, filter (not . p) xs)~
 
-** ~lookup :: Eq a => a -> [(a, b)] -> Maybe b~
-
-lookup key assocs looks up a key in an association list.
-Searching with a predicate
-
-#+BEGIN_SRC haskell
-lookup y = foldr f e
-  where
-    f (k,x) r | k == y    = Just x
-              | otherwise = r
-    e = Nothing
-#+END_SRC
-
-** ~find :: (a -> Bool) -> [a] -> Maybe a~
-
-The find function takes a predicate and a list and returns the first element in the list matching the predicate, or Nothing if there is no such element.
-
-#+BEGIN_SRC haskell
-find p = foldr f e
-  where
-    f x r | p x       = Just x
-          | otherwise = r
-    e = Nothing
-#+END_SRC
-
-
-** ~filter :: (a -> Bool) -> [a] -> [a]~
-
-filter, applied to a predicate and a list, returns the list of those elements that satisfy the predicate; i.e.,
-
- filter p xs = [ x | x <- xs, p x]
-
-#+BEGIN_SRC haskell
-filter p = foldr f e
-  where
-    f x r = if p x then x:r else r
-    e = []
-#+END_SRC
-
-** ~partition :: (a -> Bool) -> [a] -> ([a], [a])~
-
-
-The partition function takes a predicate a list and returns the pair of lists of elements which do and do not satisfy the predicate, respectively; i.e.,
-
- partition p xs == (filter p xs, filter (not . p) xs)
-
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :solution
 partition p = foldr f e
   where
     f x (ts,fs) = if p x then (x:ts,fs) else (ts,x:fs)
@@ -219,7 +177,7 @@ partition p = foldr f e
 unzip transforms a list of pairs into a list of first components and a
 list of second components.
 
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :solution
 unzip = foldr f e
   where
     f (a,b) (as,bs) = (a:as,b:bs)
@@ -231,20 +189,20 @@ unzip = foldr f e
 unlines is an inverse operation to lines. It joins lines, after
 appending a terminating newline to each.
 
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :solution
 unlines = foldr f e
   where
     f l r = l ++ "\n" ++ r
     e = []
 #+END_SRC
 
-** ~nub :: Eq a => [a] -> [a]~
+** ~nub~
 
 The nub function removes duplicate elements from a list. In
 particular, it keeps only the first occurrence of each element. (The
 name nub means `essence'.)
 
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :solution
 nub = foldr f e
   where
     f x r | x `elem` r = r
@@ -256,13 +214,13 @@ nub = foldr f e
 
 The union function returns the list union of the two lists. For example,
 
- "dog" `union` "cow" == "dogcw"
+~"dog" `union` "cow" == "dogcw"~
 
 Duplicates, and elements of the first list, are removed from the the
 second list, but if the first list contains duplicates, so will the
 result.
 
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :solution
 union xs ys = foldr f e ys
   where
     f y r | y `elem` xs = r
@@ -274,13 +232,13 @@ union xs ys = foldr f e ys
 
 The intersect function takes the list intersection of two lists. For example,
 
- [1,2,3,4] `intersect` [2,4,6,8] == [2,4]
+~[1,2,3,4] `intersect` [2,4,6,8] == [2,4]~
 
 If the first list contains duplicates, so will the result.
 
- [1,2,2,3,4] `intersect` [6,4,4,2] == [2,2,4]
+~[1,2,2,3,4] `intersect` [6,4,4,2] == [2,2,4]~
 
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :solution
 intersect xs ys = foldr f e ys
   where
     f y r | y `elem` xs = y:r
@@ -298,33 +256,31 @@ You can assume that there is a function ~insert :: Ord a => a -> [a]
 the list at the last position where it is still less than or equal to
 the next element.
 
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :solution
 sort = foldr f e
   where
     f x r = insert x r
     e = []
 #+END_SRC
 
-
-** ~null :: [a] -> Bool~
+** ~null~
 
 Test whether a list is empty.
 
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :solution
 null xs = foldr f e xs
   where
     f x r = False
     e     = True
 #+END_SRC
 
-
-** ~intersperse :: a -> [a] -> [a]~
+** ~intersperse~
 
 The intersperse function takes an element and a list and `intersperses' that element between the elements of the list. For example,
 
- intersperse ',' "abcde" == "a,b,c,d,e"
+~intersperse ',' "abcde" == "a,b,c,d,e"~
 
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :solution
 intersperse c = foldr f e
   where
     f x r = case r of
@@ -333,21 +289,20 @@ intersperse c = foldr f e
     e     = []
 #+END_SRC
 
-
 ** ~permutations :: [a] -> [[a]]~
 The permutations function returns the list of all permutations of the
 argument. E.g.:
 
-permutations "abc" == ["abc","bac","bca","acb","cab","cba"]
+~permutations "abc" == ["abc","bac","bca","acb","cab","cba"]~
 
 Note that it is ok if your solution returns the permutations in any
 order. E.g.
 
-permutations "abc" == ["abc","bac","cba","bca","cab","acb"]
+~permutations "abc" == ["abc","bac","cba","bca","cab","acb"]~
 
 is also correct.
 
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :solution
 permutations :: [a] -> [[a]]
 permutations = foldr f e
   where
@@ -359,62 +314,42 @@ insertEverywhere x []        = [[x]]
 insertEverywhere x xs@(y:ys) = (x:xs) : map (y:) (insertEverywhere x ys)
 #+END_SRC
 
-** ~scanr :: (a -> b -> b) -> b -> [a] -> [b]~
-
-
-scanr is similar to foldr but returns a list of successive reduced
- values from the right:
-
- scanr g z [x_1, x_2, .., x_n] == [x_1 `g` .., .., x_(n-1) `g` z ,x_n `g` z,z]
-
-Note that
-
- head (scanr f z xs) == foldr f z xs.
-
-
-#+BEGIN_SRC haskell
-scanr g z = foldr f e
-  where
-    f x r@(y:_) = g x y : r
-    e = [z]
-#+END_SRC
-
-** ~mapAccumR :: (acc -> x -> (acc, y)) -> acc -> [x] -> (acc, [y])~
-
-The mapAccumR function behaves like a combination of map and foldr; it applies a function to each element of a list, passing an accumulating parameter from right to left, and returning a final value of this accumulator together with the new list.
-Infinite lists
-
-#+BEGIN_SRC haskell
-mapAccumR g z = foldr f e
-  where
-    f x (ra,ry) = let (acc,y) = g ra x in (acc,y:ry)
-    e = (z,[])
-#+END_SRC
-
-** ~takeWhile :: (a -> Bool) -> [a] -> [a]~
-
+** ~takeWhile~
 
 takeWhile, applied to a predicate p and a list xs, returns the longest prefix (possibly empty) of xs of elements that satisfy p:
 
- takeWhile (< 3) [1,2,3,4,1,2,3,4] == [1,2]
- takeWhile (< 9) [1,2,3] == [1,2,3]
- takeWhile (< 0) [1,2,3] == []
+- ~takeWhile (< 3) [1,2,3,4,1,2,3,4] == [1,2]~
+- ~takeWhile (< 9) [1,2,3] == [1,2,3]~
+- ~takeWhile (< 0) [1,2,3] == []~
 
-
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :solution
 takeWhile p = foldr f e
   where
     f x r = if p x then x:r else []
     e = []
 #+END_SRC
 
+** ~tails :: [a] -> [[a]]~
+
+The tails function returns all final segments of the argument, longest first. For example,
+
+~tails "abc" == ["abc", "bc", "c",""]~
+
+#+BEGIN_SRC haskell :solution
+tails = foldr f e
+  where
+    f x r = case r of
+              []     -> [x]:r
+              (ys:_) -> (x:ys):r
+    e = []
+#+END_SRC
 ** ~group :: Eq a => [a] -> [[a]]~
 
 The group function takes a list and returns a list of lists such that the concatenation of the result is equal to the argument. Moreover, each sublist in the result contains only equal elements. For example,
 
- group "Mississippi" = ["M","i","ss","i","ss","i","pp","i"]
+~group "Mississippi" = ["M","i","ss","i","ss","i","pp","i"]~
 
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :solution
 group = foldr f e
   where
     f x r = case r of
@@ -424,18 +359,35 @@ group = foldr f e
     e = []
 #+END_SRC
 
-** ~tails :: [a] -> [[a]]~
+** ~scanr :: (a -> b -> b) -> b -> [a] -> [b]~
 
+scanr is similar to foldr but returns a list of successive reduced
+ values from the right:
 
-The tails function returns all final segments of the argument, longest first. For example,
+~scanr g z [x_1, x_2, .., x_n] == [x_1 `g` .., .., x_(n-1) `g` z ,x_n `g` z,z]~
 
- tails "abc" == ["abc", "bc", "c",""]
+That is, it also returns all intermediate answers of a foldr. Note in
+particular that
 
-#+BEGIN_SRC haskell
-tails = foldr f e
+~head (scanr g z xs) == foldr g z xs~.
+
+#+BEGIN_SRC haskell :solution
+scanr g z = foldr f e
   where
-    f x r = case r of
-              []     -> [x]:r
-              (ys:_) -> (x:ys):r
-    e = []
+    f x r@(y:_) = g x y : r
+    e = [z]
+#+END_SRC
+
+** ~mapAccumR :: (acc -> x -> (acc, y)) -> acc -> [x] -> (acc, [y])~
+
+The mapAccumR function behaves like a combination of map and foldr; it
+applies a function to each element of a list, passing an accumulating
+parameter from right to left, and returning a final value of this
+accumulator together with the new list.
+
+#+BEGIN_SRC haskell :solution
+mapAccumR g z = foldr f e
+  where
+    f x (ra,ry) = let (acc,y) = g ra x in (acc,y:ry)
+    e = (z,[])
 #+END_SRC

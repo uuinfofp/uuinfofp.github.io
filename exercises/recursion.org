@@ -1,169 +1,90 @@
-#+TITLE: Direct Recursion Exercises
+---
+title: Direct Recursion Exercises
+---
 
-* Direct Recursion Exercises
-
-Write the following functions using direct recursion
-
-** ~(++) :: [a] -> [a] -> [a]~
-
-Append two lists.
-
-#+BEGIN_SRC haskell
-[]     ++ ys = ys
-(x:xs) ++ ys = x : xs ++ ys
-#+END_SRC
+Write the following functions using direct recursion. If no type
+signature is given, also give the type of the function.
 
 ** ~product :: Num a => [a] -> a~
 
 The product function computes the product of a finite list of numbers.
 
-** ~map :: (a -> b) -> [a] -> [b]~
+** ~concat~
 
-#+BEGIN_SRC haskell
-map _ []     = []
-map f (x:xs) = f x : map f xs
-#+END_SRC
+Concatenate a list of lists into a single list
 
-** ~intersperse :: a -> [a] -> [a]~
-
-The intersperse function takes an element and a list and `intersperses' that element between the elements of the list. For example,
-
- intersperse ',' "abcde" == "a,b,c,d,e"
-
-** ~concat :: [[a]] -> [a]~
-
-Concatenate a list of lists.
-
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :solution
 concat []       = []
 concat (xs:xss) = xs ++ concat xss
 #+END_SRC
 
-** ~concatMap :: (a -> [b]) -> [a] -> [b]~
-
-Map a function over a list and concatenate the results.
-
 ** ~and :: [Bool] -> Bool~
 
-and returns the conjunction of a Boolean list. For the result to be
-True, the list must be finite; False, however, results from a False
-value at a finite index of a finite or infinite list.
+and returns the conjunction of a Boolean list.
 
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :solution
 and []     = True
 and (x:xs) = x && and xs
 #+END_SRC
 
 ** ~or :: [Bool] -> Bool~
 
-or returns the disjunction of a Boolean list. For the result to be
-False, the list must be finite; True, however, results from a True
-value at a finite index of a finite or infinite list.
+or returns the disjunction of a Boolean list.
 
-** ~all :: (a -> Bool) -> [a] -> Bool~
+** ~all~
 
 Applied to a predicate and a list, all determines if all elements of
-the list satisfy the predicate. For the result to be True, the list
-must be finite; False, however, results from a False value for the
-predicate applied to an element at a finite index of a finite or
-infinite list.
+the list satisfy the predicate. For example,
 
-#+BEGIN_SRC haskell
+- ~all even [1..5] == False~
+- ~all even [2,4,6] == True~
+
+#+BEGIN_SRC haskell :solution
 all _ []     = True
 all p (x:xs) = p x && all p xs
 #+END_SRC
 
-** ~any :: (a -> Bool) -> [a] -> Bool~
+** ~map :: (a -> b) -> [a] -> [b]~
 
-Applied to a predicate and a list, any determines if any element of
-the list satisfies the predicate. For the result to be False, the list
-must be finite; True, however, results from a True value for the
-predicate applied to an element at a finite index of a finite or
-infinite list.
-
-** ~insert :: Ord a => a -> [a] -> [a]~
-
-The insert function takes an element and a (sorted) list and inserts
-the element into the list at the last position where it is still less
-than or equal to the next element.
-
-#+BEGIN_SRC haskell
-insert q [] = [q]
-insert q (x:xs) | q > x     = x : insert q xs
-                | otherwise = q : x : xs
+#+BEGIN_SRC haskell :solution
+map _ []     = []
+map f (x:xs) = f x : map f xs
 #+END_SRC
 
-** ~sort :: Ord a => [a] -> [a]~
+** ~intersperse~
 
-The sort function implements a sorting algorithm.
+The intersperse function takes an element and a list and
+`intersperses' that element between the elements of the list. For
+example,
 
-#+BEGIN_SRC haskell
-sort []     = []
-sort (x:xs) = insert x (sort xs)
-#+END_SRC
+~intersperse ',' "abcde" == "a,b,c,d,e"~
 
-** ~takeWhile :: (a -> Bool) -> [a] -> [a]~
+** ~concatMap~
 
-takeWhile, applied to a predicate p and a list xs, returns the longest
-prefix (possibly empty) of xs of elements that satisfy p:
+Map a function over a list and concatenate the results.
 
- takeWhile (< 3) [1,2,3,4,1,2,3,4] == [1,2]
- takeWhile (< 9) [1,2,3] == [1,2,3]
- takeWhile (< 0) [1,2,3] == []
+** ~unlines :: [String] -> String~
 
-#+BEGIN_SRC haskell
-takeWhile _ []                 = []
-takeWhile p (x:xs) | p x       = x : takeWhile p xs
-                   | otherwise = []
-#+END_SRC
+unlines is an inverse operation to lines. It joins lines, after
+appending a terminating newline to each.
 
-** ~group :: Eq a => [a] -> [[a]]~
-
-The group function takes a list and returns a list of lists such that
-the concatenation of the result is equal to the argument. Moreover,
-each sublist in the result contains only equal elements. For example,
-
- group "Mississippi" = ["M","i","ss","i","ss","i","pp","i"]
-
-#+BEGIN_SRC haskell
-group []     = []
-group (x:xs) = case group xs of
-                 []                        -> [[x]]
-                 (ys@(y:_):rs) | x == y    ->      (x:ys) : rs
-                               | otherwise -> [x] :    ys : rs
-#+END_SRC
-
-** ~lookup :: Eq a => a -> [(a, b)] -> Maybe b~
-
-lookup key assocs looks up a key in an association list.
-Searching with a predicate
-
-#+BEGIN_SRC haskell
-lookup q []                 = Nothing
-lookup q (x:xs) | q == x    = Just x
-                | otherwise = lookup q xs
-#+END_SRC
-
-** ~find :: (a -> Bool) -> [a] -> Maybe a~
-
-The find function takes a predicate and a list and returns the first
-element in the list matching the predicate, or Nothing if there is no
-such element.
 
 ** ~filter :: (a -> Bool) -> [a] -> [a]~
 
 filter, applied to a predicate and a list, returns the list of those
 elements that satisfy the predicate; i.e.,
 
- filter p xs = [ x | x <- xs, p x]
+~filter p xs = [ x | x <- xs, p x]~
 
-** ~partition :: (a -> Bool) -> [a] -> ([a], [a])~
+** ~partition~
 
-The partition function takes a predicate a list and returns the pair of lists of elements which do and do not satisfy the predicate, respectively; i.e.,
+The partition function takes a predicate a list and returns the pair
+of lists of elements which do and do not satisfy the predicate,
+respectively; i.e.,
 
- partition p xs == (filter p xs, filter (not . p) xs)
+~partition p xs == (filter p xs, filter (not . p) xs)~
 
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :solution
 partition _ []                 = ([],[])
 partition p (x:xs) | p x       = let (ts,fs) = partition p xs in (x:ts,  fs)
                    | otherwise = let (ts,fs) = partition p xs in (  ts,x:fs)
@@ -174,22 +95,89 @@ partition p (x:xs) | p x       = let (ts,fs) = partition p xs in (x:ts,  fs)
 unzip transforms a list of pairs into a list of first components and a
 list of second components.
 
-** ~unlines :: [String] -> String~
+** ~insert :: Ord a => a -> [a] -> [a]~
 
-unlines is an inverse operation to lines. It joins lines, after
-appending a terminating newline to each.
+The insert function takes an element and a (sorted) list and inserts
+the element into the list at the last position where it is still less
+than or equal to the next element.
 
-** ~nub :: Eq a => [a] -> [a]~
+#+BEGIN_SRC haskell :solution
+insert q [] = [q]
+insert q (x:xs) | q > x     = x : insert q xs
+                | otherwise = q : x : xs
+#+END_SRC
+
+** ~sort :: Ord a => [a] -> [a]~
+
+The sort function implements a sorting algorithm.
+
+#+BEGIN_SRC haskell :solution
+sort []     = []
+sort (x:xs) = insert x (sort xs)
+#+END_SRC
+
+** ~takeWhile :: (a -> Bool) -> [a] -> [a]~
+
+takeWhile, applied to a predicate p and a list xs, returns the longest
+prefix (possibly empty) of xs of elements that satisfy p:
+
+- ~takeWhile (< 3) [1,2,3,4,1,2,3,4] == [1,2]~
+- ~takeWhile (< 9) [1,2,3] == [1,2,3]~
+- ~takeWhile (< 0) [1,2,3] == []~
+
+#+BEGIN_SRC haskell :solution
+takeWhile _ []                 = []
+takeWhile p (x:xs) | p x       = x : takeWhile p xs
+                   | otherwise = []
+#+END_SRC
+
+** ~group~
+
+The group function takes a list and returns a list of lists such that
+the concatenation of the result is equal to the argument. Moreover,
+each sublist in the result contains only equal elements. For example,
+
+~group "Mississippi" = ["M","i","ss","i","ss","i","pp","i"]~
+
+#+BEGIN_SRC haskell :solution
+group []     = []
+group (x:xs) = case group xs of
+                 []                        -> [[x]]
+                 (ys@(y:_):rs) | x == y    ->      (x:ys) : rs
+                               | otherwise -> [x] :    ys : rs
+#+END_SRC
+
+**  ~remSuccessiveduplicates~
+
+The function remSuccessiveDuplicates removes succesive repeated
+elements from a list. For example
+
+~remSuccessiveduplicates [1, 2, 2, 3, 2, 4] == [1, 2, 3, 2, 4]~
+
+#+BEGIN_SRC haskell :solution
+remSuccessiveduplicates [] = []
+remSuccessiveduplicates [x] = [x]
+remSuccessiveduplicates (x:y:xs) | x == y    = remsuccessiveduplicates y ys
+                                 | otherwise = x : remsuccessiveduplicates y ys
+#+END_SRC
+
+** ~nub~
 
 The nub function removes duplicate elements from a list. In
 particular, it keeps only the first occurrence of each element. (The
 name nub means `essence'.)
 
+#+BEGIN_SRC haskell :solution
+nub [] = []
+nub (x:xs) | x `elem` xs = nub xs
+           | otherwise   = x : nub xs
+#+END_SRC
+
 ** ~union :: Eq a => [a] -> [a] -> [a]~
 
 The union function returns the list union of the two lists. For example,
 
- "dog" `union` "cow" == "dogcw"
+~"dog" `union` "cow" == "dogcw"~
 
 Duplicates, and elements of the first list, are removed from the the
 second list, but if the first list contains duplicates, so will the
@@ -199,30 +187,30 @@ result.
 
 The intersect function takes the list intersection of two lists. For example,
 
- [1,2,3,4] `intersect` [2,4,6,8] == [2,4]
+~[1,2,3,4] `intersect` [2,4,6,8] == [2,4]~
 
 If the first list contains duplicates, so will the result.
 
- [1,2,2,3,4] `intersect` [6,4,4,2] == [2,2,4]
+~[1,2,2,3,4] `intersect` [6,4,4,2] == [2,2,4]~
 
 ** ~maybeLast :: [a] -> Maybe a~
-Extract the last element of a list. Returns Nothing if the list is empty.
 
-#+BEGIN_SRC haskell
+Extract the last element of a list. Returns ~Nothing~ if the list is empty.
+
+#+BEGIN_SRC haskell :solution
 maybeLast []     = Nothing
 maybeList (x:xs) = case maybeList xs of
                      Nothing -> Just x
                      jl      -> jl
 #+END_SRC
 
-** ~insertEverywhere :: ~a -> [a] -> [[a]]~
+** ~insertEverywhere~
 
-insertEverywhere x ys, inserts x at every position in ys. I.e.:
+insertEverywhere x ys "inserts" x at every position in the list ys. I.e.:
 
-insertEverywhere 10 [1..5] ==
-[[10,1,2,3,4,5],[1,10,2,3,4,5],[1,2,10,3,4,5],[1,2,3,10,4,5],[1,2,3,4,10,5],[1,2,3,4,5,10]]
+~insertEverywhere 10 [1..5] == [[10,1,2,3,4,5],[1,10,2,3,4,5],[1,2,10,3,4,5],[1,2,3,10,4,5],[1,2,3,4,10,5],[1,2,3,4,5,10]]~
 
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :solution
 insertEverywhere             :: a -> [a] -> [[a]]
 insertEverywhere x []        = [[x]]
 insertEverywhere x xs@(y:ys) = (x:xs) : map (y:) (insertEverywhere x ys)
@@ -230,20 +218,19 @@ insertEverywhere x xs@(y:ys) = (x:xs) : map (y:) (insertEverywhere x ys)
 
 **  ~permutations :: [a] -> [[a]]~
 
-
 The permutations function returns the list of all permutations of the
 argument. E.g.:
 
-permutations "abc" == ["abc","bac","bca","acb","cab","cba"]
+~permutations "abc" == ["abc","bac","bca","acb","cab","cba"]~
 
 Note that it is ok if your solution returns the permutations in any
 order. E.g.
 
-permutations "abc" == ["abc","bac","cba","bca","cab","acb"]
+~permutations "abc" == ["abc","bac","cba","bca","cab","acb"]~
 
 is also correct.
 
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :solution
 permutations        :: [a] -> [[a]]
 permutations []     = [[]]
 permutations (x:xs) = concatMap (insertEverywhere x) $ permutations xs
@@ -257,19 +244,10 @@ starting from value 'z'.
 
 Your implementation should satisfy:
 
-foldr (+) 0 xs == sum xs
+- ~foldr (+) 0 xs == sum xs~, for any list of numbers xs, and
+- ~let f i s = chr i : s in foldr f "" [65..70] == "ABCDE"~
 
-(for any list of numbers xs)
-
-and
-
-foldr f "" [65..70]
-  where
-    f i s = chr i : s
-==
-"ABCDE"
-
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :solution
 foldr _ z []     = z
 foldr f z (x:xs) = f x (foldr f z xs)
 #+END_SRC
@@ -279,14 +257,14 @@ foldr f z (x:xs) = f x (foldr f z xs)
 scanr is similar to foldr but returns a list of successive reduced
 values from the right:
 
- scanr f z [x_1, x_2, .., x_n] == [x_1 `f` .., .., x_(n-1) `f` z ,x_n `f` z,z]
+~scanr f z [x_1, x_2, .., x_n] == [x_1 `f` .., .., x_(n-1) `f` z ,x_n `f` z,z]~
 
 That is, it also returns all intermediate answers of a foldr. Note in
 particular that
 
- head (scanr f z xs) == foldr f z xs.
+~head (scanr f z xs) == foldr f z xs~.
 
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :solution
 scanr _ z []     = [z]
 scanr f z (x:xs) = let rs@(r:_) = scanr f z xs
                    in f x r : rs

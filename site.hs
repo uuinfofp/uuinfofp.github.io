@@ -16,7 +16,7 @@ main = hakyllWith myConfiguration $ do
     match "practicals/*.zip" copyAsIs
     match "exams/*.pdf" copyAsIs
     match "exams/*.hs" copyAsIs
-    
+
     -- Password-protected
     {-
     match "pw/*.html" copyAsIs
@@ -28,7 +28,7 @@ main = hakyllWith myConfiguration $ do
         compile copyFileCompiler
     -}
 
-    match "css/*" $ do 
+    match "css/*" $ do
         route   idRoute
         compile compressCssCompiler
 
@@ -38,9 +38,17 @@ main = hakyllWith myConfiguration $ do
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
             >>= relativizeUrls
 
-    match "templates/*" $ compile templateCompiler
+    match ("*.org" .||. "exercises/*.org") $ do
+        route   $ setExtension "html"
+        compile $ pandocCompiler
+            >>= loadAndApplyTemplate "templates/default.html" defaultContext
+            >>= relativizeUrls
 
-copyAsIs = do 
+
+    match "templates/*" $
+        compile templateCompiler
+
+copyAsIs = do
     route   idRoute
     compile copyFileCompiler
 
@@ -48,6 +56,3 @@ myConfiguration :: Configuration
 myConfiguration = defaultConfiguration {
     deployCommand = "rsync -avh _site/* gemini.science.uu.nl:/science/wwwprojects/cs-www/wwwcs/docs/vakken/fp/2020"
   }
-
-
-    
