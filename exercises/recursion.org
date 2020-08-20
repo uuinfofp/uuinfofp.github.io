@@ -283,6 +283,40 @@ scanr f z (x:xs) = let rs@(r:_) = scanr f z xs
 #+END_SRC
 
 
+** run length encoding: ~encode~
+
+The function ~encode~ computes the run-length encoding of a list.
+That is, the list is mapped to a list of pairs whose first element
+says how many times the second component of the pair appears in
+adjacent positions in the list. For example:
+
+~encode [1, 2, 2, 3, 2, 4]  == [(1, 1),(2, 2),(1, 3),(1, 2),(1, 4)]~
+
+#+BEGIN_SRC haskell :solution
+encode        :: Eq a => [a] -> [(Int,a)]
+encode []     = []
+encode (x:xs) = case encode xs of
+                  []                       -> [(1,x)]
+                  r@((i,y):ys) | x == y    -> (i+1,x) : ys
+                               | otherwise -> (1,x)   : r
+#+END_SRC
+
+** run length encoding: ~decode~
+
+Given a run length encoded list, ~decode~ produces the original input
+list, e.g. from the example above:
+
+~decode [(1, 1),(2, 2),(1, 3),(1, 2),(1, 4)] == [1, 2, 2, 3, 2, 4]~
+
+#+BEGIN_SRC haskell :solution
+decode :: [(Int,a)] -> [a]
+decode = concatMap (\(i,x) -> replicate i x)
+  where
+    replicate 0 _ = []
+    replicate i x = x : replicate (i-1) x
+    -- replicate is actually already defined in the Prelude.
+#+END_SRC
+
 ** ~splitAll :: Int -> [a] -> [[a]]~
 
 The splitAll function divides the given list in sublists, where the
