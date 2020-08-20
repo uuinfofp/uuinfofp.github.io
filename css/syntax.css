@@ -28,7 +28,8 @@ div[data-solution="yes"] pre {
 
 div[data-solution="yes"]::before {
   content: "Hover to show solution";
-
+  color: #60a0b0;
+  font-style: italic;
 }
 
 div[data-solution="yes"]:hover pre {
