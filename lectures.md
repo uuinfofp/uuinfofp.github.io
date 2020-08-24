@@ -15,7 +15,7 @@ title: Lectures
 Be aware: the following schedule and the contents of the slides are
 currently still subject to change.
 
-<table class="table table-stripped">
+<table class="table table-striped table-hover" style="font-size: 14px;">
   <thead>
     <tr>
       <th>Week</th>
@@ -170,6 +170,7 @@ currently still subject to change.
       <td>44</td>
       <td>Thu 5 Nov 13:30-16:30</td>
       <td><b>Final exam</b></td>
+      <td></td>
       <td></td>
     </tr>
   </tbody>
