@@ -41,10 +41,13 @@ Which of the following is the type of ~concat . concat~? Give the type derivatio
 
 Give the type derivation.
 
+** What is the type of ~map map~?
+
+Give the type derivation.
+
 ** ~map (map map)~
 
 What is the type of ~map (map map)~? Give the type derivation.
-
 
     1. ~[[a -> b]] -> [[[a] -> [b]]]~
     2. ~[a -> b] -> [[[a] -> [b]]]~

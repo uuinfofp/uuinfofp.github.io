@@ -1,0 +1,11 @@
+---
+title: Data Types
+---
+
+
+** Complex numbers
+
+Write a data type ~Complex~ to represent complex numbers of the form
+$a + b*i$.
+
+*** Make ~Complex~ an instance of ~Num~

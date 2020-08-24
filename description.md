@@ -20,7 +20,15 @@ The language Haskell imposes a strong separation between pure computations and t
 
 ## <a name="schedule"></a>Schedule
 
-The load per week is 2 × 2 h. [lectures](lectures.html), 1 × 2 h. [practicals](labs.html) and 1 × 2 h. [werkcollege](exercises.html). Attendance is not strictly mandatory (albeit recommended).
+The load per week is 2 × 2 h. [lectures](lectures.html), 1 × 2
+h. [practicals](labs.html) and 1 × 2
+h. [instructions](exercises.html). Attendance is not strictly
+mandatory (albeit recommended). Due to COVID-19 the lectures and the
+practicals will be given online, through MS Teams, and only the
+instruction sessions will be at the Utrecht Science Park ('de
+Uithof'). In particular, the weekly schedule is:
+
+![](/images/week_schedule.svg)
 
 ## Assignments
 

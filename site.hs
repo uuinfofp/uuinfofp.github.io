@@ -32,6 +32,10 @@ main = hakyllWith myConfiguration $ do
         route   idRoute
         compile compressCssCompiler
 
+    match "images/*.svg" copyAsIs
+    match "images/*.png" copyAsIs
+    match "images/*.jpg" copyAsIs
+
     match "*.md" $ do
         route   $ setExtension "html"
         compile $ pandocCompiler

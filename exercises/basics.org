@@ -54,12 +54,12 @@ What happens if you evaluate ~fac (−3)~?
    (x^{n/2})^2$. Use this to speed up the implementation of the ~pow~
    function.
 
-#+BEGIN_SRC haskell :solution
-pow       :: Int -> Int -> Int
-x `pow` 0 = 1
-x `pow` n | even n    = let y = x `pow` (n `div` 2) in y * y
-          | otherwise = x  * (x `pow` (n-1))
-#+END_SRC
+   #+BEGIN_SRC haskell :solution
+   pow       :: Int -> Int -> Int
+   x `pow` 0 = 1
+   x `pow` n | even n    = let y = x `pow` (n `div` 2) in y * y
+             | otherwise = x  * (x `pow` (n-1))
+   #+END_SRC
 
 5. Which intermediate results are being computed for the computation
    of ~2 `pow` 10~ in the old and the new definition?

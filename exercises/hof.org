@@ -1,0 +1,40 @@
+---
+title: Higher order Functions
+---
+
+** Brackets!?
+Give examples for functions with the following types:
+
+#+BEGIN_SRC haskell
+(Float −> Float) −> Float
+Float −> (Float −> Float)
+(Float −> Float) −> (Float −> Float)
+#+END_SRC
+
+** Filter
+
+The function ~filter~ can be defined in terms of ~concat~ and ~map~:
+
+#+BEGIN_SRC haskell
+    filter p = concat . map box
+      where box x = _
+#+END_SRC
+
+Complete the definition of ~box~.
+
+** Function Composition
+
+Function composition first applies the latter of the supplied
+functions to the argument, the former thereafter. Write a function
+~before~ that can be used to rewrite ~f . g . h~ to ~h `before` g
+`before` f~. What can you say about associativity of ~(.)~ and
+~before~?
+
+** Higher order data types
+
+We have seen that ~[...]~ is a type function that maps types to
+types. Similarly because ~−>~ is a type constructor mapping two types
+to a type, for some ~c~ also ~c −>~ is a type function mapping a type
+~a~ to ~c −> a~. Rewrite the type of ~map~ by substituting the type
+function ~[...]~ by ~c −>~. Can you derive an implementation from the
+resulting type?

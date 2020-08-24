@@ -12,7 +12,8 @@ title: Lectures
 
 ### Slides
 
-Be aware: the following schedule and the contents of the slides are currently still subject to change.
+Be aware: the following schedule and the contents of the slides are
+currently still subject to change.
 
 <table class="table table-stripped" style="font-size: 15px;">
 <tr>
