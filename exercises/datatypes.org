@@ -1,11 +1,277 @@
 ---
-title: Data Types
+title: Data Types and Typeclasses
 ---
 
+** Natural numbers
+
+Consider the set of natural numbers $\mathbb{N}$, and observe that:
+
+- zero is a natural number, and
+- any other natural number is the successor of some other natural
+  number.
+
+1. Define a data type ~Nat~ representing natural numbers using the
+   above observation.
+
+   #+BEGIN_SRC haskell :solution
+   data Nat = Zero | Succ Nat
+   #+END_SRC
+
+2. Write functions ~toInt :: Nat -> Int~ and ~fromInt :: Int -> Nat~
+     that allows you to convert between ~Nat~ and ~Int~.
+
+   #+BEGIN_SRC haskell :solution
+   toInt Zero     = 0
+   toInt (Succ n) = 1 + toInt n
+
+   fromInt i = case i `compare` 0 of
+                 LT -> error "negative number!"
+                 EQ -> Zero
+                 GT -> Succ (fromInt $ i-1)
+   #+END_SRC
+
+** ~<~
+
+Give a direct definition of the ~<~ operator on lists. This definition
+should not use operators like ~<=~ for lists.
+
+When trying out this definition using ~ghci~, do not use the ~<~
+symbol, since it is already defined in the ~Prelude~.
+
+#+BEGIN_SRC haskell :solution
+(<)         :: Ord a => [a] -> [a] -> Bool
+[]     < []     = False
+[]     < _      = True
+(_:_)  < []     = False
+(x:xs) < (y:ys) = x < y && xs < ys
+#+END_SRC
 
 ** Complex numbers
 
-Write a data type ~Complex~ to represent complex numbers of the form
-$a + b*i$.
+1. Write a data type ~Complex~ to represent complex numbers of the form
+   $a + b*i$.
 
-*** Make ~Complex~ an instance of ~Num~
+   #+BEGIN_SRC haskell :solution
+   data Complex = C Float Float
+   #+END_SRC
+
+2. Make ~Complex~ an instance of ~Show~, ~Eq~, and ~Num~ (write the
+   instances explicitly rather than deriving them).
+
+   #+BEGIN_SRC haskell :solution
+   instance Num Complex where
+     (C a b) + (C x y) = C (a + x)    (b + y)
+     (C a b) - (C x y) = C (a - x)    (b - y)
+     (C a b) * (C x y) = C (a*x-b*y)  (a*y+b*x)
+     negate (C a b)    = C (negate a) (negate b)
+     abs    (C a b)    = C (a*a+b*b)  0
+     fromInteger i     = C (fromInteger i) 0
+   #+END_SRC
+
+** Bikes
+
+1. Define data types that model the following situation as precisely
+   as possible:
+
+    #+BEGIN_QUOTE
+    A bikeshop sells three kinds of bikes: city bikes, road bikes and
+    mountainbikes, in three different sizes. In most cases, bike sizes are
+    standardized into (small, medium, and large), however it is also
+    possible for bikes to have a custom (integral) size (the size of the
+    frame in inches). The mountainbikes and road bikes have gears. They
+    have a cassette with many cogs on the rear wheel, and some of them may
+    have a second chainring in the front (doubling the number of available
+    gears). City bikes do not have gears. However, unlike the other types
+    of bikes they have either in the front, the back, or on both
+    wheels). Fenders themselves come in two types; they are either made
+    from plastic or metal.
+    #+END_QUOTE
+
+    #+BEGIN_SRC haskell :solution
+    -- some variations are possible, but the following answer captures the
+    -- situation fairly precisely:
+
+    data StandardSize = Small | Medium | Large
+    data BikeSize = Standardized StandardSize | CustomSize Int
+
+    data FrontChainrings = SingleChainring | TwoChainRings
+
+    data Gears = Gears FrontChainrings Int
+
+    data Fender = PlasticFender | MetalFender
+
+    data Bike = CityBike (Maybe Fender) (Maybe Fender)
+              | RoadBike Gears
+              | MTB Gears
+
+    data Bikeshop = Bikeshop [Bike]
+    #+END_SRC
+
+2. Consider a function ~getFenders~ that returns the fenders of a bike,
+   if it has any. What would be a good type for this function?
+
+   #+BEGIN_SRC haskell :solution
+   getFenders :: Bike -> (Maybe Fender, Maybe Fender)
+
+   -- or potentially one could even define a custom return type:
+   data Fenders = Fenders { frontFender :: Maybe Fender
+                          , backFender  :: Maybe Fender
+                          }
+   #+END_SRC
+
+3. Write the function ~getFenders~
+
+4. Write a function ~byGears~ that lists all bikes available in the
+   bikeshop, ordered by number of gears.
+
+** ~Set a~
+
+1. Define a type ~Set a~ which consists of elements of type ~a~, and define a
+function ~subset :: Eq a => Set a -> Set a -> Bool~ which checks
+whether all the elements in the first set also belong to the
+second.
+
+2. Use the ~subset~ function above to define an ~Eq~ instance for ~Set
+   a~.
+
+3. Why do we have to define ~Set a~ as its own data type, instead of an
+alias over ~[a]~?
+
+** ~Finite~
+
+Define a class ~Finite~. This class has only one method: the list of
+all the elements of that type. The idea is that such list is finite,
+hence the name. Define the following instances for ~Finite~:
+
+    - ~Bool~.
+    - ~Char~.
+    - ~(a, b)~ for finite ~a~ and ~b~.
+    - ~Set a~, as defined in the previous exercise, when ~a~ is finite.
+    - ~a -> b~ whenever ~a~ and ~b~ are finite and ~a~ supports
+      equality. Use this to make ~a -> b~ an instance of ~Eq~.
+
+#+BEGIN_SRC haskell :solution
+class Finite a where
+  elements :: [a]
+
+instance Finite Bool where
+  elements = [False, True]
+
+instance (Finite a, Finite b) => Finite (a, b) where
+  elements = [(x, y) | x <- elements, y <- elements]
+
+-- Auxiliary definition for Finite (Set a)
+-- Computes all subsets for the given elements,
+-- that is, all combinations where each element
+-- in the list may or may not appear
+allSubsets :: [a] -> [Set a]
+allSubsets []     = [[]]
+allSubsets (v:vs) = let ss = allSubsets vs
+                     in ss ++ [v:s | s <- ss]
+
+instance Finite a => Finite (Set a) where
+  elements = allSubsets elements
+
+-- Auxiliary definition for Finite (a -> b)
+-- Computes all key-value pairs from two lists,
+-- the first one gives the keys and the second
+-- one gives the possible values
+allKVPairs :: [k] -> [v] -> [[(k, v)]]
+allKVPairs []     _  = [[]]
+allKVPairs (k:ks) vs = [(k,v):kvs
+                         | kvs <- allKVPairs ks vs
+                         , v   <- vs]
+
+instance (Finite a, Finite b, Eq a) => Finite (a -> b) where
+  elements = [\k -> fromJust (lookup k kv)
+               | kv <- allKVPairs elements elements]
+#+END_SRC
+
+** Propositions
+
+Consider the following ~Prop~ from Lecture 7:
+
+#+BEGIN_SRC haskell
+data Prop = Basic Bool | Var Char
+          | Not Prop
+          | Prop :/\: Prop | Prop :\/: Prop | Prop :=>: Prop
+#+END_SRC
+
+1. Define a function ~printProp :: Prop -> String~ which turns the
+     proposition into a printable ~String~.
+
+   #+BEGIN_SRC haskell :solution
+   printProp :: Prop -> String
+   printProp (Basic b) = show b
+   printProp (Var v) = [v]
+   printProp (Not p)
+     = "not " ++ parensPrintProp p
+   printProp (p1 :/\: p2) =
+     = parensPrintProp p1 ++ " /\ " ++ parensPrintProp p2
+   printProp (p1 :\/: p2) =
+     = parensPrintProp p1 ++ " \/ " ++ parensPrintProp p2
+   printProp (p1 :=>: p2) =
+     = parensPrintProp p1 ++ " => " ++ parensPrintProp p2
+     where parens s = "(" ++ s ++ ")"
+           parensPrintProp p = parens (printProp p)
+   #+END_SRC
+
+2. Define a new ~printProp' :: Prop -> String~ which uses as few
+     parentheses as possible. For example, ~Var 'A' :\/: (Var 'B' :\/:
+     Var 'C')~ should be printed as ~A \/ B \/ C~.
+
+     *Hint:* define an auxiliary function ~printProp'' :: Prop ->
+     (String, LogicalOp)~ which remembers the top symbol of the
+     formula.
+
+
+3. Define a function ~satisfiable :: Prop -> Bool~ which returns
+   ~True~ is the proposition is satisfiable, that is, if there is at
+     least one assignment of truth values to variables which make the
+     proposition true.
+
+   #+BEGIN_SRC haskell :solution
+   -- Using or :: [Bool] -> Bool
+   satisfiable p = or [tv as p | as <- assigns (vars p)]
+   -- or using any :: (a -> Bool) -> [a] -> Bool
+   satisfiable p = any (\as -> tv as p) (assigns (vars p))
+   #+END_SRC
+
+4. Refine the function ~satisFiable~ to return the assignment which
+   makes the proposition satisfiable. Which should be the type given
+   to such a function?
+
+   #+BEGIN_SRC haskell :solution
+   -- we can use the function find :: (a -> Bool) -> [a] -> Maybe a to
+   -- return the assignment which makes the proposition true.
+   satisfiable :: Prop -> Maybe (Map Char Bool)
+   satisfiable = find (\as -> tv as p) (assigns (vars p))
+   #+END_SRC
+
+** Arithmetic Expressions
+
+Extend the definition of ~ArithExpr~ to include exponentiation and
+factorial functions. How should the evaluation functions change to
+support them?
+
+#+BEGIN_SRC haskell :solution
+data UnArithOp  = Factorial
+data BinArithOp = Plus | Minus | Times | Div | Exp
+
+data ArithExpr = Constant Integer
+               | Variable Char
+               | UnOp  UnArithOp  ArithExpr
+               | BinOp BinArithOp ArithExpr ArithExpr
+
+eval :: Map Char Integer -> ArithExpr -> Integer
+eval _ (Constant c)  = c
+eval m (Variable v)  = fromJust (lookup v m)
+eval m (UnOp  o x)   = evalUnOp  o (eval m x)
+  where evalUnOp Factorial = \x -> product [1 .. x]
+eval m (BinOp o x y) = evalBinOp o (eval m x) (eval m y)
+  where evalBinOp Plus  = (+)
+        evalBinOp Minus = (-)
+        evalBinOp Times = (*)
+        evalBinOp Div   = div
+        evalBinOp Exp   = (^^)
+#+END_SRC

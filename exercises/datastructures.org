@@ -1,0 +1,161 @@
+---
+title: Datastructures
+---
+
+** Binary Trees
+
+Consider the following binary tree type:
+
+#+BEGIN_SRC haskell
+data Tree a = Leaf | Node (Tree a) a (Tree a)
+#+END_SRC
+
+1. Write the function ~elemTree~ that tests if an element ~x~ occurs
+   in a binary search tree of type ~Tree a~.
+
+   #+BEGIN_SRC haskell :solution
+   elemTree :: Ord a => a -> Tree a -> Bool
+   elemTree q t = succOf q t == q
+
+   -- or directly:
+
+   elemTree :: Ord a => a -> Tree a -> Bool
+   elemTree _ Leaf = False
+   elemTree q (Node l x r) | q < x     = elemTree q l
+                           | q == x    = True
+                           | otherwise = elemTree q r
+   #+END_SRC
+
+2. Write functions that return all values of type ~a~ in a tree of
+   type ~Tree a~ in depth-first (pre-order), depth-first (in-order),
+   and breadth-first order.
+
+   #+BEGIN_SRC haskell :solution
+   traverseTree :: (a -> [a] -> [a]) -> Tree a -> [a]
+   traverseTree _       Leaf         = []
+   traverseTree combine (Node l x r) =
+     combine x (traverseTree l) (traverseTree r)
+
+   preOrderTraversal :: Tree a -> [a]
+   preOrderTraversal = traverseTree (\l x r -> x : (l ++ r))
+
+   inOrderTraversal :: Tree a -> [a]
+   inOrderTraversal = traverseTree (\l x r -> l ++ (x : r))
+   #+END_SRC
+
+3. Write a function ~showTree~ that gives a nice representation as a
+   ~String~ for a given tree. Every leaf should be placed on a
+   different line (separated by ~"\n"~). Leaves that are deeper in the
+   tree should be further to the right than leaves higher in the tree.
+
+4. Write a function ~mapTree~ and a function ~foldTree~ that work on a
+   ~Tree~, analoguous to ~map~ and ~foldr~ on lists. Also give the
+   type of these functions.
+
+   #+BEGIN_SRC haskell :solution
+   mapTree                :: (a -> b) -> Tree a -> Tree b
+   mapTree _ Leaf         = Leaf
+   mapTree f (Node l x r) = Node (mapTree f l) (f x) (mapTree f r)
+
+   foldTree                  :: (b -> a -> b -> b) -> b -> Tree a -> b
+   foldTree _ z Leaf         = z
+   foldTree f z (Node l x r) = f (foldTree f z l) x (foldTree f z r)
+   #+END_SRC
+
+5. Write a function ~height~, that computes the amount of levels in a
+   ~Tree~. Give a definition using recursion, and a different
+   definition using ~foldTree~.
+
+   #+BEGIN_SRC haskell :solution
+   height = foldTree (\l _ r -> 1 + l `max` r) 1
+   #+END_SRC
+
+6. Suppose that a tree ~t~ has height ~n~. What is the minimal and
+   maximal amount of leaves that ~t~ could have?
+
+7. Write a function that computes all paths of type ~[a]~ from the
+   root up to a leaf for a tree of type ~Tree a~.
+
+   #+BEGIN_SRC haskell :solution
+   paths              :: Tree a -> [[a]]
+   paths Leaf         = [[]]
+   paths (Node l x r) = map (x:) (paths l) ++ map (x:) (paths r)
+   #+END_SRC
+
+8. Write a function that computes a list of nodes that occur on one of
+   the longest paths from the root up to a leaf. Try to keep the
+   solution linear with respect to the size of the tree.
+
+9. Write ~mapTree~ using ~foldTree~
+
+   #+BEGIN_SRC haskell :solution
+   mapTree f = foldTree (\l x r -> Node l (f x) r) Leaf
+   #+END_SRC
+
+** 2-3 Trees
+
+1. Define a Tree type ~TTTree a~ that models 2-3 trees: trees in which
+
+   - the leaves store values of type ~a~,
+   - internal nodes either have 2 or 3 children, and
+   - internal nodes store an 'Int' denoting the size (number of
+     leaves) in the subtree.
+
+   #+BEGIN_SRC haskell :solution
+   data TTTree a = Leaf a
+                 | Node2 Int (TTTree a) (TTTree a)
+                 | Node3 Int (TTTree a) (TTTree a) (TTTree a)
+   #+END_SRC
+
+2. Define a function ~insert~ that inserts a new element in a 2-3 tree
+   (while maintaining the subtree size invariant).
+
+3. Define ~mapTTTree~ and ~foldTTTree~ functions for your ~TTTree~
+   data type.
+
+   #+BEGIN_SRC haskell :solution
+   foldTTTree           :: (a -> b) -> (Int -> b -> b -> b) -> (Int -> b -> b -> b -> b) -> TTTree a -> b
+   foldTTTree f g2 g3 t = case t of
+                            Leaf x        -> f x
+                            Node2 s l r   -> g2 s (foldTTTree f g2 g3 l) (foldTTTree f g2 g3 r)
+                            Node3 s l m r -> g3 s (foldTTTree f g2 g3 l) (foldTTTree f g2 g3 m) (foldTTTree f g2 g3 r)
+
+   mapTTTree f = foldTTTree f Node2 Node3
+   #+END_SRC
+
+4. Define function ~sized~ that, given an ~Int~ $n$, returns all
+   subtrees of size $n$.
+
+
+5. It is not possible to write the ~sized~ function directly using
+   ~foldTTTree~. However, we can use ~foldTTTree~ to do most of the
+   work; that is, we can define a function ~sized'~ using ~foldTTTree~
+   such that
+
+  #+BEGIN_SRC haskell
+  sized   :: Int -> TTTree a -> [TTTree a]
+  sized n = snd . sized' n
+  #+END_SRC
+
+  write the function ~sized'~
+
+  #+BEGIN_SRC haskell :solution
+  sized   :: Int -> TTTree a -> (TTTRee a, [TTTree a])
+  sized n = foldTTTree f g2 g3
+    where
+      singleton s t = if n == s then [t] else []
+
+      f x = let t = Leaf x
+            in (t,singleton s t)
+
+      g2 s (l,ls) (r,rs) = let t = Node2 s l r
+                           in (t, singleton s t ++ ls ++ rs)
+
+      g3 s (l,ls) (m,ms) (r,rs) = let t = Node3 s l m r
+                                  in (t, singleton s t ++ ls ++ ms ++ rs)
+  #+END_SRC
+
+** Red-Black Trees
+
+Write a function ~validRBTree :: RBTree a -> Bool~ that checks if a
+given ~RBTree a~ satisfies all red-black tree properties.
