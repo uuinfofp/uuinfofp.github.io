@@ -67,9 +67,9 @@ assignment [here](optional.html). -->
 
 
 
-#### *2019-09-05* : GHC Instalation Instructions
+#### *2019-09-05* : GHC Installation Instructions
 
-  Jip, one of our TAs', has written detailed instructions on how he
+  Jip, one of our TAs, has written detailed instructions on how he
   set up his windows machine for Haskell development. You can find his
   guide [here](practicals/windows_instructions.pdf).
 
