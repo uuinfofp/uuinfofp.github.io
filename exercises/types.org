@@ -5,11 +5,30 @@ title: Type inference
 In these exercises you should assume the following types:
 
 #+BEGIN_SRC haskell
+(+)    :: Int -> Int
+head   :: [a] -> a
+(++)   :: [a] -> [a] -> [a]
 foldr  :: (a -> b -> b) -> b -> [a] -> b
 map    :: (a -> b) -> [a] -> [b]
 concat :: [[a]] -> [a]
 (.)    :: (b -> c) -> (a -> b) -> a -> c
 #+END_SRC
+
+** ~head ([3, 2] ++ [2])~
+
+What is the type of ~head ([3, 2] ++ [2])~? Give the type derivation.
+
+** ~(+) 3~ 
+
+What is the type of ~(+) 3~? Give the type derivation.
+
+** ~map head~
+
+What is the type of ~map head~? Give the type derivation.
+
+** ~foldr (+)~
+
+What is the type of ~foldr (+)~? Give the type derivation.
 
 ** ~foldr map~
 

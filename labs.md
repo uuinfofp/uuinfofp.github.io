@@ -18,13 +18,13 @@ title: Labs
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 </tr>
 <tr>
-<td>Fri 18 Sept 23:59</td>
+<td>Tue 15 Sept 23:59</td>
 <td><a href="practicals/Assignment1.pdf">1. Lists</a></td>
 <td><a href="practicals/Assignment1.hs"><tt>Assignment1.hs</tt></a></td>
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 </tr>
 <tr>
-<td>Fri 2 Oct 23:59</td>
+<td>Fri 25 Sept 23:59</td>
 <td><a href="practicals/Assignment2.pdf">2. Data structures</a></td>
 <td><a href="practicals/Assignment2.hs"><tt>Assignment2.hs</tt></a></td>
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
