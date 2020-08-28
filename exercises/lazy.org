@@ -1,0 +1,45 @@
+---
+title: Lazy Evaluation
+---
+
+1. In an older version of the base library the function ~intersperse~, which places an element between all elements of a list, was defined as:
+
+    #+BEGIN_SRC haskell
+    intersperse _ []       = []
+    intersperse _ [x]      = [x]
+    intersperse e (x:y:ys) = x : e : intersperse e (y:ys)
+    #+END_SRC
+
+    - What would you expect the result of the expression ~intersperse 'a' ('b' : undefined)~ to be?
+    - Can you give a definition of ~intersperse~ which is less strict?
+
+2. Given the data type of binary trees:
+
+    #+BEGIN_SRC haskell
+    data Tree a = Leaf a | Node (Tree a) (Tree a)
+    #+END_SRC
+
+    we define the function ~tja~:
+
+    #+BEGIN_SRC haskell
+    tja t = let tja' (Leaf a)   n ls = (0, if n == 0 then a : ls else ls)
+                tja' (Node l r) n ls = let (lm, ll) = tja' l (n-1) rl
+                                           (rm, rl) = tja' r (n-1) ls
+                                        in ((lm ~min~ rm) + 1, ll)
+                (m, r) = tja' t m []
+             in r
+    #+END_SRC
+
+    If this code computes something, explain what it computes, maybe with the aid of a small example. If it does not compute anything, explain why this is the case.
+
+3. For each of these expressions, indicate if they are in WHNF or not. For the ones that are in WHNF, state in one sentence why. For the ones not in WHNF, evaluate them to WHNF or, in case they crash upon evaluation, indicate this.
+    #+BEGIN_SRC haskell
+    (1 + 5) : succ 4 : map (+1) [1,2]
+    isNothing (Just 4)
+    \a b c -> and b
+    foldr undefined e []
+    seq fmap
+    #+END_SRC
+
+4. Implement the Sieve of Eratosthenes for computing prime numbers in Haskell. Recall that the algorithm works as follows.
+Start from the natural numbers greater than or equal to 2, keep 2 as it is a prime, then strike out all multiples of 2 from the rest of the numbers. The smallest remaining number is also a prime, so keep it. Next, remove all multiples of it from the remaining numbers. Etc.
