@@ -4,7 +4,7 @@ title: Lectures
 
 ### Literature
 
-* Recommended reading: [*Programming in Haskell*](http://www.cs.nott.ac.uk/~pszgmh/pih.html) by Graham Hutton
+* Required reading: [*Programming in Haskell*](http://www.cs.nott.ac.uk/~pszgmh/pih.html) by Graham Hutton
 * Additional material:
     - [*Lecture Notes from 2015/2016*](http://www.cs.uu.nl/people/jur/FP-elec.pdf), mostly in Dutch
     - [*Learn You a Haskell for Great Good*](http://learnyouahaskell.com/) by Miran Lipovača

@@ -67,7 +67,7 @@ assignment [here](optional.html). -->
 
 
 
-#### *2019-09-05* : GHC Installation Instructions
+#### *2020-08-24* : GHC Installation Instructions
 
   Jip, one of our TAs, has written detailed instructions on how he
   set up his windows machine for Haskell development. You can find his
