@@ -29,7 +29,8 @@ currently still subject to change.
     <tr>
       <td>36</td>
       <td>Thu 3 Sep</td>
-      <td><a href="slides/fp-01-intro.pdf">1. FP? Haskell?</a></td>
+      <td><a href="slides/fp-00-course-intro_2020.pdf">0. Course introduction</a>
+        <br><a href="slides/fp-01-intro.pdf">1. FP? Haskell?</a></td>
       <td>Chapters 1 and 2</td>
       <td>Frank</td>
     </tr>
