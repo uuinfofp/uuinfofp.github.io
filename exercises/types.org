@@ -6,6 +6,8 @@ In these exercises you should assume the following types:
 
 #+BEGIN_SRC haskell
 (+)    :: Int -> Int
+even   :: Int -> Bool
+
 head   :: [a] -> a
 (++)   :: [a] -> [a] -> [a]
 foldr  :: (a -> b -> b) -> b -> [a] -> b
@@ -18,13 +20,25 @@ concat :: [[a]] -> [a]
 
 What is the type of ~head ([3, 2] ++ [2])~? Give the type derivation.
 
-** ~(+) 3~ 
+** ~(+) 3~
 
 What is the type of ~(+) 3~? Give the type derivation.
+
+** ~map even~
+
+What is the type of ~map even~? Give the type derivation.
+
+** ~map concat~
+
+What is the type of ~map concat~? Give the type derivation.
 
 ** ~map head~
 
 What is the type of ~map head~? Give the type derivation.
+
+** ~reverse . reverse~
+
+What is the type of ~reverse . reverse~? Give the type derivation.
 
 ** ~foldr (+)~
 
@@ -84,3 +98,8 @@ map~ and ~map (map map)?~
 2. The type of the first is more polymorphic than the type of the second.
 3. The types are the same, since function composition is associative.
 4. One of the expressions does not have any type at all.
+
+** ~map maximum~
+
+The function ~maximum~ has type ~Ord a => [a] -> a~. What is the type
+of ~map maximum~? Can you give a derivation?
