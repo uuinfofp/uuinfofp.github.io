@@ -220,14 +220,13 @@ hlint Assignment.hs
 
 HLint will then output a list of suggestions for improving your coding style. Most, although not all, of these suggestions will help to improve your coding style and thus your grade. Of course, computer programs sometimes mistake about subjective issues like coding style, so always use your common sense as well. For example, hlint will always suggest you change `map f (map g)` xs into `map (f . g) xs` (this is called map fusion). If `f` and `g` are simple expressions this will generally be an improvement, but if they are already quite complex, this may not help to improve readability.
 
-#### Forbidden functions
+#### "bad" functions
 
 For the assignments 0, 1, 2, and 4, try to avoid using the following functions/expressions as they 
-are (usually) bad form:
+are (usually) bad form/style:
 
 ```
-Conditionals => use guards
-- if-then-else
+Conditionals => use guards over if-then-else
 
 List => use pattern matching
 - head
@@ -247,7 +246,7 @@ Maybe => use pattern matching
 - x == Nothing
 - x /= Nothing
 
-Reimplementations
+Don't use custom/reimplementations
 - of head: f (x:xs) = x
 - of tail: f (x:xs) = xs
 - of isJust: f (Just x) = True
