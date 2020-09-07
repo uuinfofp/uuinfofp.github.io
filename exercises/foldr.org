@@ -1,8 +1,8 @@
 ---
-title: Foldr Exercises
+title: Fold Exercises
 ---
 
-Write the following functions using the ~foldr~ function. If no type
+Write the following functions using the ~foldr~ or ~foldl~ function. If no type
 signature is given, also give the type of the function.
 
 ** ~length~
@@ -203,9 +203,8 @@ particular, it keeps only the first occurrence of each element. (The
 name nub means `essence'.)
 
 #+BEGIN_SRC haskell :solution
-nub = foldr f e
-  where
-    f x r | x `elem` r = r
+nub = reverse . foldl f e where
+    f r x | x `elem` r = r
           | otherwise  = x:r
     e = []
 #+END_SRC

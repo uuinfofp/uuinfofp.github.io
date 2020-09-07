@@ -180,9 +180,11 @@ particular, it keeps only the first occurrence of each element. (The
 name nub means `essence'.)
 
 #+BEGIN_SRC haskell :solution
-nub [] = []
-nub (x:xs) | x `elem` xs = nub xs
-           | otherwise   = x : nub xs
+nub l                   = nub' l [] where
+    nub' [] _           = []
+    nub' (x:xs) seen
+        | x `elem` seen   = nub' xs seen
+        | otherwise     = x : nub' xs (x:seen)
 #+END_SRC
 
 ** ~union :: Eq a => [a] -> [a] -> [a]~
