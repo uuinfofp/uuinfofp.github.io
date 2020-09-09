@@ -37,7 +37,10 @@ currently still subject to change.
     <tr>
       <td>37</td>
       <td>Tue 8 Sep</td>
-      <td><a href="slides/fp-02-basics.pdf">2. Basics</a></td>
+      <td><a href="slides/fp-02-basics.pdf">2. Basics</a>
+          <br/><a href="slides/scribles_lecture_02.pdf">Scribles on
+  Type inference from during the Lecture</a>
+      </td>
       <td>Chapters 4 (up to 4.4) and 3
         <br>Chapter 5 from the <a
                                  href="http://www.staff.science.uu.nl/~hage0101/FP-elec.pdf">Lecture
