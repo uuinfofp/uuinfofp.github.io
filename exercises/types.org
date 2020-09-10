@@ -5,7 +5,7 @@ title: Type inference
 In these exercises you should assume the following types:
 
 #+BEGIN_SRC haskell
-(+)    :: Int -> Int
+(+)    :: Int -> Int -> Int
 even   :: Int -> Bool
 
 head   :: [a] -> a
