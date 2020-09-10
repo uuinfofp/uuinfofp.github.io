@@ -51,6 +51,8 @@ currently still subject to change.
       <td></td>
       <td>Thu 10 Sep</td>
       <td><a href="slides/fp-03-lists.pdf">3. Lists and recursion</a></td>
+          <br/><a href="slides/scribles_lecture_03.pdf">Scribles from
+  during the Lecture</a>
       <td>Chapters 5 and 6</td>
       <td>Frank</td>
     </tr>
