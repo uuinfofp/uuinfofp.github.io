@@ -149,7 +149,7 @@ filter p = foldr f e
 Extract the last element of a list. Returns ~Nothing~ if the list is empty.
 
 #+BEGIN_SRC haskell :solution
-maybeLast = foldr f e xs
+maybeLast = foldr f e
   where
     f x r = case r of
               Nothing -> Just x
