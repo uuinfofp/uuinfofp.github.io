@@ -92,9 +92,9 @@ data Tree a = Leaf | Node (Tree a) a (Tree a)
    mapTree f = foldTree (\l x r -> Node l (f x) r) Leaf
    #+END_SRC
 
-** 2-3 Trees
+** TT-Trees
 
-1. Define a Tree type ~TTTree a~ that models 2-3 trees: trees in which
+1. Define a Tree type ~TTTree a~ that models trees in which
 
    - the leaves store values of type ~a~,
    - internal nodes either have 2 or 3 children, and
@@ -107,8 +107,10 @@ data Tree a = Leaf | Node (Tree a) a (Tree a)
                  | Node3 Int (TTTree a) (TTTree a) (TTTree a)
    #+END_SRC
 
-2. Define a function ~insert~ that inserts a new element in a 2-3 tree
-   (while maintaining the subtree size invariant).
+2. Define a function ~insert~ that inserts a new element in a
+   ~TTtree~, while maintaining the subtree size invariant, and while
+   keeping the height low (e.g. try to avoid increasing the height if
+   possible).
 
 3. Define ~mapTTTree~ and ~foldTTTree~ functions for your ~TTTree~
    data type.
@@ -125,7 +127,6 @@ data Tree a = Leaf | Node (Tree a) a (Tree a)
 
 4. Define function ~sized~ that, given an ~Int~ $n$, returns all
    subtrees of size $n$.
-
 
 5. It is not possible to write the ~sized~ function directly using
    ~foldTTTree~. However, we can use ~foldTTTree~ to do most of the
@@ -154,6 +155,25 @@ data Tree a = Leaf | Node (Tree a) a (Tree a)
       g3 s (l,ls) (m,ms) (r,rs) = let t = Node3 s l m r
                                   in (t, singleton s t ++ ls ++ ms ++ rs)
   #+END_SRC
+
+6. A ~TTTree~ is *valid* if all root to leaf paths are equally
+   long. Write a function ~height~ that computes the height of a
+   ~TTtree~ if it is valid. Think about a suitable type for your function.
+
+#+BEGIN_SRC haskell
+height :: TTTree a -> Maybe Int
+height = foldTTTree (\_          -> Just 0)
+                    (\_ lh rh    -> inc $ lh <.> rh)
+                    (\_ lh mh rh -> inc $ lh <.> mh <.> rh)
+  where
+    inc Nothing  = Nothing
+    inc (Just h) = Just (h+1)
+
+    Nothing <.> _                   = Nothing
+    Just h  <.> Nothing             = Nothing
+    Just h  <.> Just hr | h == hr   = Just h
+                        | otherwise = Nothing
+#+END_SRC
 
 ** Red-Black Trees
 
