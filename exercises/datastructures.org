@@ -160,7 +160,7 @@ data Tree a = Leaf | Node (Tree a) a (Tree a)
    long. Write a function ~height~ that computes the height of a
    ~TTtree~ if it is valid. Think about a suitable type for your function.
 
-#+BEGIN_SRC haskell
+#+BEGIN_SRC haskell :solution
 height :: TTTree a -> Maybe Int
 height = foldTTTree (\_          -> Just 0)
                     (\_ lh rh    -> inc $ lh <.> rh)
