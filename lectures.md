@@ -91,7 +91,10 @@ currently still subject to change.
       <td></td>
       <td>Thu 24 Sep</td>
       <td><a href="slides/fp-07-case-studies.pdf">7. Case studies</a>
-        <br><a href="slides/fp-qa-2020.pdf">Q&A session</a></td>
+        <br><a href="slides/fp-qa-2020.pdf">Q&A session</a>
+        <br/><a href="slides/scribles_lecture_07.pdf">Q&A Scribles</a>
+        <br/><a href="trees.html">The problem statements for the Tree exercises</a>
+     </td>
       <td>Chapters 8.6</td>
       <td>Frank</td>
     </tr>
