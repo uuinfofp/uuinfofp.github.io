@@ -1,0 +1,25 @@
+* Trees
+
+1. Define a binary tree type in which leaves store values of type 'a'
+   and internal nodes store values of type 'b'
+
+2. Define a function height that given a Tree computes the height of the Tree
+
+
+3. Define a function 'annotate', that given a 'Tree b Int' labels
+   every internal node with the minimum and maximum value appearing
+   in the leaves in its subtree.
+
+   e.g.
+
+   #+BEGIN_SRC
+   Node (Node (Leaf 3) "left" (Leaf 5))
+        "root"
+        (Leaf 1)
+
+   ->
+
+   Node (Node (Leaf 3) (3,5) (Leaf 5))
+        (1,5)
+        (Leaf 1)
+   #+END_SRC
