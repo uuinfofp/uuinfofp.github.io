@@ -10,6 +10,7 @@ main = hakyllWith myConfiguration $ do
     match "images/*" copyAsIs
     match "slides/*.pdf" copyAsIs
     match "slides/*.hs" copyAsIs
+    match "slides/*.py" copyAsIs
     match "slides/*.agda" copyAsIs
     match "practicals/*.pdf" copyAsIs
     match "practicals/*.hs" copyAsIs
