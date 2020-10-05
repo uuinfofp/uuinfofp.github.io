@@ -11,11 +11,16 @@ functions. For that you can add the following instance definition to
 your code:
 
 #+BEGIN_SRC haskell
+{-# LANGUAGE FlexibleInstances #-} -- put this at the top of your file
+
 instance (Enum a, Bounded a, Show  a) => Show (a −> Bool) where
   show f = intercalate "\n" (map (\x −> "f " ++ show x ++ " = " ++ show (f x)) [minBound .. maxBound])
 #+END_SRC
 
-Also when you run your tests, you sometimes need to specialize the types a bit. For example, the following code calls all kinds of test functions that the exercises below (except for 4) expect you to come up with.
+Also when you run your tests, you sometimes need to specialize the
+types a bit. For example, the following code calls all kinds of test
+functions that the exercises below (except for 4) expect you to come
+up with.
 
 #+BEGIN_SRC haskell
 runTests :: IO ()
