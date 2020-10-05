@@ -105,21 +105,21 @@ currently still subject to change.
       <td><a href="http://book.realworldhaskell.org/read/testing-and-quality-assurance.html">Chapter 11</a> of <i>Real World Haskell</i></td>
       <td>Frank</td>
     </tr>
-    <tr class="warning">
-      <td></td>
-      <td>Thu 1 Oct 13:30-15:30</td>
-      <td><b>Midterm exam</b></td>
-      <td></td>
-      <td></td>
-    </tr>
     <tr>
-      <td>41</td>
-      <td>Tue 6 Oct<br /></td>
+      <td></td>
+      <td>Thu 1 Oct<br /></td>
       <td><a href="slides/fp-09-io.pdf">9. Input and output</a>
         <!-- <br><a href="slides/Lecture9.hs">Example code from lecture</a> -->
         </td>
       <td>Chapter 10</td>
       <td>Matthijs</td>
+    </tr>
+    <tr class="warning">
+      <td>41</td>
+      <td>Tue 6 Oct 8:30-10:30</td>
+      <td><b>Midterm exam</b></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td></td>

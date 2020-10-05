@@ -67,6 +67,11 @@ assignment [here](optional.html). -->
 
 
 
+#### *2020-09-29* : Mid-term exam moved
+
+  The mid-term exam has been moved to be on Tuesday 6 October, 8:30-10:30. Please note that this means that there will be a lecture and exercise class on Thursday 1 October. There will not be a lab session on 6 October.
+
+
 #### *2020-08-24* : GHC Installation Instructions
 
   Jip, one of our TAs, has written detailed instructions on how he
