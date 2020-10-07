@@ -7,7 +7,40 @@ title: Input and Output
 
 2. Write ~sequence~ and ~sequence_~ using ~(>>=)~ instead of ~do~-notation.
 
+   #+BEGIN_SRC haskell  :solution
+   sequence          :: [IO a] -> IO [a]
+   sequence []       = return []
+   sequence (a:acts) = a >>= \x -> sequence acts >>= \xs -> return (x:xs)
+
+   -- or using a foldr:
+   sequence :: [IO a] -> IO [a]
+   sequence = foldr (\a r -> a >>= \x -> r >>= \xs -> return (x:xs)) (return [])
+
+   -- sequence_ just throws away the results:
+   sequence_ :: [IO ()] -> IO ()
+   sequence_ = foldr (\a r -> a >>= \_ -> r) (return ())
+
+   -- or even:
+   sequence_ :: [IO ()] -> IO ()
+   sequence_ = foldr (>>) (return ())
+   #+END_SRC
+
+
 3. Write a function which prompts for a filename, reads the file with this name, splits the file into a number of lines, splits each line in a number of words separated by ~' '~ (a space), and prints the total number of lines and words.
+
+   #+BEGIN_SRC haskell  :solution
+   linesAndWords :: IO ()
+   linesAndWords = do putStrLn "Path to file:"
+                      fp <- getLine
+                      fileContents <- readFile fp
+                      let n = length . lines $ fileContents
+                          m = length . words $ fileContents
+                      putStrLn $ "Number of lines: " ++ show n
+                      putStrLn $ "Number of words: " ++ show m
+
+   main :: IO ()
+   main = linesAndWords
+   #+END_SRC
 
 4. Given the function ~getInt :: IO Int~, which reads an integer value from standard input, write a program that results in the following input/output behaviour (the ~3~ has been typed in by the user):
 
@@ -22,6 +55,17 @@ title: Input and Output
      #+END_SRC
 
     Try to use ~sequence_~, ~mapM_~ or ~forM_~.
+
+    #+BEGIN_SRC haskell :solution
+    tabulate = do putStr "Give a number: "
+                  n <- getInt
+                  mapM_ (putStrLn . f n) [1..10]
+                  putStrLn "Goodbye"
+      where
+        f     :: Int -> Int -> String
+        f n i = unwords [ show i, "*", show n, "=", show $ i * n]
+    #+END_SRC
+
 
 5. Write a function of type ~[FilePath] −> FilePath −> IO ()~ which concatenates a list of files to a specific target file: the first parameter is a list of filenames and the second parameter the name of the target file. Do not use the function ~appendFile~.
 
