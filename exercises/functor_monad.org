@@ -4,8 +4,25 @@ title: Functors, monads, applicatives and traversables
 
 1. Show that the definition of the arithmetic evaluator using ~next~ in Lecture 13 is the same as the one using nested ~case~ clauses by expanding the definition of the former.
 
-2. Define a function ~tuple :: Monad m => m a -> m b -> m (a, b)~ using explicit ~(>>=)~, ~do~-notation and applicative operators.
+2. Define a function ~tuple :: Monad m => m a -> m b -> m (a, b)~
+     using explicit ~(>>=)~, ~do~-notation and applicative operators.
     - What does the function do for the ~Maybe~ monad?
+
+    #+BEGIN_SRC haskell :solution
+    tuple           :: Monad m => m a -> m b -> m (a,b)
+    tuple actA actB = actA >>= \a ->
+                        actB >>= \b -> return (a,b)
+
+
+    tuple           :: Monad m => m a -> m b -> m (a,b)
+    tuple actA actB = do a <- actA
+                         b <- actB
+                         return (a,b)
+
+    tuple           :: Monad m => m a -> m b -> m (a,b)
+    tuple actA actB = (,) <$> actA <*> actB
+    #+END_SRC
+
 
 3. Define the following set of actions for ~State s a~ :
     - A computation ~get~ of type ~State s s~ that obtains the current value of the state.
@@ -15,7 +32,14 @@ title: Functors, monads, applicatives and traversables
     Using those primitive operations:
     * Define ~modify~ using ~get~ and ~put~.
     * Define ~put~ using ~modify~.
-    * Update the definition of ~relabel~ in the slides using these actions.
+
+    #+BEGIN_SRC haskell :solution
+    modify f = do x <- get
+                  put $ f x
+
+    put x = modify (const x)
+    #+END_SRC
+
 
 4. Explain the behavior of ~sequence~ for the ~Maybe~ monad.
 
@@ -25,6 +49,13 @@ title: Functors, monads, applicatives and traversables
     foldM :: Monad m => (a -> b -> m a) -> a -> [b] -> m a
     #+END_SRC
 
+    #+BEGIN_SRC haskell :solution
+    foldM f v = foldl' g (return v)
+      where
+        g r x = r >>= \a -> f a x
+    #+END_SRC
+
+
 6. Show that the ~Maybe~ monad satisfies the monad laws.
 
 7. Given the type:
@@ -33,7 +64,8 @@ title: Functors, monads, applicatives and traversables
     data Expr a = Var a | Val Int | Add (Expr a) (Expr a)
     #+END_SRC
 
-    of expressions built from variables of type ~a~, show that this type is monadic by completing the following declaration:
+    of expressions built from variables of type ~a~, show that this
+   type is monadic by completing the following declaration:
 
     #+BEGIN_SRC haskell
     instance Monad Expr where

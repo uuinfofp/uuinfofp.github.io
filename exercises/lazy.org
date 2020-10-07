@@ -2,7 +2,9 @@
 title: Lazy Evaluation
 ---
 
-1. In an older version of the base library the function ~intersperse~, which places an element between all elements of a list, was defined as:
+1. In an older version of the base library the function ~intersperse~,
+   which places an element between all elements of a list, was defined
+   as:
 
     #+BEGIN_SRC haskell
     intersperse _ []       = []
@@ -12,6 +14,16 @@ title: Lazy Evaluation
 
     - What would you expect the result of the expression ~intersperse 'a' ('b' : undefined)~ to be?
     - Can you give a definition of ~intersperse~ which is less strict?
+
+      #+BEGIN_SRC haskell :solution
+      -- error undefined. Instead, we could hope to already get the
+      -- 'a' before getting the error.
+
+      intersperse _ []     = []
+      intersperse e (x:xs) = x : case xs of
+                                   []    -> []
+                                   (_:_) -> e : intersperse e xs
+      #+END_SRC
 
 2. Given the data type of binary trees:
 
@@ -32,7 +44,11 @@ title: Lazy Evaluation
 
     If this code computes something, explain what it computes, maybe with the aid of a small example. If it does not compute anything, explain why this is the case.
 
-3. For each of these expressions, indicate if they are in WHNF or not. For the ones that are in WHNF, state in one sentence why. For the ones not in WHNF, evaluate them to WHNF or, in case they crash upon evaluation, indicate this.
+3. For each of these expressions, indicate if they are in WHNF or
+   not. For the ones that are in WHNF, state in one sentence why. For
+   the ones not in WHNF, evaluate them to WHNF or, in case they crash
+   upon evaluation, indicate this.
+
     #+BEGIN_SRC haskell
     (1 + 5) : succ 4 : map (+1) [1,2]
     isNothing (Just 4)
@@ -40,6 +56,16 @@ title: Lazy Evaluation
     foldr undefined e []
     seq fmap
     #+END_SRC
+
+
+    #+BEGIN_SRC haskell :solution
+    (1 + 5) : succ 4 : map (+1) [1,2]   -- WNNF: since (:) is a constructor
+    isNothing (Just 4)                  -- not WHNF -> False
+    \a b c -> and b                     -- WHNF: since lambda function
+    foldr undefined e []                -- not WHNF -> e
+    seq fmap                            -- WHNF: function that still requires arguments
+    #+END_SRC
+
 
 4. Implement the Sieve of Eratosthenes for computing prime numbers in Haskell. Recall that the algorithm works as follows.
 Start from the natural numbers greater than or equal to 2, keep 2 as it is a prime, then strike out all multiples of 2 from the rest of the numbers. The smallest remaining number is also a prime, so keep it. Next, remove all multiples of it from the remaining numbers. Etc.
