@@ -43,22 +43,95 @@ runTests = do
 #+END_SRC
 
 1. Consider the ubiquitous ~filter~ function. There are many properties that you can formulate for the input-output behaviour of ~filter~.
-    - Formulate the QuickCheck property that the result list cannot be longer than the input.
+    - Formulate the QuickCheck property that the result list cannot be
+      longer than the input.
+
+      #+BEGIN_SRC haskell :solution
+      propFilterNoLonger      :: (a -> Bool) -> [a] -> Bool
+      propFilterNoLonger p xs = length (filter p xs) <= length xs
+      #+END_SRC
+
     - Formulate the QuickCheck property that all elements in the result list satisfy the given property.
-    - Formulate the QuickCheck property that all elements in the result list are present in the input list.
+
+      #+BEGIN_SRC haskell :solution
+      propFilterAllSatisfy      :: (a -> Bool) -> [a] -> Bool
+      propFilterAllSatisfy p xs = all p (filter p xs)
+      #+END_SRC
+
+    - Formulate the QuickCheck property that all elements in the
+      result list are present in the input list.
+
+      #+BEGIN_SRC haskell :solution
+      propFilterAllElements      :: Eq a => (a -> Bool) -> [a] -> Bool
+      propFilterAllElements p xs = all (`elem` xs) $ filter p xs
+      #+END_SRC
+
     - Formulate a set of QuickCheck properties to completely characterize the ~filter~ function (you may choose  also from among the three you have just implemented). Make sure to remove properties that are implied by (a subset of) the other properties.
 
-2. Try to come up with a number of QuickCheck-verifiable properties for the ~map~ function, and implement these. Are there any properties of ~map~ that are awkward to verify?
+      #+BEGIN_SRC haskell :solution
+      -- If some element of xs satisfies p it should be in the result
+      propAllPresent      :: Eq a => (a -> Bool) -> [a] -> Bool
+      propAllPresent p xs = all notSatisfiedOrPresent xs
+        where
+          ys = filter p xs
+          notSatisfiedOrPresent x = not (p x) || x `elem` ys
 
-3. Consider the function ~permutations~ from the ~Data.List~ library, which computes all the possible permutations of elements in a list. We shall be writing QuickCheck tests to verify that this function.
-    - Write a QuickCheck property that checks that the correct number of permutations is generated.
-    - Write a function ~isPerm :: [a] −> [a] −> Bool~ that  verifies that the two argument lists are permutations of each other.
-    - Write the QuickCheck property that every list in the output of ~permutations~ is a permutation of the input.
+       -- note that this already implies the propFilterAllElements property,
+       -- moreover prevents duplicates (since isIncreasing is strict)
+       propSameOrder      :: (a -> Bool) -> [a] -> Bool
+       propSameOrder p xs = isIncreasing
+                          . map snd
+                          . filter (p . fst)
+                          $ zip xs [0..]
+         where
+           isIncreasing ys = all (\(x,y) -> x < y) $ zip ys (tail ys)
+
+       propFilterCorrect p xs = all (\p' -> p' p xs) [ propSameOrder
+                                                     , propFilterAllSatisfy
+                                                     , propAllPresent
+                                                     ]
+      #+END_SRC
+
+2. Try to come up with a number of QuickCheck-verifiable properties
+   for the ~map~ function, and implement these. Are there any
+   properties of ~map~ that are awkward to verify?
+
+3. Consider the function ~permutations~ from the ~Data.List~ library,
+   which computes all the possible permutations of elements in a
+   list. We shall be writing QuickCheck tests to verify that this
+   function.
+
+    - Write a QuickCheck property that checks that the correct number
+      of permutations is generated.
+
+      #+BEGIN_SRC haskell :solution
+      fac 0 = 1
+      fac n = n * fac (n-1)
+
+      propPermsLength xs = length (permutations xs) == fac (length xs)
+      #+END_SRC
+
+    - Write a function ~isPerm :: Eq a => [a] −> [a] −> Bool~ that
+      verifies that the two argument lists are permutations of each other.
+
+      #+BEGIN_SRC haskell :solution
+      isPerm xs ys = all (sameNumOcc xs ys) xs && all (sameNumOcc xs ys) ys
+
+      sameNumOcc xs ys x = numOcc xs x == numOcc ys x
+      numOcc xs x = length . filter (== x) $ xs
+       #+END_SRC
+
+    - Write the QuickCheck property that every list in the output of
+      ~permutations~ is a permutation of the input.
+
+
+
     - Formulate a set of properties to completely characterize the ~permutations~ function (you may choose also from among the ones you have just implemented). Make sure to remove properties that are implied by (a subset of) the other properties. Implement the properties that you still need as QuickCheck properties.
 
 4. Do something similar for the function ~inits~ defined in Lecture 3.
 
-5. Consider the following datatype definition for binary trees that we shall want to use to implement binary search trees:
+5. Consider the following datatype definition for binary trees that we
+   shall want to use to implement binary search trees:
 
    #+BEGIN_SRC haskell
    data Tree a = Branch a (Tree a) (Tree a) | Leaf
