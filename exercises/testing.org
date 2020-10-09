@@ -124,9 +124,16 @@ runTests = do
     - Write the QuickCheck property that every list in the output of
       ~permutations~ is a permutation of the input.
 
+      #+BEGIN_SRC haskell :solution
+      propPermsArePerms    :: Eq a => [a] -> Bool
+      propPermsArePerms xs = all (isPerm xs) $ permutations xs
+      #+END_SRC
 
-
-    - Formulate a set of properties to completely characterize the ~permutations~ function (you may choose also from among the ones you have just implemented). Make sure to remove properties that are implied by (a subset of) the other properties. Implement the properties that you still need as QuickCheck properties.
+    - Formulate a set of properties to completely characterize the
+      ~permutations~ function (you may choose also from among the ones
+      you have just implemented). Make sure to remove properties that
+      are implied by (a subset of) the other properties. Implement the
+      properties that you still need as QuickCheck properties.
 
 4. Do something similar for the function ~inits~ defined in Lecture 3.
 
