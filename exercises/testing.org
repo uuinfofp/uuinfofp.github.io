@@ -13,8 +13,8 @@ your code:
 #+BEGIN_SRC haskell
 {-# LANGUAGE FlexibleInstances #-} -- put this at the top of your file
 
-instance (Enum a, Bounded a, Show  a) => Show (a −> Bool) where
-  show f = intercalate "\n" (map (\x −> "f " ++ show x ++ " = " ++ show (f x)) [minBound .. maxBound])
+instance (Enum a, Bounded a, Show  a) => Show (a -> Bool) where
+  show f = intercalate "\n" (map (\x -> "f " ++ show x ++ " = " ++ show (f x)) [minBound .. maxBound])
 #+END_SRC
 
 Also when you run your tests, you sometimes need to specialize the
@@ -26,16 +26,16 @@ up with.
 runTests :: IO ()
 runTests = do
   putStrLn "\nExercise 14.1"
-  quickCheck (propFilterNoLonger      :: (Bool −> Bool) −> [Bool] −> Bool)
-  quickCheck (propFilterAllSatisfy    :: (Bool −> Bool) −> [Bool] −> Bool)
-  quickCheck (propFilterAllElements   :: (Bool −> Bool) −> [Bool] −> Bool)
-  quickCheck (propFilterCorrect       :: (Bool −> Bool) −> [Bool] −> Bool)
+  quickCheck (propFilterNoLonger      :: (Bool -> Bool) -> [Bool] -> Bool)
+  quickCheck (propFilterAllSatisfy    :: (Bool -> Bool) -> [Bool] -> Bool)
+  quickCheck (propFilterAllElements   :: (Bool -> Bool) -> [Bool] -> Bool)
+  quickCheck (propFilterCorrect       :: (Bool -> Bool) -> [Bool] -> Bool)
   putStrLn "\nExercise 14.2"
-  quickCheck (propMapLength :: (Bool −> Bool) −> [Bool] −> Bool)
+  quickCheck (propMapLength :: (Bool -> Bool) -> [Bool] -> Bool)
   putStrLn "\nExercise 14.3"
-  quickCheck $ once (propPermsLength   :: [Int] −> Bool)
-  quickCheck $ once (propPermsArePerms :: [Int] −> Bool)
-  quickCheck $ once (propPermsCorrect  :: [Int] −> Bool)
+  quickCheck $ once (propPermsLength   :: [Int] -> Bool)
+  quickCheck $ once (propPermsArePerms :: [Int] -> Bool)
+  quickCheck $ once (propPermsCorrect  :: [Int] -> Bool)
   putStrLn "\nExercise 14.5"
   quickCheck (forAll genBSTI isSearchTree)    -- Use forAll to use custom generator
   quickCheck (forAll genBSTI propInsertIsTree)
@@ -111,7 +111,7 @@ runTests = do
       propPermsLength xs = length (permutations xs) == fac (length xs)
       #+END_SRC
 
-    - Write a function ~isPerm :: Eq a => [a] −> [a] −> Bool~ that
+    - Write a function ~isPerm :: Eq a => [a] -> [a] -> Bool~ that
       verifies that the two argument lists are permutations of each other.
 
       #+BEGIN_SRC haskell :solution
@@ -144,14 +144,14 @@ runTests = do
    data Tree a = Branch a (Tree a) (Tree a) | Leaf
    #+END_SRC
 
-   Write a function ~isSearchTree :: Tree a −> Bool~ that verifies
+   Write a function ~isSearchTree :: Tree a -> Bool~ that verifies
    that its argument is a binary search tree. Then test the property
    that given a binary search tree ~t~, inserting a value into the
    tree results in yet another binary search tree. The code for
    inserting a new value into the tree is:
 
    #+BEGIN_SRC haskell
-    insertTree :: Ord a => a −> Tree a −> Tree a
+    insertTree :: Ord a => a -> Tree a -> Tree a
     insertTree e Leaf = Branch e Leaf Leaf
     insertTree e (Branch x li re)
       | e <= x = Branch x (insertTree e li) re
