@@ -37,7 +37,7 @@ title: Lazy Evaluation
     tja t = let tja' (Leaf a)   n ls = (0, if n == 0 then a : ls else ls)
                 tja' (Node l r) n ls = let (lm, ll) = tja' l (n-1) rl
                                            (rm, rl) = tja' r (n-1) ls
-                                        in ((lm ~min~ rm) + 1, ll)
+                                        in ((lm `min` rm) + 1, ll)
                 (m, r) = tja' t m []
              in r
     #+END_SRC
