@@ -31,10 +31,10 @@ data Tree a = Leaf | Node (Tree a) a (Tree a)
    and breadth-first order.
 
    #+BEGIN_SRC haskell :solution
-   traverseTree :: (a -> [a] -> [a]) -> Tree a -> [a]
+   traverseTree                      :: ([a] -> a -> [a] -> [a]) -> Tree a -> [a]
    traverseTree _       Leaf         = []
    traverseTree combine (Node l x r) =
-     combine x (traverseTree l) (traverseTree r)
+     combine (traverseTree combine l) x (traverseTree  combine r)
 
    preOrderTraversal :: Tree a -> [a]
    preOrderTraversal = traverseTree (\l x r -> x : (l ++ r))
