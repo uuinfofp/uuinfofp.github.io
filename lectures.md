@@ -164,7 +164,7 @@ currently still subject to change.
     <tr>
       <td></td>
       <td>Thu 22 Oct</td>
-      <td>Guest lecture: Functional Programming in Swift</td>
+      <td>Guest lecture: Functional Front-End Development in Elm</td>
       <td></td>
       <td>Wouter Swierstra</td>
     </tr>
