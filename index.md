@@ -32,10 +32,6 @@ submitted to <a href="mailto:F.Staals@uu.nl">Frank Staals</a>
 **before Sun 10 Nov 23:59**.
 
 
-#### *2019-09-27* : More about the Bonus Assignment
-
-You can find more information and some examples for the Bonus
-assignment [here](optional.html). -->
 
 <!-- #### *2019-09-27* : Extra point-free style exercises 
 
@@ -49,7 +45,7 @@ assignment [here](optional.html). -->
 
 
 
-<!-- #### *2019-09-26* : Optional Bonus Assignment
+#### *2020-10-15* : Optional Bonus Assignment
 
   To receive extra credit (see Description/Grading for precise grading scheme)
   we encourage you to work in pairs to make a 5-10-minute video about a Haskell package or language
@@ -63,7 +59,10 @@ assignment [here](optional.html). -->
   If you have a package or extension in mind that you would like to
   make a video about, please contact <a href="mailto:F.Staals@uu.nl">Frank Staals</a>
   or <a href="mailto:m.i.l.vakar@uu.nl">Matthijs Vákár</a> to ensure that the choice is 
-  appropriate. -->
+  appropriate.
+
+  You can find more information and some examples for the Bonus
+  assignment [here](optional.html).
 
 
 
