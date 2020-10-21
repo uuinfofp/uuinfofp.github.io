@@ -171,15 +171,15 @@ currently still subject to change.
     <tr>
       <td>44</td>
       <td>Tue 27 Oct</td>
-      <td><a href="slides/fp-14-monads-three.pdf">14. Foldables and Traversables</a>
+      <td>Q&A session
         <!-- <br><a href="slides/Lecture14.hs">Example code from lecture</a> -->
         </td>
-      <td>Chapter 14</td>
+      <td></td>
       <td>Matthijs</td>
     </tr><tr>
       <td></td>
       <td>Thu 29 Oct<br /></td>
-      <td><a href="slides/fp-farewell-2018.pdf">Q&A session</a>
+      <td>Q&A session
       </td>
       <td></td>
       <td>Matthijs</td>
