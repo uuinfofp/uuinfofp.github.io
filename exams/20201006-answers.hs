@@ -50,7 +50,7 @@ exprs ns  = [(Binary op e1 e2, v) | (ns1, ns2) <- splits ns,
                                       (e1, v1) <- exprs ns1,
                                       (e2, v2) <- exprs ns2,
                                             op <- [Plus, Minus, Multiply, Divide],
-                                             v <- maybeToList (apply op v1 v2)]
+                                        Just v <- [apply op v1 v2]]
 
 -- (e)
 equalsFive :: [Integer] -> [Expr Integer]
