@@ -151,7 +151,7 @@ foldN f e Zero     = e
 foldN f e (Succ n) = f (foldN f e n)
 -- analogous to foldr on [a].
 
-data Dummy = D
+data Dummy = D deriving Show
 
 
 -- (a)
