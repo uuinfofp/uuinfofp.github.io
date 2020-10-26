@@ -172,7 +172,7 @@ currently still subject to change.
       <td>44</td>
       <td>Tue 27 Oct</td>
       <td>Q&A session
-        <!-- <br><a href="slides/Lecture14.hs">Example code from lecture</a> -->
+        <br><a href="slides/Lecture14-exam-prep-clean.hs">Example questions for during the lecture</a>
         </td>
       <td></td>
       <td>Matthijs</td>
