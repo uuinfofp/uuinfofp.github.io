@@ -56,7 +56,7 @@ empty = undefined
 --------------------------------------------------------------------------------
 -- * 2. Induction proofs
 ----------------------
--- (a) Prove that foldr (:) [] = [].
+-- (a) Prove that foldr (:) [] = id [].
 
 -- Clearly state any induction hypotheses you need and label them I.H..
 -- Please label each reasoning step either as I.H. (for induction hypothesis) or 
