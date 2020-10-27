@@ -50,13 +50,14 @@ empty = undefined
 
 
 -- (b) Give a functor instance for Map, only using the interface above.
-
+-- Here, fmap f is intended to apply the function f to all associations in the map
+-- and to leave the keys the same.
 
 
 --------------------------------------------------------------------------------
 -- * 2. Induction proofs
 ----------------------
--- (a) Prove that foldr (:) [] = id [].
+-- (a) Prove that foldr (:) [] = id
 
 -- Clearly state any induction hypotheses you need and label them I.H..
 -- Please label each reasoning step either as I.H. (for induction hypothesis) or 
