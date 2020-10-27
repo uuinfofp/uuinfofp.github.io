@@ -186,7 +186,7 @@ currently still subject to change.
       <td>Matthijs</td>
     </tr><tr class="warning">
       <td>44</td>
-      <td>Thu 5 Nov 13:30-16:30</td>
+      <td>Thu 5 Nov 13:00-16:00</td>
       <td><b>Final exam</b></td>
       <td></td>
       <td></td>
