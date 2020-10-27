@@ -173,6 +173,7 @@ currently still subject to change.
       <td>Tue 27 Oct</td>
       <td>Q&A session
         <br><a href="slides/Lecture14-exam-prep-clean.hs">Example questions for during the lecture</a>
+        <br><a href="slides/Lecture14-syllabus.txt">Very brief descriptions of topics that will be in the final exam (see video of lecture for more elaboration)</a>
         </td>
       <td></td>
       <td>Matthijs</td>
