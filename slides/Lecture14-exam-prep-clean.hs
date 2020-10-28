@@ -1,5 +1,6 @@
 module Lecture14ExamPrep where 
 import Prelude hiding (lookup)
+import Control.Monad.State.Lazy
 
 --------------------------------------------------------------------------------
 -- * 1. Maps and functors 
@@ -355,3 +356,148 @@ concatenateFiles' = undefined
 
 
 
+--------------------------------------------------------------------------------
+-- * 8. State monad
+--------------------
+
+-- In this question, we will be writing some code using the state monad.
+-- Recall that State s is a monad that models computation with access 
+-- to mutable state of type s.
+
+-- We can access this state with the following operations:
+
+-- get :: State s s
+-- where get reads the current value of the state
+
+-- put :: s -> State s ()
+-- where put s overwrites the state with s
+
+-- modify :: (s -> s) -> State s ()
+-- where modify f reads the current value s of the state and overwrites it with f s
+
+-- state :: (s -> (a, s)) -> State s a
+-- where state f transforms the state according to snd . f and computes
+-- the return value according to fst . f
+
+
+-- We further have a (handler) function 
+-- runState :: State s a -> s -> (a, s)
+-- where runState x s returns the the pair (a, s') where a is the return value computed by x
+-- starting from state s and s' is the updated state that x computes from s.
+
+-- Note that state . runState = id and runState . state = id 
+
+-- We can define a useful helper function
+run :: State s a -> s -> a
+run x = fst . runState x
+-- where run x s only computes the return value of a stateful command x starting from 
+-- initial state x, forgetting about the final value of the state.
+
+
+
+-- Consider the following type of binary trees.
+data BTree a = BLeaf | BNode (BTree a) a (BTree a) deriving (Show, Eq)
+-- For example, we have the following inhabitant of this data type:
+exampleBTree :: BTree String
+exampleBTree = BNode (BNode (BNode BLeaf "x" BLeaf) "w" (BNode BLeaf "y" BLeaf)) "x"
+                     (BNode (BNode (BNode BLeaf "x" BLeaf) "y" BLeaf) "z" (BNode BLeaf "y" BLeaf))
+
+
+-- (a) Write a function
+getFresh :: String -> [String] -> String
+-- such that getFresh x xs checks whether the string x is an element of xs:
+-- if so, it returns x; if not, it adds ' characters after x, until it is true that
+-- this new 'ed x is not an element of xs; once that is true, it returns the new 'ed x.
+-- We think of x as a name and say that getFresh x xs "replaces x with a
+-- name that it fresh with respect to xs"
+getFresh = undefined
+
+-- (b) Using getFresh, write a function
+freshNodesS :: BTree String -> State [String] (BTree String)
+-- using the State monad, such that 
+freshNodes :: BTree String -> BTree String 
+freshNodes bt = run (freshNodesS bt) [] 
+-- traverses a tree storing Strings (think of them as names) in each BNode 
+-- using a depth-first, in-order traversal (i.e. visiting its left subtree before the node itself
+-- before the right subtree) and during the traversal does the following things:
+-- 1. keep track of a list xs of all the Strings (names) it has seen as the state
+-- 2. at each BNode, it uses getFresh to replace the stored name x by one that is fresh with
+-- respect to the names xs it has seen so far 
+-- 3. it otherwise keeps the structure of the tree the same.
+
+
+freshNodesS = undefined
+
+
+-- (c) Next, we will consider a stateful program that describes the operation 
+-- of a turnstile.
+
+-- The turnstile has two states: Locked and Unlocked.
+-- (It starts in a Locked state).
+-- There are two types of regular input:
+-- Coin (corresponding to someone putting a coin in the slot) and
+-- Push (corresponding to someone pushing the arm).
+-- Each input causes an output (Thank, Open or Tut) and
+-- a transition to a (new, or maybe the same) state.
+-- If someone puts a coin in when the turnstile is locked,
+-- they are thanked (yes, it can talk!) and the turnstile
+-- becomes unlocked. If they add more coins, they are thanked
+-- more but get no benefit (the turnstile simply remains unlocked
+-- with no memory of how many additional coins have been added).
+-- If someone pushes the arm when the turnstile is unlocked, 
+-- the arm will open to let them through, then become locked
+-- to prevent anyone else going through.
+-- If someone pushes the arm when the turnstile is locked,
+-- it will politely tut at them but not let them through and remain locked.
+-- The operator of the turnstile can also use a key to switch the state 
+-- from locked to unlocked and back. This will not cause the turnstile to 
+-- emit any output.
+
+-- We model this states and outputs of the turnstile as follow.
+data TurnstileState = Locked | Unlocked
+  deriving (Eq, Show)
+
+data TurnstileOutput = Thank | Open | Tut
+  deriving (Show, Eq)
+
+
+-- We can then describe the actions as follows.
+coin, push :: TurnstileState -> (TurnstileOutput, TurnstileState)
+coin Locked = (Thank, Unlocked)
+coin Unlocked = (Thank, Unlocked)
+push Locked = (Tut, Locked)
+push Unlocked = (Open, Locked)
+
+key :: TurnstileState -> TurnstileState 
+key Locked = Unlocked 
+key Unlocked = Locked
+
+coinS, pushS :: State TurnstileState TurnstileOutput
+coinS = state coin
+pushS = state push
+
+keyS :: State TurnstileState () 
+keyS = modify key
+
+-- Consider the following bit of code in the State monad.
+-- It describes what happens on a given Monday:
+-- someone inserts a coin, they push the turnstile,
+-- next someone else pushes the turnstile,
+-- the operator uses their key,
+-- the third customer arrives, inserts a coin and pushes 
+-- the turnstile.
+mondayS :: State TurnstileState [TurnstileOutput]
+mondayS = do
+  a1 <- coinS
+  a2 <- pushS
+  a3 <- pushS
+  keyS
+  a4 <- coinS
+  a5 <- pushS
+  return [a1, a2, a3, a4, a5]
+
+-- Please desugar the code of mondayS from do-notation to an implementation 
+-- that uses >>= explicitly instead. Call the resulting reimplementation 
+-- mondayS'.
+
+mondayS' = undefined
