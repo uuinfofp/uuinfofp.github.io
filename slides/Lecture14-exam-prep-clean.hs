@@ -453,7 +453,7 @@ freshNodesS = undefined
 -- from locked to unlocked and back. This will not cause the turnstile to 
 -- emit any output.
 
--- We model this states and outputs of the turnstile as follow.
+-- We model the states and outputs of the turnstile as follows.
 data TurnstileState = Locked | Unlocked
   deriving (Eq, Show)
 
