@@ -109,7 +109,7 @@ currently still subject to change.
       <td></td>
       <td>Thu 1 Oct<br /></td>
       <td><a href="slides/fp-09-io.pdf">9. Input and output</a>
-        <!-- <br><a href="slides/Lecture9.hs">Example code from lecture</a> -->
+        <br><a href="slides/Lecture9.hs">Example code from lecture</a>
         </td>
       <td>Chapter 10</td>
       <td>Matthijs</td>
@@ -125,7 +125,7 @@ currently still subject to change.
       <td></td>
       <td>Thu 8 Oct</td>
       <td><a href="slides/fp-10-monads-one.pdf">10. Functors and monads</a>
-        <!-- <br><a href="slides/Lecture10.hs">Example code from lecture</a> -->
+        <br><a href="slides/Lecture10.hs">Example code from lecture</a>
         </td>
       <td>Chapter 12 (except 12.2)</td>
       <td>Matthijs</td>
@@ -134,7 +134,7 @@ currently still subject to change.
       <td>42</td>
       <td>Tue 13 Oct</td>
       <td><a href="slides/fp-11-laws.pdf">11. Laws and induction</a>
-        <!-- <br><a href="slides/Lecture11.hs">Example proofs from lecture</a> -->
+        <br><a href="slides/Lecture11.hs">Example proofs from lecture</a>
         </td>
       <td>Chapter 16 (up to 16.6)
         <br>Chapter 13 from the <a href="http://www.staff.science.uu.nl/~hage0101/FP-elec.pdf">Lecture Notes</a>
@@ -156,7 +156,7 @@ currently still subject to change.
       <td>43</td>
       <td>Tue 20 Oct</td>
       <td><a href="slides/fp-13-monads-two.pdf">13. More monads and applicatives</a>
-        <!-- <br><a href="slides/Lecture13.hs">Example code from lecture</a> -->
+        <br><a href="slides/Lecture13.hs">Example code from lecture</a>
         </td>
       <td>Chapter 12.2</td>
       <td>Matthijs</td>
@@ -171,21 +171,23 @@ currently still subject to change.
     <tr>
       <td>44</td>
       <td>Tue 27 Oct</td>
-      <td><a href="slides/fp-14-monads-three.pdf">14. Foldables and Traversables</a>
-        <!-- <br><a href="slides/Lecture14.hs">Example code from lecture</a> -->
+      <td>Q&A session
+        <br><a href="slides/Lecture14-exam-prep-clean.hs">Example questions for during the lecture</a>
+        <br><a href="slides/Lecture14-syllabus.txt">Very brief descriptions of topics that will be in the final exam (see video of lecture for more elaboration)</a>
         </td>
-      <td>Chapter 14</td>
+      <td></td>
       <td>Matthijs</td>
     </tr><tr>
       <td></td>
       <td>Thu 29 Oct<br /></td>
-      <td><a href="slides/fp-farewell-2018.pdf">Q&A session</a>
+      <td>Q&A session
+        <br><a href="slides/Lecture14-exam-prep.hs">Solutions to example questions</a>
       </td>
       <td></td>
       <td>Matthijs</td>
     </tr><tr class="warning">
       <td>44</td>
-      <td>Thu 5 Nov 13:30-16:30</td>
+      <td>Thu 5 Nov 13:00-16:00</td>
       <td><b>Final exam</b></td>
       <td></td>
       <td></td>

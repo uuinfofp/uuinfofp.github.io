@@ -1,123 +1,191 @@
 module Lecture11 where
-    -- from last time:
-    -- why is
-    fNothing m = do 
-        _ <- Nothing 
-        x <- m
-        return (x + 1)
-    -- equal to
-    Nothing 
-    -- ???
 
-    --
-    do
-        _ <- Nothing 
-        x <- m
-        return (x + 1)
-    = -- desugaring do notation
-    Nothing >>= \_ ->
-    m >>= \x -> return (x + 1)
-    = -- desugaring infix operator
-    (>>=) Nothing (\_ ->(>>=) m (\x -> return (x+1)))
-    = -- definition >>= for Maybe
-    = Nothing
 
-    -- where we remember that for Maybe, we have 
-    -- (>>=) Nothing _  = Nothing
-    -- (>>=) (Just x) f = Just (f x)
+
+
+
+
+
+
+
+
+
 
     foldr op e [x]
-    = -- rewrite list syntactic sugar 
+    = -- desugaring
     foldr op e (x : [])
-    = -- definition foldr
+    = -- def. foldr, 2
     op x (foldr op e [])
-    = -- definition foldr
+    = -- def. foldr, 1
     op x e
-    = -- by assump. e is right unit of op  
+    = -- assumption that e is the unit element for op
     x
+
     -- where we remember that 
-    -- foldr op e [] = e 
-    -- foldr op e (x:xs) = op x (foldr e xs)
+    foldr op e [] = e 
+    foldr op e (x:xs) = op x (foldr op e xs)
+    -- assumption: op e x = x = op x e
+
+
+
+
+
+
+
+
+
+
+
 
     foldl op e [x]
-    = -- rewrite list syntactic sugar 
-    foldl op e (x:[])
-    = -- definition foldl
+    = -- desugar
+    foldl op e (x : [])
+    = -- def. foldl, 2    
     foldl op (op e x) []
-    = -- definition foldl
-    op e x
-    = -- by assump. e is left unit of op 
+    = -- assumption: op e x = x = op x e   
+    foldl op x []
+    = -- def. foldl, 1
     x
 
     -- where we remember that
-    -- foldl op e [] = e 
-    -- foldl op e (x : xs) = foldl op (op e x) xs
+    foldl op e [] = e 
+    foldl op e (x : xs) = foldl op (op e x) xs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     (f . (g . h)) x  -- two column style proof
-    = -- definition (.) 
-    f ((g . h) x)
-    = -- definition (.) 
+    = -- def (.), left to right
+    f ((g. h) x)
+    = -- def (.), left to right
     f (g (h x))
-    = -- definition (.)
+    = -- def (.), right to left
     (f . g) (h x)
-    = -- definition (.)
+    = -- def (.), right to left
     ((f . g) . h) x
+
+    -- so we conclude that 
+    f. (g. h)= (f.g) . h
+
+
+    -- where we remember that 
+    (f . g) x = f (g x)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     map f :: [a] -> [b]
     (x :) :: [a] -> [a]
+
     (map f . (x :)) xs -- two column style proof
     = -- def (.)
     map f ((x :) xs)
-    = -- sugar sections 
+    = -- section notation
     map f (x : xs)
-    = -- def map 
-    f x : map f xs 
-    = -- sugar sections 
+    = -- def map, non-empty lists
+    f x : map f xs
+    = -- section notation
     (f x :) (map f xs)
     = -- def (.)
     ((f x :) . map f) xs
 
-    -- not.not = id, first generic, then case distinction
-    (not . not) x
-    = -- def (.)
-    not (not x)
-    = -- case distinction of x 
-    case x of False -> not (not False)
-            | True -> not (not True)
-    = -- def not 
-    case x of False -> not True 
-            | True -> not False
-    = -- def not 
-    case x of False -> False
-            | True -> True
-    = -- collapsing case distinction 
-    x
-    = -- def id 
-    id x
+    -- so (map f . (x :)) = ((f x :) . map f)
 
-    -- harder:
-    do 
-        x <- m
-        _ <- Nothing 
-        return (x + 1)
-    = -- do syntactic sugar
-    m >>= \x -> 
-    (Nothing >>= \_ -> 
-    return (x + 1))
-    = -- definition of >>= for Maybe
-    m >>= \x -> 
-    Nothing
-    = -- expand case
-    case m of Nothing -> Nothing >>= \x -> Nothing 
-            | Just y -> Just y >>= \x -> Nothing 
-    = -- definition >>=
-    case m of Nothing -> Nothing
-            | Just y -> (\x -> Nothing) y
-    = -- evaluating lambda expression
-    case m of Nothing -> Nothing 
-            | Just y -> Nothing
-    = -- collapsing case
-    Nothing 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    -- not.not = id, first generic, then case distinction
+    not . not, id :: Bool -> Bool
+
+    -- Enough: show (not.not) b = id b for all b :: Bool.
+    -- We perform a case distinction on b: b is either True or False
+
+    (not . not) True 
+    = -- def. (.)
+    not (not True)
+    = -- def not
+    not False
+    = -- def not
+    True
+    = -- def. id
+    id True
+
+    (not . not) False 
+    = -- def. (.)
+    not (not False)
+    = -- def not
+    not True
+    = -- def not
+    False
+    = -- def. id
+    id False
+
+    -- So we conclude that not.not = id
+
+    not True = False 
+    not False = True
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     data Nat = Zero | Succ Nat 
@@ -125,128 +193,243 @@ module Lecture11 where
     data Tree a = Leaf | Node (Tree a) a (Tree a)
 
     
+
+
+
+
+
+
+
+
+
+
+
+    -- Claim:
     map f (xs ++ ys)
-    = -- expand cases
-    case xs of [] -> map f ([] ++ ys)
-            | x : xs' -> map f ((x : xs') ++ ys)
-    = -- definition ++
-    case xs of [] -> map f ys
-        | x : xs' -> map f ((x : xs') ++ ys)
-    = -- definition ++
-    case xs of [] -> [] ++ map f ys
-    | (x : xs') -> f x : (map f (xs' ++ ys))
-    = -- induction hypothesis: map f xs' ++ map f ys = map f (xs' ++ ys)
-    case xs of [] -> [] ++ map f ys
-    | (x : xs') -> f x : (map f xs' ++ map f ys)
-    = -- definition ++ 
-    case xs of [] -> [] ++ map f ys
-    | (x : xs') -> f x : (map f xs') ++ map f ys
-    = -- definition map f
-    case xs of [] -> [] ++ map f ys
-    | (x : xs') -> map f (x:xs') ++ map f ys
-    = -- definition map f
-    case xs of [] -> map f [] ++ map f ys
-            | (x : xs') -> map f (x:xs') ++ map f ys
-    = -- collapse cases
+    = -- ...
     map f xs ++ map f ys
 
-    map (f.g) xs
-    = -- expand cases
-    case xs of [] -> map (f.g) []
-            | (x : xs') -> map (f.g) (x : xs')
-    = -- definition map, 2x
-    case xs of [] -> []
-            | (x : xs') -> (f.g) x : map (f.g) xs'
-    = -- definition (.)
-    case xs of [] -> []
-    | (x : xs') -> f (g x) : map (f.g) xs'
-    = -- induction hypothesis: map (f.g) xs' = (map f . map g) xs'
-    case xs of [] -> []
-    | (x : xs') -> f (g x) : (map f. map g) xs'
-    = -- definition (.)
-    case xs of [] -> (map f . map g) []
-        | (x:xs') -> (f (g x): (map f (map g xs')))
-    = --defintion map
-    case xs of [] -> (map f . map g) []
-        | (x:xs') -> map f  (g x: (map g xs'))
-    = -- definition map
-    case xs of [] -> (map f . map g) []
-        | (x:xs') -> map f  (map g (x:xs'))
-    = -- definition (.)
-    case xs of [] -> (map f . map g) []
-        | (x:xs') -> (map f . map g) (x:xs')
-    = -- collapse cases
-    (map f . map g) xs
+    -- Let us perform a case distinction on xs: xs = [] or xs = z : zs.
+    -- Then we need to prove that 
 
-    (reverse.reverse) []
-    = -- def (.)
-    reverse (reverse [])
-    = -- def reverse
-    reverse [] 
-    = -- def reverse 
-    [] 
-    = -- def id 
-    id [] 
+    -- Base case in our induction:
+    map f ([] ++ ys)
+    = -- def (++), 1
+    map f ys
+    = -- def (++), 1
+    [] ++ map f ys
+    = -- def map, 1
+    map f [] ++ map f ys
 
-    (reverse.reverse) (x:xs)
+
+    -- Inductive case:
+    -- Let us assume the Induction Hypothesis (I.H.) that map f (zs ++ ys) = map f zs ++ map f ys.
+    map f ((z:zs) ++ ys)
+    = -- def (++), 2
+    map f (z : (zs ++ ys))
+    = -- def map, 2
+    f z : map f (zs ++ ys)
+    = -- I.H.
+    f z : (map f zs ++ map f ys)
+    = -- def (++), 2
+    (f z : map f zs) ++ map f ys
+    = -- def map, 2
+    map f (z:zs) ++ map f ys
+
+    -- So, we can conclude that our claim is true for all finite lists, by induction on xs.
+
+
+
+
+    [] ++ ys  = ys
+    (x:xs) ++ ys = x : (xs ++ ys)
+
+    map f [] = [] 
+    map f (x:xs) = f x : map f xs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    f :: T -> S 
+    g :: R -> T 
+    f .g :: R -> S 
+    map (f.g) :: [R] -> [S]
+
+    -- Claim:
+    map (f.g)
+    = -- ...
+    (map f . map g)
+
+    -- Take some xs :: [R]. Then, xs = [] or xs = z : zs.
+    -- Then we need to show that 
+    -- Base case:
+    map (f.g) []
+    = -- def map, []
+    []
+    = -- def map, []
+    map f []
+    = -- def map, []
+    map f (map g [])
     = -- def (.)
-    reverse (reverse (x:xs))
-    = -- def reverse 
-    reverse (reverse xs ++ [x])
-    = -- lemma 1
-    reverse [x] ++ reverse (reverse xs)
-    = -- lemma 2
-    [x] ++ reverse (reverse xs)
-    =  -- def (.)
-    [x] ++ (reverse.reverse) xs 
-    = -- induction hypothesis: (reverse.reverse) xs
-    [x] ++ xs 
-    = -- def ++
-    x : xs 
-    = -- def id
-    id (x : xs)
+    (map f.map g) []
+
+
+    -- Inductive case, assuming the Induction Hypothesis that map (f.g) zs = (map f. map g) zs:
+    map (f.g) (z:zs)
+    = -- def map, rec
+    (f.g) z : map (f.g) zs
+    = -- def (.)
+    f (g z) : map (f.g) zs
+    = -- I.H.
+    f (g z) : (map f.map g) zs
+    = -- def (.)
+    f (g z) : map f (map g zs)
+    = -- def map, rec.
+    map f (g z : map g zs)
+    = -- def map, rec.
+    map f (map g (z: zs))
+    = -- def (.)
+    (map f .map g) (z:zs)
+
+    -- The claim now follows by induction on xs.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    (reverse.reverse)
+    = -- ... 
+    id
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     -- lemma 2 : reverse [x] = [x]
     reverse [x]
-    = -- sugar lists
-    reverse (x : [])
-    = -- def reverse
-    reverse [] ++ [x] 
-    = -- def reverse
-    [] ++ [x]
-    = -- def ++
+    = -- ...
     [x]
 
-    -- lemma 1 : reverse (xs ++ ys) = reverse ys ++ reverse xs
-    reverse ([] ++ ys)
-    =
-    reverse ys 
-    = -- lemma 3
-    reverse ys ++ [] 
-    =
-    reverse ys  ++ reverse [] 
 
-    reverse ((x:xs) ++ ys)
-    = 
-    reverse (x (xs ++ ys))
-    =
-    reverse (xs ++ ys) ++ [x]
-    = -- induction hypothesis: reverse (xs ++ ys) = reverse ys ++ reverse xs
-    reverse ys  ++ reverse xs  ++ [x]
-    =
-    reverse ys ++ reverse (x:xs)
+
+
+
+
+
+
+
+
+
+
+
+
+    -- Homework: lemma 1 : reverse (xs ++ ys) = reverse ys ++ reverse xs
+    -- Hint: prove and use lemma 3 below!
+    reverse (xs ++ ys)
+    = -- ...
+    reverse ys ++ reverse xs
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     -- lemma 3: ys ++ [] == ys
-    [] ++ []
-    = - def ++
-    []
+    ys ++ []
+    = -- ...
+    ys
 
-    (y:ys) ++ []
-    =
-    y : (ys ++ [])
-    = -- induction hypothesis: ys ++ [] = ys
-    y : ys 
-    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     
     size Leaf = 0 
     size (Node l _ r) = 1+ size l + size r
@@ -255,70 +438,37 @@ module Lecture11 where
     mirror (Node l v r) = Node (mirror r) v (mirror l)
 
 
-    -- claim size (mirror t) = size t 
+
+
+
+    -- claim: size (mirror t) = size t 
+    -- We prove this by induction on t: distinguish the cases that t= Leaf and t = Node l x r
+
+    -- Base case:
+
     size (mirror Leaf)
-    =  -- def mirror
+    = -- def mirror, 1
     size Leaf
 
-    size (mirror (Node l v r))
-    = -- def mirror
-    size (Node (mirror r) v (mirror l))
-    = -- def size
+
+    -- Inductive case, assume the induction hypothesis that size (mirror l) = size l AND size  (mirror r) = size r
+    size (mirror (Node l x r))
+    = -- def mirror, 2
+    size (Node (mirror r) x (mirror l))
+    = -- def size, 2
     1 + size (mirror r) + size (mirror l)
-    = -- induction hypothesis: size(mirror r) = size r and size (mirror l) = size l
-    1 + size r + size l 
-    = -- + commutative
+    = -- I.H.
+    1 + size r + size l
+    = -- (+) is commutative
     1 + size l + size r
-    = -- def size
-    size (Node l v r)
+    =  -- def size, 2
+    size (Node l x r)
 
 
-    mult Zero Zero
-    = 
-    Zero
 
-    mult (Succ n) Zero
-    = 
-    add Zero (mult n Zero)
-    = -- induction hypothesis: mult n Zero  = Zero
-    add Zero Zero 
-    =
-    Zero
 
-    foldr op e []
-    =
-    e
-    =
-    foldl (flip op) e []
 
-    foldr op e (x:xs)
-    = -- def foldr
-    x `op` (foldr op e xs)
-    = -- induction hypothesis: foldr op e xs = foldl op e xs
-    x `op` (foldl op e xs)
-    = -- lemma 5
-    foldl op (x `op` e) xs
-    = -- assumption: e neutral for op
-    foldl op x xs 
-    = -- assumption: e neutral for op
-    foldl op (e `op` x) xs  
-    = -- def foldl
-    foldl op e (x : xs)
-    
-    -- lemma 5: x `op` (foldl op acc xs) = foldl op (x `op` acc) xs
-    x `op` (foldl op acc [])
-    = -- def foldl 
-    x `op` acc
-    = -- def foldl
-    foldl op (x `op` acc) []
 
-    x `op` (foldl op acc (x':xs))
-    = -- def foldl
-    x `op` (foldl op (acc `op` x') xs) =
-    = -- induction hypothesis: x `op` (foldl op acc' xs) = foldl op (x `op acc') xs
-    foldl op (x `op` (acc `op` x')) xs
-    = -- assumption: associativity of op
-    foldl op ((x `op` acc) `op` x') xs
-    = -- def foldl
-    foldl op (x `op` acc) (x' : xs)
-    
+
+
+
