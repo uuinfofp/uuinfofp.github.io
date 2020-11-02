@@ -4,7 +4,7 @@ title: Course description
 
 ### Contents
 
-This course introduces *functional programming* through the programming language Haskell. In contrast with the language C# -- introduced in *Imperatief*/*Game*/*Mobiel programmeren* -- which is based on statements, organized in methods and classes, functional programming is based entirely on expressions and functions. This shifts the focus from *how* a program operates to *what* is does.
+This course introduces *functional programming* through the programming language Haskell. In contrast with the language C# -- introduced in *Imperatief*/*Game*/*Mobiel programmeren* -- which is based on statements, organized in methods and classes, functional programming is based entirely on expressions and functions. This shifts the focus from *how* a program operates to *what* it does.
 
 Concrete topics treated in this course include higher-order functions, parametric and ad-hoc polymorphism (also known as generics and overloading in other programming languages), algebraic data types and pattern matching. These ideas appear not only in Haskell, but in other modern languages such as Scala, Swift or Kotlin. An important part of the course is devoted to *reasoning about programs*, either by equations or by induction.
 
