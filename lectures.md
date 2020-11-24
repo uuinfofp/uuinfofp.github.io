@@ -181,6 +181,7 @@ currently still subject to change.
       <td></td>
       <td>Thu 29 Oct<br /></td>
       <td>Q&A session
+        <br><a href="slides/Lecture14-exam-prep.hs">Solutions to example questions</a>
       </td>
       <td></td>
       <td>Matthijs</td>
