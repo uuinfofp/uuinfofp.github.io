@@ -49,6 +49,12 @@ title: Labs
 <td><a href="practicals/gloss-counter.zip">Example game</a></td>
 <td><a href="http://uu.blackboard.com">Blackboard</a></td>
 </tr>
+<tr>
+<td>Thu 7 Jan 23:59</td>
+<td><a href="practicals/RetakeAssignment.pdf">Retake Assignment</a></td>
+<td><a href="practicals/RetakeAssignment.hs"><tt>RetakeAssignment.hs</tt></a></td>
+<td></td>
+</tr>
 </table>
 
 ### Practicals from previous years
