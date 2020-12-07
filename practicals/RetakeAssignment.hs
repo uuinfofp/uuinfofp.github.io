@@ -1,6 +1,6 @@
 {-# LANGUAGE FlexibleContexts, FlexibleInstances, FunctionalDependencies #-}
 
-module Assignment4 where
+module RetakeAssignment where
 
 import Control.Applicative (Applicative(..))
 import Control.Monad       (ap, liftM, replicateM)
