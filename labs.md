@@ -53,6 +53,7 @@ title: Labs
 <td>Thu 7 Jan 23:59</td>
 <td><a href="practicals/RetakeAssignment.pdf">Retake Assignment</a></td>
 <td><a href="practicals/RetakeAssignment.hs"><tt>RetakeAssignment.hs</tt></a></td>
+<td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 <td></td>
 </tr>
 </table>
