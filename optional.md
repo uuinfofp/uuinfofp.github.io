@@ -19,8 +19,8 @@ the GHC documentation</a>.
 If you have a package or extension in mind that you would like to make
 a video about, please contact <a href="mailto:F.Staals@uu.nl">Frank
 Staals</a> or <a href="mailto:m.i.l.vakar@uu.nl">Matthijs Vákár</a>
-**before 22 October 2020** to ensure that the choice is appropriate.
-The final video should be submitted **before Sun 8 Nov 23:59**.
+**before 28 October 2020** to ensure that the choice is appropriate.
+The final video should be submitted **before Sun 14 Nov 23:59**.
 
 ### Some examples
 

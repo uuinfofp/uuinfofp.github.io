@@ -43,7 +43,7 @@ submitted to <a href="mailto:F.Staals@uu.nl">Frank Staals</a>
   Jip, one of our TAs', has compiled a document with extra exercises to practice type inference questions. You can find his
   exercises [here](practicals/type-inference-exercises.pdf). -->
 
-
+<!-- 
 
 <!-- #### *2020-10-15* : Optional Bonus Assignment -->
 
@@ -79,4 +79,4 @@ submitted to <a href="mailto:F.Staals@uu.nl">Frank Staals</a>
 
   For OS X (High Sierra or newer)
   [these](https://medium.com/@dogwith1eye/setting-up-haskell-in-vs-code-on-macos-d2cc1ce9f60a)
-  detailed instructions on how to set up your system may be useful.
+  detailed instructions on how to set up your system may be useful. -->
