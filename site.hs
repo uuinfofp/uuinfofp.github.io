@@ -62,5 +62,5 @@ copyAsIs = do
 
 myConfiguration :: Configuration
 myConfiguration = defaultConfiguration {
-    deployCommand = "rsync -avh _site/* gemini.science.uu.nl:/science/wwwprojects/cs-www/wwwcs/docs/vakken/fp/2020"
+    deployCommand = "rsync -avh _site/* gemini.science.uu.nl:/science/wwwprojects/cs-www/wwwcs/docs/vakken/fp/2021"
   }
