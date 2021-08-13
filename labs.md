@@ -24,37 +24,30 @@ title: Labs
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 </tr>
 <tr>
-<td>Fri 1 Oct 23:59</td>
+<td>Tue 28 Sept 23:59</td>
 <td><a href="practicals/Assignment2.pdf">2. Data structures</a></td>
 <td><a href="practicals/Assignment2.hs"><tt>Assignment2.hs</tt></a></td>
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 </tr>
 <tr>
-<td>Tue 19 Oct 23:59</td>
-<td><a href="practicals/project.pdf">3. Game, design document</a></td>
+<td>Tue 12 Oct 23:59</td>
+<td><a href="practicals/Assignment4.pdf">3. Type classes</a></td>
+<td><a href="practicals/Assignment4.hs"><tt>Assignment4.hs</tt></a></td>
+<td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
+</tr>
+<tr>
+<td>Wed 13 Oct 23:59</td>
+<td><a href="practicals/project.pdf">4. Game, design document</a></td>
 <td><a href="practicals/gloss-counter.zip">Example game</a><br/>
     <a href="practicals/example_design.pdf">Example design document</a>
 </td>
 <td><a href="http://uu.blackboard.com">Blackboard</a></td>
 </tr>
 <tr>
-<td>Fri 29 Oct 23:59</td>
-<td><a href="practicals/Assignment4.pdf">4. Type classes</a></td>
-<td><a href="practicals/Assignment4.hs"><tt>Assignment4.hs</tt></a></td>
-<td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
-</tr>
-<tr>
-<td>Sun 14 Nov 23:59</td>
+<td>Wed 3 Nov 23:59</td>
 <td><a href="practicals/project.pdf">5. Game, implementation</a></td>
 <td><a href="practicals/gloss-counter.zip">Example game</a></td>
 <td><a href="http://uu.blackboard.com">Blackboard</a></td>
-</tr>
-<tr>
-<td>Thu 13 Jan 23:59</td>
-<td><a href="practicals/RetakeAssignment.pdf">Retake Assignment</a></td>
-<td><a href="practicals/RetakeAssignment.hs"><tt>RetakeAssignment.hs</tt></a></td>
-<td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
-<td></td>
 </tr>
 </table>
 

@@ -28,18 +28,16 @@ currently still subject to change.
   <tbody>
     <tr>
       <td>36</td>
-      <td>Thu 9 Sep</td>
+      <td>Tue 7 Sep</td>
       <td><a href="slides/fp-00-course-intro_2020.pdf">0. Course introduction</a>
         <br><a href="slides/fp-01-intro.pdf">1. FP? Haskell?</a></td>
       <td>Chapters 1 and 2</td>
       <td>Frank</td>
     </tr>
     <tr>
-      <td>37</td>
-      <td>Tue 14 Sep</td>
+      <td></td>
+      <td>Thu 9 Sep</td>
       <td><a href="slides/fp-02-basics.pdf">2. Basics</a>
-          <br/><a href="slides/scribles_lecture_02.pdf">Scribles on
-  Type inference from during the Lecture</a>
       </td>
       <td>Chapters 4 (up to 4.4) and 3
         <br>Chapter 5 from the <a
@@ -48,18 +46,16 @@ currently still subject to change.
       <td>Frank</td>
     </tr>
     <tr>
-      <td></td>
-      <td>Thu 16 Sep</td>
+      <td>37</td>
+      <td>Tue 14 Sep</td>
       <td><a href="slides/fp-03-lists.pdf">3. Lists and recursion</a>
-          <br/><a href="slides/scribles_lecture_03.pdf">Scribles from
-  during the Lecture</a>
   </td>
       <td>Chapters 5 and 6</td>
       <td>Frank</td>
     </tr>
     <tr>
-      <td>38</td>
-      <td>Tue 21 Sep</td>
+      <td></td>
+      <td>Thu 16 Sep</td>
       <td><a href="slides/fp-04-h-o-functions.pdf">4. Higher-order functions</a>
         <br><a href="applyAllFold.html">Writing <tt>applyAll</tt> as a fold</a>
         <br><a href="slides/Lecture4.hs">Example Haskell code from lecture</a>
@@ -69,8 +65,8 @@ currently still subject to change.
       <td>Matthijs</td>
     </tr>
     <tr>
-      <td></td>
-      <td>Thu 23 Sep</td>
+      <td>38</td>
+      <td>Tue 21 Sep</td>
       <td><a href="slides/fp-05-data-classes.pdf">5. Data types and type classes</a>
         <br><a href="slides/Lecture5.hs">Example code from lecture</a>
         </td>
@@ -78,8 +74,8 @@ currently still subject to change.
       <td>Matthijs</td>
     </tr>
     <tr>
-      <td>39</td>
-      <td>Tue 28 Sep</td>
+      <td></td>
+      <td>Thu 23 Sep</td>
       <td><a href="slides/fp-06-data-structures-new.pdf">6. Data
         structures</a><br/>
         <a href="slides/sweep.hs">The Code for the point location example</a>
@@ -88,22 +84,28 @@ currently still subject to change.
       <td>Frank</td>
     </tr>
     <tr>
-      <td></td>
-      <td>Thu 30 Sep</td>
+      <td>39</td>
+      <td>Tue 28 Sep</td>
       <td><a href="slides/fp-07-case-studies.pdf">7. Case studies</a>
         <br><a href="slides/fp-qa-2020.pdf">Q&A session</a>
-        <br/><a href="slides/scribles_lecture_07.pdf">Q&A Scribles</a>
         <br/><a href="trees.html">The problem statements for the Tree exercises</a>
      </td>
       <td>Chapters 8.6</td>
       <td>Frank</td>
     </tr>
     <tr>
-      <td>40</td>
-      <td>Tue 5 Oct</td>
+      <td></td>
+      <td>Thu 30 Sep</td>
       <td><a href="slides/fp-08-project-design-test.pdf">8. Project management, design and testing</a></td>
       <td><a href="http://book.realworldhaskell.org/read/testing-and-quality-assurance.html">Chapter 11</a> of <i>Real World Haskell</i></td>
       <td>Frank</td>
+    </tr>
+    <tr class="warning">
+      <td>40</td>
+      <td>Tue 5 Oct 11:30-14:30</td>
+      <td><b>Midterm exam</b></td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td></td>
@@ -114,16 +116,9 @@ currently still subject to change.
       <td>Chapter 10</td>
       <td>Matthijs</td>
     </tr>
-    <tr class="warning">
-      <td>41</td>
-      <td>Tue 12 Oct 8:30-10:30</td>
-      <td><b>Midterm exam</b></td>
-      <td></td>
-      <td></td>
-    </tr>
     <tr>
-      <td></td>
-      <td>Thu 14 Oct</td>
+      <td>41</td>
+      <td>Tue 12 Oct</td>
       <td><a href="slides/fp-10-monads-one.pdf">10. Functors and monads</a>
         <br><a href="slides/Lecture10.hs">Example code from lecture</a>
         </td>
@@ -131,8 +126,8 @@ currently still subject to change.
       <td>Matthijs</td>
     </tr>
     <tr>
-      <td>42</td>
-      <td>Tue 19 Oct</td>
+      <td></td>
+      <td>Thu 14 Oct</td>
       <td><a href="slides/fp-11-laws.pdf">11. Laws and induction</a>
         <br><a href="slides/Lecture11.hs">Example proofs from lecture</a>
         </td>
@@ -146,15 +141,15 @@ currently still subject to change.
       <td>Matthijs</td>
     </tr>
     <tr>
-      <td></td>
-      <td>Thu 21 Oct</td>
+      <td>42</td>
+      <td>Tue 19 Oct</td>
       <td><a href="slides/fp-12-lazy-eval.pdf">12. Lazy evaluation</a></td>
       <td>Chapter 15</td>
       <td>Frank</td>
     </tr>
     <tr>
-      <td>43</td>
-      <td>Tue 26 Oct</td>
+      <td></td>
+      <td>Thu 21 Oct</td>
       <td><a href="slides/fp-13-monads-two.pdf">13. More monads and applicatives</a>
         <br><a href="slides/Lecture13.hs">Example code from lecture</a>
         </td>
@@ -162,15 +157,15 @@ currently still subject to change.
       <td>Matthijs</td>
     </tr>
     <tr>
+      <td>43</td>
+      <td>Tue 26 Oct</td>
+      <td>Guest lecture: ?</td>
       <td></td>
-      <td>Thu 28 Oct</td>
-      <td>Guest lecture: Functional Front-End Development in Elm</td>
       <td></td>
-      <td>Wouter Swierstra</td>
     </tr>
     <tr>
-      <td>44</td>
-      <td>Tue 2 Nov</td>
+      <td></td>
+      <td>Thu 28 Oct</td>
       <td>Q&A session
         <br><a href="slides/Lecture14-exam-prep-clean.hs">Example questions for during the lecture</a>
         <br><a href="slides/Lecture14-syllabus.txt">Very brief descriptions of topics that will be in the final exam (see video of lecture for more elaboration)</a>
@@ -178,7 +173,15 @@ currently still subject to change.
       <td></td>
       <td>Matthijs</td>
     </tr><tr>
+      <td>44</td>
+      <td>Tue 2 Nov<br /></td>
+      <td>Q&A session
+        <br><a href="slides/Lecture14-exam-prep.hs">Solutions to example questions</a>
+      </td>
       <td></td>
+      <td>Matthijs</td>
+    </tr><tr>
+      <td>44</td>
       <td>Thu 4 Nov<br /></td>
       <td>Q&A session
         <br><a href="slides/Lecture14-exam-prep.hs">Solutions to example questions</a>
@@ -186,8 +189,8 @@ currently still subject to change.
       <td></td>
       <td>Matthijs</td>
     </tr><tr class="warning">
-      <td>44</td>
-      <td>Thu 11 Nov 13:00-16:00</td>
+      <td>45</td>
+      <td>Tue 9 Nov 13:30-16:30</td>
       <td><b>Final exam</b></td>
       <td></td>
       <td></td>
