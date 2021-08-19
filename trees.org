@@ -3,16 +3,27 @@
 1. Define a binary tree type in which leaves store values of type 'a'
    and internal nodes store values of type 'b'
 
-2. Define a function height that given a Tree computes the height of the Tree
+#+begin_src haskell :solution
+data Tree a b = Leaf a
+              | Node (Tree a b) b (Tree a b)
+#+end_src
 
+2. Define a function ~height~ that given a Tree computes the height of
+   the ~Tree a b~. Leaves have height one.
 
-3. Define a function 'annotate', that given a 'Tree b Int' labels
+#+begin_src haskell :solution
+height              :: Tree a b -> Int
+height (Leaf _)     = 1
+height (Node l _ r) = 1 + max (height l) (height r)
+#+end_src
+
+3. Define a function ~annotate~, that given a ~Tree b Int~ labels
    every internal node with the minimum and maximum value appearing
    in the leaves in its subtree.
 
    e.g.
 
-   #+BEGIN_SRC
+   #+BEGIN_SRC haskell
    Node (Node (Leaf 3) "left" (Leaf 5))
         "root"
         (Leaf 1)
@@ -23,3 +34,66 @@
         (1,5)
         (Leaf 1)
    #+END_SRC
+
+
+#+begin_src haskell :solution
+annotate   :: Tree b Int -> Tree (Int,Int) Int
+annotate t = case annotate' t of
+               (t',_,_) -> t'
+
+-- | Computes the annotated tree, as well as the minimum and maximum in the tree
+annotate'              :: Tree b Int -> (Tree (Int,Int) Int, Int, Int)
+annotate' (Leaf x)     = (Leaf x, x, x)
+annotate' (Node l _ r) = let (l',lmin,lmax) = annotate' l
+                             (r',rmin,rmax) = annotate' r
+                             mi             = min lmin rmin
+                             ma             = max lmax rmax
+                         in (Node l' (mi,ma) r', mi, ma)
+#+end_src
+4. Write a function ~withDepth~ that annotates the tree by its depth. The
+   depth of a node ~v~ is the length of the path from the root to ~v~.
+
+#+begin_src haskell :solution
+withDepth :: Tree a b -> Tree (a,Int) (b,Int)
+withDepth = withDepth' 0
+
+withDepth'                :: Int -> Tree a b -> Tree (a,Int) (b,Int)
+withDepth' d (Leaf x)     = Leaf (x,d)
+withDepth' d (Node l x r) = Node (withDepth (d+1) l) (x,d) (withDepth (d+1) r)
+#+end_src
+
+5. Write a function ~trimWhen :: (b -> Bool) -> Tree a b -> Tree (Tree
+   a b) b~ that 'trims' the subtree depending on a predicate. I.e. we
+   replace the subtree by a Leaf (storing that subtree) when the
+   predicate is true.
+
+#+begin_src haskell :solution
+trimWhen       :: (a -> Bool) -> (b -> Bool) -> Tree a b
+               -> Tree (Maybe (Tree a b)) b
+trimWhen p q t = case t of
+                   Leaf x | p x           -> Leaf (Just t)
+                          | otherwise     -> Leaf Nothing
+                   Node l y r | q y       -> Leaf (Just t)
+                              | otherwise -> Node (trimWhen p q l) y (trimWhen p q r)
+#+end_src
+
+6.write a function ~bimapTree :: (a -> c) -> (b -> d) -> Tree a b ->
+Tree c d~.
+
+#+begin_src haskell :solution
+bimapTree       :: (a -> c) -> (b -> d) -> Tree a b -> Tree c d
+bimapTree f g t = case t of
+                    Leaf x     -> Leaf (f x)
+                    Node l x r -> Node (bimapTree f g l) (g x) (bimapTree f g r)
+#+end_src
+
+7. Write a function ~trim :: Int -> Tree a b -> Tree (Maybe (Tree a b)
+   b)~ that trims a tree at the given depth.
+
+#+begin_src haskell :solution
+trim   :: Int -> Tree a b -> Tree (Maybe (Tree a b) b)
+trim d = bimapTree fst fst . trimWhen p p . withDepth d
+  where
+    p        :: (c,Int) -> Bool
+    p (_,d') = d' == d
+#+end_src
