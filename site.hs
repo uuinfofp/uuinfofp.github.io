@@ -1,8 +1,7 @@
 --------------------------------------------------------------------------------
 {-# LANGUAGE OverloadedStrings #-}
-import           Data.Monoid (mappend)
-import           Hakyll
-
+import Hakyll
+import Text.Pandoc.Options
 
 --------------------------------------------------------------------------------
 main :: IO ()
@@ -42,13 +41,13 @@ main = hakyllWith myConfiguration $ do
 
     match "*.md" $ do
         route   $ setExtension "html"
-        compile $ pandocCompiler
+        compile $ pandocCompiler'
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
             >>= relativizeUrls
 
     match ("*.org" .||. "exercises/*.org") $ do
         route   $ setExtension "html"
-        compile $ pandocCompiler
+        compile $ pandocCompiler'
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
             >>= relativizeUrls
 
@@ -59,6 +58,16 @@ main = hakyllWith myConfiguration $ do
 copyAsIs = do
     route   idRoute
     compile copyFileCompiler
+
+
+pandocCompiler' = pandocCompilerWith defaultHakyllReaderOptions writerOptions
+  where
+    -- use mathjax
+    writerOptions = defaultHakyllWriterOptions {
+                      writerHTMLMathMethod = MathJax defaultMathJaxURL
+                      }
+
+
 
 myConfiguration :: Configuration
 myConfiguration = defaultConfiguration {

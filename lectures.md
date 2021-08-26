@@ -96,8 +96,9 @@ currently still subject to change.
     <tr>
       <td></td>
       <td>Thu 30 Sep</td>
-      <td><a href="slides/fp-08-project-design-test.pdf">8. Project management, design and testing</a></td>
-      <td><a href="http://book.realworldhaskell.org/read/testing-and-quality-assurance.html">Chapter 11</a> of <i>Real World Haskell</i></td>
+      <td><a href="slides/fp-08-project-design-test.pdf">8. Project
+  management and design</a></td>
+      <td></td>
       <td>Frank</td>
     </tr>
     <tr class="warning">
@@ -143,13 +144,20 @@ currently still subject to change.
     <tr>
       <td>42</td>
       <td>Tue 19 Oct</td>
-      <td><a href="slides/fp-12-lazy-eval.pdf">12. Lazy evaluation</a></td>
+      <td><a href="slides/fp-12-lazy-eval.pdf">12. Testing</a></td>
+      <td><a href="http://book.realworldhaskell.org/read/testing-and-quality-assurance.html">Chapter 11</a> of <i>Real World Haskell</i></td>
+      <td>Frank</td>
+    </tr>
+    <tr>
+      <td>42</td>
+      <td>Thu 21 Oct</td>
+      <td><a href="slides/fp-12-lazy-eval.pdf">13. Lazy evaluation</a></td>
       <td>Chapter 15</td>
       <td>Frank</td>
     </tr>
     <tr>
-      <td></td>
-      <td>Thu 21 Oct</td>
+      <td>43</td>
+      <td>Tue 26 Oct</td>
       <td><a href="slides/fp-13-monads-two.pdf">13. More monads and applicatives</a>
         <!-- <br><a href="slides/Lecture13.hs">Example code from lecture</a> -->
         </td>
@@ -157,25 +165,16 @@ currently still subject to change.
       <td>Matthijs</td>
     </tr>
     <tr>
-      <td>43</td>
-      <td>Tue 26 Oct</td>
+      <td></td>
+      <td>Thu 28 Oct</td>
       <td>Guest lecture: ?</td>
       <td></td>
       <td></td>
     </tr>
     <tr>
-      <td></td>
-      <td>Thu 28 Oct</td>
-      <td>Q&A session
-        <!-- <br><a href="slides/Lecture14-exam-prep-clean.hs">Example questions for during the lecture</a> -->
-        <!-- <br><a href="slides/Lecture14-syllabus.txt">Very brief descriptions of topics that will be in the final exam (see video of lecture for more elaboration)</a> -->
-        </td>
-      <td></td>
-      <td>Matthijs</td>
-    </tr><tr>
       <td>44</td>
       <td>Tue 2 Nov<br /></td>
-      <td>Q&A session
+      <td>Exam Preparation
         <!-- <br><a href="slides/Lecture14-exam-prep.hs">Solutions to example questions</a> -->
       </td>
       <td></td>

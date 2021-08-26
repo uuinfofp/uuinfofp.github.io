@@ -75,7 +75,7 @@ What happens if you evaluate ~fac (−3)~?
 
 3. Write down what you think the type of the following functions
    is. Do not use the interpreter (yet): ~tail~, ~length~, ~noOfSol~,
-   ~po2w~, ~div~, ~(/)~, and ~sqrt~?
+   ~pow2~, ~div~, ~(/)~, and ~sqrt~?
 
 4. How can you query the interpreter for the type of an expression?
 
@@ -84,3 +84,81 @@ What happens if you evaluate ~fac (−3)~?
 
 6. Verify the types of the above expressions with the interpreter. If
   your answers differ, write down why you think that is the case.
+
+** Implementing (an approximate) Square Root
+
+In this (set of) exercises we will write our own implementation of the
+square root function. More precisely, we write a function ~approxSqrt~
+that can approximate $\sqrt x$ for any value $x$.
+
+Consider the following two facts about the square root:
+
+1. if $y$ is a good approximation of $\sqrt{x}$ then $(1/2)(y+x/y)$ is a better approximation.
+2. $1$ is a (not-so) good approximation of $\sqrt{x}$
+
+We will say that the approximation of $\sqrt{x}$ is /good enough/ when
+$y^2$ is close to $x$. More specifically, when $|y^2 - x|$ is at most
+some threshold $\varepsilon$.
+
+1. Use the above two facts to implement a function ~approxSqrt ::
+   Double -> Double -> Double~ so that ~approxSqrt eps x~ returns a
+   value $y$ that is a /good enough/ (with respect to the given
+   threshold ~eps~)
+
+   Hint: use an recursive helper function.
+
+   #+begin_src haskell :solution
+   approxSqrt       :: Double -> Double -> Double
+   approxSqrt eps x = go 1
+     where
+       go y = let y' = 0.5 * (y + x/y)
+              in if goodEnough y then y' else go y'
+
+       goodEnough y = abs (y*y - x) < eps
+   #+end_src
+
+2. write an alternative implementation of ~approxSqrt~ using the
+   following function ~until :: (a -> Bool) -> (a -> a) -> a -> a~
+   which takes care of the actual iteration/recursion.
+
+   #+begin_src haskell
+   until stop f s | stop s    = s
+                  | otherwise = until stop f (f s)
+   #+end_src
+
+   Starting with the value ~s~, ~until stop f s~ repeatedly applies the
+   function ~f~ to get some new value until the predicate ~stop~ returns
+   True. Here are some examples:
+
+   #+begin_src haskell
+   >>> let double x = 2*x in until (>1000) double 1
+   1024
+   >>> let double x = 2*x in until (>0) double 1
+   1
+   #+end_src
+
+   #+begin_src haskell :solution
+   approxSqrt       :: Double -> Double -> Double
+   approxSqrt eps x = until goodEnough refine 1
+     where
+       goodEnough y = abs (y*y - x) < eps
+       refine y     = 0.5 * (y + x/y)
+   #+end_src
+
+3. Maybe we don't know in advance yet when the approximation is "good
+   enough", and instead we just want a list of ever more precise
+   approximations of $\sqrt{x}$. Write a function ~approxSqrts ::
+   Double -> [Double]~ that produces such a list.
+
+   #+begin_src haskell :solution
+   approxSqrts   :: Double -> [Double]
+   approxSqrts x = go 1
+     where
+       go y = y : go (0.5 * (y + x/y))
+
+   -- or using the prelude function 'iterate':
+   approxSqrts'   :: Double -> [Double]
+   approxSqrts' x = iterate refine 1
+     where
+       refine y = 0.5 * (y + x/y)
+   #+end_src
