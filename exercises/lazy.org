@@ -67,5 +67,10 @@ title: Lazy Evaluation
     #+END_SRC
 
 
-4. Implement the Sieve of Eratosthenes for computing prime numbers in Haskell. Recall that the algorithm works as follows.
-Start from the natural numbers greater than or equal to 2, keep 2 as it is a prime, then strike out all multiples of 2 from the rest of the numbers. The smallest remaining number is also a prime, so keep it. Next, remove all multiples of it from the remaining numbers. Etc.
+4. Implement the Sieve of Eratosthenes for computing prime numbers in
+   Haskell. Recall that the algorithm works as follows.  Start from
+   the natural numbers greater than or equal to 2, keep 2 as it is a
+   prime, then strike out all multiples of 2 from the rest of the
+   numbers. The smallest remaining number is also a prime, so keep
+   it. Next, remove all multiples of it from the remaining
+   numbers. Etc.

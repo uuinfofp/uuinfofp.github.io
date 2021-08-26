@@ -103,7 +103,7 @@ some threshold $\varepsilon$.
 1. Use the above two facts to implement a function ~approxSqrt ::
    Double -> Double -> Double~ so that ~approxSqrt eps x~ returns a
    value $y$ that is a /good enough/ (with respect to the given
-   threshold ~eps~)
+   threshold ~eps~).
 
    Hint: use an recursive helper function.
 

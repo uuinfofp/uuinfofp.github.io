@@ -317,8 +317,8 @@ given ~RBTree a~ satisfies all red-black tree properties.
 Consider the following data type of binary trees ~Tree a~ that we
 intend to use to implement binary search trees. We will store "real"
 elements (the elements we care about) only in the Leaves of the
-tree. The ~a~ field in a ~Node~ is used only as a routing element. (To
-guide searches)
+tree. The ~a~ field in a ~Node~ is used only as a routing element (to
+guide searches).
 
 #+begin_src haskell
 data Tree a = Leaf a
@@ -341,11 +341,12 @@ exampleTree = Node (Node (Leaf 1) 3 (Node (Leaf 4) 6 (Leaf 7))) 8 (Node (Leaf 9)
 
 Then ~elems exampleTree = [1, 4, 7, 9, 13]~
 
-Here, the only purpose of the element 8, for example, is to signal that all the elements in the left subtree
-are <= 8 and that all the elements in the right subtree are >= 8.
+Here, the only purpose of the element 8, for example, is to signal
+that all the elements in the left subtree are $\leq 8$ and that all
+the elements in the right subtree are $\geq 8$.
 
 1. Write a function ~complete~ that constructs a complete balanced
-   binary search tree out of an sorted list of $2^h$ elements (with
+   binary search tree out of an sorted list of $2^h$, with $h \geq 0$, elements (with
    those elements in the same order as given.).
 
    #+begin_src haskell :solution

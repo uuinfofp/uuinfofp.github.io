@@ -162,3 +162,40 @@ runTests = do
     find out whether your property can in fact discover that the
     mutated implementation no longer maps binary search trees to
     binary search trees.
+
+** Complete Binary Search Trees
+
+Recall the following ~Bin~ type that we used to represent "containers"
+of $2^h$ elements, and the ~complete :: Bin a -> Tree a~ function that
+could produce a complete binary tree out of a given container:
+
+#+begin_src haskell
+data Bin a = One a
+           | Double (Bin a) (Bin a)
+           deriving (Show,Eq,Ord)
+
+complete :: Bin a -> Tree a
+#+end_src
+
+1. Write a property test ~propCompleteCorrect :: Ord a => (Bin a ->
+   Tree a) -> Bin a -> Bool~ that makes sure ~complete~ is correct.
+
+   Hint: You may want to write a helper function that converts a ~Bin
+   a~ into a ~[a]~.
+
+   #+begin_src haskell :solution
+   import qualified Data.List as List
+
+   propCompleteCorrect completeImpl xs = let t = completeImpl xs
+                                         in List.sort (F.toList xs) == elems t && propIsBST t
+
+
+   propIsBST   :: Ord a => Tree a -> Bool
+   propIsBST t = case t of
+                   Leaf x     -> True
+                   Node l k r -> maximum' l <= k && propIsBST l && propIsBST r
+
+   toList bs = case bs of
+                 One x -> [x]
+                 Double ys zs -> toList ys ++ toList zs
+   #+end_src
