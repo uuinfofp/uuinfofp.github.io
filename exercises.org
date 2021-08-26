@@ -14,9 +14,9 @@ The following table lists exercises corresponding to the lectures.
 |                     | [[file:/exercises/hof.html][Higher order Functions]] |   38 |
 | Lectures 5. 6 and 7 | [[file:/exercises/datatypes.html][Datatypes]]              |   38 |
 |                     | [[file:/exercises/trees.html][Trees]]                  |   38 |
-| Lectures 9 and 10   | [[file:/exercises/io.html][Input/Output]]           |   41 |
-| Lecture 11          | [[file:/exercises/laws_and_induction.html][Laws and Induction.]]    |   42 |
-| Lecture 12          | [[file:/exercises/testing.html][Testing]]                |   40 |
+| Lectures 9 and 10   | [[file:/exercises/io.html][Input/Output]]           |   40 |
+| Lecture 11          | [[file:/exercises/laws_and_induction.html][Laws and Induction.]]    |   41 |
+| Lecture 12          | [[file:/exercises/testing.html][Testing]]                |   42 |
 | Lecture 13          | [[file:/exercises/lazy.html][Lazy Evaluation.]]       |   42 |
 | Lecture 14          | [[file:/exercises/functor_monad.html][Functors, Monads, etc.]] |   43 |
 
