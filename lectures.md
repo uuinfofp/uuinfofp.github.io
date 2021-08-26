@@ -149,7 +149,7 @@ currently still subject to change.
       <td>Frank</td>
     </tr>
     <tr>
-      <td>42</td>
+      <td></td>
       <td>Thu 21 Oct</td>
       <td><a href="slides/fp-12-lazy-eval.pdf">13. Lazy evaluation</a></td>
       <td>Chapter 15</td>
@@ -158,7 +158,7 @@ currently still subject to change.
     <tr>
       <td>43</td>
       <td>Tue 26 Oct</td>
-      <td><a href="slides/fp-13-monads-two.pdf">13. More monads and applicatives</a>
+      <td><a href="slides/fp-13-monads-two.pdf">14. More monads and applicatives</a>
         <!-- <br><a href="slides/Lecture13.hs">Example code from lecture</a> -->
         </td>
       <td>Chapter 12.2</td>
@@ -180,7 +180,7 @@ currently still subject to change.
       <td></td>
       <td>Matthijs</td>
     </tr><tr>
-      <td>44</td>
+      <td></td>
       <td>Thu 4 Nov<br /></td>
       <td>Q&A session
         <!-- <br><a href="slides/Lecture14-exam-prep.hs">Solutions to example questions</a> -->

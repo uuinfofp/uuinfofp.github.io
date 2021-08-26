@@ -199,3 +199,50 @@ complete :: Bin a -> Tree a
                  One x -> [x]
                  Double ys zs -> toList ys ++ toList zs
    #+end_src
+
+2. In order to actually run the above test using QuickCheck, we need
+   to be able to generate arbitrary values of type ~Bin~. Make ~Bin a~
+   an instance of ~Arbitrary~ to this end.
+
+   Recall that
+
+   1. a minimum implementation of such an instance implements the
+      member function: ~arbitrary :: Gen a~ where ~'Gen a~' is a
+      Generator of type ~a~.
+   2. ~Gen~ is a ~Monad~ (and thus also a ~Functor~).
+
+   Furthermore, you may want to use some of the following functions
+   for working with Generators:
+
+   #+begin_src haskell
+   -- | Generates a random element over the natural range of a.
+   chooseAny :: Random a => Gen a
+
+   -- | Randomly uses one of the given generators. The input list must be non-empty.
+   oneof :: [Gen a] -> Gen a
+
+   -- | Chooses one of the given generators, with a weighted random
+   -- distribution. The input list must be non-empty.
+   frequency :: [(Int, Gen a)] -> Gen a
+
+   -- | Generates one of the given values. The input list must be non-empty.
+   elements :: [a] -> Gen a
+   #+end_src
+
+   Note that it should be possible for your implementation to produce
+   all possible values of a ~Bin a~!
+
+   #+begin_src haskell :solution
+   instance Arbitrary a => Arbitrary (Bin a) where
+     arbitrary = oneof [ fmap One arbitrary
+                       , do l <- arbitrary
+                            r <- arbitrary
+                            return $ Double l r
+                       ]
+
+   -- or, using Applicative notation:
+   instance Arbitrary a => Arbitrary (Bin a) where
+     arbitrary = oneof [ One    <$> arbitrary
+                       , Double <$> arbitrary <*> arbitrary
+                       ]
+   #+end_src
