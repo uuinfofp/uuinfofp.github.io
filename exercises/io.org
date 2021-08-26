@@ -76,3 +76,67 @@ title: Input and Output
       ~System.IO~]]. Change the function you have written above using
       this function. What are the advantages and disadvantages of this
       approach?
+
+
+** Loading Binary Trees from a File
+
+Consider usual type of binary trees
+
+#+begin_src haskell
+data Tree a = Leaf a
+            | Node (Tree a) a (Tree a)
+            deriving (Show,Read,Eq)
+#+end_src
+
+and let "myTree.txt" be a text file that stores (the string
+representation as given by Show) of a ~Tree Int~.
+
+We will write a short program ~main :: IO ()~ that:
+
+   1. Loads the tree from "myTree.hs" in memory
+   2. asks the user for an number (an Int) ~q~
+   3. prints if ~q~ appears in the tree or not.
+
+You may use that
+
+  1. the function ~readFile :: FilePath -> IO String~ can load the data
+    from a file (as specified by the path) into a ~String~,
+  2. that the function ~putStrLn :: String -> IO ()~ can print a
+    ~String~ to standard output, and
+  3. that the function ~getLine :: IO String~ that can read a ~String~
+    from standard input.
+
+1. Write a function ~readTree :: IO (Tree Int)~ that only performs
+     step 1. from the above description
+
+     #+begin_src haskell :solution
+     readTree :: IO (Tree Int)
+     readTree = do s <- readFile "myTree.txt"
+                   return $ read s
+
+     -- or using that 'IO' is a Functor:
+     readTree = fmap read $ readFile "myTree.txt"
+     -- or
+     readTree = read <$> readFile "myTree.txt"
+     #+end_src
+
+2. Now write a full implementation of ~main :: IO ()~ that uses
+   ~readTree~ and performs all steps of the program sketched above.
+
+     #+begin_src haskell :solution
+     main :: IO ()
+     main = do
+        t <- readTree
+        putStrLn "Please input a number."
+        qs <- getLine
+        let q = read qs
+        putStrLn $ show (q `elem` elems t)
+
+     -- or, again using that IO is a Functor:
+     main :: IO ()
+     main = do
+        t <- readTree
+        putStrLn "Please input a number."
+        q <- read <$> getLine
+        putStrLn $ show (q `elem` elems t)
+     #+end_src
