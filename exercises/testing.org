@@ -206,10 +206,10 @@ complete :: Bin a -> Tree a
 
    Recall that
 
-   1. a minimum implementation of such an instance implements the
-      member function: ~arbitrary :: Gen a~ where ~'Gen a~' is a
-      Generator of type ~a~.
-   2. ~Gen~ is a ~Monad~ (and thus also a ~Functor~).
+   - a minimum implementation of such an instance implements the
+     member function: ~arbitrary :: Gen a~ where ~'Gen a~' is a
+     Generator of type ~a~.
+   - ~Gen~ is a ~Monad~ (and thus also a ~Functor~).
 
    Furthermore, you may want to use some of the following functions
    for working with Generators:

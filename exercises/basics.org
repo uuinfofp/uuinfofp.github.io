@@ -64,10 +64,41 @@ What happens if you evaluate ~fac (−3)~?
 5. Which intermediate results are being computed for the computation
    of ~2 `pow` 10~ in the old and the new definition?
 
+
+6. A predicate ~p :: Int -> Bool~ is /monotonic/ if, for any Int i for
+   which the predicate holds (~p i == True~) the predicate also holds
+   for any index j larger than i (~p j~ is also ~True~).
+
+   Given:
+   - a monotonic predicate p,
+   - a lowerbound  ~l :: Int~ for which ~p l == False~, and
+   - an upperbound ~u :: Int~ for which ~p u == True~,
+
+   implement a function ~binarySearch~ that can find the smallest Int
+   ~i~ for which ~p i~ is True in $O(\log (u - l))$ steps.
+
+   Also give the type of your function.
+
+   #+begin_src haskell :solution
+   binarySearch                    :: (Int -> Bool) -> Int -> Int -> Int
+   binarySearch p l u | u - l == 1 = u
+                      | p h        = binarySearch p l h
+                      | otherwise  = binarySearch p h u
+     where
+       h = (l + u) `div` 2
+
+   #+end_src
+
+7. Give the most general type for the function ~binarySearch~ you defined above.
+
+   #+begin_src haskell :solution
+   binarySearch                    :: Integral i => (i -> Bool) -> i -> i -> i
+   #+end_src
+
 ** Basic Types
 
 1. Determine the types of ~3~, ~even~, and ~even 3~.  How can you
-  figure out the latter?
+   figure out the latter?
 
 2. Determine also the type of ~head~, ~[1,2,3]~, and ~head
   [1,2,3]~. What happens when applying a polymorphic function (like

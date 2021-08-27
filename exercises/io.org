@@ -99,12 +99,13 @@ We will write a short program ~main :: IO ()~ that:
 
 You may use that
 
-  1. the function ~readFile :: FilePath -> IO String~ can load the data
+  - the function
+    ~readFile :: FilePath -> IO String~ can load the data
     from a file (as specified by the path) into a ~String~,
-  2. that the function ~putStrLn :: String -> IO ()~ can print a
-    ~String~ to standard output, and
-  3. that the function ~getLine :: IO String~ that can read a ~String~
-    from standard input.
+  - that the function
+    ~putStrLn :: String -> IO ()~ can print a ~String~ to standard output, and
+  - that the function
+    ~getLine :: IO String~ that can read a ~String~ from standard input.
 
 1. Write a function ~readTree :: IO (Tree Int)~ that only performs
      step 1. from the above description

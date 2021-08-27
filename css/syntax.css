@@ -41,6 +41,16 @@ h2 code {
   background-color: inherit;
 }
 
+h3 {
+  display: list-item;
+  list-style-type: disc;
+  list-style-position: inside;
+}
+
+h3 code {
+  color: inherit;
+  background-color: inherit;
+}
 
 #main {
   padding-bottom: 100px;
