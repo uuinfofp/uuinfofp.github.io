@@ -1,5 +1,5 @@
 ---
-title: Labs
+title: Practicals
 ---
 
 ### Assignments
@@ -31,20 +31,20 @@ title: Labs
 </tr>
 <tr>
 <td>Tue 12 Oct 23:59</td>
-<td><a href="practicals/Assignment4.pdf">3. Type classes</a></td>
-<td><a href="practicals/Assignment4.hs"><tt>Assignment4.hs</tt></a></td>
-<td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
-</tr>
-<tr>
-<td>Wed 13 Oct 23:59</td>
-<td><a href="practicals/project.pdf">4. Game, design document</a></td>
+<td><a href="practicals/project.pdf">3. Game, design document</a></td>
 <td><a href="practicals/gloss-counter.zip">Example game</a><br/>
     <a href="practicals/example_design.pdf">Example design document</a>
 </td>
 <td><a href="http://uu.blackboard.com">Blackboard</a></td>
 </tr>
 <tr>
-<td>Wed 3 Nov 23:59</td>
+<td>Tue 26 Oct 23:59</td>
+<td><a href="practicals/Assignment4.pdf">4. Type classes</a></td>
+<td><a href="practicals/Assignment4.hs"><tt>Assignment4.hs</tt></a></td>
+<td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
+</tr>
+<tr>
+<td>Sun 14 Nov 23:59</td>
 <td><a href="practicals/project.pdf">5. Game, implementation</a></td>
 <td><a href="practicals/gloss-counter.zip">Example game</a></td>
 <td><a href="http://uu.blackboard.com">Blackboard</a></td>
@@ -54,17 +54,25 @@ title: Labs
 ### Practicals from previous years
 
 Even if you passed the practicals last year, you still need to submit
-the solutions via DOMJudge and do a new game practical from
-scratch. The new restrictions on style apply, so you might need to
-modify your submissions from previous years.
+the solutions via DOMJudge and do a new game practical from scratch.
 
 ### Coding style
 
-The most important question you should ask yourself to judge your own coding style is to ask yourself the question **"If another proficient Haskell programmer reads my code, would this be the most readable code I could have written?"** Where *readable* can be understood as the time it would take him or her to understand what your code tries to accomplish and how it accomplishes this.
+The most important question you should ask yourself to judge your own
+coding style is to ask yourself the question **"If another proficient
+Haskell programmer reads my code, would this be the most readable code
+I could have written?"** Where *readable* can be understood as the
+time it would take him or her to understand what your code tries to
+accomplish and how it accomplishes this.
 
-* By far the most important factor that affects readability (and thus your grade) is proper use and reuse of existing library functions and syntactic sugar.
-* Use the proper idioms (e.g., use `Nothing` instead `(-1)` to indicate failure of a function.)
-* Another factor impacting readability is proper indentation of your code, choice of variable and function names, and commenting your code.
+* By far the most important factor that affects readability (and thus
+  your grade) is proper use and reuse of existing library functions
+  and syntactic sugar.
+* Use the proper idioms (e.g., use `Nothing` instead `(-1)` to
+  indicate failure of a function.)
+* Another factor impacting readability is proper indentation of your
+  code, choice of variable and function names, and commenting your
+  code.
 
 To give a concrete example: can you figure out what the following function does?
 

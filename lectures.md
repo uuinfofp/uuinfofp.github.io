@@ -29,8 +29,7 @@ currently still subject to change.
     <tr>
       <td>36</td>
       <td>Tue 7 Sep</td>
-      <td><a href="slides/fp-00-course-intro_2020.pdf">0. Course introduction</a>
-        <br><a href="slides/fp-01-intro.pdf">1. FP? Haskell?</a></td>
+      <td>1. Functional Programming? Haskell?</td>
       <td>Chapters 1 and 2</td>
       <td>Frank</td>
     </tr>
@@ -189,7 +188,7 @@ currently still subject to change.
       <td>Matthijs</td>
     </tr><tr class="warning">
       <td>45</td>
-      <td>Tue 9 Nov 13:30-16:30</td>
+      <td>Thu 11 Nov 19:00-22:00</td>
       <td><b>Final exam</b></td>
       <td></td>
       <td></td>
