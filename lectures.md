@@ -29,7 +29,7 @@ currently still subject to change.
     <tr>
       <td>36</td>
       <td>Tue 7 Sep</td>
-      <td>1. Functional Programming? Haskell?</td>
+      <td><a href="slides/fp-01-intro.pdf">1. Functional Programming? Haskell?</a></td>
       <td>Chapters 1 and 2</td>
       <td>Frank</td>
     </tr>
