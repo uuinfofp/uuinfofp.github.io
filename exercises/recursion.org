@@ -461,3 +461,55 @@ sum/ of ~l~ is the maximum sum over all possible segments of ~l~.
    maxSegSum :: [Int] -> Int
    maxSegSum = snd . maxPrefixAndSegSum
    #+end_src
+
+* Counting Trues
+
+Let ~countTrues :: [Bool] -> [int]~ be a function such that ~countTrues bs~ computes, for
+each prefix of the list ~bs~, the number of ~True~ s in the list.
+
+1. Write ~countTrues~ using direct recursion.
+
+   Hint: Take another look at your implementation of ~inits~ first.
+
+   #+begin_src haskell :solution
+   countTrues            :: [Bool] -> [Int]
+   countTrues []         = [0]
+   countTrues (True:bs)  = 0 : map (+1) (countTrues bs)
+   countTrues (False:bs) = 0 : countTrues bs
+   #+end_src
+
+2. Write ~countTrues~ using a combination of existing functions.
+
+   #+begin_src haskell :solution
+   countTrues    :: [Bool] -> [Int]
+   countTrues bs = map (length . filter (== True)) . inits $ bs
+
+   -- note that we can eta-reduce to
+   countTrues :: [Bool] -> [Int]
+   countTrues = map (length . filter (== True)) . inits
+   #+end_src
+
+3. Write ~countTrues~ using an accumulator so that your
+   implementation runs in linear time.
+
+   #+begin_src haskell :solution
+   countTrues :: [Bool] -> [Int]
+   countTrues = count [0]
+     where
+       -- invariant: count acc xs == (reverse acc) ++ countTrues xs
+       count acc          []        = reverse acc
+       count acc@(cur:_) (True:bs)  = count (cur+1 : acc) bs
+       count acc@(cur:_) (False:bs) = count (cur   : acc) bs
+   #+end_src
+
+4. Write an alternative implementation of ~countTrues~ (not using an
+   accumulator) that also runs in linear time.
+
+   #+begin_src haskell :solution
+   countTrues :: [Bool] -> [Int]
+   countTrues = reverse . count . reverse
+     where
+       count []         = [0]
+       count (True :bs) = let res@(cur:_) = count bs in cur + 1 : res
+       count (False:bs) = let res@(cur:_) = count bs in cur     : res
+   #+end_src
