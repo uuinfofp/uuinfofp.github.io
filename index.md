@@ -71,12 +71,17 @@ submitted to <a href="mailto:F.Staals@uu.nl">Frank Staals</a>
 <!--   The mid-term exam has been moved to be on Tuesday 6 October, 8:30-10:30. Please note that this means that there will be a lecture and exercise class on Thursday 1 October. There will not be a lab session on 6 October. -->
 
 
-#### *2020-08-24* : GHC Installation Instructions
+#### *2021-09-02* : GHC Installation Instructions
 
-  Jip, one of our TAs, has written detailed instructions on how he
-  set up his windows machine for Haskell development. You can find his
-  guide [here](practicals/windows_instructions.pdf).
+  Unfortunately, installing "Haskell" is often somewhat
+  troublesome. The instructions for this year in the [introduction
+  practical assignment](practicals/Assignment0.pdf) suggest that you
+  install GHC through a tool called "stack" that you will need for the
+  final project. Alternatively, you can install GHC directly. Last
+  year, Jip, one of our TAs, has written detailed instructions on how
+  he set up his windows machine for Haskell development. You can find
+  his guide [here](practicals/windows_instructions.pdf).
 
   For OS X (High Sierra or newer)
   [these](https://medium.com/@dogwith1eye/setting-up-haskell-in-vs-code-on-macos-d2cc1ce9f60a)
-  detailed instructions on how to set up your system may be useful. -->
+  detailed instructions on how to set up your system may be useful.
