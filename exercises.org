@@ -5,20 +5,20 @@ title: Exercises
 The following table lists exercises corresponding to the lectures.
 
 #+ATTR_HTML: :class table table-striped
-| Lecture             | Topic                  | Week |
-|---------------------+------------------------+------|
-| Lectures 1 and 2    | [[file:/exercises/basics.html][Basics]]                 |   36 |
-| Lectures 2 and 3    | [[file:/exercises/recursion.html][Recursion on Lists]]     |   36 |
-| Lecture 3           | [[file:/exercises/types.html][Type Inference]]         |   37 |
-| Lecture 4           | [[file:/exercises/foldr.html][Folds]]                  |   37 |
-|                     | [[file:/exercises/hof.html][Higher order Functions]] |   38 |
-| Lectures 5. 6 and 7 | [[file:/exercises/datatypes.html][Datatypes]]              |   38 |
-|                     | [[file:/exercises/trees.html][Trees]]                  |   38 |
-| Lectures 9 and 10   | [[file:/exercises/io.html][Input/Output]]           |   40 |
-| Lecture 11          | [[file:/exercises/laws_and_induction.html][Laws and Induction.]]    |   41 |
-| Lecture 12          | [[file:/exercises/testing.html][Testing]]                |   42 |
-| Lecture 13          | [[file:/exercises/lazy.html][Lazy Evaluation.]]       |   42 |
-| Lecture 14          | [[file:/exercises/functor_monad.html][Functors, Monads, etc.]] |   43 |
+| Lecture             | Topic                  |  Week |
+|---------------------+------------------------+-------|
+| Lectures 1 and 2    | [[file:/exercises/basics.html][Basics]]                 |    36 |
+| Lecture 2           | [[file:/exercises/types.html][Type Inference]]         | 36-37 |
+| Lectures 2 and 3    | [[file:/exercises/recursion.html][Recursion on Lists]]     | 36-37 |
+| Lecture 4           | [[file:/exercises/foldr.html][Folds]]                  |    37 |
+|                     | [[file:/exercises/hof.html][Higher order Functions]] |    38 |
+| Lectures 5. 6 and 7 | [[file:/exercises/datatypes.html][Datatypes]]              |    38 |
+|                     | [[file:/exercises/trees.html][Trees]]                  |    38 |
+| Lectures 9 and 10   | [[file:/exercises/io.html][Input/Output]]           |    40 |
+| Lecture 11          | [[file:/exercises/laws_and_induction.html][Laws and Induction.]]    |    41 |
+| Lecture 12          | [[file:/exercises/testing.html][Testing]]                |    42 |
+| Lecture 13          | [[file:/exercises/lazy.html][Lazy Evaluation.]]       |    42 |
+| Lecture 14          | [[file:/exercises/functor_monad.html][Functors, Monads, etc.]] |    43 |
 
 
 ** Additional Exercises
