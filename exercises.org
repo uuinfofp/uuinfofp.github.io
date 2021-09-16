@@ -10,7 +10,7 @@ The following table lists exercises corresponding to the lectures.
 | Lectures 1 and 2    | [[file:/exercises/basics.html][Basics]]                 |    36 |
 | Lecture 2           | [[file:/exercises/types.html][Type Inference]]         | 36-37 |
 | Lectures 2 and 3    | [[file:/exercises/recursion.html][Recursion on Lists]]     | 36-37 |
-| Lecture 4           | [[file:/exercises/foldr.html][Folds]]                  |    37 |
+| Lecture 4           | [[file:/exercises/foldr.html][Folds]]                  | 37-38 |
 |                     | [[file:/exercises/hof.html][Higher order Functions]] |    38 |
 | Lectures 5. 6 and 7 | [[file:/exercises/datatypes.html][Datatypes]]              |    38 |
 |                     | [[file:/exercises/trees.html][Trees]]                  |    38 |
