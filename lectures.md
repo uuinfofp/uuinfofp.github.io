@@ -57,8 +57,8 @@ currently still subject to change.
       <td>Thu 16 Sep</td>
       <td><a href="slides/fp-04-h-o-functions.pdf">4. Higher-order functions</a>
         <br><a href="applyAllFold.html">Writing <tt>applyAll</tt> as a fold</a>
-        <!-- <br><a href="slides/Lecture4.hs">Example Haskell code from lecture</a> -->
-        <!-- <br><a href="slides/Lecture4.py">Example Python code from lecture</a> -->
+        <br><a href="slides/Lecture4.hs">Example Haskell code from lecture</a>
+        <br><a href="slides/Lecture4.py">Example Python code from lecture</a>
         </td>
       <td>Chapter 7 and 4.5-4.6</td>
       <td>Matthijs</td>
@@ -67,7 +67,7 @@ currently still subject to change.
       <td>38</td>
       <td>Tue 21 Sep</td>
       <td><a href="slides/fp-05-data-classes.pdf">5. Data types and type classes</a>
-        <!-- <br><a href="slides/Lecture5.hs">Example code from lecture</a> -->
+        <br><a href="slides/Lecture5.hs">Example code from lecture</a>
         </td>
       <td>Chapter 8 (until 8.6)</td>
       <td>Matthijs</td>
