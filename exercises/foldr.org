@@ -222,8 +222,8 @@ result.
 #+BEGIN_SRC haskell :solution
 union xs ys = foldr f e ys
   where
-    f y r | y `elem` xs = r
-          | else        = r ++ [y]
+    f y r | y `elem` r  = r
+          | otherwise   = r ++ [y]
     e = xs
 #+END_SRC
 
@@ -240,8 +240,8 @@ If the first list contains duplicates, so will the result.
 #+BEGIN_SRC haskell :solution
 intersect xs ys = foldr f e ys
   where
-    f y r | y `elem` xs = y:r
-          | otherwise   = r
+    f y r | y `elem` r = y:r
+          | otherwise  = r
     e = []
 #+END_SRC
 

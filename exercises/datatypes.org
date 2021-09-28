@@ -82,7 +82,7 @@ symbol, since it is already defined in the ~Prelude~.
     have a cassette with many cogs on the rear wheel, and some of them may
     have a second chainring in the front (doubling the number of available
     gears). City bikes do not have gears. However, unlike the other types
-    of bikes they have either in the front, the back, or on both
+    of bikes they have fenders either in the front, the back, or on both
     wheels). Fenders themselves come in two types; they are either made
     from plastic or metal.
     #+END_QUOTE
