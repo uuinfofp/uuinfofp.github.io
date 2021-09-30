@@ -361,7 +361,7 @@ the elements in the right subtree are $> 8$.
    *Bonus*: Write ~complete~ so that it runs in linear time.
 
 2. Give the type of a function ~delete~, such that, given an element
-   ~a~ and tree ~t~, ~~delete a t~ looks whether ~a~ is present in ~t~
+   ~a~ and tree ~t~, ~delete a t~ looks whether ~a~ is present in ~t~
    and if so, removes ~a~ from ~t~. The function delete should always
    be able to produce a valid element of the result type, i.e. it may
    not produce an error.
