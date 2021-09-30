@@ -343,7 +343,7 @@ Then ~elems exampleTree = [1, 4, 7, 9, 13]~
 
 Here, the only purpose of the element 8, for example, is to signal
 that all the elements in the left subtree are $\leq 8$ and that all
-the elements in the right subtree are $\geq 8$.
+the elements in the right subtree are $> 8$.
 
 1. Write a function ~complete~ that constructs a complete balanced
    binary search tree out of an sorted list of $2^h$, with $h \geq 0$, elements (with
@@ -360,24 +360,7 @@ the elements in the right subtree are $\geq 8$.
 
    *Bonus*: Write ~complete~ so that it runs in linear time.
 
-2. Give a data type ~Bin a~ that exactly represents containers
-   of length $2^h$, for $h \geq 0$. So that we could, instead, have a *total* function
-
-   #+begin_src haskell
-   complete :: Bin a -> Tree a
-   complete = undefined
-   #+end_src
-
-   that constructs a complete balanced binary search tree out of the
-   elements of its input container.
-
-   #+begin_src haskell :solution
-   data Bin a = One a
-              | Double (Bin a) (Bin a)
-              deriving (Show,Eq,Ord)
-   #+end_src
-
-3. Give the type of a function ~delete~, such that, given an element
+2. Give the type of a function ~delete~, such that, given an element
    ~a~ and tree ~t~, ~~delete a t~ looks whether ~a~ is present in ~t~
    and if so, removes ~a~ from ~t~. The function delete should always
    be able to produce a valid element of the result type, i.e. it may
@@ -387,7 +370,7 @@ the elements in the right subtree are $\geq 8$.
    delete :: Ord a => a -> Tree a -> Maybe (Tree a)
    #+end_src
 
-4. Please implement the above function ~delete~.
+3. Please implement the above function ~delete~.
 
    #+begin_src haskell :solution
    delete x t = case t of
@@ -402,7 +385,7 @@ the elements in the right subtree are $\geq 8$.
    #+end_src
 
 
-5. Use higher order functions (i.e. ~foldr~, ~foldl'~, ~map~, ~filter~) to
+4. Use higher order functions (i.e. ~foldr~, ~foldl'~, ~map~, ~filter~) to
    write a function ~batchDelete~ that removes all elements from a
    given list from a tree. Give the type of this function as well.
 
