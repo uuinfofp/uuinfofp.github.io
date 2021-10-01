@@ -202,18 +202,16 @@ data Prop = Basic Bool | Var Char
 
    #+BEGIN_SRC haskell :solution
    printProp :: Prop -> String
-   printProp (Basic b) = show b
-   printProp (Var v) = [v]
-   printProp (Not p)
-     = "not " ++ parensPrintProp p
-   printProp (p1 :/\: p2) =
-     = parensPrintProp p1 ++ " /\ " ++ parensPrintProp p2
-   printProp (p1 :\/: p2) =
-     = parensPrintProp p1 ++ " \/ " ++ parensPrintProp p2
-   printProp (p1 :=>: p2) =
-     = parensPrintProp p1 ++ " => " ++ parensPrintProp p2
-     where parens s = "(" ++ s ++ ")"
-           parensPrintProp p = parens (printProp p)
+   printProp prop = case prop of
+                      Basic b    -> show b
+                      Var v      -> [v]
+                      Not p      -> "not " ++ parensPrintProp p
+                      p1 :/\: p2 -> parensPrintProp p1 ++ " /\\ " ++ parensPrintProp p2
+                      p1 :\/: p2 -> parensPrintProp p1 ++ " \\/ " ++ parensPrintProp p2
+                      p1 :=>: p2 -> parensPrintProp p1 ++ " =>  " ++ parensPrintProp p2
+     where
+       parens s = "(" ++ s ++ ")"
+       parensPrintProp p = parens (printProp p)
    #+END_SRC
 
 2. Define a new ~printProp' :: Prop -> String~ which uses as few

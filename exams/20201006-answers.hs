@@ -7,7 +7,36 @@ import Data.Maybe
 
 
 --------------------------------------------------------------------------------
--- * 1. A puzzle -- User defined data types
+-- * 1. Eliminate multiples -- Programming, Recursion, List Comprehensions, Higher Order Functions
+--------------------
+
+
+-- (a) 
+multipleFS :: Int -> Bool
+multipleFS n = n `mod` 5 == 0 || n `mod` 7 == 0
+
+-- NOTE: The example output for b actually removes multiples of 3 and
+-- 5 rather than 5 and 7. We changed the prhasing of the question at
+-- some point but forgot to update the examples
+
+-- (b) 
+em1 :: [Int] -> [Int] 
+em1 [] = [] 
+em1 (x : xs) | multipleFS x = em1 xs 
+             | otherwise = x : em1 xs
+
+-- (c) 
+em2 :: [Int] -> [Int] 
+em2 xs = [x | x <- xs, not (multipleFS x)]
+
+-- (d) 
+em3 :: [Int] -> [Int] 
+em3 = filter (not . multipleFS)
+-- or em3 = foldr (\x r -> if multipleFS x then r else x : r) []
+
+
+--------------------------------------------------------------------------------
+-- * 2. A puzzle -- User defined data types
 --------------------
 
 data Op = Plus | Minus | Multiply | Divide
@@ -58,27 +87,6 @@ equalsFive = map fst . filter ((==5) . snd) . exprs
 
 
 
---------------------------------------------------------------------------------
--- * 2. Eliminate multiples -- Programming, Recursion, List Comprehensions, Higher Order Functions
---------------------
--- (a) 
-multipleFS :: Int -> Bool
-multipleFS n = n `mod` 5 == 0 || n `mod` 7 == 0
-
--- (b) 
-em1 :: [Int] -> [Int] 
-em1 [] = [] 
-em1 (x : xs) | multipleFS x = em1 xs 
-             | otherwise = x : em1 xs
-
--- (c) 
-em2 :: [Int] -> [Int] 
-em2 xs = [x | x <- xs, not (multipleFS x)]
-
--- (d) 
-em3 :: [Int] -> [Int] 
-em3 = filter (not . multipleFS)
--- or em3 = foldr (\x r -> if multipleFS x then r else x : r) []
 
 
 
@@ -115,33 +123,9 @@ empty :: MultiMap k a
 empty = emptyMap
 
 --------------------------------------------------------------------------------
--- * 4. Multiple choice
+-- * 4. Primitive recursion on natural numbers -- Folds
 --------------------
--- a.  1. B
---     2. A
---     3. B
---     4. A
---     5. B
---     6. A
---     7. B
 
--- b.  1. A
---     2. B
---     3. A
---     4. A
---     5. B
-
--- c.  1. B
---     2. B
---     3. A
---     4. A
---     5. A
---     6. B
-
-
---------------------------------------------------------------------------------
--- * 5. Primitive recursion on natural numbers -- Folds
---------------------
 -- We consider a type of natural numbers
 data Nat = Zero | Succ Nat
 -- We think of Zero as the number 0 and Succ n as the number n + 1.
@@ -180,6 +164,31 @@ mystery :: Nat -> Nat
 mystery Zero     = Zero 
 mystery (Succ n) = n
 -- hence, it sends "0" to "0" and "7" to "6"
+
+--------------------------------------------------------------------------------
+-- * 5. Multiple choice
+--------------------
+-- a.  1. B (incorrect) -- 5 is missing
+--     2. B (incorrect) -- multiple copies of every element
+--     3. A (correct)
+--     4. A (correct)
+--     5. A (correct)
+--     6. B (incorrect)  -- 1 is missing
+--     7. B (incorrect) -- 5 is missing
+
+-- c.  1. A (Well-typed)
+--     2. B (Ill-typed) -- cannot apply (\x -> x +1) to []
+--     3. A (Well-typed)
+--     4. A (Well-typed)
+--     5. B (Ill-Typed) -- g needs to have a function type, i.e. a -> b, *and* g needs to have type 'a' (otherwise you cannot apply g to it.). So we need a ~ a -> b, which cannot be the case.
+
+-- e.  1. B (incorrect) -- initial a too many
+
+--     2. A (correct)
+--     3. A (Correct)
+--     4. B (Incorrect) -- doesn't typecheck
+--     5. A (Correct)
+--     6. B (Incorrect) elements in the wrong order
 
 
 --------------------------------------------------------------------------------
