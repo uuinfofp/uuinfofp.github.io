@@ -187,8 +187,8 @@ mystery (Succ n) = n
 --     2. A (correct)
 --     3. A (Correct)
 --     4. B (Incorrect) -- doesn't typecheck
---     5. A (Correct)
---     6. B (Incorrect) elements in the wrong order
+--     5. A (Incorrect) -- puts an separator at the end -> "xyz" -> "x,y,z,"
+--     6. B (Incorrect) -- elements in the wrong order
 
 
 --------------------------------------------------------------------------------
