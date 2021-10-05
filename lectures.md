@@ -102,7 +102,7 @@ currently still subject to change.
     </tr>
     <tr class="warning">
       <td>40</td>
-      <td>Tue 5 Oct 11:30-14:30</td>
+      <td>Tue 5 Oct 11:30-13:30</td>
       <td><b>Midterm exam</b></td>
       <td></td>
       <td></td>

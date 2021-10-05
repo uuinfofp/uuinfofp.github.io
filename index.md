@@ -43,26 +43,26 @@ submitted to <a href="mailto:F.Staals@uu.nl">Frank Staals</a>
   Jip, one of our TAs', has compiled a document with extra exercises to practice type inference questions. You can find his
   exercises [here](practicals/type-inference-exercises.pdf). -->
 
-<!-- 
 
-<!-- #### *2020-10-15* : Optional Bonus Assignment -->
 
-<!--   To receive extra credit (see Description/Grading for precise grading scheme) -->
-<!--   we encourage you to work in pairs to make a 5-10-minute video about a Haskell package or language -->
-<!--   extension. The point of the video will be to explain the purpose of the package/extension as well -->
-<!--   as to give examples of how to use it. The video should be able to serve as a how-to guide -->
-<!--   for others getting started with Haskell. You can think of the target audience as your co-students.  -->
+#### *2021-10-5* : Optional Bonus Assignment
+
+  To receive extra credit (see Description/Grading for precise grading scheme)
+  we encourage you to work in pairs to make a 5-10-minute video about a Haskell package or language
+  extension. The point of the video will be to explain the purpose of the package/extension as well
+  as to give examples of how to use it. The video should be able to serve as a how-to guide
+  for others getting started with Haskell. You can think of the target audience as your co-students. 
   
-<!--   You can find an overview of Haskell packages on <a href="http://hackage.haskell.org/">Hackage</a> -->
-<!--   and of language extensions in <a href="https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/lang.html"> the GHC documentation</a>. -->
+  You can find an overview of Haskell packages on <a href="http://hackage.haskell.org/">Hackage</a>
+  and of language extensions in <a href="https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/lang.html"> the GHC documentation</a>.
 
-<!--   If you have a package or extension in mind that you would like to -->
-<!--   make a video about, please contact <a href="mailto:F.Staals@uu.nl">Frank Staals</a> -->
-<!--   or <a href="mailto:m.i.l.vakar@uu.nl">Matthijs Vákár</a> to ensure that the choice is  -->
-<!--   appropriate. -->
+  If you have a package or extension in mind that you would like to
+  make a video about, please contact <a href="mailto:F.Staals@uu.nl">Frank Staals</a>
+  or <a href="mailto:m.i.l.vakar@uu.nl">Matthijs Vákár</a> to ensure that the choice is 
+  appropriate.
 
-<!--   You can find more information and some examples for the Bonus -->
-<!--   assignment [here](optional.html). -->
+  You can find more information and some examples for the Bonus
+  assignment [here](optional.html).
 
 
 
