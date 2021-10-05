@@ -132,6 +132,7 @@ data Tree a = Leaf | Node (Tree a) a (Tree a)
    #+begin_src haskell :solution
    data Tree a b = Leaf a
                  | Node (Tree a b) b (Tree a b)
+                 deriving (Show,Eq)
    #+end_src
 
 2. Define a function ~height~ that given a Tree computes the height of
@@ -185,13 +186,15 @@ data Tree a = Leaf | Node (Tree a) a (Tree a)
 
    withDepth'                :: Int -> Tree a b -> Tree (a,Int) (b,Int)
    withDepth' d (Leaf x)     = Leaf (x,d)
-   withDepth' d (Node l x r) = Node (withDepth (d+1) l) (x,d) (withDepth (d+1) r)
+   withDepth' d (Node l x r) = Node (withDepth' (d+1) l) (x,d) (withDepth' (d+1) r)
    #+end_src
 
-5. Write a function ~trimWhen :: (b -> Bool) -> Tree a b -> Tree (Tree
-   a b) b~ that 'trims' the subtree depending on a predicate. I.e. we
-   replace the subtree by a Leaf (storing that subtree) when the
-   predicate is true.
+5. Write a function ~trimWhen :: (a -> Bool) -> (b -> Bool) -> Tree a
+   b -> Tree (Tree a b) b~ that 'trims' the subtree depending on two
+   predicates ~p :: a -> Bool~ and ~q :: b -> Bool~ . In particular,
+   predicate ~p x~ returns True if and only if we should trim the leaf
+   storing some value ~x~ and ~q y~ returns True if and only if the
+   subtree whose root stores a ~y~ should be trimmed.
 
    #+begin_src haskell :solution
    trimWhen       :: (a -> Bool) -> (b -> Bool) -> Tree a b
@@ -216,11 +219,14 @@ data Tree a = Leaf | Node (Tree a) a (Tree a)
    b)~ that trims a tree at the given depth.
 
    #+begin_src haskell :solution
-   trim   :: Int -> Tree a b -> Tree (Maybe (Tree a b) b)
-   trim d = bimapTree fst fst . trimWhen p p . withDepth d
+   trim   :: Int -> Tree a b -> Tree (Maybe (Tree a b)) b
+   trim d = bimapTree f fst . trimWhen p p . withDepth
      where
        p        :: (c,Int) -> Bool
        p (_,d') = d' == d
+
+       f Nothing  = Nothing
+       f (Just t) = Just $ bimapTree fst fst t
    #+end_src
 
 ** TT-Trees
@@ -253,7 +259,7 @@ data Tree a = Leaf | Node (Tree a) a (Tree a)
                             Node2 s l r   -> g2 s (foldTTTree f g2 g3 l) (foldTTTree f g2 g3 r)
                             Node3 s l m r -> g3 s (foldTTTree f g2 g3 l) (foldTTTree f g2 g3 m) (foldTTTree f g2 g3 r)
 
-   mapTTTree f = foldTTTree f Node2 Node3
+   mapTTTree f = foldTTTree (Leaf . f) Node2 Node3
    #+END_SRC
 
 4. Define function ~sized~ that, given an ~Int~ $n$, returns all
