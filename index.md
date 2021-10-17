@@ -54,7 +54,7 @@ submitted to <a href="mailto:F.Staals@uu.nl">Frank Staals</a>
   for others getting started with Haskell. You can think of the target audience as your co-students. 
   
   You can find an overview of Haskell packages on <a href="http://hackage.haskell.org/">Hackage</a>
-  and of language extensions in <a href="https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/lang.html"> the GHC documentation</a>.
+  and of language extensions in <a href="http://downloads.haskell.org/~ghc/latest/docs/html/users_guide/exts.html"> the GHC documentation</a>.
 
   If you have a package or extension in mind that you would like to
   make a video about, please contact <a href="mailto:F.Staals@uu.nl">Frank Staals</a>
