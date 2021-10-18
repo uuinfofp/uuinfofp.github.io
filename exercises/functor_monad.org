@@ -121,7 +121,7 @@ title: Functors, monads, applicatives and traversables
   differs in behaviour from the error accumulation instance we defined previously.
 
     #+BEGIN_SRC haskell :solution
-    instance Monoid m => Monad (Error m) where
+    instance Monad (Error m) where
       return = OK
       (OK a) >>= f = f a
       (Error m) >>= _ = Error m
