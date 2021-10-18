@@ -228,7 +228,7 @@ title: Functors, monads, applicatives and traversables
 
 
   #+BEGIN_SRC haskell :solution
-  get = unStatePass (\((), s) -> (s, s)) ()
+  get = unStatePass' (\((), s) -> (s, s))
   #+END_SRC
   
   #+BEGIN_SRC haskell :solution
