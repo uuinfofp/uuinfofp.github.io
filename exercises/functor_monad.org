@@ -304,7 +304,7 @@ title: Functors, monads, applicatives and traversables
     callCCHelp psi k = psi (const k) k
     #+END_SRC
 
-  We see that code written in the ~Cont r~ monad is equivalent to code in "continuation passing style", i.e. code where in place of functions of type ~A -> B~ we instead write functions of type ~(B -> r) -> (A -> r)~ that operates in reverse on "continuations".
+  We see that code written in the ~Cont r~ monad is equivalent to code in "continuation passing style", i.e. code where in place of functions of type ~A -> B~ we instead write functions of type ~(B -> r) -> (A -> r)~ that operate in reverse on "continuations".
 
   Context: similarly to how ~State~ monads allow us to emulate computation with non-local data flow through mutable variables, ~Cont~ (inuation) monads can be used to emulate computation with non-local control flow where stack discipline is not respected in the call stack and we can instead perform arbitrary reads and writes of the current continuation. The example below demonstrates how this can work in practice.
 
