@@ -1,0 +1,83 @@
+** Complete Binary Search Trees
+
+Recall the following ~Bin~ type that we used to represent "containers"
+of $2^h$ elements, and the ~complete :: Bin a -> Tree a~ function that
+could produce a complete binary tree out of a given container:
+
+#+begin_src haskell
+data Bin a = One a
+           | Double (Bin a) (Bin a)
+           deriving (Show,Eq,Ord)
+
+complete :: Bin a -> Tree a
+#+end_src
+
+1. Write a property test ~propCompleteCorrect :: Ord a => (Bin a ->
+   Tree a) -> Bin a -> Bool~ that makes sure ~complete~ is correct.
+
+   Hint: You may want to write a helper function that converts a ~Bin
+   a~ into a ~[a]~.
+
+   #+begin_src haskell :solution
+   import qualified Data.List as List
+
+   propCompleteCorrect completeImpl xs = let t = completeImpl xs
+                                         in List.sort (F.toList xs) == elems t && propIsBST t
+
+
+   propIsBST   :: Ord a => Tree a -> Bool
+   propIsBST t = case t of
+                   Leaf x     -> True
+                   Node l k r -> maximum' l <= k && propIsBST l && propIsBST r
+
+   toList bs = case bs of
+                 One x -> [x]
+                 Double ys zs -> toList ys ++ toList zs
+   #+end_src
+
+2. In order to actually run the above test using QuickCheck, we need
+   to be able to generate arbitrary values of type ~Bin~. Make ~Bin a~
+   an instance of ~Arbitrary~ to this end.
+
+   Recall that
+
+   - a minimum implementation of such an instance implements the
+     member function: ~arbitrary :: Gen a~ where ~'Gen a~' is a
+     Generator of type ~a~.
+   - ~Gen~ is a ~Monad~ (and thus also a ~Functor~).
+
+   Furthermore, you may want to use some of the following functions
+   for working with Generators:
+
+   #+begin_src haskell
+   -- | Generates a random element over the natural range of a.
+   chooseAny :: Random a => Gen a
+
+   -- | Randomly uses one of the given generators. The input list must be non-empty.
+   oneof :: [Gen a] -> Gen a
+
+   -- | Chooses one of the given generators, with a weighted random
+   -- distribution. The input list must be non-empty.
+   frequency :: [(Int, Gen a)] -> Gen a
+
+   -- | Generates one of the given values. The input list must be non-empty.
+   elements :: [a] -> Gen a
+   #+end_src
+
+   Note that it should be possible for your implementation to produce
+   all possible values of a ~Bin a~!
+
+   #+begin_src haskell :solution
+   instance Arbitrary a => Arbitrary (Bin a) where
+     arbitrary = oneof [ fmap One arbitrary
+                       , do l <- arbitrary
+                            r <- arbitrary
+                            return $ Double l r
+                       ]
+
+   -- or, using Applicative notation:
+   instance Arbitrary a => Arbitrary (Bin a) where
+     arbitrary = oneof [ One    <$> arbitrary
+                       , Double <$> arbitrary <*> arbitrary
+                       ]
+   #+end_src
