@@ -79,3 +79,252 @@ title: Functors, monads, applicatives and traversables
     #+END_SRC
 
     With the aid of an example, explain what the ~(>>=)~ operator for this type does.
+
+8. Given the type:
+
+    #+BEGIN_SRC haskell
+    data Error m a = Error m | OK a
+    #+END_SRC
+  
+  Give a ~Functor~ instance for ~Error m~. Please explain in words what this functor instance achieves.
+
+    #+BEGIN_SRC haskell :solution
+    instance Functor (Error m) where
+    fmap f (OK a)    = OK (f a)
+    fmap _ (Error m) = Error m
+
+    -- This instance applies a function f to an OK value and otherwise propagates the error message.
+    #+END_SRC
+
+  Give an ~Applicative~ instance for ~Error m~ that we can use to accumulate errors, meaning that we accumulate all error messages of all subcomputations that fail.
+
+    #+BEGIN_SRC haskell :solution
+    instance Monoid m => Applicative (Error m) where
+      pure = OK
+      (Error m1) <*> (Error m2) = Error (m1 <> m2)
+      (Error m1) <*> (OK _) = Error m1
+      (OK _) <*> (Error m2) = Error m2
+      (OK f) <*> (OK a) = OK (f a)
+    #+END_SRC
+
+  Give a ~Monad~ instance for ~Error m~. Please explain what this  ~Monad~ instance can be used for. Please explain how the induced ~Applicative~ instance
+
+    #+BEGIN_SRC haskell
+    instance Applicative (Error m) where 
+      pure = return
+      (<*>) mf ma = do 
+          f <- mf 
+          a <- ma 
+          return (f a)
+    #+END_SRC
+  
+  differs in behaviour from the error accumulation instance we defined previously.
+
+    #+BEGIN_SRC haskell :solution
+    instance Monoid m => Monad (Error m) where
+      return = OK
+      (OK a) >>= f = f a
+      (Error m) >>= _ = Error m
+    -- This implements error propagation of the first error to be hit rather than error accumulation of all errors.
+    #+END_SRC
+
+9. Given the types
+
+    #+BEGIN_SRC haskell
+    newtype State s a = State {runState :: s -> (a, s)}
+    type StatePassing s a b = (a, s) -> (b, s)
+    #+END_SRC
+
+  Define functions 
+
+    #+BEGIN_SRC haskell
+    statePass :: (a -> State s b) -> StatePassing s a b 
+    unStatePass :: StatePassing s a b -> (a -> State s b)
+    statePass' :: State s b -> StatePassing s () b 
+    unStatePass' :: StatePassing s () b -> State s b
+    #+END_SRC
+  
+  such that ~statePass . unStatePass = id~, ~unStatePass . statePass = id~, ~statePass' . unStatePass' = id~ and ~unStatePass' . statePass' = id~.
+
+    #+BEGIN_SRC haskell :solution
+    statePass f (a, s) = let State g = f a in g s
+    #+END_SRC
+
+    #+BEGIN_SRC haskell :solution
+    unStatePass g a = State $ \s -> g (a, s)
+    #+END_SRC
+
+    #+BEGIN_SRC haskell :solution
+    statePass' = statePass . const
+    #+END_SRC
+
+    #+BEGIN_SRC haskell :solution
+    unStatePass' g = unStatePass g ()
+    #+END_SRC
+
+  Give a ~Monad~ instance for ~State s~ where you define ~return~ and ~>>=~ in terms of the four functions above. 
+
+
+    #+BEGIN_SRC haskell :solution
+    instance Monad (State s) where 
+      return = unStatePass id
+      (>>=) f g = unStatePass' (statePass g . statePass' f)
+    #+END_SRC
+
+  Prove that these definitions of ~return~ and ~>>=~ are equivalent to the usual definitions
+
+  #+BEGIN_SRC haskell
+  instance Monad (State s) where 
+    return a = State (\s -> (a, s))
+    (State f) >>= g = State (\s -> let (a, s') = f s in let State h = g a in h s')
+    -- so (>=>) f g = unStatePass ((statePass g . statePass f))
+  #+END_SRC
+
+    #+BEGIN_SRC haskell :solution
+    return a 
+    = (def return)
+    unStatePass id a
+    = (def unStatePass)
+    State $ \s -> g (a, s)
+    = (def ($))
+    State (\s -> (a, s))
+    #+END_SRC
+
+    #+BEGIN_SRC haskell :solution
+    (>>=) (State f) g
+    = (def (>>=))
+    unStatePass' (statePass g . statePass' (State f))
+    = (def unStatePass')
+    unStatePass (statePass g . statePass' (State f)) ()
+    = (def unStatePass)
+    State $ \s -> (statePass g . statePass' (State f)) ((), s)
+    = (def (.))
+    State $ \s -> statePass g (statePass' (State f) ((), s))
+    = (def statePass')
+    State $ \s -> statePass g ((statePass . const) (State f) ((), s))
+    = (def (.))
+    State $ \s -> statePass g (statePass (const (State f)) ((), s))
+    = (def statePass)
+    State $ \s -> statePass g (let State f' = (const (State f)) () in f' s)
+    = (def const)
+    State $ \s -> statePass g (let State f' = State f in f' s)
+    = (referential transparency of let-bindings)
+    State $ \s -> statePass g (f s)
+    = (referential transparency of let-bindings)
+    State $ \s -> let (a, s') = f s in statePass g (a, s')
+    = (def statePass)
+    State $ \s -> let (a, s') = f s in let State h = g a in h s'
+    = (def ($))
+    State (\s -> let (a, s') = f s in let State h = g a in h s')
+    #+END_SRC
+
+  Using the four ~StatePassing~ helper functions we defined above, define
+
+  #+BEGIN_SRC haskell 
+  get :: State s s 
+  put :: s -> State s () 
+  modify :: (s -> s) -> State s () 
+  #+END_SRC
+
+
+  #+BEGIN_SRC haskell :solution
+  get = unStatePass (\((), s) -> (s, s)) ()
+  #+END_SRC
+  
+  #+BEGIN_SRC haskell :solution
+  put = unStatePass (\(s, _) -> ((), s))
+  #+END_SRC
+  
+  #+BEGIN_SRC haskell :solution
+  modify f = unStatePass' (\((), s)-> ((), f s))
+  #+END_SRC
+
+  We see that code written in the ~State s~ monad is equivalent to code in "state passing style", i.e. code where in place of functions of type ~A -> B~ we instead work with functions of type ~(A, s) -> (B, s)~ that always thread through an extra argument and return value (the state) of type ~s~.
+
+10. (Challenging) Given the types
+
+    #+BEGIN_SRC haskell
+    newtype Cont r a = Cont { runCont :: (a -> r) -> r}
+    type ContPassing r a b = (b -> r) -> (a -> r)
+    #+END_SRC
+
+  Define functions 
+
+    #+BEGIN_SRC haskell
+    contPass :: (a -> Cont r b) -> ContPassing r a b
+    unContPass :: ContPassing r a b  -> (a -> Cont r b)
+    contPass' :: Cont r b -> ContPassing r () b
+    unContPass' :: ContPassing r () b -> Cont r b
+    #+END_SRC
+  
+  such that ~contPass . unContPass = id~, ~unContPass . contPass = id~, ~contPass' . unContPass' = id~ and ~unContPass' . contPass' = id~.
+
+
+    #+BEGIN_SRC haskell :solution
+    contPass f k a = let Cont g = f a in g k
+    #+END_SRC
+    
+    #+BEGIN_SRC haskell :solution
+    unContPass g a = Cont $ \k -> g k a
+    #+END_SRC
+
+    #+BEGIN_SRC haskell :solution
+    contPass' = contPass . const
+    #+END_SRC
+
+    #+BEGIN_SRC haskell :solution
+    unContPass' g = unContPass g ()
+    #+END_SRC
+
+  Give a ~Monad~ instance for ~Cont r~. Hint: you may want to use the functions we defined previously.
+
+    #+BEGIN_SRC haskell :solution
+    instance Monad (Cont r) where 
+        return = unContPass id
+        (>>=) f g = unContPass' (contPass' f . contPass g)
+        -- so (>=>) f g = unContPass ((contPass f . contPass g))
+    #+END_SRC
+
+  Define a function
+  #+BEGIN_SRC haskell
+  callCC :: ((a -> Cont r b) -> Cont r a) -> Cont r a
+  #+END_SRC
+
+  Hint: you may want to define ~callCC~ in terms of a helper function 
+  #+BEGIN_SRC haskell
+  callCCHelp :: (ContPassing r a b -> ContPassing r () a) -> ContPassing r () a 
+  #+END_SRC
+  that you define first.
+
+    #+BEGIN_SRC haskell :solution
+    callCC phi = unContPass' $ callCCHelp $ contPass' . phi . unContPass
+    #+END_SRC
+
+    #+BEGIN_SRC haskell :solution
+    callCCHelp psi k = psi (const k) k
+    #+END_SRC
+
+  We see that code written in the ~Cont r~ monad is equivalent to code in "continuation passing style", i.e. code where in place of functions of type ~A -> B~ we instead write functions of type ~(B -> r) -> (A -> r)~ that operates in reverse on "continuations".
+
+  Context: similarly to how ~State~ monads allow us to emulate computation with non-local data flow through mutable variables, ~Cont~ (inuation) monads can be used to emulate computation with non-local control flow where stack discipline is not respected in the call stack and we can instead perform arbitrary reads and writes of the current continuation. The example below demonstrates how this can work in practice.
+
+  #+BEGIN_SRC haskell
+  fun :: Int -> String
+  fun n = (`runCont` id) $ do
+      str <- callCC $ \exit1 -> do                            -- define "exit1"
+          when (n < 10) (exit1 (show n))
+          let ns = map digitToInt (show (n `div` 2))
+          n' <- callCC $ \exit2 -> do                         -- define "exit2"
+              when ((length ns) < 3) (exit2 (length ns))
+              when ((length ns) < 5) (exit2 n)
+              when ((length ns) < 7) $ do
+                  let ns' = map intToDigit (reverse ns)
+                  exit1 (dropWhile (=='0') ns')               --escape 2 levels
+              return $ sum ns
+          return $ "(ns = " ++ (show ns) ++ ") " ++ (show n')
+      return $ "Answer: " ++ str
+
+  when      :: (Applicative f) => Bool -> f () -> f ()
+  when p s  = if p then s else pure ()
+  #+END_SRC
+
