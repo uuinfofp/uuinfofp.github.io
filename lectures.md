@@ -143,7 +143,9 @@ currently still subject to change.
     <tr>
       <td>42</td>
       <td>Tue 19 Oct</td>
-      <td><a href="slides/fp-13-quickcheck.pdf">12. Testing</a></td>
+      <td><a href="slides/fp-13-quickcheck.pdf">12. Testing</a>
+         <br><a href="slides/lectureTesting.hs">Code from the lecture</a>
+      </td>
       <td><a href="http://book.realworldhaskell.org/read/testing-and-quality-assurance.html">Chapter 11</a> of <i>Real World Haskell</i></td>
       <td>Frank</td>
     </tr>
