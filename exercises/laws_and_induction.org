@@ -4,6 +4,126 @@ title: Laws and Induction
 
 1. Finish the proof of ~reverse . reverse = id~ from the lecture.
 
+    #+BEGIN_SRC haskell :solution
+    -- claim: reverse . reverse = id 
+
+    -- by extensional reasoning, it is enough to show that 
+    -- (reverse . reverse) zs = id zs 
+    -- for all lists zs 
+
+    -- we distinguish the cases zs = [] and zs = x:xs 
+    -- and prove the claim by induction on zs 
+
+
+    -- base case zs = []:
+    (reverse.reverse) []
+    = -- def (.)
+    reverse (reverse [])
+    = -- def reverse
+    reverse [] 
+    = -- def reverse 
+    [] 
+    = -- def id 
+    id [] 
+
+    -- inductive case zs = x:xs:
+    -- we assume the induction hypothesis (I.H.) (reverse . reverse) xs = id xs
+    -- then 
+
+    (reverse.reverse) (x:xs)
+    = -- def (.)
+    reverse (reverse (x:xs))
+    = -- def reverse 
+    reverse (reverse xs ++ [x])
+    = -- lemma 1
+    reverse [x] ++ reverse (reverse xs)
+    = -- lemma 2
+    [x] ++ reverse (reverse xs)
+    =  -- def (.)
+    [x] ++ (reverse.reverse) xs 
+    = -- induction hypothesis
+    [x] ++ id xs 
+    = -- def id
+    [x] ++ xs 
+    = -- sugar [x]
+    (x:[]) ++ xs 
+    = -- def ++
+    x : ([] ++ xs)
+    = -- def ++ 
+    x : xs  
+    = -- def id
+    id (x : xs)
+
+    -- The claim now follows by induction on zs.
+
+    -- We used two lemmas in this proof, which we prove next.
+
+    -- lemma 2 : reverse [x] = [x]
+    reverse [x]
+    = -- sugar [x]
+    reverse (x : [])
+    = -- def reverse
+    reverse [] ++ [x] 
+    = -- def reverse
+    [] ++ [x]
+    = -- def ++
+    [x]
+
+    -- lemma 1 : reverse (zs ++ ys) = reverse ys ++ reverse zs
+    -- we prove this lemma by induction on zs, distinguishing the 
+    -- cases zs = [] and zs = x:xs 
+
+    -- base case zs = []: 
+    reverse ([] ++ ys)
+    = -- def ++
+    reverse ys 
+    = -- lemma 3
+    reverse ys ++ [] 
+    = -- def reverse
+    reverse ys  ++ reverse [] 
+
+    -- inductive case zs = x:xs 
+    -- we assume the induction hypothesis 
+    -- reverse (xs ++ ys) = reverse ys ++ reverse xs
+
+
+    reverse ((x:xs) ++ ys)
+    = -- def ++ 
+    reverse (x : (xs ++ ys))
+    = -- def reverse
+    reverse (xs ++ ys) ++ [x]
+    = -- induction hypothesis
+    reverse ys  ++ reverse xs  ++ [x]
+    = -- def reverse
+    reverse ys ++ reverse (x:xs)
+
+    -- Lemma 2 now follows by induction on zs.
+
+
+    -- The proof of lemma 1 above depended on a third lemma, 
+    -- which we prove now.
+
+
+    -- lemma 3: zs ++ [] == zs
+    -- we prove this by induction on zs, ditinguishing the cases
+    -- zs = [] and zs = y:ys 
+
+    -- base case: zs = [] 
+    [] ++ []
+    = - def ++
+    []
+
+    -- inductive case: zs = y:ys
+    -- we assume the induction hypothesis ys ++ [] = ys
+    (y:ys) ++ []
+    = -- def ++
+    y : (ys ++ [])
+    = -- induction hypothesis
+    y : ys 
+
+    -- Lemma 3 now follows by induction on ys.
+    #+END_SRC
+
 2. Prove the following laws about list functions.
     - Hint: if you get stuck, the proofs can be found in Chapter 13 of the [[http://www.staff.science.uu.nl/~hage0101/FP-elec.pdf][Lecture Notes]].
 
@@ -39,6 +159,45 @@ title: Laws and Induction
     #+END_SRC
 
     Prove the equality between both sides.
+
+    #+BEGIN_SRC haskell :solution
+    -- We claim that
+    g x acc = f x : acc 
+    e = []
+    -- does the trick.
+
+    -- By extensional reasoning, it suffices to prove that 
+    map f xs = foldr g e xs
+    -- for all lists xs 
+
+    -- We prove this by induction on xs, distinguishing 
+    -- the cases xs = [] and xs = z:zs 
+
+    -- Base case: xs = [] 
+    map f [] 
+    = -- def map 
+    [] 
+    = -- def e 
+    e
+    = -- def foldr 
+    foldr g e [] 
+
+    -- Inductive case: xs = z:zs 
+    -- where we assume the induction hypothesis 
+    map f zs = foldr g e zs 
+
+    map f (z:zs)
+    = -- def map 
+    f z : map f zs 
+    = -- def g
+    g z (map f zs)
+    = -- I.H. 
+    g z (foldr g e zs)
+    = -- def foldr 
+    foldr g e (z:zs)
+
+    -- The claim now follows by induction on xs.
+    #+END_SRC
 
 6. Prove that addition is commutative, that is, ~add n m = add m n~.
     - Hint: you might need as lemmas that ~add n Zero = n~ and ~add n (Succ m) = Succ (add n m)~.

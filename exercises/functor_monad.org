@@ -169,6 +169,7 @@ title: Functors, monads, applicatives and traversables
     instance Monad (State s) where 
       return = unStatePass id
       (>>=) f g = unStatePass' (statePass g . statePass' f)
+      -- so (>=>) f g = unStatePass ((statePass g . statePass f))
     #+END_SRC
 
   Prove that these definitions of ~return~ and ~>>=~ are equivalent to the usual definitions
@@ -177,7 +178,6 @@ title: Functors, monads, applicatives and traversables
   instance Monad (State s) where 
     return a = State (\s -> (a, s))
     (State f) >>= g = State (\s -> let (a, s') = f s in let State h = g a in h s')
-    -- so (>=>) f g = unStatePass ((statePass g . statePass f))
   #+END_SRC
 
     #+BEGIN_SRC haskell :solution
