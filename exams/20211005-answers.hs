@@ -27,9 +27,7 @@ safeHead (x:_) = Just x
 
 -- b)
 
--- | if found  returns the (key, value) and the rest of the list.
 lookupExtract :: Eq k => k -> [(k,v)] -> (Maybe (k,v), [(k,v)])
--- together: give type here
 lookupExtract _ []                      = (Nothing, [])
 lookupExtract k (t@(x,_):m) | k == x    = (Just t, m)
                             | otherwise = let (r,m') = lookupExtract k m in (r, t:m')
