@@ -115,7 +115,7 @@ foo' :: (Num a, Ord a) => [(a, a)] -> [a]
 foo' = map (uncurry (+)) . filter ((>2). fst)
 
 -- you could also just write this using lambdas:
-foo'' = map (\(y,z) -> y z) . filter (\(y,_) -> y > 2)
+foo'' = map (\(y,z) -> y + z) . filter (\(y,_) -> y > 2)
 
 -- Some people also implemented this using a fold, which was also fine:
 
