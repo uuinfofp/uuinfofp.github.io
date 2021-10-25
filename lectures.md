@@ -168,9 +168,9 @@ currently still subject to change.
     <tr>
       <td></td>
       <td>Thu 28 Oct</td>
-      <td>Guest lecture: ?</td>
+      <td>Guest lecture: Haskell ideas in modern programming</td>
       <td></td>
-      <td></td>
+      <td>Alejandro Serrano Mena</td>
     </tr>
     <tr>
       <td>44</td>
