@@ -159,8 +159,8 @@ currently still subject to change.
     <tr>
       <td>43</td>
       <td>Tue 26 Oct</td>
-      <td><a href="slides/fp-13-monads-two.pdf">14. More monads and applicatives</a>
-        <!-- <br><a href="slides/Lecture13.hs">Example code from lecture</a> -->
+      <td><a href="slides/fp-14-monads-two.pdf">14. More monads and applicatives</a>
+        <br><a href="slides/Lecture14Live.hs">Example code from lecture</a>
         </td>
       <td>Chapter 12.2</td>
       <td>Matthijs</td>
@@ -168,27 +168,29 @@ currently still subject to change.
     <tr>
       <td></td>
       <td>Thu 28 Oct</td>
-      <td>Guest lecture: ?</td>
+      <td>Guest lecture</td>
       <td></td>
-      <td></td>
+      <td>Alejandro Serrano Mena</td>
     </tr>
     <tr>
       <td>44</td>
       <td>Tue 2 Nov<br /></td>
-      <td>Exam Preparation
+      <td>Q&A session (for exam prep)
         <!-- <br><a href="slides/Lecture14-exam-prep.hs">Solutions to example questions</a> -->
       </td>
       <td></td>
       <td>Matthijs</td>
-    </tr><tr>
+    </tr>
+    <tr>
       <td></td>
       <td>Thu 4 Nov<br /></td>
-      <td>Q&A session
+      <td>No class -- prepare for the exam!
         <!-- <br><a href="slides/Lecture14-exam-prep.hs">Solutions to example questions</a> -->
       </td>
       <td></td>
-      <td>Matthijs</td>
-    </tr><tr class="warning">
+      <td></td>
+    </tr>
+    <tr class="warning">
       <td>45</td>
       <td>Thu 11 Nov 19:00-22:00</td>
       <td><b>Final exam</b></td>
