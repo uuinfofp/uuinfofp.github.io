@@ -176,7 +176,7 @@ currently still subject to change.
       <td>44</td>
       <td>Tue 2 Nov<br /></td>
       <td>Q&A session (for exam prep)
-        <!-- <br><a href="slides/Lecture14-exam-prep.hs">Solutions to example questions</a> -->
+        <br><a href="slides/Test.hs">Example questions</a>
       </td>
       <td></td>
       <td>Matthijs</td>
