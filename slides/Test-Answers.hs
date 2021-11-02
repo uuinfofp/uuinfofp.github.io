@@ -426,7 +426,7 @@ isSearchTreeWrong (Branch v l r) = isSearchTreeWrong l && isSearchTreeWrong r &&
 -- Method 3: fixing method 2 to work, but ending up with an inefficient algorithm
 isSearchTreeInefficient :: Ord a => Tree a -> Bool 
 isSearchTreeInefficient Leaf = True 
-isSearchTreeInefficient (Branch v l r) = isSearchTreeInefficient l && isSearchTreeInefficient r && ok (treeMax l) (Just v)  && ok (Just v) (treeMax r) where 
+isSearchTreeInefficient (Branch v l r) = isSearchTreeInefficient l && isSearchTreeInefficient r && ok (treeMax l) (Just v)  && ok (Just v) (treeMin r) where 
     ok Nothing _ = True 
     ok _ Nothing = True 
     ok (Just v) (Just v') = v <= v' 
@@ -435,6 +435,11 @@ isSearchTreeInefficient (Branch v l r) = isSearchTreeInefficient l && isSearchTr
     okMax Nothing v = v 
     okMax v Nothing = v 
     okMax (Just x) (Just y) = Just (max x y)
+    treeMin Leaf = Nothing 
+    treeMin (Branch v l r) = okMin (Just v) (okMinx (treeMin l) (treeMin r))
+    okMin Nothing v = v 
+    okMin v Nothing = v 
+    okMin (Just x) (Just y) = Just (min x y)
 
 -- Method 4: making method 3 more efficient by tupling in the min and max calculations
 isSearchTreeEfficient :: Ord a => Tree a -> Bool 
