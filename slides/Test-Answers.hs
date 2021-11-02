@@ -395,7 +395,7 @@ data Tree a = Branch a (Tree a) (Tree a) | Leaf deriving Show
 isSearchTree :: Ord a => Tree a -> Bool -- probably the simplest and efficient
 isSearchTree = isSorted . flattenInfix 
 
-flattenInfix' :: [a] -> Tree a -> [a] -- basically enumInfix from about, but more efficient
+flattenInfix' :: [a] -> Tree a -> [a] -- basically enumInfix from above, but more efficient
 flattenInfix' acc Leaf = acc
 flattenInfix' acc (Branch a l r) = flattenInfix' (a : flattenInfix' acc r) l
 
@@ -436,7 +436,7 @@ isSearchTreeInefficient (Branch v l r) = isSearchTreeInefficient l && isSearchTr
     okMax v Nothing = v 
     okMax (Just x) (Just y) = Just (max x y)
     treeMin Leaf = Nothing 
-    treeMin (Branch v l r) = okMin (Just v) (okMinx (treeMin l) (treeMin r))
+    treeMin (Branch v l r) = okMin (Just v) (okMin (treeMin l) (treeMin r))
     okMin Nothing v = v 
     okMin v Nothing = v 
     okMin (Just x) (Just y) = Just (min x y)
