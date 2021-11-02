@@ -9,7 +9,7 @@
 
 -- a.
 -- Some useful definitions:
-data Tree a = Leaf a | Node (Tree a) a (Tree a)
+data Tree a = Leaf | Node (Tree a) a (Tree a)
 
 size :: Tree a -> Int
 size Leaf = 0 
