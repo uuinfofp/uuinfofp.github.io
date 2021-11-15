@@ -93,14 +93,16 @@ title: Laws and Induction
     = -- def reverse
     reverse (xs ++ ys) ++ [x]
     = -- induction hypothesis
-    reverse ys  ++ reverse xs  ++ [x]
+    (reverse ys  ++ reverse xs)  ++ [x]
+    = -- Lemma 4
+    reverse ys  ++ (reverse xs  ++ [x])
     = -- def reverse
     reverse ys ++ reverse (x:xs)
 
     -- Lemma 2 now follows by induction on zs.
 
 
-    -- The proof of lemma 1 above depended on a third lemma, 
+    -- The proof of lemma 1 above depended on a third and fourth lemma, 
     -- which we prove now.
 
 
@@ -122,6 +124,31 @@ title: Laws and Induction
     y : ys 
 
     -- Lemma 3 now follows by induction on ys.
+
+    -- Lemma 4: xs ++ (ys ++ zs) = (xs ++ ys) ++ zs 
+    -- We prove this by induction on xs, distinguishing the cases xs = [] and xs = w:ws
+
+    -- Base case xs = [] 
+    [] ++ (ys ++ zs)
+    = -- def ++ 
+    ys ++ zs 
+    = -- def ++
+    ([] ++ ys) ++ zs
+
+    -- Inductive case xs = w : ws .
+    -- We assume the induction hypothesis ws ++ (ys ++ zs) = (ws ++ ys) ++ zs 
+
+    ((w:ws) ++ ys) ++ zs 
+    = def ++ 
+    (w : (ws ++ ys)) ++ zs 
+    = def ++ 
+    w : ((ws ++ ys) ++ zs)
+    = I.H.
+    w : (ws ++ (ys ++ zs))
+    = def ++
+    (w : ws) ++ (ys ++ zs)
+
+    -- Lemma 4 now follows by induction on xs.
     #+END_SRC
 
 2. Prove the following laws about list functions.
