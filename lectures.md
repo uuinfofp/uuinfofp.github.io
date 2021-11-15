@@ -195,5 +195,12 @@ currently still subject to change.
       <td></td>
       <td></td>
     </tr>
+    </tr><tr class="warning">
+      <td>01</td>
+      <td>Tue 11 Jan 09:00-11:00</td>
+      <td><b>Retake exam</b></td>
+      <td></td>
+      <td></td>
+    </tr>
   </tbody>
 </table>
