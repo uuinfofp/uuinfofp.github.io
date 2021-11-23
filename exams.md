@@ -16,8 +16,8 @@ title: Exams from previous years
 <td>2021</td>
 <td><a href="exams/20211005.pdf">No answers</a></td>
 <td><a href="exams/20211005-answers.hs">Answers</a></td>
-<td>No answers</td>
-<td>Answers</td>
+<td><a href="exams/20211111.pdf">No answers</a></td>
+<td><a href="exams/20211111-answers.hs">Answers</a></td>
 </tr>
 
 <tr>
