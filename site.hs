@@ -39,7 +39,7 @@ main = hakyllWith myConfiguration $ do
     match "images/*.png" copyAsIs
     match "images/*.jpg" copyAsIs
 
-    match "*.md" $ do
+    match ("*.md" .||. "*.org") $ do
         route   $ setExtension "html"
         compile $ pandocCompiler'
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
@@ -71,5 +71,5 @@ pandocCompiler' = pandocCompilerWith defaultHakyllReaderOptions writerOptions
 
 myConfiguration :: Configuration
 myConfiguration = defaultConfiguration {
-    deployCommand = "rsync -avh _site/* gemini.science.uu.nl:/science/wwwprojects/cs-www/wwwcs/docs/vakken/fp/2021"
+    deployCommand = "rsync -avh _site/* gemini.science.uu.nl:/science/wwwprojects/cs-www/wwwcs/docs/vakken/fp/2022"
   }
