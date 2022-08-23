@@ -1,8 +1,7 @@
 ---
-title: Bachelor Course on Functional Programming
+title: INFOFP 2022 Functional Programming
 ---
 #+STARTUP: showeverything
-#+title: Bachelor Course on Functional Programming
 #+language:    'en'
 
 This course introduces *functional programming* through the
@@ -50,25 +49,25 @@ By the end of the course you will be able to
 
 * Announcements
 
-*** 2021-09-02 : GHC Installation Instructions
+*** 2021-09-02, GHC Installation Instructions
 
-  Unfortunately, installing "Haskell" is often somewhat
-  troublesome. The instructions for this year in the [introduction
-  practical assignment](practicals/Assignment0.pdf) suggest that you
-  install GHC through a tool called "stack" that you will need for the
-  final project. Alternatively, you can install GHC directly. Last
-  year, Jip, one of our TAs, has written detailed instructions on how
-  he set up his windows machine for Haskell development. You can find
-  his guide [here](practicals/windows_instructions.pdf).
+Unfortunately, installing "Haskell" is often somewhat troublesome. The
+instructions for this year in the [[./practicals/Assignment0.pdf][introduction practical assignment]]
+suggest that you install GHC through a tool called "stack" that you
+will need for the final project. Alternatively, you can install GHC
+directly. Last year, Jip, one of our TAs, has written detailed
+instructions on how he set up his windows machine for Haskell
+development. You can find his guide [[./practicals/windows_instructions.pdf][here]].
 
-  For OS X (High Sierra or newer)
-  [these](https://medium.com/@dogwith1eye/setting-up-haskell-in-vs-code-on-macos-d2cc1ce9f60a)
-  detailed instructions on how to set up your system may be useful.
+For OS X (High Sierra or newer)
+[[https://medium.com/@dogwith1eye/setting-up-haskell-in-vs-code-on-macos-d2cc1ce9f60a][these]]
+detailed instructions on how to set up your system may be useful.
 
 * Schedule
 
-There are weekly [[lectures.html][lectures]] (2 × 2 hour), [[exercises.html][instructions]] (1 × 2 hour) and
-[labs.html][practicals] (1 × 2 hour). Attendance is not strictly
+There are weekly [[./lectures.html][lectures]] (2 × 2 hour),
+[[./exercises.html][instructions]] (1 × 2 hour) and
+[[./labs.html][practicals]] (1 × 2 hour). Attendance is not strictly
 mandatory (albeit strongly recommended).
 
 *You are expected to work on your own in addition to these hours!*
@@ -81,31 +80,40 @@ is:
 
 * Literature
 
-- Required reading: [[http://www.cs.nott.ac.uk/~pszgmh/pih.html][Programming in Haskell]] by Graham Hutton
+We will use the book "[[http://www.cs.nott.ac.uk/~pszgmh/pih.html][Programming in Haskell]]" by Graham Hutton. Each
+lecture typically corresponds to (a part of) a chapter from this
+book. You are expected to read this part of the book on your own.
 
-- Additional material:
-    - [[http://www.cs.uu.nl/people/jur/FP-elec.pdf][Lecture Notes from 2015/2016]], mostly in Dutch
-    - [[http://learnyouahaskell.com/][Learn You a Haskell for Great Good]] by Miran Lipovača
-    - [[https://en.wikibooks.org/wiki/Haskell][Haskell Wikibook]]
+There is plenty of additional reading material available on the
+internet. In particularly, you may find the following material useful:
+
+- [[http://www.cs.uu.nl/people/jur/FP-elec.pdf][Lecture Notes from 2015/2016]], mostly in Dutch
+- [[http://learnyouahaskell.com/][Learn You a Haskell for Great Good]] by Miran Lipovača
+- [[https://en.wikibooks.org/wiki/Haskell][Haskell Wikibook]]
 
 * Exams
 
-There will be a midterm and a final exam.
+There will be a midterm and a final exam. The exams are closed book,
+and focus on "pen-and-paper" type programming
+questions.
+
+You can find the exams of several previous years [[./exams.html][here]].
 
 * Assignments
 
 There are two kinds of *mandatory* assignments:
 
-- [[labs.html][Practical assignments]] pose programming problems with the aim of
+- [[./labs.html][Practical assignments]] pose programming problems with the aim of
   practicing your Haskell skills. These assignments are automatically
   corrected by [[https://domjudge.cs.uu.nl/dj/fp/team/][DOMJudge]]. You can ask any of the teaching assistants to
   suggest improvements to your code style during labs sessions.
-- The [[labs.html][final programming project]] consists of programming a small game
+- The [[./labs.html][final programming project]] consists of programming a small game
   in Haskell. The code is graded for correctness, design and style.
 
 In addition to those mandatory assignments, there is an *optional*
 assignment to be made in groups to get some extra points in the
-grade. The assignment involves exploring and presenting some [[https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/lang.html][language
+grade. The assignment involves exploring and presenting some
+[[https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/lang.html][language
 extension]] or [[http://hackage.haskell.org/][Haskell library]].
 
 
