@@ -18,19 +18,19 @@ title: Practicals
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 </tr>
 <tr>
-<td>Tue 21 Sept 23:59</td>
+<td>Tue 20 Sept 23:59</td>
 <td><a href="practicals/Assignment1.pdf">1. Lists</a></td>
 <td><a href="practicals/Assignment1.hs"><tt>Assignment1.hs</tt></a></td>
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 </tr>
 <tr>
-<td>Tue 28 Sept 23:59</td>
+<td>Tue 27 Sept 23:59</td>
 <td><a href="practicals/Assignment2.pdf">2. Data structures</a></td>
 <td><a href="practicals/Assignment2.hs"><tt>Assignment2.hs</tt></a></td>
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 </tr>
 <tr>
-<td>Tue 12 Oct 23:59</td>
+<td>Thu 13 Oct 23:59</td>
 <td><a href="practicals/project.pdf">3. Game, design document</a></td>
 <td><a href="practicals/gloss-counter.zip">Example game</a><br/>
     <a href="practicals/example_design.pdf">Example design document</a>
@@ -38,29 +38,30 @@ title: Practicals
 <td><a href="http://uu.blackboard.com">Blackboard</a></td>
 </tr>
 <tr>
-<td>Tue 26 Oct 23:59</td>
+<td>Tue 25 Oct 23:59</td>
 <td><a href="practicals/Assignment4.pdf">4. Type classes</a></td>
 <td><a href="practicals/Assignment4.hs"><tt>Assignment4.hs</tt></a></td>
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 </tr>
 <tr>
-<td>Sun 14 Nov 23:59</td>
+<td>Sun 13 Nov 23:59</td>
 <td><a href="practicals/project.pdf">5. Game, implementation</a></td>
 <td><a href="practicals/gloss-counter.zip">Example game</a></td>
 <td><a href="http://uu.blackboard.com">Blackboard</a></td>
 </tr>
-<tr>
-<td>Tue 11 Jan 23:59</td>
-<td><a href="practicals/RetakeAssignment.pdf">Retake Assignment: Monads</a></td>
-<td><a href="practicals/RetakeAssignment.hs">RetakeAssignment.hs</a></td>
-<td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
-</tr>
+<!-- <tr> -->
+<!-- <td>Tue 11 Jan 23:59</td> -->
+<!-- <td><a href="practicals/RetakeAssignment.pdf">Retake Assignment: Monads</a></td> -->
+<!-- <td><a href="practicals/RetakeAssignment.hs">RetakeAssignment.hs</a></td> -->
+<!-- <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td> -->
+<!-- </tr> -->
 </table>
 
 ### Practicals from previous years
 
 Even if you passed the practicals last year, you still need to submit
-the solutions via DOMJudge and do a new game practical from scratch.
+the solutions via DOMJudge and do a new game practical from
+scratch.
 
 ### Coding style
 
