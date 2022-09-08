@@ -49,19 +49,24 @@ By the end of the course you will be able to
 
 * Announcements
 
-*** 2021-09-02, GHC Installation Instructions
+*** 2022-08-29, GHC Installation Instructions
 
-Unfortunately, installing "Haskell" is often somewhat troublesome. The
-instructions for this year in the [[./practicals/Assignment0.pdf][introduction practical assignment]]
-suggest that you install GHC through a tool called "stack" that you
-will need for the final project. Alternatively, you can install GHC
-directly. Last year, Jip, one of our TAs, has written detailed
-instructions on how he set up his windows machine for Haskell
-development. You can find his guide [[./practicals/windows_instructions.pdf][here]].
+To successfully complete the course you will need
 
-For OS X (High Sierra or newer)
-[[https://medium.com/@dogwith1eye/setting-up-haskell-in-vs-code-on-macos-d2cc1ce9f60a][these]]
-detailed instructions on how to set up your system may be useful.
+- GHC   :: A Haskell compiler, and
+- cabal :: A tool to install Haskell libraries (in particular the
+  'gloss' library you will need for the final project in the course).
+
+Installing GHC is, or at least was, often somewhat
+troublesome. Fortunately, the situation has improved a bit with
+respect to earlier years. We currently recommend that you install GHC
+using a tool called 'ghcup'. In particular, you can follow
+[these][https://www.haskell.org/ghcup/] instructions to install 'ghc'
+and 'cabal'.
+
+If you want as you type error checking and intelligent completions in
+your editor, you may also want to install HLS, the Haskell Language
+server. You can also do so using ghcup.
 
 * Schedule
 
