@@ -20,17 +20,84 @@ concat :: [[a]] -> [a]
 
 What is the type of ~head ([3, 2] ++ [2])~? Give the type derivation.
 
+#+BEGIN_SRC haskell :solution
+{-
+We know that 
+2, 3 :: Int 
+so
+[3, 2], [2] :: [Int].
+Now,
+(++) :: [a] -> [a] -> [a]
+and 
+[3, 2], [2] :: [Int]
+so it follows that 
+[3, 2] ++ [2] :: [a] with the constraint that a ~ Int.
+That is,
+[3 ,2] ++ [2] :: [Int].
+Finally, 
+head :: [a] -> a
+and 
+[3, 2] ++ [2] :: [Int]
+implies that 
+head ([3, 2] ++ [2]) :: a with the constraint that a ~ Int.
+That is,
+head ([3, 2] ++ [2]) :: Int 
+-}
+#+END_SRC
+
 ** ~(+) 3~
 
 What is the type of ~(+) 3~? Give the type derivation.
+
+
+#+BEGIN_SRC haskell :solution
+{-
+We know that 
+3 :: Int 
+and 
+(+) :: Int -> Int -> Int
+Therefore,
+(+) 3 :: Int -> Int
+-}
+#+END_SRC
 
 ** ~map even~
 
 What is the type of ~map even~? Give the type derivation.
 
+#+BEGIN_SRC haskell :solution
+{-
+We know that 
+map :: (a -> b) -> [a] -> [b]
+and 
+even :: Int -> Bool 
+Therefore,
+map even :: [a] -> [b] with the constraint that (a -> b) ~ (Int -> Bool)
+That is, 
+map even :: [a] -> [b] with the constraints that a ~ Int and b ~ Bool
+That is,
+map even :: [Int] -> [Bool]
+-}
+#+END_SRC
+
 ** ~map concat~
 
 What is the type of ~map concat~? Give the type derivation.
+
+#+BEGIN_SRC haskell :solution
+{-
+We know that 
+map :: (a -> b) -> [a] -> [b]
+and 
+concat :: [[c]] -> [c]  (note the fresh type variable we use here to avoid confusion!)
+Therefore,
+map concat :: [a] -> [b] with the constraint that (a -> b) ~ ([[c]] -> [c])
+That is, 
+map concat :: [a] -> [b] with the constraints that a ~ [[c]] and b ~ [c]
+That is,
+map concat :: [[[c]]] -> [[c]]
+-}
+#+END_SRC
 
 ** ~map head~
 
@@ -52,6 +119,25 @@ What is the type of ~foldr map~? Give the type derivation.
     2. ~[a] -> [[a -> a]] -> [a]~
     3. ~[a] -> [[a -> a] -> [a]]~
     4. ~[[a]] -> [a -> a] -> [a]~
+
+
+#+BEGIN_SRC haskell :solution
+{-
+We know that 
+foldr :: (a -> b -> b) -> b -> [a] -> b
+and 
+map :: (c -> d) -> [c] -> [d]  (note the fresh type variables we use here to avoid confusion!)
+Therefore,
+foldr map :: b -> [a] -> b with the constraint that (a -> b -> b) ~ ((c -> d) -> [c] -> [d])
+That is, 
+foldr map :: b -> [a] -> b with the constraints that a ~ (c -> d), b ~ [c] and b ~ [d]
+That is,
+foldr map :: b -> [a] -> b with the constraints that a ~ (c -> c) and b ~ [c] (because [c] ~ [d] implies that c ~ d)
+That is,
+foldr map :: [c] -> [c -> c] -> [c]
+Up to renaming of bound type variables (which is irrelevant), this is answer 1.
+-}
+#+END_SRC
 
 ** ~map . foldr~
 
@@ -78,6 +164,21 @@ Give the type derivation.
 
 Give the type derivation.
 
+#+BEGIN_SRC haskell :solution
+{-
+We know that 
+map :: (a -> b) -> [a] -> [b]   (we'll use the type variables a and b for the left copy of map)
+and also 
+map :: (c -> d) -> [c] -> [d]   (we'll use fresh type variables c and d for the right copy of map, to avoid confusion)
+Therefore,
+map map :: [a] -> [b] with the constraint that (a -> b) ~ ((c -> d) -> [c] -> [d])
+That is, 
+map map :: [a] -> [b] with the constraints that a ~ (c -> d) and b ~ [c] -> [d]     (note that -> associates to the right)
+That is,
+map map :: [c -> d] -> [[c] -> [d]]
+-}
+#+END_SRC
+
 ** ~map (map map)~
 
 What is the type of ~map (map map)~? Give the type derivation.
@@ -88,6 +189,22 @@ What is the type of ~map (map map)~? Give the type derivation.
     4. ~[[a -> b] -> [[a] -> [b]]]~
 
 Give the type derivation.
+
+#+BEGIN_SRC haskell :solution
+{-
+We know that 
+map :: (a -> b) -> [a] -> [b] 
+and also (from the previous question)
+map map :: [c -> d] -> [[c] -> [d]]   (note that we use fresh type variables to avoid confusion)
+Therefore,
+map (map map) :: [a] -> [b] with the constraint that (a -> b) ~ ([c -> d] -> [[c] -> [d]])
+That is, 
+map (map map) :: [a] -> [b] with the constraints that a ~ [c -> d] and b ~ [[c] -> [d]]
+That is,
+map (map map) :: [[c -> d]] -> [[[c] -> [d]]]
+Up to (irrelevant) renaming of bound type variables this is answer 1.
+-}
+#+END_SRC
 
 ** ~map map map~ and brackets
 
