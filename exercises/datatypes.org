@@ -349,7 +349,7 @@ instance DGraph NDFun where
 #+END_SRC
 
 We want to write a function ~maxPaths~ that takes a directed graph ~someGraph~ -- it should accept any representation --
-and a list ~inits~ of vertices as inputs and produces a list of all the directed paths of maximal length in ~someGraph~ that start from a vertex ~i~ in ~inits~.
+and a list ~inits~ of vertices as inputs and produces a list of all maximal directed paths, i.e. directed paths that cannot be made longer, in ~someGraph~ that start from a vertex ~i~ in ~inits~.
 Please specify the type signature of ~maxPaths~.
 
 #+BEGIN_SRC haskell  :solution
