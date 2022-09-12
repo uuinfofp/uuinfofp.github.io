@@ -10,27 +10,26 @@ How do ~x = 3~ and ~x == 3~ differ in meaning?
 
 1. Given the following definitions:
 
-#+BEGIN_SRC haskell
-thrice x = [x, x, x]
+   #+BEGIN_SRC haskell
+   thrice x = [x, x, x]
 
-sums (x : y : ys) = x : sums (x + y : ys)
-sums xs           = xs
-#+END_SRC
+   sums (x : y : ys) = x : sums (x + y : ys)
+   sums xs           = xs
+   #+END_SRC
 
-What does the expression ~map thrice (sums [0 .. 4])~ evaluate to?
-Write down the intermediate steps of your computation.
+   What does the expression ~map thrice (sums [0 .. 4])~ evaluate to?
+   Write down the intermediate steps of your computation.
 
-2. A recursive function is only sensible if the condition is that the
-   value of its parameters becomes simpler in each recursive
-   application is met. Consider the following definition of the
-   factorial function:
+2. A recursive function is only sensible if the value(s) of its
+   parameters becomes simpler in each recursive application. Consider
+   the following definition of the factorial function:
 
-#+BEGIN_SRC haskell
-fac n | n == 0 = 1
-      | otherwise = n * fac (n − 1)
-#+END_SRC
+   #+BEGIN_SRC haskell
+   fac n | n == 0 = 1
+         | otherwise = n * fac (n − 1)
+   #+END_SRC
 
-What happens if you evaluate ~fac (−3)~?
+   What happens if you evaluate ~fac (−3)~?
 
 ** Writing Functions
 
