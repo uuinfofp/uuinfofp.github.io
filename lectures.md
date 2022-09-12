@@ -160,7 +160,7 @@ currently still subject to change.
       <td>Thu 27 Oct</td>
       <td>Guest lecture</td>
       <td></td>
-      <td></td>
+      <td>Alejandro Serrano Mena</td>
     </tr>
     <tr>
       <td>44</td>
