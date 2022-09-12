@@ -48,6 +48,8 @@ bar a as = as ++ [a]
 baz :: [a] 
 baz = []
 -- Then, foo bar baz (which should be read as (foo bar) baz) has type [a]
+-- Note that function application associating to the left and function arrows associating to the right are nice behaviour because it means 
+-- that we can implement the default use-case of curried functions of multiple arguments and partial application of such functions without writing many parentheses in either the type or the program.
 #+END_SRC
 Can you give examples of programs ~foo~, ~bar~ and ~baz~, such that one might expect ~foo bar baz~ to be well-typed if function application were to associate in the opposite direction, but such 
 that ~foo bar baz~ is in reality ill-typed?
