@@ -2,13 +2,57 @@
 title: Higher order Functions
 ---
 
-** Brackets!?
+** Parentheses!?
 Give examples for functions with the following types:
 
 #+BEGIN_SRC haskell
 (Float −> Float) −> Float
 Float −> (Float −> Float)
 (Float −> Float) −> (Float −> Float)
+#+END_SRC
+
+#+BEGIN_SRC haskell  :solution
+-- For example (all these expressions have more general polymorphic types, but, in particular, type check at the requested types)
+\f -> f 2.0 :: (Float −> Float) −> Float 
+(*) :: Float −> (Float −> Float)
+(.) (+1) :: (Float −> Float) −> (Float −> Float) 
+#+END_SRC
+
+Give an example program ~p~ with the following type and explain how the function arrow ~->~ associates:
+#+BEGIN_SRC haskell
+p :: Int -> Bool -> Int
+#+END_SRC
+#+BEGIN_SRC haskell  :solution
+-- For example
+p i b = if b then i else -i
+-- Indeed, the function arrow -> always associates to the right, so this type should be read as 
+-- the type Int -> (Bool -> Int) of curried multiple argument functions, rather than the type (Int -> Bool) -> Int of higher order functions
+#+END_SRC
+
+Give examples of programs ~foo~, ~bar~ and ~baz~, such that ~foo bar baz~ type checks and please explain how function application associates.
+#+BEGIN_SRC haskell  :solution
+-- For example,
+foo :: Int -> Int -> Int
+foo = (+)
+bar :: Int 
+bar = 1
+baz :: Int
+baz = 2
+-- Then foo bar baz is well-typed at type Int 
+-- Indeed, function application always associates to the left so the expression should be read as (foo bar) baz
+#+END_SRC
+Can you give examples of programs ~foo~, ~bar~ and ~baz~, such that one might expect ~foo bar baz~ to be well-typed if function application were to associate in the opposite direction, but such 
+that ~foo bar baz~ is in reality ill-typed?
+#+BEGIN_SRC haskell  :solution
+-- For example,
+foo :: Bool -> Bool
+foo = not
+bar :: Bool -> Bool 
+bar = not
+baz :: Bool
+baz = True
+-- Then foo (bar baz) is well-typed at type Bool
+-- However, as function application associates to the left in reality and not to the right, foo bar baz should be parsed as (not not) True, which does not type check.
 #+END_SRC
 
 ** Filter
