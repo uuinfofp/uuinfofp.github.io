@@ -186,3 +186,199 @@ instance (Finite a, Finite b, Eq a) => Finite (a -> b) where
   elements = [\k -> fromJust (lookup k kv)
                | kv <- allKVPairs elements elements]
 #+END_SRC
+
+
+** ~Line~
+
+Given the datatypes 
+
+#+BEGIN_SRC haskell
+data Point = Point Float Float -- Point x y is the point with coordinates (x, y) in the plane
+data Vector = Vector Float Float -- Vector dx dy is the 2d vector in the direction (dx, dy)
+data EqLine = EqLine Float Float Float -- EqLine a b c represents the line a * x + b * y + c = 0
+data VectLine = VectLine Point Vect -- VectLine p v represents the line through p in the direction v 
+#+END_SRC
+
+
+define a class ~Line~ whose instances ~l~ implement one method that calculates the distance from an ~l~ to a ~Point~.
+
+#+BEGIN_SRC haskell :solution
+class Line l where
+    distance :: l -> Point -> Float 
+#+END_SRC
+
+Please make ~EqLine~ and ~VectLine~ instances of ~Line~.
+
+#+BEGIN_SRC haskell :solution
+instance Line EqLine where 
+    distance (EqLine a b c) (Point x y) = abs(a * x + b * y + c) / sqrt(a * a + b * b)
+#+END_SRC
+#+BEGIN_SRC haskell  :solution
+instance Line VectLine where 
+    distance (VectLine (Point x' y') (Vect dx dy)) (Point x y) = abs(dx * (y' - y) - (x' - x) * dy) / sqrt (dx ^ 2 + dy ^ 2) 
+#+END_SRC
+
+Can you think of any more, different representations for lines? If so,
+please implement them as a datatype and make them an instance of ~Line~.
+
+#+BEGIN_SRC haskell :solution
+-- For example:
+data TwoPointLine = TwoPointLine Point Point -- TwoPointLine p1 p2 represents the line through p1 and p2
+instance Line TwoPointLine where 
+    distance (TwoPointLine (Point x1 y1) (Point x2 y2))  (Point x y) = abs((x2 - x1) * (y1 - y) - (x1 - x) * (y2 - y1)) / sqrt ((x2 - x1) ^ 2 + (y2 - y1) ^ 2) 
+#+END_SRC
+#+BEGIN_SRC haskell  :solution
+-- Or:
+data AngleLine = AngleLine Point Float -- AngleLine p theta represents the line through p with angle theta
+instance Line AngleLine where 
+    distance (AngleLine (Point x' y') theta) (Point x y) = abs (cos theta * (y' - y) - sin theta * (x' - x))
+#+END_SRC
+#+BEGIN_SRC haskell  :solution
+-- Or this rather boring one:
+data DistanceLine = DistanceLine (Point -> Float) -- DistanceLine dist directly uses the distance function as a definition
+instance Line DistanceLine where 
+    distance (DistanceLine dist) = dist  
+#+END_SRC
+
+Can you think of any more things we can compute for any line? Please add them as methods in the definition of  ~Line~.
+Can you give some of them default implementations?
+
+#+BEGIN_SRC haskell :solution
+-- For example:
+class Line l where
+    distance :: l -> Point -> Float 
+    isOn :: l -> Point -> Bool
+    isOn l p = distance l p == 0
+    -- come up with more methods yourself
+#+END_SRC
+
+
+
+** ~DGraph~ (More challenging)
+We can use a type class 
+
+#+BEGIN_SRC haskell
+class DGraph g where
+    succs :: Eq a => g a -> a -> [a]
+#+END_SRC
+
+for representing directed graphs.
+The idea is that ~a~ is a type of vertices, that ~g a~ is the type of directed graphs with vertices of type ~a~
+and ~succs someGraph aVertex~ gives the list of all successors of ~aVertex :: a~ in the graph ~someGraph :: g a~.
+
+We can define types 
+
+#+BEGIN_SRC haskell
+newtype PList k v = PList {keyValues :: [(k, v)]}
+newtype SMPList k = SMPList (PList k [k])
+
+data RoseTree l = RoseTree l [RoseTree l]
+newtype FRoseTree l = FRoseTree [RoseTree l]
+#+END_SRC
+
+~SMPList~ and ~FRoseTree~ give two different representations of directed graphs.
+For example,
+the graph at
+https://en.wikipedia.org/wiki/Directed_graph#/media/File:Directed_graph_no_background.svg
+can be represented as 
+
+#+BEGIN_SRC haskell
+dgraph1SMPL = SMPList $ PList [(1, [2, 3]), (2, []), (3, [2, 4]), (4, [3])]
+dgraph1FRT = FRoseTree [one] where 
+  one = RoseTree 1 [two, tree]
+  two = RoseTree 2 []
+  three = RoseTree 3 [two, four]
+  four = RoseTree 4 [three]
+#+END_SRC
+
+To warm up, please implement the graph at https://upload.wikimedia.org/wikipedia/commons/f/fe/Tred-G.svg 
+in both representations.
+#+BEGIN_SRC haskell  :solution
+dgraph2SMPL = SMPList $ PList [('a', ['b', 'd', 'c', 'e']), ('b', ['d']), ('d', ['e']), ('c', ['d', 'e']), ('e', [])]
+#+END_SRC
+#+BEGIN_SRC haskell  :solution
+dgraph2FRT = FRoseTree [a] where 
+  a = RoseTree 'a' [b, d, c, e]
+  b = RoseTree 'b' [d]
+  d = RoseTree 'd' [e]
+  c = RoseTree 'c' [d, e]
+  e = RoseTree 'e' []
+#+END_SRC
+
+Please make ~SMPList~ and ~FRoseTree~ instances of ~DGraph~.
+#+BEGIN_SRC haskell  :solution
+lookup' :: Eq k => k -> PList k v -> Maybe v 
+lookup' k (PList []) = Nothing 
+lookup' k (PList ((k', v) : kvs)) | k == k' = Just v 
+                                  | otherwise = lookup' k (PList kvs)
+
+handleMaybeList :: Maybe [l] -> [l]
+handleMaybeList Nothing = []
+handleMaybeList (Just ls) = ls 
+
+instance DGraph SMPList where
+    succs (SMPList m) l = handleMaybeList (lookup' l  m)
+#+END_SRC
+#+BEGIN_SRC haskell  :solution
+instance DGraph FRoseTree where
+    succs (FRoseTree xs) y = concatMap (`succs'` y) xs where 
+        succs' (RoseTree x xs) y | x == y = map getVal xs
+                                 | otherwise = foldr (\x acc -> if null acc then succs' x y else acc) [] xs
+        getVal (RoseTree x _) = x
+#+END_SRC
+
+Can you come up with any more different representations of directed graphs? Please implement them as 
+parameterised datatypes and make them an instance of ~DGraph~. To practice some more, you can implement 
+your favourite directed graph (for example one of the two above) in your new representations.
+
+
+#+BEGIN_SRC haskell  :solution
+-- For example:
+newtype SPList l = SPList (PList l l) -- lists of pairs of vertices that are connected via an edge
+
+instance DGraph SPList where 
+    succs (SPList g) a = [b | (a', b) <- keyValues g, a'== a ]
+#+END_SRC
+
+#+BEGIN_SRC haskell  :solution
+-- Or this rather boring one:
+newtype NDFun l = NDFun {getSuccs :: l -> [l]} -- directly using the successor function as a definition
+
+instance DGraph NDFun where 
+    succs = getSuccs
+#+END_SRC
+
+We want to write a function ~maxPaths~ that takes a directed graph ~someGraph~ -- it should accept any representation --
+and a list ~inits~ of vertices as inputs and produces a list of all the directed paths of maximal length in ~someGraph~ that start from a vertex ~i~ in ~inits~.
+Please specify the type signature of ~maxPaths~.
+
+#+BEGIN_SRC haskell  :solution
+maxPaths :: (Eq l, DGraph g) => g l -> [l] -> [[l]]
+#+END_SRC
+
+Now, please implement ~maxPaths~. You may assume, for simplicity, that it is only ever used on directed graphs without cycles.
+#+BEGIN_SRC haskell  :solution
+maxPaths _ [] = [[]]
+maxPaths someGraph inits = concat [map (i:) (maxPaths someGraph (succs someGraph i)) | i <- inits] -- concatMap (\i -> map (i:) (maxPaths someGraph (succs someGraph i))) inits
+#+END_SRC
+
+Can you come up with any more operations that we can perform on any directed graph?
+#+BEGIN_SRC haskell  :solution
+-- For example a function depthFrom that calculates length of the longest path starting from a vertex in a graph
+-- or a function descendants that computes a (lazy) list of all descendants (transitive closure of successors), infinite in case of cycles
+#+END_SRC
+Please add them to the type class and give their implementations.
+Can you use a default implementation?
+
+#+BEGIN_SRC haskell  :solution
+-- For example 
+class DGraph g where
+    succs :: Eq a => g a -> a -> [a]
+    depthFrom :: Eq a => g a -> a -> Int -- length of the longest path starting from a vertex in a graph
+    depthFrom someGraph x = case succs someGraph x of 
+            [] -> 0 
+            xs -> 1 + maximum (map (depthFrom someGraph) xs)
+    descendants :: Eq a => g a -> a -> [a] -- (lazy) list of all descendants (transitive closure of successors), infinite in case of cycles
+    descendants someGraph x = c ++ concatMap (descendants someGraph) c where 
+        c = succs someGraph x
+#+END_SRC
