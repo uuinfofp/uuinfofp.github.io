@@ -40,6 +40,14 @@ baz :: Int
 baz = 2
 -- Then foo bar baz is well-typed at type Int 
 -- Indeed, function application always associates to the left so the expression should be read as (foo bar) baz
+-- Another example would be 
+foo :: (a -> [a] -> [a]) -> [a] -> [a] -> [a]
+foo = foldr 
+bar :: a -> [a] -> [a]
+bar a as = as ++ [a] 
+baz :: [a] 
+baz = []
+-- Then, foo bar baz (which should be read as (foo bar) baz) has type [a]
 #+END_SRC
 Can you give examples of programs ~foo~, ~bar~ and ~baz~, such that one might expect ~foo bar baz~ to be well-typed if function application were to associate in the opposite direction, but such 
 that ~foo bar baz~ is in reality ill-typed?
