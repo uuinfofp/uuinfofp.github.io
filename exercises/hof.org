@@ -65,8 +65,32 @@ baz = True
 -- However, as function application associates to the left in reality and not to the right, foo bar baz should be parsed as (not not) True, which does not type check.
 #+END_SRC
 
-** Filter
 
+
+** Currying
+Please implement two functions
+
+#+BEGIN_SRC haskell
+curry :: ((a, b) -> c) -> (a -> b -> c)
+uncurry :: (a -> b -> c) -> ((a, b) -> c)
+#+END_SRC
+
+#+BEGIN_SRC haskell :solution
+curry f a b = f (a, b)
+uncurry g (a, b) = g a b
+#+END_SRC
+
+Can you convince yourself that ~curry~ and ~uncurry~ are mutually inverse? Try it out on some example functions!
+
+Please simplify the types of ~curry~ and ~uncurry~ by removing unnecessary parentheses
+#+BEGIN_SRC haskell :solution
+curry :: ((a, b) -> c) -> a -> b -> c
+uncurry :: (a -> b -> c) -> (a, b) -> c
+#+END_SRC
+
+
+
+** Filter
 The function ~filter~ can be defined in terms of ~concat~ and ~map~:
 
 #+BEGIN_SRC haskell

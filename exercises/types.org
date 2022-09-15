@@ -107,6 +107,39 @@ What is the type of ~map head~? Give the type derivation.
 
 What is the type of ~reverse . reverse~? Give the type derivation.
 
+#+BEGIN_SRC haskell :solution
+{-
+First, we note that
+reverse . reverse
+is syntactic sugar for 
+(.) reverse reverse 
+Seeing that function application associates to the left, this is equivalent to 
+((.) reverse) reverse 
+Let us syntactically distinguish the two copies of reverse as they might be instantiations of reverse at two different types and write
+((.) reverse1) reverse2 
+
+We know that 
+(.) :: (b -> c) -> (a -> b) -> (a -> c)
+reverse1 :: [d] -> [d]   (note the freshly chosen type variable d, to avoid confusion with existing type variables)
+reverse2 :: [e] -> [e]   (again a fresh type variable e)
+
+It therefore follows that 
+reverse . reverse = ((.) reverse1) reverse2  :: a -> c with the constraints (b -> c) ~ ([d] -> [d]) and (a -> b) ~ ([e] -> [e])
+
+Simplifying the constraints gives us that:
+b ~ [d] 
+c ~ [d] 
+a ~ [e] 
+b ~ [e] 
+and therefore that 
+[d] ~ [e]
+
+We conclude:
+reverse . reverse :: a -> c with constraints ... = [e] -> [e]
+-}
+#+END_SRC
+
+
 ** ~foldr (+)~
 
 What is the type of ~foldr (+)~? Give the type derivation.
