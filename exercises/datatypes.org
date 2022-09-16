@@ -196,15 +196,17 @@ Given the datatypes
 data Point = Point Float Float -- Point x y is the point with coordinates (x, y) in the plane
 data Vector = Vector Float Float -- Vector dx dy is the 2d vector in the direction (dx, dy)
 data EqLine = EqLine Float Float Float -- EqLine a b c represents the line a * x + b * y + c = 0
-data VectLine = VectLine Point Vect -- VectLine p v represents the line through p in the direction v 
+data VectLine = VectLine Point Vector -- VectLine p v represents the line through p in the direction v 
 #+END_SRC
 
 
-define a class ~Line~ whose instances ~l~ implement one method that calculates the distance from an ~l~ to a ~Point~.
+define a class ~Line~ whose instances ~l~ implement a method that calculates the distance from an ~l~ to a ~Point~
+and a method ~vshift~ that shifts the line vertically by a ~Float~ offset.
 
 #+BEGIN_SRC haskell :solution
 class Line l where
-    distance :: l -> Point -> Float 
+    distance :: l -> Point -> Float
+    vshift :: Float -> l -> l
 #+END_SRC
 
 Please make ~EqLine~ and ~VectLine~ instances of ~Line~.
@@ -212,10 +214,13 @@ Please make ~EqLine~ and ~VectLine~ instances of ~Line~.
 #+BEGIN_SRC haskell :solution
 instance Line EqLine where 
     distance (EqLine a b c) (Point x y) = abs(a * x + b * y + c) / sqrt(a * a + b * b)
+    vshift f (EqLine a b c) = EqLine a b (c - b * f)
+
 #+END_SRC
 #+BEGIN_SRC haskell  :solution
 instance Line VectLine where 
-    distance (VectLine (Point x' y') (Vect dx dy)) (Point x y) = abs(dx * (y' - y) - (x' - x) * dy) / sqrt (dx ^ 2 + dy ^ 2) 
+    distance (VectLine (Point x' y') (Vector dx dy)) (Point x y) = abs(dx * (y' - y) - (x' - x) * dy) / sqrt (dx ^ 2 + dy ^ 2) 
+    vshift f (VectLine (Point x' y') v) = VectLine (Point x' (y' + f)) v 
 #+END_SRC
 
 Can you think of any more, different representations for lines? If so,
@@ -226,18 +231,23 @@ please implement them as a datatype and make them an instance of ~Line~.
 data TwoPointLine = TwoPointLine Point Point -- TwoPointLine p1 p2 represents the line through p1 and p2
 instance Line TwoPointLine where 
     distance (TwoPointLine (Point x1 y1) (Point x2 y2))  (Point x y) = abs((x2 - x1) * (y1 - y) - (x1 - x) * (y2 - y1)) / sqrt ((x2 - x1) ^ 2 + (y2 - y1) ^ 2) 
+    vshift f (TwoPointLine (Point x1 y1) (Point x2 y2)) = TwoPointLine (Point x1 (y1 + f)) (Point x2 (y2 + f))
 #+END_SRC
 #+BEGIN_SRC haskell  :solution
 -- Or:
 data AngleLine = AngleLine Point Float -- AngleLine p theta represents the line through p with angle theta
 instance Line AngleLine where 
     distance (AngleLine (Point x' y') theta) (Point x y) = abs (cos theta * (y' - y) - sin theta * (x' - x))
+    vshift f (AngleLine (Point x' y') theta) = AngleLine (Point x' (y' + f)) theta
 #+END_SRC
 #+BEGIN_SRC haskell  :solution
 -- Or this rather boring one:
-data DistanceLine = DistanceLine (Point -> Float) -- DistanceLine dist directly uses the distance function as a definition
-instance Line DistanceLine where 
-    distance (DistanceLine dist) = dist  
+    distance :: l -> Point -> Float
+    vshift :: Float -> l -> l
+data BoringLine = BoringLine {dist :: Point -> Float, vs :: Float -> BoringLine} -- BoringLine directly uses the required methods as a definition
+instance Line BoringLine where 
+    distance = dist
+    vshift = flip vs
 #+END_SRC
 
 Can you think of any more things we can compute for any line? Please add them as methods in the definition of  ~Line~.
@@ -247,6 +257,7 @@ Can you give some of them default implementations?
 -- For example:
 class Line l where
     distance :: l -> Point -> Float 
+    vshift :: Float -> l -> l
     isOn :: l -> Point -> Bool
     isOn l p = distance l p == 0
     -- come up with more methods yourself
