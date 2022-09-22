@@ -183,7 +183,7 @@ currently still subject to change.
     </tr>
     <tr class="warning">
       <td>45</td>
-      <td>Thu 10 Nov 13:30-16:00</td>
+      <td>Thu 10 Nov 20:00-22:00</td>
       <td><b>Final exam</b></td>
       <td></td>
       <td></td>
