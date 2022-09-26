@@ -126,7 +126,7 @@ symbol, since it is already defined in the ~Prelude~.
 
 ** ~Set a~
 
-1. Define a type ~Set a~ which consists of elements of type ~a~, and define a
+1. Define a type ~Set a~ whose values represent sets of elements of type ~a~, and define a
 function ~subset :: Eq a => Set a -> Set a -> Bool~ which checks
 whether all the elements in the first set also belong to the
 second.
