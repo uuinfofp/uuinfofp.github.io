@@ -100,9 +100,9 @@ symbol, since it is already defined in the ~Prelude~.
 
     data Fender = PlasticFender | MetalFender
 
-    data Bike = CityBike (Maybe Fender) (Maybe Fender)
-              | RoadBike Gears
-              | MTB Gears
+    data Bike = CityBike BikeSize (Maybe Fender) (Maybe Fender)
+              | RoadBike BikeSize Gears
+              | MTB      BikeSize Gears
 
     data Bikeshop = Bikeshop [Bike]
     #+END_SRC
