@@ -172,8 +172,8 @@ elements from a list. For example
 #+BEGIN_SRC haskell :solution
 remSuccessiveduplicates []                   = []
 remSuccessiveduplicates [x]                  = [x]
-remSuccessiveduplicates (x:y:xs) | x == y    = remsuccessiveduplicates y ys
-                                 | otherwise = x : remsuccessiveduplicates y ys
+remSuccessiveduplicates (x:y:xs) | x == y    = remsuccessiveduplicates (y:ys)
+                                 | otherwise = x : remsuccessiveduplicates (y:ys)
 #+END_SRC
 
 *** ~nub~
