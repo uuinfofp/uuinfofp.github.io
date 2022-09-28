@@ -76,7 +76,7 @@ currently still subject to change.
       <td>39</td>
       <td>Tue 27 Sep</td>
       <td><a href="slides/fp-07-case-studies.pdf">Case studies</a>
-        <br><a href="slides/fp-qa-2020.pdf">Q&A session</a>
+        <br><a href="slides/fp-qa-midterm.pdf">Q&A session</a>
         <!-- <br/><a href="trees.html">The problem statements for the Tree exercises</a> -->
      </td>
       <td>Chapters 8.6</td>
