@@ -38,7 +38,7 @@ title: Practicals
 <td><a href="http://uu.blackboard.com">Blackboard</a></td>
 </tr>
 <tr>
-<td>Tue 25 Oct 23:59</td>
+<td>Thu 27 Oct 23:59</td>
 <td><a href="practicals/Assignment4.pdf">4. Type classes</a></td>
 <td><a href="practicals/Assignment4.hs"><tt>Assignment4.hs</tt></a></td>
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
