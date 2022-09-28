@@ -19,8 +19,8 @@ the GHC documentation</a>.
 If you have a package or extension in mind that you would like to make
 a video about, please contact <a href="mailto:F.Staals@uu.nl">Frank
 Staals</a> or <a href="mailto:m.i.l.vakar@uu.nl">Matthijs Vákár</a>
-**before 28 October 2021** to ensure that the choice is appropriate.
-The final video should be submitted **before Sun 14 Nov 23:59**.
+**before 28 October 2022** to ensure that the choice is appropriate.
+The final video should be submitted **before Sun 13 Nov 23:59**.
 
 ### Some examples
 
@@ -52,9 +52,12 @@ The following topics are provided as a suggestion, but many other are possible.
 * <a href="http://hackage.haskell.org/package/foldl"><tt>foldl</tt></a>: composable folds
 * <a href="https://www.spock.li/"><tt>Spock</tt></a>: HTTP server
 * <a href="http://haskell-servant.readthedocs.io/en/stable/"><tt>servant</tt></a>: HTTP server
-* <a href="http://hackage.haskell.org/package/aeson"><tt>aeson</tt></a>: JSON serialization
 * <a href="http://hackage.haskell.org/package/logict"><tt>logict</tt></a>: logic programming
-* <a href="http://hackage.haskell.org/package/regex-applicative"><tt>regex-applicative</tt></a>: regular rexpressions
+* <a
+  href="http://hackage.haskell.org/package/regex-applicative"><tt>regex-applicative</tt></a>:
+  regular rexpressions
+* <a
+  href="https://hackage.haskell.org/package/optparse-applicative"><tt>optparse-applicative</tt></a>:  command  line argument parsing
 * <a href="http://hackage.haskell.org/package/errors"><tt>errors</tt></a>: error handling
 * <a href="http://hackage.haskell.org/package/monad-par"><tt>monad-par</tt></a>: parallel programming
 * <a
