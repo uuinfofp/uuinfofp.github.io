@@ -238,9 +238,9 @@ If the first list contains duplicates, so will the result.
 ~[1,2,2,3,4] `intersect` [6,4,4,2] == [2,2,4]~
 
 #+BEGIN_SRC haskell :solution
-intersect xs ys = foldr f e ys
+intersect ys xs = foldr f e ys
   where
-    f y r | y `elem` r = y:r
+    f y r | y `elem` xs = y:r
           | otherwise  = r
     e = []
 #+END_SRC
