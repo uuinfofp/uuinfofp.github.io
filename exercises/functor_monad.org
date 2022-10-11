@@ -2,9 +2,20 @@
 title: Functors, monads, applicatives and traversables
 ---
 
-1. Show that the definition of the arithmetic evaluator using ~next~ in Lecture 13 is the same as the one using nested ~case~ clauses by expanding the definition of the former.
+1. Given the definition 
+    #+BEGIN_SRC haskell
+    newtype Map k v = MkMap [(k, v)]
+    #+END_SRC
+  What is the kind of ~Map~? Please make ~Map k~ an instance of ~Functor~.
+    #+BEGIN_SRC haskell :solution
+    -- Map has kind * -> * -> * (as a parameterized type with two type parameters)
+    instance Functor (Map k) where 
+      fmap f (MkMap kvs) = MkMap (map (\(k,v) -> (k, f v)) kvs)
+    #+END_SRC
 
-2. Define a function ~tuple :: Monad m => m a -> m b -> m (a, b)~
+2. Show that the definition of the arithmetic evaluator using ~next~ in Lecture 13 is the same as the one using nested ~case~ clauses by expanding the definition of the former.
+
+3. Define a function ~tuple :: Monad m => m a -> m b -> m (a, b)~
      using explicit ~(>>=)~, ~do~-notation and applicative operators.
     - What does the function do for the ~Maybe~ monad?
 
@@ -24,7 +35,7 @@ title: Functors, monads, applicatives and traversables
     #+END_SRC
 
 
-3. Define the following set of actions for ~State s a~ :
+4. Define the following set of actions for ~State s a~ :
     - A computation ~get~ of type ~State s s~ that obtains the current value of the state.
     - A function ~modify~ of type ~(s -> s) -> State s ()~ that updates the current state using the given function.
     - A function ~put~ of type ~s -> State s ()~ that overwrites the current state with the given value.
@@ -41,9 +52,9 @@ title: Functors, monads, applicatives and traversables
     #+END_SRC
 
 
-4. Explain the behavior of ~sequence~ for the ~Maybe~ monad.
+5. Explain the behavior of ~sequence~ for the ~Maybe~ monad.
 
-5. Define a monadic generalisation of ~foldl~:
+6. Define a monadic generalisation of ~foldl~:
 
     #+BEGIN_SRC haskell
     foldM :: Monad m => (a -> b -> m a) -> a -> [b] -> m a
@@ -56,9 +67,9 @@ title: Functors, monads, applicatives and traversables
     #+END_SRC
 
 
-6. Show that the ~Maybe~ monad satisfies the monad laws.
+7. Show that the ~Maybe~ monad satisfies the monad laws.
 
-7. Given the type:
+8. Given the type:
 
     #+BEGIN_SRC haskell
     data Expr a = Var a | Val Int | Add (Expr a) (Expr a)
@@ -80,7 +91,7 @@ title: Functors, monads, applicatives and traversables
 
     With the aid of an example, explain what the ~(>>=)~ operator for this type does.
 
-8. Given the type:
+9. Given the type:
 
     #+BEGIN_SRC haskell
     data Error m a = Error m | OK a
@@ -128,7 +139,7 @@ title: Functors, monads, applicatives and traversables
     -- This implements error propagation of the first error to be hit rather than error accumulation of all errors.
     #+END_SRC
 
-9. Given the types
+10. Given the types
 
     #+BEGIN_SRC haskell
     newtype State s a = State {runState :: s -> (a, s)}
@@ -241,7 +252,7 @@ title: Functors, monads, applicatives and traversables
 
   We see that code written in the ~State s~ monad is equivalent to code in "state passing style", i.e. code where in place of functions of type ~A -> B~ we instead work with functions of type ~(A, s) -> (B, s)~ that always thread through an extra argument and return value (the state) of type ~s~.
 
-10. (Challenging) Given the types
+11. (Challenging) Given the types
 
     #+BEGIN_SRC haskell
     newtype Cont r a = Cont { runCont :: (a -> r) -> r}
