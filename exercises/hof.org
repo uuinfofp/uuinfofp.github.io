@@ -100,6 +100,11 @@ The function ~filter~ can be defined in terms of ~concat~ and ~map~:
 
 Complete the definition of ~box~.
 
+#+BEGIN_SRC haskell :solution
+box x = if p x then [x] else []
+#+END_SRC
+
+
 ** Function Composition
 
 Function composition first applies the latter of the supplied
@@ -107,6 +112,12 @@ functions to the argument, the former thereafter. Write a function
 ~before~ that can be used to rewrite ~f . g . h~ to ~h `before` g
 `before` f~. What can you say about associativity of ~(.)~ and
 ~before~?
+
+#+BEGIN_SRC haskell :solution
+before :: (a -> b) -> (b -> c) -> (a -> c)
+before = flip (.)
+-- both (.) and before are associative operations
+#+END_SRC
 
 ** Higher order data types
 
@@ -116,3 +127,8 @@ to a type, for some ~c~ also ~c −>~ is a type function mapping a type
 ~a~ to ~c −> a~. Rewrite the type of ~map~ by substituting the type
 function ~[...]~ by ~c −>~. Can you derive an implementation from the
 resulting type?
+
+#+BEGIN_SRC haskell :solution
+mapFun :: (a -> b) -> (c -> a) -> (c -> b)
+mapFun = (.)
+#+END_SRC
