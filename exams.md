@@ -15,7 +15,7 @@ title: Exams from previous years
 <tr>
 <td>2022</td>
 <td><a href="exams/20221006.pdf">No answers</a></td>
-<td>Answers will be uploaded later</td>
+<td><a href="exams/20221006-answers.hs">Answers</a></td>
 <td></td>
 <td></td>
 </tr>
