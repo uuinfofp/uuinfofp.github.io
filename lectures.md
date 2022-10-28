@@ -175,7 +175,7 @@ currently still subject to change.
     <tr>
       <td></td>
       <td>Thu 3 Nov<br /></td>
-      <td>No class -- prepare for the exam!
+      <td>No Lecture -- prepare for the exam!
         <!-- <br><a href="slides/Lecture14-exam-prep.hs">Solutions to example questions</a> -->
       </td>
       <td></td>
