@@ -158,8 +158,8 @@ currently still subject to change.
     <tr>
       <td></td>
       <td>Thu 27 Oct</td>
-      <td>Guest lecture</td>
-      <td></td>
+      <td><a href="https://serranofp.com/zurihac-workshop/infofp.html">Guest lecture</a></td>
+      <td><a href="https://serranofp.com/#talks">Extended version</a></td>
       <td>Alejandro Serrano Mena</td>
     </tr>
     <tr>
