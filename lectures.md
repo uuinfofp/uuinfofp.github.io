@@ -46,7 +46,7 @@ currently still subject to change.
       <td></td>
       <td>Thu 15 Sep</td>
       <td><a href="slides/fp-04-data-classes.pdf">Data types and type classes</a>
-        <!-- <br><a href="slides/Lecture5.hs">Example code from lecture</a> -->
+        <br><a href="slides/Lecture5.hs">Example code from lecture</a>
         </td>
       <td>Chapter 8 (until 8.6)</td>
       <td>Matthijs</td>
@@ -56,8 +56,8 @@ currently still subject to change.
       <td>Tue 20 Sep</td>
       <td><a href="slides/fp-05-h-o-functions.pdf">Higher-order functions</a>
         <br><a href="applyAllFold.html">Writing <tt>applyAll</tt> as a fold</a>
-        <!-- <br><a href="slides/Lecture4.hs">Example Haskell code from lecture</a> -->
-        <!-- <br><a href="slides/Lecture4.py">Example Python code from lecture</a> -->
+        <br><a href="slides/Lecture4.hs">Example code from lecture</a>
+        <br><a href="slides/Lecture4.py">Example Python code demonstrating map/filter/fold</a>
         </td>
       <td>Chapter 7 and 4.5-4.6</td>
       <td>Matthijs</td>
@@ -94,7 +94,7 @@ currently still subject to change.
       <td>40</td>
       <td>Tue 4 Oct<br /></td>
       <td><a href="slides/fp-09-io.pdf">Input and output</a>
-        <!-- <br><a href="slides/Lecture9.hs">Example code from lecture</a> -->
+        <br><a href="slides/Lecture9.hs">Example code from lecture</a>
         </td>
       <td>Chapter 10</td>
       <td>Matthijs</td>
@@ -110,7 +110,7 @@ currently still subject to change.
       <td>41</td>
       <td>Tue 11 Oct</td>
       <td><a href="slides/fp-10-monads-one.pdf">Functors and monads</a>
-        <!-- <br><a href="slides/Lecture10.hs">Example code from lecture</a> -->
+        <br><a href="slides/Lecture10.hs">Example code from lecture</a>
         </td>
       <td>Chapter 12 (except 12.2)</td>
       <td>Matthijs</td>
@@ -119,7 +119,7 @@ currently still subject to change.
       <td></td>
       <td>Thu 13 Oct</td>
       <td><a href="slides/fp-11-laws.pdf">Laws and induction</a>
-        <!-- <br><a href="slides/Lecture11.hs">Example proofs from lecture</a> -->
+        <br><a href="slides/Lecture11.hs">Example proofs from lecture</a>
         </td>
       <td>Chapter 16 (up to 16.6)
         <br>Chapter 13 from the <a href="http://www.staff.science.uu.nl/~hage0101/FP-elec.pdf">Lecture Notes</a>
@@ -150,7 +150,7 @@ currently still subject to change.
       <td>43</td>
       <td>Tue 25 Oct</td>
       <td><a href="slides/fp-14-monads-two.pdf">More monads and applicatives</a>
-        <!-- <br><a href="slides/Lecture14Live.hs">Example code from lecture</a> -->
+        <br><a href="slides/Lecture14Live.hs">Example code from lecture</a>
         </td>
       <td>Chapter 12.2</td>
       <td>Matthijs</td>
@@ -158,18 +158,18 @@ currently still subject to change.
     <tr>
       <td></td>
       <td>Thu 27 Oct</td>
-      <td>Guest lecture</td>
-      <td></td>
+      <td><a href="https://serranofp.com/zurihac-workshop/infofp.html">Guest lecture</a></td>
+      <td><a href="https://serranofp.com/#talks">Extended version</a></td>
       <td>Alejandro Serrano Mena</td>
     </tr>
     <tr>
       <td>44</td>
       <td>Tue 1 Nov<br /></td>
       <td>Q&A session (for exam prep)
-        <br><a href="slides/Test.hs">Example questions</a>
-        <br><a href="slides/Test-Answers.hs">Example questions solutions</a>
+        <!-- <br><a href="slides/Test.hs">Example questions</a> -->
+        <!-- <br><a href="slides/Test-Answers.hs">Example questions solutions</a> -->
       </td>
-      <td></td>
+      <td><a href="slides/Lecture15-syllabus.txt">Syllabus</a></td>
       <td>Matthijs</td>
     </tr>
     <tr>

@@ -8,8 +8,7 @@ Type classes and instances (define your own, use other people's, ad-hoc vs param
 Modules and abstract data types (undertand the basic idea of a module/abstract type, otherwise not important for exam;
     project management is not part of the exam)
 Specification and testing (be able to write a specification for a programs and be able to write tests as plain predicates e.g.
-    of type [a] -> Bool for a predicate on lists; no need to know anything about QuickCheck for the exam; some previous 
-    years taught much more about QuickCheck, so those exams ask questions about it, which we will not do)
+    of type [a] -> Bool for a predicate on lists; be able to use Arbitrary type class and Gen monad (if we remind you of their API)
 IO (IO monad, referential transparency, pure vs impure code; understand how to use the IO monad with do notation or binds;
     no need to remember specific operations in the IO monad; we would give you the operations you need, but you need to be able 
     to put them together to write a useful bit of code)
@@ -17,4 +16,4 @@ Functors and monads (notably Maybe, List monad, State monad; understand do notat
     be able to write some monadic piece of code, given certain operations in a monad, like get, put and modify for State)
 Equational reasoning (extensional reasoning, case distinction, induction on ADTs)
 Lazy evaluation (be able to say whether a function is strict or non-strict in an argument, converting to WHNF, forcing strictness through seq, infinite data structures through laziness)
-Applicatives are not part of the exam! (And neither are foldables and traversables)
+Applicatives are not part of the exam! (And neither is the guest lecture)
