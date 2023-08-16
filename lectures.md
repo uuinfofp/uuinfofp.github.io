@@ -18,14 +18,14 @@ currently still subject to change.
   <tbody>
     <tr>
       <td>36</td>
-      <td>Tue 6 Sep</td>
+      <td>Tue 5 Sep</td>
       <td><a href="slides/fp-01-intro.pdf">Functional Programming? Haskell?</a></td>
       <td>Chapters 1 and 2</td>
       <td>Frank</td>
     </tr>
     <tr>
       <td></td>
-      <td>Thu 8 Sep</td>
+      <td>Thu 7 Sep</td>
       <td><a href="slides/fp-02-basics.pdf">Basics</a>
       </td>
       <td>Chapters 4 (up to 4.4) and 3
@@ -36,7 +36,7 @@ currently still subject to change.
     </tr>
     <tr>
       <td>37</td>
-      <td>Tue 13 Sep</td>
+      <td>Tue 12 Sep</td>
       <td><a href="slides/fp-03-lists.pdf">Lists and recursion</a>
   </td>
       <td>Chapters 5 and 6</td>
@@ -44,7 +44,7 @@ currently still subject to change.
     </tr>
     <tr>
       <td></td>
-      <td>Thu 15 Sep</td>
+      <td>Thu 14 Sep</td>
       <td><a href="slides/fp-04-data-classes.pdf">Data types and type classes</a>
         <br><a href="slides/Lecture5.hs">Example code from lecture</a>
         </td>
@@ -53,7 +53,7 @@ currently still subject to change.
     </tr>
     <tr>
       <td>38</td>
-      <td>Tue 20 Sep</td>
+      <td>Tue 19 Sep</td>
       <td><a href="slides/fp-05-h-o-functions.pdf">Higher-order functions</a>
         <br><a href="applyAllFold.html">Writing <tt>applyAll</tt> as a fold</a>
         <br><a href="slides/Lecture4.hs">Example code from lecture</a>
@@ -64,7 +64,7 @@ currently still subject to change.
     </tr>
     <tr>
       <td></td>
-      <td>Thu 22 Sep</td>
+      <td>Thu 21 Sep</td>
       <td><a href="slides/fp-06-data-structures-new.pdf">Data
         structures</a><br/>
         <a href="slides/sweep.hs">The Code for the point location example</a>
@@ -74,7 +74,7 @@ currently still subject to change.
     </tr>
     <tr>
       <td>39</td>
-      <td>Tue 27 Sep</td>
+      <td>Tue 26 Sep</td>
       <td><a href="slides/fp-07-case-studies.pdf">Case studies</a>
         <br><a href="slides/fp-qa-midterm.pdf">Q&A session</a>
         <!-- <br/><a href="trees.html">The problem statements for the Tree exercises</a> -->
@@ -84,7 +84,7 @@ currently still subject to change.
     </tr>
     <tr>
       <td></td>
-      <td>Thu 29 Sep</td>
+      <td>Thu 28 Sep</td>
       <td><a href="slides/fp-08-project-design-test.pdf">Project
   management and design</a></td>
       <td></td>
@@ -92,7 +92,7 @@ currently still subject to change.
     </tr>
     <tr>
       <td>40</td>
-      <td>Tue 4 Oct<br /></td>
+      <td>Tue 3 Oct<br /></td>
       <td><a href="slides/fp-09-io.pdf">Input and output</a>
         <br><a href="slides/Lecture9.hs">Example code from lecture</a>
         </td>
@@ -101,14 +101,14 @@ currently still subject to change.
     </tr>
     <tr class="warning">
       <td></td>
-      <td>Thu 6 Oct 13:30-15:30</td>
+      <td>Thu 5 Oct 17:00-19:30</td>
       <td><b>Midterm exam</b></td>
       <td></td>
       <td></td>
     </tr>
     <tr>
       <td>41</td>
-      <td>Tue 11 Oct</td>
+      <td>Tue 10 Oct</td>
       <td><a href="slides/fp-10-monads-one.pdf">Functors and monads</a>
         <br><a href="slides/Lecture10.hs">Example code from lecture</a>
         </td>
@@ -117,7 +117,7 @@ currently still subject to change.
     </tr>
     <tr>
       <td></td>
-      <td>Thu 13 Oct</td>
+      <td>Thu 12 Oct</td>
       <td><a href="slides/fp-11-laws.pdf">Laws and induction</a>
         <br><a href="slides/Lecture11.hs">Example proofs from lecture</a>
         </td>
@@ -132,7 +132,7 @@ currently still subject to change.
     </tr>
     <tr>
       <td>42</td>
-      <td>Tue 18 Oct</td>
+      <td>Tue 17 Oct</td>
       <td><a href="slides/fp-13-quickcheck.pdf">Testing</a>
          <br><a href="slides/lectureTesting.hs">Code from the lecture</a>
       </td>
@@ -141,14 +141,14 @@ currently still subject to change.
     </tr>
     <tr>
       <td></td>
-      <td>Thu 20 Oct</td>
+      <td>Thu 19 Oct</td>
       <td><a href="slides/fp-12-lazy-eval.pdf">Lazy evaluation</a></td>
       <td>Chapter 15</td>
       <td>Frank</td>
     </tr>
     <tr>
       <td>43</td>
-      <td>Tue 25 Oct</td>
+      <td>Tue 24 Oct</td>
       <td><a href="slides/fp-14-monads-two.pdf">More monads and applicatives</a>
         <br><a href="slides/Lecture14Live.hs">Example code from lecture</a>
         </td>
@@ -157,14 +157,14 @@ currently still subject to change.
     </tr>
     <tr>
       <td></td>
-      <td>Thu 27 Oct</td>
-      <td><a href="https://serranofp.com/zurihac-workshop/infofp.html">Guest lecture</a></td>
-      <td><a href="https://serranofp.com/#talks">Extended version</a></td>
-      <td>Alejandro Serrano Mena</td>
+      <td>Thu 26 Oct</td>
+      <td>Guest lecture</td>
+      <td></td>
+      <td></td>
     </tr>
     <tr>
       <td>44</td>
-      <td>Tue 1 Nov<br /></td>
+      <td>Tue 31 Oct<br /></td>
       <td>Q&A session (for exam prep)
         <!-- <br><a href="slides/Test.hs">Example questions</a> -->
         <!-- <br><a href="slides/Test-Answers.hs">Example questions solutions</a> -->
@@ -174,7 +174,7 @@ currently still subject to change.
     </tr>
     <tr>
       <td></td>
-      <td>Thu 3 Nov<br /></td>
+      <td>Thu 2 Nov<br /></td>
       <td>No Lecture -- prepare for the exam!
         <!-- <br><a href="slides/Lecture14-exam-prep.hs">Solutions to example questions</a> -->
       </td>
@@ -183,17 +183,17 @@ currently still subject to change.
     </tr>
     <tr class="warning">
       <td>45</td>
-      <td>Thu 10 Nov 20:00-22:00</td>
+      <td>Thu 9 Nov 17:00-19:30</td>
       <td><b>Final exam</b></td>
       <td></td>
       <td></td>
     </tr>
-    </tr><tr class="warning">
-      <td>02</td>
-      <td>Thu 12 Jan 17:00-20:00</td>
-      <td><b>Retake exam</b></td>
-      <td></td>
-      <td></td>
-    </tr>
+    <!-- </tr><tr class="warning"> -->
+    <!--   <td>02</td> -->
+    <!--   <td>Thu 12 Jan 17:00-20:00</td> -->
+    <!--   <td><b>Retake exam</b></td> -->
+    <!--   <td></td> -->
+    <!--   <td></td> -->
+    <!-- </tr> -->
   </tbody>
 </table>
