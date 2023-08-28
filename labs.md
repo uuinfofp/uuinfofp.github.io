@@ -18,19 +18,19 @@ title: Practicals
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 </tr>
 <tr>
-<td>Tue 20 Sept 23:59</td>
+<td>Wed 20 Sept 23:59</td>
 <td><a href="practicals/Assignment1.pdf">1. Lists</a></td>
 <td><a href="practicals/Assignment1.hs"><tt>Assignment1.hs</tt></a></td>
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 </tr>
 <tr>
-<td>Tue 27 Sept 23:59</td>
+<td>Wed 27 Sept 23:59</td>
 <td><a href="practicals/Assignment2.pdf">2. Data structures</a></td>
 <td><a href="practicals/Assignment2.hs"><tt>Assignment2.hs</tt></a></td>
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 </tr>
 <tr>
-<td>Thu 13 Oct 23:59</td>
+<td>Wed 11 Oct 23:59</td>
 <td><a href="practicals/project.pdf">3. Game, design document</a></td>
 <td><a href="practicals/gloss-counter.zip">Example game</a><br/>
     <a href="practicals/example_design.pdf">Example design document</a>
@@ -38,23 +38,23 @@ title: Practicals
 <td><a href="http://uu.blackboard.com">Blackboard</a></td>
 </tr>
 <tr>
-<td>Thu 27 Oct 23:59</td>
+<td>Wed 25 Oct 23:59</td>
 <td><a href="practicals/Assignment4.pdf">4. Type classes</a></td>
 <td><a href="practicals/Assignment4.hs"><tt>Assignment4.hs</tt></a></td>
 <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
 </tr>
 <tr>
-<td>Sun 13 Nov 23:59</td>
+<td>Sun 12 Nov 23:59</td>
 <td><a href="practicals/project.pdf">5. Game, implementation</a></td>
 <td><a href="practicals/gloss-counter.zip">Example game</a></td>
 <td><a href="http://uu.blackboard.com">Blackboard</a></td>
 </tr>
-<tr>
-<td>Tue 12 Jan 23:59</td>
-<td><a href="practicals/RetakeAssignment.pdf">Retake Assignment: Monads</a></td>
-<td><a href="practicals/RetakeAssignment.hs">RetakeAssignment.hs</a></td>
-<td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td>
-</tr>
+<!-- <tr> -->
+<!-- <td>Tue 12 Jan 23:59</td> -->
+<!-- <td><a href="practicals/RetakeAssignment.pdf">Retake Assignment: Monads</a></td> -->
+<!-- <td><a href="practicals/RetakeAssignment.hs">RetakeAssignment.hs</a></td> -->
+<!-- <td><a href="https://domjudge.cs.uu.nl/dj/fp/team/">DOMjudge</a></td> -->
+<!-- </tr> -->
 </table>
 
 ### Practicals from previous years

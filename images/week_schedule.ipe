@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
 <ipe version="70218" creator="Ipe 7.2.24">
-<info created="D:20200824120211" modified="D:20230816152158"/>
+<info created="D:20200824120211" modified="D:20230828173912"/>
 <preamble>\usepackage[default]{gillius}
 \usepackage{sfmath}
 </preamble>
@@ -322,14 +322,14 @@ h
 64 592 m
 448 592 l
 </path>
-<path matrix="1 0 0 1 0 -0.000268" stroke="black" fill="Bettina blue" opacity="50%" stroke-opacity="opaque">
+<path matrix="1 0 0 1 112 -136" stroke="black" fill="Bettina blue" opacity="50%" stroke-opacity="opaque">
 184 704 m
 184 648 l
 240 648 l
 240 704 l
 h
 </path>
-<path matrix="1 0 0 1 112 -136" stroke="black" fill="Bettina yellow" opacity="50%" stroke-opacity="opaque">
+<path matrix="1 0 0 1 0 -0.000268" stroke="black" fill="Bettina yellow" opacity="50%" stroke-opacity="opaque">
 184 704 m
 184 648 l
 240 648 l
@@ -381,11 +381,11 @@ h
 128 720 m
 128 384 l
 </path>
-<text matrix="1 0 0 1 28 8" transformations="translations" pos="184 680" stroke="black" type="label" width="44.304" height="6.958" depth="0.12" halign="center" valign="baseline">Instruction</text>
+<text matrix="1 0 0 1 28 8" transformations="translations" pos="184 680" stroke="black" type="label" width="34.381" height="6.958" depth="0.12" halign="center" valign="baseline">Practical</text>
 <text layer="beta" matrix="1 0 0 1 20 8" transformations="translations" pos="192 664" stroke="black" type="label" width="24.608" height="6.958" depth="0.12" halign="center" valign="baseline">online</text>
 <text matrix="1 0 0 1 20 -56" transformations="translations" pos="192 664" stroke="black" type="label" width="24.608" height="6.958" depth="0.12" halign="center" valign="baseline">online</text>
 <text layer="alpha" matrix="1 0 0 1 28 -56" transformations="translations" pos="184 680" stroke="black" type="label" width="30.974" height="6.958" depth="0.12" halign="center" valign="baseline">Lecture</text>
-<text matrix="1 0 0 1 140 -128" transformations="translations" pos="184 680" stroke="black" type="label" width="34.381" height="6.958" depth="0.12" halign="center" valign="baseline">Practical</text>
+<text matrix="1 0 0 1 140 -128" transformations="translations" pos="184 680" stroke="black" type="label" width="44.304" height="6.958" depth="0.12" halign="center" valign="baseline">Instruction</text>
 <text layer="beta" matrix="1 0 0 1 60 0" transformations="translations" pos="264 408" stroke="black" type="label" width="16.349" height="6.963" depth="0.13" halign="center" valign="baseline">USP</text>
 <path layer="alpha" matrix="1 0 0 1 112 -200" stroke="black" fill="Bettina red" opacity="50%" stroke-opacity="opaque">
 184 704 m
