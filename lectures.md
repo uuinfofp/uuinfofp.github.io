@@ -54,7 +54,7 @@ currently still subject to change.
     <tr>
       <td>38</td>
       <td>Tue 19 Sep</td>
-      <td><a href="slides/fp-05-h-o-functions.pdf">Higher-order functions</a>
+      <td><a href="slides/fp-04-h-o-functions.pdf">Higher-order functions</a>
         <br><a href="applyAllFold.html">Writing <tt>applyAll</tt> as a fold</a>
         <br><a href="slides/Lecture4.hs">Example code from lecture</a>
         <br><a href="slides/Lecture4.py">Example Python code demonstrating map/filter/fold</a>
@@ -85,7 +85,7 @@ currently still subject to change.
     <tr>
       <td></td>
       <td>Thu 28 Sep</td>
-      <td><a href="slides/fp-08-project-design-test.pdf">Project
+      <td><a href="slides/fp-08-project-design.pdf">Project
   management and design</a></td>
       <td></td>
       <td>Frank</td>
