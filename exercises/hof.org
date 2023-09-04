@@ -2,6 +2,9 @@
 title: Higher order Functions
 ---
 
+Recommended: Currying, Filter
+
+
 ** Parentheses!?
 Give examples for functions with the following types:
 

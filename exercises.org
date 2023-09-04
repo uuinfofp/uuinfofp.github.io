@@ -5,21 +5,21 @@ title: Exercises
 The following table lists exercises corresponding to the lectures.
 
 #+ATTR_HTML: :class table table-striped
-| Lecture           | Topic                  |  Week |
-|-------------------+------------------------+-------|
-| Lectures 1 and 2  | [[file:/exercises/basics.html][Basics]]                 |    36 |
-| Lecture 2         | [[file:/exercises/types.html][Type Inference]]         | 36-37 |
-| Lectures 2 and 3  | [[file:/exercises/recursion.html][Recursion on Lists]]     |    37 |
-| Lecture 4         | [[file:/exercises/datatypes.html][Datatypes]]              |    37 |
-| Lecture 5         | [[file:/exercises/foldr.html][Folds]]                  |    38 |
-|                   | [[file:/exercises/hof.html][Higher order Functions]] |    38 |
-| Lecture 6         | [[file:/exercises/trees.html][Trees]]                  | 38-39 |
-| Lecture 7         | [[file:/exercises/case_studies.html][Case Studies]]  | 39 |
-| Lectures 9 and 10 | [[file:/exercises/io.html][Input/Output]]           |    40 |
-| Lecture 11        | [[file:/exercises/laws_and_induction.html][Laws and Induction.]]    |    41 |
-| Lecture 12        | [[file:/exercises/testing.html][Testing]]                |    42 |
-| Lecture 13        | [[file:/exercises/lazy.html][Lazy Evaluation.]]       |    42 |
-| Lecture 14        | [[file:/exercises/functor_monad.html][Functors, Monads, etc.]] |    43 |
+|  Week | Topic                  | Recommended                                        | Corresponding Lecture |
+|-------+------------------------+----------------------------------------------------+-----------------------|
+|    36 | [[file:/exercises/basics.html][Basics]]                 | Writing functions 2-4, 6                           | Lectures 1 and 2      |
+|    37 | [[file:/exercises/types.html][Type Inference]]         | *all*                                              | Lecture 2             |
+|       | [[file:/exercises/recursion.html][Recursion on Lists]]     | or, all, filter, partition, group, foldr, splitAll | Lectures 2 and 3      |
+|    38 | [[file:/exercises/datatypes.html][Datatypes]]              | Natural numbers, Complex numbers, Line             | Lecture 4             |
+|       | [[file:/exercises/foldr.html][Folds]]                  | map, reverse, partition, intersect, tails          | Lecture 5             |
+|       | [[file:/exercises/hof.html][Higher order Functions]] | Currying, Filter                                   |                       |
+| 38-39 | [[file:/exercises/trees.html][Trees]]                  |                                                    | Lecture 6             |
+|    39 | [[file:/exercises/case_studies.html][Case Studies]]           |                                                    | Lecture 7             |
+|    40 | [[file:/exercises/io.html][Input/Output]]           |                                                    | Lectures 9 and 10     |
+|    41 | [[file:/exercises/laws_and_induction.html][Laws and Induction.]]    |                                                    | Lecture 11            |
+|    42 | [[file:/exercises/testing.html][Testing]]                |                                                    | Lecture 12            |
+|    42 | [[file:/exercises/lazy.html][Lazy Evaluation.]]       |                                                    | Lecture 13            |
+|    43 | [[file:/exercises/functor_monad.html][Functors, Monads, etc.]] |                                                    | Lecture 14            |
 
 
 ** Additional Exercises
