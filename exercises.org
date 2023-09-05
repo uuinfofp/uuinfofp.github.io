@@ -7,19 +7,19 @@ The following table lists exercises corresponding to the lectures.
 #+ATTR_HTML: :class table table-striped
 |  Week | Topic                  | Recommended                                        | Corresponding Lecture |
 |-------+------------------------+----------------------------------------------------+-----------------------|
-|    36 | [[file:/exercises/basics.html][Basics]]                 | Writing functions 2-4, 6                           | Lectures 1 and 2      |
-|    37 | [[file:/exercises/types.html][Type Inference]]         | *all*                                              | Lecture 2             |
-|       | [[file:/exercises/recursion.html][Recursion on Lists]]     | or, all, filter, partition, group, foldr, splitAll | Lectures 2 and 3      |
-|    38 | [[file:/exercises/datatypes.html][Datatypes]]              | Natural numbers, Complex numbers, Line             | Lecture 4             |
-|       | [[file:/exercises/foldr.html][Folds]]                  | map, reverse, partition, intersect, tails          | Lecture 5             |
-|       | [[file:/exercises/hof.html][Higher order Functions]] | Currying, Filter                                   |                       |
-| 38-39 | [[file:/exercises/trees.html][Trees]]                  |                                                    | Lecture 6             |
-|    39 | [[file:/exercises/case_studies.html][Case Studies]]           |                                                    | Lecture 7             |
-|    40 | [[file:/exercises/io.html][Input/Output]]           |                                                    | Lectures 9 and 10     |
-|    41 | [[file:/exercises/laws_and_induction.html][Laws and Induction.]]    |                                                    | Lecture 11            |
-|    42 | [[file:/exercises/testing.html][Testing]]                |                                                    | Lecture 12            |
-|    42 | [[file:/exercises/lazy.html][Lazy Evaluation.]]       |                                                    | Lecture 13            |
-|    43 | [[file:/exercises/functor_monad.html][Functors, Monads, etc.]] |                                                    | Lecture 14            |
+|    36 | [[file:exercises/basics.html][Basics]]                 | Writing functions 2-4, 6                           | Lectures 1 and 2      |
+|    37 | [[file:exercises/types.html][Type Inference]]         | *all*                                              | Lecture 2             |
+|       | [[file:exercises/recursion.html][Recursion on Lists]]     | or, all, filter, partition, group, foldr, splitAll | Lectures 2 and 3      |
+|    38 | [[file:exercises/datatypes.html][Datatypes]]              | Natural numbers, Complex numbers, Line             | Lecture 4             |
+|       | [[file:exercises/foldr.html][Folds]]                  | map, reverse, partition, intersect, tails          | Lecture 5             |
+|       | [[file:exercises/hof.html][Higher order Functions]] | Currying, Filter                                   |                       |
+| 38-39 | [[file:exercises/trees.html][Trees]]                  |                                                    | Lecture 6             |
+|    39 | [[file:exercises/case_studies.html][Case Studies]]           |                                                    | Lecture 7             |
+|    40 | [[file:exercises/io.html][Input/Output]]           |                                                    | Lectures 9 and 10     |
+|    41 | [[file:exercises/laws_and_induction.html][Laws and Induction.]]    |                                                    | Lecture 11            |
+|    42 | [[file:exercises/testing.html][Testing]]                |                                                    | Lecture 12            |
+|    42 | [[file:exercises/lazy.html][Lazy Evaluation.]]       |                                                    | Lecture 13            |
+|    43 | [[file:exercises/functor_monad.html][Functors, Monads, etc.]] |                                                    | Lecture 14            |
 
 
 ** Additional Exercises
