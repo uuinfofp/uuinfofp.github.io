@@ -26,7 +26,7 @@ The following table lists exercises corresponding to the lectures.
 
 *** Exams of Previous Years
 
-See the [[file:/exams.html][exams]] page.
+See the [[file:exams.html][exams]] page.
 
 *** Interactive Exercises
 
