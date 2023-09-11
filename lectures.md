@@ -45,7 +45,7 @@ currently still subject to change.
     <tr>
       <td></td>
       <td>Thu 14 Sep</td>
-      <td><a href="slides/fp-04-data-classes.pdf">Data types and type classes</a>
+      <td><a href="slides/fp-05-data-classes.pdf">Data types and type classes</a>
         <br><a href="slides/Lecture5.hs">Example code from lecture</a>
         </td>
       <td>Chapter 8 (until 8.6)</td>
