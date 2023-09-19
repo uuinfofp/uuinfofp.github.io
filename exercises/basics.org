@@ -2,6 +2,10 @@
 title: Basics
 ---
 
+Recommended: Writing functions 2-4, 6
+Challenging: Implementing (an approximate) Square Root
+
+
 ** Syntax
 
 How do ~x = 3~ and ~x == 3~ differ in meaning?

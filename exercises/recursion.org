@@ -2,6 +2,10 @@
 title: Recursion on Lists
 ---
 
+recommended: or, all, filter, partition, group, foldr, splitAll
+challenging: insertEverywhere, permutations, transpose, maximum segment sum
+
+
 ** Implementing Functions from Data.List
 
 Write the following functions using direct recursion. If no type

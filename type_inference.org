@@ -1,0 +1,80 @@
+* determining the type of 'map id'
+
+We start by writing the types of map and id, each with fresh type
+variables:
+
+-
+  map :: (a -> b) -> [a] -> [b]
+-
+  id :: c -> c
+
+map id :: ?????
+
+because we apply map to id, we learn that
+
+the type a -> b better be the same as c -> c
+(which we sometimes write as
+ a -> b ~ c -> c
+)
+
+which means that
+
+- a ~ c        and
+- b ~ c
+
+so 'map' in 'map id' has type: (c -> c) -> [c] -> [c],
+and thus if we fill in 'id' as the first argument, what remains is:
+
+map id :: [c] -> [c]
+
+Of course we can now freely rename the variable name 'c'. I.e. we can
+also say tat
+
+map id :: [frank] -> [frank]
+
+or
+
+map id :: [a] -> [a]
+
+
+* Determining the type of 'map replicate'
+
+-
+  map :: (a -> b)   -> [a] -> [b]
+-
+  replicate :: Int -> c -> [c]
+
+
+apparently we can apply map to replicate, so
+
+- a -> b     better be Int -> c -> [c]
+- a -> b     better be Int -> (c -> [c])
+
+so
+
+- a ~ Int
+- b ~ c -> [c]
+
+so 'map' in 'map replicate' has  type
+
+(Int -> (c -> [c])) -> [Int] -> [c -> [c]]
+
+we already filled in the  first argument, so
+
+map replicate :: [Int] -> [c -> [c]]
+
+
+* Determining the type of 'map 3'
+
+-
+  map :: (a -> b)   -> [a] -> [b]
+-
+  3 :: Int
+
+Since we fill in 3 as the first argument to map, their types must
+match.
+
+so then the type a -> b needs to be the same as Int
+
+However, this is a type error, since Int is not te same as functions
+from a to b.

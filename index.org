@@ -1,5 +1,5 @@
 ---
-title: INFOFP 2022 Functional Programming
+title: INFOFP 2023 Functional Programming
 ---
 #+STARTUP: showeverything
 #+language:    'en'
@@ -49,27 +49,7 @@ By the end of the course you will be able to
 
 * Announcements
 
-*** 2022-09-28, Bonus assignment
-
-To receive extra credit (see Description/Grading for precise grading
-scheme) we encourage you to work in pairs to make a 5-10-minute video
-about a Haskell package or language extension. The point of the video
-will be to explain the purpose of the package/extension as well as to
-give examples of how to use it. The video should be able to serve as a
-how-to guide for others getting started with Haskell. You can think of
-the target audience as your co-students.
-
-You can find an overview of Haskell packages on [[http://hackage.haskell.org/][Hackage]] and of
-language extensions in [[http://downloads.haskell.org/~ghc/latest/docs/html/users_guide/exts.html][the GHC documentation]].
-
-If you have a package or extension in mind that you would like to make
-a video about, please contact [[mailto:F.Staals@uu.nl][Frank Staals]] or [[mailto:m.i.l.vakar@uu.nl][Matthijs Vákár]] to ensure
-that the choice is appropriate.
-
-You can find more information and some examples for the Bonus
-assignment [[file:optional.html][here]].
-
-*** 2022-08-29, GHC Installation Instructions
+*** 2023-08-16, GHC Installation Instructions
 
 To successfully complete the course you will need
 
@@ -81,7 +61,7 @@ Installing GHC is, or at least was, often somewhat
 troublesome. Fortunately, the situation has improved a bit with
 respect to earlier years. We currently recommend that you install GHC
 using a tool called 'ghcup'. In particular, you can follow
-[these][https://www.haskell.org/ghcup/] instructions to install 'ghc'
+[[https://www.haskell.org/ghcup/][these]] instructions to install 'ghc'
 and 'cabal'.
 
 If you want as you type error checking and intelligent completions in

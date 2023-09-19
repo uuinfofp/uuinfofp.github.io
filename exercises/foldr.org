@@ -2,6 +2,10 @@
 title: Fold Exercises
 ---
 
+Recommended: map, reverse, partition, intersect, tails
+Challenging: permutations, group
+
+
 Write the following functions using the ~foldr~ or ~foldl~ function. If no type
 signature is given, also give the type of the function.
 

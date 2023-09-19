@@ -2,6 +2,9 @@
 title: Data Types and Typeclasses
 ---
 
+Recommended: Natural numbers, Complex numbers, Line
+Challenging: DGraph
+
 ** Natural numbers
 
 Consider the set of natural numbers $\mathbb{N}$, and observe that:
