@@ -31,7 +31,10 @@ currently still subject to change.
       <td>Chapters 4 (up to 4.4) and 3
         <br>Chapter 5 from the <a
                                  href="http://www.staff.science.uu.nl/~hage0101/FP-elec.pdf">Lecture
-          Notes</a></td>
+          Notes</a>
+        <br><a href="type_inference.html">Notes on type inference from
+  during the lecture</a>
+      </td>
       <td>Frank</td>
     </tr>
     <tr>

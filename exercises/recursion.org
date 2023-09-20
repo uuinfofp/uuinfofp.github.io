@@ -176,8 +176,8 @@ elements from a list. For example
 #+BEGIN_SRC haskell :solution
 remSuccessiveduplicates []                   = []
 remSuccessiveduplicates [x]                  = [x]
-remSuccessiveduplicates (x:y:xs) | x == y    = remsuccessiveduplicates (y:ys)
-                                 | otherwise = x : remsuccessiveduplicates (y:ys)
+remSuccessiveduplicates (x:y:xs) | x == y    = remsuccessiveduplicates (y:xs)
+                                 | otherwise = x : remsuccessiveduplicates (y:xs)
 #+END_SRC
 
 *** ~nub~
@@ -365,7 +365,7 @@ the shortest list. For example:
 - ~zipWith (+) [1,2,3] [100,200,300,400] == [1001,2002,3003]~
 
 #+BEGIN_SRC haskell :solution
-zipWith f (x:xs) (y:ys) = (f x y) : zipWith xs ys
+zipWith f (x:xs) (y:ys) = (f x y) : zipWith f xs ys
 zipWith _ _      _      = []
 #+END_SRC
 
