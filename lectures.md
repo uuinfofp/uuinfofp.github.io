@@ -152,18 +152,18 @@ currently still subject to change.
     <tr>
       <td>43</td>
       <td>Tue 24 Oct</td>
+      <td>Guest lecture by Alejandro Serrano</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Thu 26 Oct</td>
       <td><a href="slides/fp-14-monads-two.pdf">More monads and applicatives</a>
         <br><a href="slides/Lecture14Live.hs">Example code from lecture</a>
         </td>
       <td>Chapter 12.2</td>
       <td>Matthijs</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>Thu 26 Oct</td>
-      <td>Guest lecture</td>
-      <td></td>
-      <td></td>
     </tr>
     <tr>
       <td>44</td>
