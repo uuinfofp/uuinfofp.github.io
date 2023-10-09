@@ -91,7 +91,85 @@ title: Functors, monads, applicatives and traversables
 
     With the aid of an example, explain what the ~(>>=)~ operator for this type does.
 
-9. Given the type:
+9. To show how ~(>>=) :: Monad m => m a -> (a -> m b) -> m b~
+   generalizes function application and how ~do~-notation 
+   generalizes ~let~-bindings, consider the following definition of function 
+   application with the arguments swapped: 
+
+    #+BEGIN_SRC haskell
+      (&) :: a -> (a -> b) -> b 
+      (&) = flip ($)
+    #+END_SRC
+
+    Then, we can consider 
+
+    #+BEGIN_SRC haskell
+    let x = a in b
+    #+END_SRC
+
+    to be syntactic sugar for 
+
+    #+BEGIN_SRC haskell
+    a & \x -> b
+    #+END_SRC
+
+    similar to how 
+
+    #+BEGIN_SRC haskell
+    do
+      x <- a
+      b
+    #+END_SRC
+
+    is syntactic sugar for 
+
+    #+BEGIN_SRC haskell
+    a >>= \x -> b
+    #+END_SRC
+
+    Please desugar the following definition into code that explicitly uses ~(&)~:
+
+    #+BEGIN_SRC haskell
+    compute x =
+        let a = x + 5
+            b = a * 3
+            c = b / 2
+            d = c - 7
+            e = d * d
+        in  e
+    #+END_SRC
+
+    #+BEGIN_SRC haskell :solution
+    compute x =
+            x + 5 & \a ->
+            a * 3 & \b ->
+            b / 2 & \c ->
+            c - 7 & \d ->
+            d * d & \e ->
+            e
+    #+END_SRC
+
+    Please desugar the following definition into code that explicitly uses ~(>>=)~:
+
+    #+BEGIN_SRC haskell
+    main = do
+        putStrLn "Enter the first number:"
+        num1 <- readLn
+        putStrLn "Enter the second number:"
+        num2 <- readLn
+        putStrLn $ "The sum of the numbers is: " ++ show (num1 + num2)
+    #+END_SRC
+
+    #+BEGIN_SRC haskell :solution
+    main =
+        putStrLn "Enter the first number:" >>= \_ ->
+        readLn >>= \num1 -> 
+        putStrLn "Enter the second number:" >>= \_ ->
+        readLn >>= \num2 ->
+        putStrLn $ "The sum of the numbers is: " ++ show (num1 + num2)
+    #+END_SRC
+
+10. Given the type:
 
     #+BEGIN_SRC haskell
     data Error m a = Error m | OK a
@@ -139,7 +217,7 @@ title: Functors, monads, applicatives and traversables
     -- This implements error propagation of the first error to be hit rather than error accumulation of all errors.
     #+END_SRC
 
-10. Given the types
+11. Given the types
 
     #+BEGIN_SRC haskell
     newtype State s a = State {runState :: s -> (a, s)}
@@ -252,7 +330,7 @@ title: Functors, monads, applicatives and traversables
 
   We see that code written in the ~State s~ monad is equivalent to code in "state passing style", i.e. code where in place of functions of type ~A -> B~ we instead work with functions of type ~(A, s) -> (B, s)~ that always thread through an extra argument and return value (the state) of type ~s~.
 
-11. (Challenging) Given the types
+12. (Challenging) Given the types
 
     #+BEGIN_SRC haskell
     newtype Cont r a = Cont { runCont :: (a -> r) -> r}
