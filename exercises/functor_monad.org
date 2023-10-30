@@ -13,7 +13,7 @@ title: Functors, monads, applicatives and traversables
       fmap f (MkMap kvs) = MkMap (map (\(k,v) -> (k, f v)) kvs)
     #+END_SRC
 
-2. Show that the definition of the arithmetic evaluator using ~next~ in Lecture 13 is the same as the one using nested ~case~ clauses by expanding the definition of the former.
+2. Show that the definition of the arithmetic evaluator using ~next~ in Lecture 10 is the same as the one using nested ~case~ clauses by expanding the definition of the former.
 
 3. Define a function ~tuple :: Monad m => m a -> m b -> m (a, b)~
      using explicit ~(>>=)~, ~do~-notation and applicative operators.
