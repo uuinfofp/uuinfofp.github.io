@@ -172,7 +172,8 @@ currently still subject to change.
         <!-- <br><a href="slides/Test.hs">Example questions</a> -->
         <!-- <br><a href="slides/Test-Answers.hs">Example questions solutions</a> -->
       </td>
-      <td><a href="slides/Lecture15-syllabus.txt">Syllabus</a></td>
+      <td><a href="slides/231102QA-answers.hs">Solutions to exercises discussed</a>
+       <br><a href="slides/Lecture15-syllabus.txt">Syllabus</a></td>
       <td>Matthijs</td>
     </tr>
     <tr>
