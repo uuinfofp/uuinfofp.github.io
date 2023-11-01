@@ -17,7 +17,7 @@ title: Lazy Evaluation
 
       #+BEGIN_SRC haskell :solution
       -- error undefined. Instead, we could hope to already get the
-      -- 'a' before getting the error.
+      -- 'b' before getting the error.
 
       intersperse _ []     = []
       intersperse e (x:xs) = x : case xs of
