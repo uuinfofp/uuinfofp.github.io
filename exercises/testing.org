@@ -144,8 +144,9 @@ runTests = do
    data Tree a = Branch a (Tree a) (Tree a) | Leaf
    #+END_SRC
 
-   Write a function ~isSearchTree :: Tree a -> Bool~ that verifies
-   that its argument is a binary search tree. Then test the property
+   Write a function ~isSearchTree :: Ord a => Tree a -> Bool~ that verifies
+   that its argument is a binary search tree. Then write a function 
+   ~genBSTI :: Gen (Tree Int)~ that generates binary search trees. Now test the property
    that given a binary search tree ~t~, inserting a value into the
    tree results in yet another binary search tree. The code for
    inserting a new value into the tree is:
