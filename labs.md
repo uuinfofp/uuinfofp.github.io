@@ -66,16 +66,16 @@ scratch.
 ### Coding style
 
 The most important question you should ask yourself to judge your own
-coding style is to ask yourself the question **"If another proficient
+coding style is **"If another proficient
 Haskell programmer reads my code, would this be the most readable code
 I could have written?"** Where *readable* can be understood as the
-time it would take him or her to understand what your code tries to
+time it would take them to understand what your code tries to
 accomplish and how it accomplishes this.
 
 * By far the most important factor that affects readability (and thus
   your grade) is proper use and reuse of existing library functions
   and syntactic sugar.
-* Use the proper idioms (e.g., use `Nothing` instead `(-1)` to
+* Use the proper idioms (e.g., use `Nothing` instead of `(-1)` to
   indicate failure of a function.)
 * Another factor impacting readability is proper indentation of your
   code, choice of variable and function names, and commenting your
@@ -136,7 +136,7 @@ The most important factor that affects readability is proper use and reuse of ex
        where g x = someFunction x `mod` 2 == 1
     ```
 
-* On the other, it is also possible to take this too far. Most people will probably consider
+* On the other hand, it is also possible to take this too far. Most people will probably consider
 
     ```haskell
     f = map (\x -> 3 * x + 1)
@@ -153,7 +153,7 @@ The most important factor that affects readability is proper use and reuse of ex
 
 #### Indentation
 
-* The most important aspect about indentation are probably that it is used consistently.
+* The most important aspect about indentation is probably that it is used consistently.
 * Try not to make your lines longer than 80 characters. A lot of people still prefer to print out source code, have two editors open side-by-side on their screen, or simply use a large font size on a small screen.
 * Try to align matching pieces of code. Instead of:
 
