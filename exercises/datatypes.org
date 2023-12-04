@@ -51,7 +51,7 @@ symbol, since it is already defined in the ~Prelude~.
 
 ** Complex numbers
 
-1. Write a data type ~Complex~ to represent complex numbers of the form
+1. Write a data type ~Complex~ to represent complex numbers. A complex number is defined as a pair of real numbers $a$ and $b$, and is written as
    $a + b*i$.
 
    #+BEGIN_SRC haskell :solution
@@ -59,7 +59,8 @@ symbol, since it is already defined in the ~Prelude~.
    #+END_SRC
 
 2. Make ~Complex~ an instance of ~Show~, ~Eq~, and ~Num~ (write the
-   instances explicitly rather than deriving them).
+   instances explicitly rather than deriving them). For more information
+   about operations on complex numbers, see [[https://en.wikipedia.org/wiki/Complex_number#Relations_and_operations][Wikipedia]].
 
    #+BEGIN_SRC haskell :solution
    instance Num Complex where

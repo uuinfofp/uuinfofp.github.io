@@ -17,7 +17,7 @@ title: Lazy Evaluation
 
       #+BEGIN_SRC haskell :solution
       -- error undefined. Instead, we could hope to already get the
-      -- 'a' before getting the error.
+      -- 'b' before getting the error.
 
       intersperse _ []     = []
       intersperse e (x:xs) = x : case xs of
@@ -62,7 +62,7 @@ title: Lazy Evaluation
     (1 + 5) : succ 4 : map (+1) [1,2]   -- WNNF: since (:) is a constructor
     isNothing (Just 4)                  -- not WHNF -> False
     \a b c -> and b                     -- WHNF: since lambda function
-    foldr undefined e []                -- not WHNF -> e
+    foldr undefined True []             -- not WHNF -> True
     seq fmap                            -- WHNF: function that still requires arguments
     #+END_SRC
 

@@ -92,7 +92,7 @@ book. You are expected to read this part of the book on your own.
 There is plenty of additional reading material available on the
 internet. In particularly, you may find the following material useful:
 
-- [[http://www.cs.uu.nl/people/jur/FP-elec.pdf][Lecture Notes from 2015/2016]], mostly in Dutch
+- [[https://webspace.science.uu.nl/~hage0101/FP-elec.pdf][Lecture Notes from 2015/2016]], mostly in Dutch
 - [[http://learnyouahaskell.com/][Learn You a Haskell for Great Good]] by Miran Lipovača
 - [[https://en.wikibooks.org/wiki/Haskell][Haskell Wikibook]]
 

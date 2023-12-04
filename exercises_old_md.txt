@@ -2,7 +2,7 @@
 title: Exercises
 ---
 
-These exercises are taken from the [Lecture Notes](http://www.cs.uu.nl/people/jur/FP-elec.pdf) from previous years. The exercises at the end of each chapter of *Programming in Haskell* by Graham Hutton are also suggested.
+These exercises are taken from the [Lecture Notes](https://webspace.science.uu.nl/~hage0101/FP-elec.pdf) from previous years. The exercises at the end of each chapter of *Programming in Haskell* by Graham Hutton are also suggested.
 
 If you like a more interactive approach, [Ask-Elle](http://ideas.cs.uu.nl/AskElle/) and [exercism.io](http://exercism.io/languages/haskell) provide Haskell exercises which are automatically corrected.
 
