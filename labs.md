@@ -49,12 +49,12 @@ title: Practicals
 <td><a href="practicals/gloss-counter.zip">Example game</a></td>
 <td><a href="http://uu.blackboard.com">Blackboard</a></td>
 </tr>
-<!-- <tr> -->
-<!-- <td>Tue 12 Jan 23:59</td> -->
-<!-- <td><a href="practicals/RetakeAssignment.pdf">Retake Assignment: Monads</a></td> -->
-<!-- <td><a href="practicals/RetakeAssignment.hs">RetakeAssignment.hs</a></td> -->
-<!-- <td><a href="https://domjudge.uu.nl/fp/domjudge">DOMjudge</a></td> -->
-<!-- </tr> -->
+<tr>
+<td>Fri 12 Jan 23:59</td>
+<td><a href="practicals/RetakeAssignment.pdf">Retake Assignment: Monads</a></td>
+<td><a href="practicals/RetakeAssignment.hs">RetakeAssignment.hs</a></td>
+<td><a href="https://domjudge.uu.nl/fp/domjudge">DOMjudge</a></td>
+</tr>
 </table>
 
 ### Practicals from previous years
