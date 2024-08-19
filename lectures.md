@@ -83,7 +83,7 @@ currently still subject to change.
         <!-- <br/><a href="trees.html">The problem statements for the Tree exercises</a> -->
      </td>
       <td>Chapters 8.6</td>
-      <td>Frank</td>
+      <td>Mathijs</td>
     </tr>
     <tr>
       <td></td>
@@ -173,7 +173,7 @@ currently still subject to change.
       </td>
       <td><a href="slides/231102QA-answers.hs">Solutions to exercises discussed</a>
        <br><a href="slides/Lecture15-syllabus.txt">Syllabus</a></td>
-      <td>Matthijs</td>
+      <td>Frank</td>
     </tr>
     <tr>
       <td></td>
