@@ -19,8 +19,8 @@ the GHC documentation</a>.
 If you have a package or extension in mind that you would like to make
 a video about, please contact <a href="mailto:F.Staals@uu.nl">Frank
 Staals</a> or <a href="mailto:m.i.l.vakar@uu.nl">Matthijs Vákár</a>
-**before the midterm on 05 October 2023** to ensure that the choice is
-appropriate.  The final video should be submitted **by Sun 12 Nov
+**before the midterm on 03 October 2023** to ensure that the choice is
+appropriate.  The final video should be submitted **by Sun 10 Nov
 23:59**.
 
 ### Some examples

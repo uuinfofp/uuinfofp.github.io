@@ -71,5 +71,5 @@ pandocCompiler' = pandocCompilerWith defaultHakyllReaderOptions writerOptions
 
 myConfiguration :: Configuration
 myConfiguration = defaultConfiguration {
-    deployCommand = "rsync -avh _site/* gemini.science.uu.nl:/science/wwwprojects/ics/www/docs/vakken/fp/2023"
+    deployCommand = "rsync -avh _site/* gemini.science.uu.nl:/science/wwwprojects/ics/www/docs/vakken/fp/2024"
   }

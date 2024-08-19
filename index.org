@@ -1,5 +1,5 @@
 ---
-title: INFOFP 2023 Functional Programming
+title: INFOFP 2024-2025 Functional Programming
 ---
 #+STARTUP: showeverything
 #+language:    'en'
