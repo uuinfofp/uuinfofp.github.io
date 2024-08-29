@@ -154,7 +154,7 @@ The most important factor that affects readability is proper use and reuse of ex
 #### Indentation
 
 * The most important aspect about indentation is probably that it is used consistently.
-* Try not to make your lines longer than 80 characters. A lot of people still prefer to print out source code, have two editors open side-by-side on their screen, or simply use a large font size on a small screen.
+* Try not to make your lines longer than 100 characters. A lot of people still prefer to print out source code, have two editors open side-by-side on their screen, or simply use a large font size on a small screen.
 * Try to align matching pieces of code. Instead of:
 
     ```haskell
