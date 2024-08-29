@@ -2,9 +2,6 @@
 title: Type inference
 ---
 
-Recommended: *all*
-
-
 In these exercises you should assume the following types:
 
 #+BEGIN_SRC haskell
@@ -19,7 +16,8 @@ concat :: [[a]] -> [a]
 (.)    :: (b -> c) -> (a -> b) -> a -> c
 #+END_SRC
 
-** ~head ([3, 2] ++ [2])~
+
+** :atHome:
 
 What is the type of ~head ([3, 2] ++ [2])~? Give the type derivation.
 
@@ -48,10 +46,9 @@ head ([3, 2] ++ [2]) :: Int
 -}
 #+END_SRC
 
-** ~(+) 3~
+** :atHome:
 
 What is the type of ~(+) 3~? Give the type derivation.
-
 
 #+BEGIN_SRC haskell :solution
 {-
@@ -64,7 +61,7 @@ Therefore,
 -}
 #+END_SRC
 
-** ~map even~
+** :atHome:
 
 What is the type of ~map even~? Give the type derivation.
 
@@ -83,7 +80,8 @@ map even :: [Int] -> [Bool]
 -}
 #+END_SRC
 
-** ~map concat~
+
+** :atHome:
 
 What is the type of ~map concat~? Give the type derivation.
 
@@ -102,11 +100,11 @@ map concat :: [[[c]]] -> [[c]]
 -}
 #+END_SRC
 
-** ~map head~
+** :inClass:
 
 What is the type of ~map head~? Give the type derivation.
 
-** ~reverse . reverse~
+** :atHome:
 
 What is the type of ~reverse . reverse~? Give the type derivation.
 
@@ -143,11 +141,11 @@ reverse . reverse :: a -> c with constraints ... = [e] -> [e]
 #+END_SRC
 
 
-** ~foldr (+)~
+** :atHome:
 
 What is the type of ~foldr (+)~? Give the type derivation.
 
-** ~foldr map~
+** :inClass:
 
 What is the type of ~foldr map~? Give the type derivation.
 
@@ -175,7 +173,7 @@ Up to renaming of bound type variables (which is irrelevant), this is answer 1.
 -}
 #+END_SRC
 
-** ~map . foldr~
+** :atHome:
 
 What is the type of ~map . foldr~? Give the type derivation.
 
@@ -184,7 +182,7 @@ What is the type of ~map . foldr~? Give the type derivation.
     3. ~(b -> a -> a) -> [a] -> [[b] -> a]~
     4. ~(b -> a -> a) -> [b] -> [[a] -> a]~
 
-** ~concat . concat~
+** :atHome:
 
 Which of the following is the type of ~concat . concat~? Give the type derivation.
 
@@ -194,11 +192,9 @@ Which of the following is the type of ~concat . concat~? Give the type derivatio
     3. ~[[[a]]] -> [a]~
     4. ~[a] -> [[a]] -> [a]~
 
-Give the type derivation.
+** :atHome:
 
-** What is the type of ~map map~?
-
-Give the type derivation.
+What is the type of ~map map~? Give the type derivation.
 
 #+BEGIN_SRC haskell :solution
 {-
@@ -215,7 +211,7 @@ map map :: [c -> d] -> [[c] -> [d]]
 -}
 #+END_SRC
 
-** ~map (map map)~
+** :inClass:
 
 What is the type of ~map (map map)~? Give the type derivation.
 
@@ -242,7 +238,7 @@ Up to (irrelevant) renaming of bound type variables this is answer 1.
 -}
 #+END_SRC
 
-** ~map map map~ and brackets
+** :atHome:
 
 Which observation is correct when comparing the types of ~(map map)
 map~ and ~map (map map)?~
@@ -252,7 +248,7 @@ map~ and ~map (map map)?~
 3. The types are the same, since function composition is associative.
 4. One of the expressions does not have any type at all.
 
-** ~map maximum~
+**                                                                  :atHome:
 
 The function ~maximum~ has type ~Ord a => [a] -> a~. What is the type
 of ~map maximum~? Can you give a derivation?

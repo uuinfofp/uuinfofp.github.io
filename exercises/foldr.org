@@ -2,14 +2,15 @@
 title: Fold Exercises
 ---
 
-Recommended: map, reverse, partition, intersect, tails
-Challenging: permutations, group
-
-
 Write the following functions using the ~foldr~ or ~foldl~ function. If no type
 signature is given, also give the type of the function.
 
-** ~length~
+A good strategy to get started is to first write the function using
+explicit recursion, and then somewhat mechanically convert it to using
+~foldr~ or ~foldl~.
+
+
+** ~length~ :atHome:
 
 length returns the length of a finite list.
 
@@ -20,7 +21,7 @@ length = foldr f e
     e     = 0
 #+END_SRC
 
-** ~(++)~
+** ~(++)~ :atHome:
 
 Append two lists.
 
@@ -31,7 +32,7 @@ Append two lists.
     e = ys
 #+END_SRC
 
-** ~product~
+** ~product~ :atHome:
 
 The product function computes the product of a finite list of numbers.
 
@@ -43,7 +44,7 @@ product = foldr f e
 #+END_SRC
 
 
-** ~or~
+** ~or~ :atHome:
 
 or returns the disjunction of a Boolean list.
 
@@ -54,7 +55,7 @@ or = foldr f e
     e     = False
 #+END_SRC
 
-** ~any~
+** ~any~ :atHome:
 
 Applied to a predicate and a list, any determines if any element of
 the list satisfies the predicate.
@@ -67,7 +68,7 @@ any p = foldr f e
 #+END_SRC
 
 
-** ~all~
+** ~all~ :atHome:
 
 Applied to a predicate and a list, all determines if all elements of
 the list satisfy the predicate.
@@ -79,7 +80,7 @@ all p = foldr f e
     e     = True
 #+END_SRC
 
-** ~map~
+** ~map~ :inClass:
 
 #+BEGIN_SRC haskell :solution
 map g = foldr f e
@@ -88,7 +89,7 @@ map g = foldr f e
     e     = []
 #+END_SRC
 
-** ~reverse~
+** ~reverse~ :inClass:
 
 reverse xs returns the elements of xs in reverse order. xs must be finite.
 
@@ -99,7 +100,7 @@ reverse = foldr f e
     e     = []
 #+END_SRC
 
-** ~concat~
+** ~concat~ :atHome:
 
 Concatenate a list of lists into a single list.
 
@@ -110,7 +111,7 @@ concat = foldr f e
     e     = []
 #+END_SRC
 
-** ~concatMap~
+** ~concatMap~ :atHome:
 
 Map a function over a list and concatenate the results.
 
@@ -121,7 +122,7 @@ concatMap g = foldr f e
     e     = []
 #+END_SRC
 
-** ~elem :: Eq a => a -> [a] -> Bool~
+** ~elem :: Eq a => a -> [a] -> Bool~ :atHome:
 
 elem is the list membership predicate, usually written in infix form,
 e.g., x `elem` xs.
@@ -134,12 +135,12 @@ elem y = foldr f e
     e = False
 #+END_SRC
 
-** ~filter~
+** ~filter~ :atHome:
 
 filter, applied to a predicate and a list, returns the list of those
 elements that satisfy the predicate; i.e.,
 
-~filter p xs = [ x | x <- xs, p x]~
+~filter p xs = [ x | x <- xs, p x]~ :atHome:
 
 #+BEGIN_SRC haskell :solution
 filter p = foldr f e
@@ -148,7 +149,7 @@ filter p = foldr f e
     e = []
 #+END_SRC
 
-** ~maybeLast :: [a] -> Maybe a~
+** ~maybeLast :: [a] -> Maybe a~ :atHome:
 
 Extract the last element of a list. Returns ~Nothing~ if the list is empty.
 
@@ -161,7 +162,7 @@ maybeLast = foldr f e
     e = Nothing
 #+END_SRC
 
-** ~partition~
+** ~partition~ :inClass:
 
 The partition function takes a predicate a list and returns the pair
 of lists of elements which do and do not satisfy the predicate,
@@ -176,7 +177,7 @@ partition p = foldr f e
     e = ([],[])
 #+END_SRC
 
-** ~unzip :: [(a, b)] -> ([a], [b])~
+** ~unzip :: [(a, b)] -> ([a], [b])~ :atHome:
 
 unzip transforms a list of pairs into a list of first components and a
 list of second components.
@@ -188,7 +189,7 @@ unzip = foldr f e
     e = ([],[])
 #+END_SRC
 
-** ~unlines :: [String] -> String~
+** ~unlines :: [String] -> String~ :atHome:
 
 unlines is an inverse operation to lines. It joins lines, after
 appending a terminating newline to each.
@@ -200,7 +201,7 @@ unlines = foldr f e
     e = []
 #+END_SRC
 
-** ~nub~
+** ~nub~ :atHome:
 
 The nub function removes duplicate elements from a list. In
 particular, it keeps only the first occurrence of each element. (The
@@ -213,7 +214,7 @@ nub = reverse . foldl f e where
     e = []
 #+END_SRC
 
-** ~union :: Eq a => [a] -> [a] -> [a]~
+** ~union :: Eq a => [a] -> [a] -> [a]~ :atHome:
 
 The union function returns the list union of the two lists. For example,
 
@@ -231,7 +232,7 @@ union xs ys = foldr f e ys
     e = xs
 #+END_SRC
 
-** ~intersect :: Eq a => [a] -> [a] -> [a]~
+** ~intersect :: Eq a => [a] -> [a] -> [a]~ :inClass:
 
 The intersect function takes the list intersection of two lists. For example,
 
@@ -249,7 +250,7 @@ intersect ys xs = foldr f e ys
     e = []
 #+END_SRC
 
-** ~sort :: Ord a => [a] -> [a]~
+** ~sort :: Ord a => [a] -> [a]~ :atHome:
 
 The sort function implements a stable sorting algorithm.
 
@@ -266,7 +267,7 @@ sort = foldr f e
     e = []
 #+END_SRC
 
-** ~null~
+** ~null~ :atHome:
 
 Test whether a list is empty.
 
@@ -277,7 +278,7 @@ null xs = foldr f e xs
     e     = True
 #+END_SRC
 
-** ~intersperse~
+** ~intersperse~ :atHome:
 
 The intersperse function takes an element and a list and `intersperses' that element between the elements of the list. For example,
 
@@ -292,7 +293,7 @@ intersperse c = foldr f e
     e     = []
 #+END_SRC
 
-** ~permutations :: [a] -> [[a]]~
+** ~permutations :: [a] -> [[a]]~ :challenging:atHome:
 The permutations function returns the list of all permutations of the
 argument. E.g.:
 
@@ -317,7 +318,7 @@ insertEverywhere x []        = [[x]]
 insertEverywhere x xs@(y:ys) = (x:xs) : map (y:) (insertEverywhere x ys)
 #+END_SRC
 
-** ~takeWhile~
+** ~takeWhile~ :atHome:
 
 takeWhile, applied to a predicate p and a list xs, returns the longest prefix (possibly empty) of xs of elements that satisfy p:
 
@@ -332,7 +333,7 @@ takeWhile p = foldr f e
     e = []
 #+END_SRC
 
-** ~tails :: [a] -> [[a]]~
+** ~tails :: [a] -> [[a]]~ :inClass:
 
 The tails function returns all final segments of the argument, longest first. For example,
 
@@ -346,7 +347,7 @@ tails = foldr f e
               (ys:_) -> (x:ys):r
     e = []
 #+END_SRC
-** ~group :: Eq a => [a] -> [[a]]~
+** ~group :: Eq a => [a] -> [[a]]~ :challenging:inClass:
 
 The group function takes a list and returns a list of lists such that the concatenation of the result is equal to the argument. Moreover, each sublist in the result contains only equal elements. For example,
 
@@ -362,7 +363,7 @@ group = foldr f e
     e = []
 #+END_SRC
 
-** ~scanr :: (a -> b -> b) -> b -> [a] -> [b]~
+** ~scanr :: (a -> b -> b) -> b -> [a] -> [b]~ :atHome:
 
 scanr is similar to foldr but returns a list of successive reduced
  values from the right:
@@ -372,7 +373,7 @@ scanr is similar to foldr but returns a list of successive reduced
 That is, it also returns all intermediate answers of a foldr. Note in
 particular that
 
-~head (scanr g z xs) == foldr g z xs~.
+~head (scanr g z xs) == foldr g z xs~ :athome
 
 #+BEGIN_SRC haskell :solution
 scanr g z = foldr f e
@@ -381,7 +382,7 @@ scanr g z = foldr f e
     e = [z]
 #+END_SRC
 
-** ~mapAccumR :: (acc -> x -> (acc, y)) -> acc -> [x] -> (acc, [y])~
+** ~mapAccumR :: (acc -> x -> (acc, y)) -> acc -> [x] -> (acc, [y])~ :atHome:
 
 The mapAccumR function behaves like a combination of map and foldr; it
 applies a function to each element of a list, passing an accumulating

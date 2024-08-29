@@ -2,10 +2,7 @@
 title: Data Types and Typeclasses
 ---
 
-Recommended: Natural numbers, Complex numbers, Line
-Challenging: DGraph
-
-** Natural numbers
+** Natural numbers :recommended:atHome:
 
 Consider the set of natural numbers $\mathbb{N}$, and observe that:
 
@@ -33,7 +30,7 @@ Consider the set of natural numbers $\mathbb{N}$, and observe that:
                  GT -> Succ (fromInt $ i-1)
    #+END_SRC
 
-** ~<~
+** :atHome:
 
 Give a direct definition of the ~<~ operator on lists. This definition
 should not use operators like ~<=~ for lists.
@@ -49,7 +46,7 @@ symbol, since it is already defined in the ~Prelude~.
 (x:xs) < (y:ys) = x < y && xs < ys
 #+END_SRC
 
-** Complex numbers
+** Complex numbers :recommended:atHome:
 
 1. Write a data type ~Complex~ to represent complex numbers. A complex number is defined as a pair of real numbers $a$ and $b$, and is written as
    $a + b*i$.
@@ -72,7 +69,7 @@ symbol, since it is already defined in the ~Prelude~.
      fromInteger i     = C (fromInteger i) 0
    #+END_SRC
 
-** Bikes
+** Bikes :atHome:
 
 1. Define data types that model the following situation as precisely
    as possible:
@@ -128,20 +125,20 @@ symbol, since it is already defined in the ~Prelude~.
 4. Write a function ~byGears~ that lists all bikes available in the
    bikeshop, ordered by number of gears.
 
-** ~Set a~
+** Sets :atHome:
 
-1. Define a type ~Set a~ whose values represent sets of elements of type ~a~, and define a
-function ~subset :: Eq a => Set a -> Set a -> Bool~ which checks
-whether all the elements in the first set also belong to the
-second.
+1. Define a type ~Set a~ whose values represent sets of elements of
+   type ~a~, and define a function ~subset :: Eq a => Set a -> Set a
+   -> Bool~ which checks whether all the elements in the first set
+   also belong to the second.
 
 2. Use the ~subset~ function above to define an ~Eq~ instance for ~Set
    a~.
 
-3. Why do we have to define ~Set a~ as its own data type, instead of an
-alias over ~[a]~?
+3. Why do we have to define ~Set a~ as its own data type, instead of
+   an alias over ~[a]~?
 
-** ~Finite~
+** ~Finite~ :atHome:
 
 Define a class ~Finite~. This class has only one method: the list of
 all the elements of that type. The idea is that such list is finite,
@@ -192,9 +189,9 @@ instance (Finite a, Finite b, Eq a) => Finite (a -> b) where
 #+END_SRC
 
 
-** ~Line~
+** Lines                                                       :recommended:atHome:
 
-Given the datatypes 
+Given the data types
 
 #+BEGIN_SRC haskell
 data Point = Point Float Float -- Point x y is the point with coordinates (x, y) in the plane
@@ -269,7 +266,7 @@ class Line l where
 
 
 
-** ~DGraph~ (More challenging)
+**                                                      :atHome:challenging:
 We can use a type class 
 
 #+BEGIN_SRC haskell
@@ -292,9 +289,11 @@ newtype FRoseTree l = FRoseTree [RoseTree l]
 #+END_SRC
 
 ~SMPList~ and ~FRoseTree~ give two different representations of directed graphs.
-For example,
-the graph at
-https://en.wikipedia.org/wiki/Directed_graph#/media/File:Directed_graph_no_background.svg
+For example, the graph
+
+#+ATTR_HTML: :width 700px
+[[https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Directed_graph_no_background.svg/1920px-Directed_graph_no_background.svg.png]]
+
 can be represented as 
 
 #+BEGIN_SRC haskell
@@ -306,7 +305,11 @@ dgraph1FRT = FRoseTree [one] where
   four = RoseTree 4 [three]
 #+END_SRC
 
-To warm up, please implement the graph at https://upload.wikimedia.org/wikipedia/commons/f/fe/Tred-G.svg 
+To warm up, please implement the graph
+
+#+ATTR_HTML: :width 700px
+[[https://upload.wikimedia.org/wikipedia/commons/f/fe/Tred-G.svg]]
+
 in both representations.
 #+BEGIN_SRC haskell  :solution
 dgraph2SMPL = SMPList $ PList [('a', ['b', 'd', 'c', 'e']), ('b', ['d']), ('d', ['e']), ('c', ['d', 'e']), ('e', [])]

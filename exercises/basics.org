@@ -2,17 +2,13 @@
 title: Basics
 ---
 
-Recommended: Writing functions 2-4, 6
-Challenging: Implementing (an approximate) Square Root
 
-
-** Syntax
+** :atHome:
 
 How do ~x = 3~ and ~x == 3~ differ in meaning?
 
-** Evaluation
-
-1. Given the following definitions:
+** :inClass:
+Given the following definitions:
 
    #+BEGIN_SRC haskell
    thrice x = [x, x, x]
@@ -24,25 +20,29 @@ How do ~x = 3~ and ~x == 3~ differ in meaning?
    What does the expression ~map thrice (sums [0 .. 4])~ evaluate to?
    Write down the intermediate steps of your computation.
 
-2. A recursive function is only sensible if the value(s) of its
+** :atHome:
+
+A recursive function is only sensible if the value(s) of its
    parameters becomes simpler in each recursive application. Consider
    the following definition of the factorial function:
 
    #+BEGIN_SRC haskell
-   fac n | n == 0 = 1
+   fac n | n == 0    = 1
          | otherwise = n * fac (n − 1)
    #+END_SRC
 
    What happens if you evaluate ~fac (−3)~?
 
-** Writing Functions
+** :atHome:
 
-1. Write a function ~noOfSol~ that, for some $a$, $b$, and $c$,
-   determines the number of solutions of the equation $ax^2 + bx + c =
-   0$, using case distinction.
+Write a function ~noOfSol~ that, for some $a$, $b$, and $c$,
+determines the number of solutions of the equation $ax^2 + bx + c =
+0$, using case distinction.
 
-2. Write a function ~pow2 :: Int -> Int~ that takes an Int $n$
-     computes $2^n$ using direct recursion.
+** :inClass:
+
+Write a function ~pow2 :: Int -> Int~ that takes an Int $n$ computes
+$2^n$ using direct recursion.
 
    #+BEGIN_SRC haskell :solution
    pow2   :: Int -> Int
@@ -50,10 +50,14 @@ How do ~x = 3~ and ~x == 3~ differ in meaning?
    pow2 n = 2 * pow2 (n - 1)
    #+END_SRC
 
-3. Write a recursive function ~pow~ that takes two Ints, $x$ and $n$,
-   and computes $x^n$.
+** :inClass:
 
-4. For any number $x$, and any *even* number $n$ it holds that $x^n =
+Write a recursive function ~pow~ that takes two Ints, $x$ and $n$, and
+computes $x^n$.
+
+** :inClass:
+
+For any number $x$, and any *even* number $n$ it holds that $x^n =
    (x^{n/2})^2$. Use this to speed up the implementation of the ~pow~
    function.
 
@@ -64,23 +68,26 @@ How do ~x = 3~ and ~x == 3~ differ in meaning?
              | otherwise = x  * (x `pow` (n-1))
    #+END_SRC
 
-5. Which intermediate results are being computed for the computation
-   of ~2 `pow` 10~ in the old and the new definition?
+** :atHome:
 
+Which intermediate results are being computed for the computation of
+~2 `pow` 10~ in the old and the new definition?
 
-6. A predicate ~p :: Int -> Bool~ is /monotonic/ if, for any Int i for
-   which the predicate holds (~p i == True~) the predicate also holds
-   for any index j larger than i (~p j~ is also ~True~).
+** :inClass:
 
-   Given:
+A predicate ~p :: Int -> Bool~ is /monotonic/ if, for any Int i for
+which the predicate holds (~p i == True~) the predicate also holds for
+any index j larger than i (i.e. ~p j~ is also ~True~).
+
+Given:
    - a monotonic predicate p,
    - a lowerbound  ~l :: Int~ for which ~p l == False~, and
    - an upperbound ~u :: Int~ for which ~p u == True~,
 
-   implement a function ~binarySearch~ that can find the smallest Int
-   ~i~ for which ~p i~ is True in $O(\log (u - l))$ steps.
+implement a function ~binarySearch~ that can find the smallest Int
+~i~ for which ~p i~ is True in $O(\log (u - l))$ steps.
 
-   Also give the type of your function.
+Also give the type of your function.
 
    #+begin_src haskell :solution
    binarySearch                    :: (Int -> Bool) -> Int -> Int -> Int
@@ -92,34 +99,47 @@ How do ~x = 3~ and ~x == 3~ differ in meaning?
 
    #+end_src
 
-7. Give the most general type for the function ~binarySearch~ you defined above.
+** :atHome:
+
+Give the most general type for the function ~binarySearch~ you defined
+above.
 
    #+begin_src haskell :solution
    binarySearch                    :: Integral i => (i -> Bool) -> i -> i -> i
    #+end_src
 
-** Basic Types
+** :atHome:
 
-1. Determine the types of ~3~, ~even~, and ~even 3~.  How can you
-   figure out the latter?
+Determine the types of ~3~, ~even~, and ~even 3~.  How can you figure
+out the latter?
 
-2. Determine also the type of ~head~, ~[1,2,3]~, and ~head
-  [1,2,3]~. What happens when applying a polymorphic function (like
-  head) to monomorphic arguments (like ~[1,2,3]~)?
+** :atHome:
 
-3. Write down what you think the type of the following functions
-   is. Do not use the interpreter (yet): ~tail~, ~length~, ~noOfSol~,
-   ~pow2~, ~div~, ~(/)~, and ~sqrt~?
+Determine also the type of ~head~, ~[1,2,3]~, and ~head [1,2,3]~. What
+happens when applying a polymorphic function (like head) to
+monomorphic arguments (like ~[1,2,3]~)?
 
-4. How can you query the interpreter for the type of an expression?
+** :inClass:
 
-5. How can you explicitly specify the types of functions in your
-  program?
+Write down what you think the type of the following functions is. Do
+not use the interpreter (yet): ~tail~, ~length~, ~noOfSol~, ~pow2~,
+~div~, ~(/)~, and ~sqrt~?
 
-6. Verify the types of the above expressions with the interpreter. If
-  your answers differ, write down why you think that is the case.
+** :atHome:
 
-** Implementing (an approximate) Square Root
+How can you query the interpreter (ghci) for the type of an expression?
+
+** :atHome:
+
+How can you explicitly specify the types of functions in your program?
+
+** :atHome:
+
+Verify the types of the above expressions with the interpreter. If
+your answers differ, write down why you think that is the
+case. Discuss the answers with your class mates or with your TA.
+
+** :inClass:challenging:
 
 In this (set of) exercises we will write our own implementation of the
 square root function. More precisely, we write a function ~approxSqrt~
