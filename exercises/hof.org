@@ -2,10 +2,7 @@
 title: Higher order Functions
 ---
 
-Recommended: Currying, Filter
-
-
-** Parentheses!?
+** Parentheses!? :atHome:
 Give examples for functions with the following types:
 
 #+BEGIN_SRC haskell
@@ -70,7 +67,7 @@ baz = True
 
 
 
-** Currying
+** Currying :inClass:
 Please implement two functions
 
 #+BEGIN_SRC haskell
@@ -93,7 +90,7 @@ uncurry :: (a -> b -> c) -> (a, b) -> c
 
 
 
-** Filter
+** Filter :atHome:
 The function ~filter~ can be defined in terms of ~concat~ and ~map~:
 
 #+BEGIN_SRC haskell
@@ -108,7 +105,7 @@ box x = if p x then [x] else []
 #+END_SRC
 
 
-** Function Composition
+** Function Composition :atHome:
 
 Function composition first applies the latter of the supplied
 functions to the argument, the former thereafter. Write a function
@@ -122,7 +119,7 @@ before = flip (.)
 -- both (.) and before are associative operations
 #+END_SRC
 
-** Higher order data types
+** Higher order data types :atHome:challenging:
 
 We have seen that ~[...]~ is a type function that maps types to
 types. Similarly because ~−>~ is a type constructor mapping two types

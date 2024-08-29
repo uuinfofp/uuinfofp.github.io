@@ -8,10 +8,10 @@ The following table lists exercises corresponding to the lectures.
 |  Week | Topic                  | Corresponding Lecture |           |
 |-------+------------------------+-----------------------+-----------|
 |    36 | [[file:exercises/basics.html][Basics]]                 | Lectures 1 and 2      | [[file:exercises/basics.solutions.html][Solutions]] |
-|    37 | [[file:exercises/types.html][Type Inference]]         | Lecture 2             | [[file:exercises/types.solutions.html][Solutions]] |
-|       | [[file:exercises/recursion.html][Recursion on Lists]]     | Lectures 2 and 3      | [[file:exercises/recursion.solutions.html][Solutions]] |
-|    38 | [[file:exercises/datatypes.html][Datatypes]]              | Lecture 4             | [[file:exercises/datatypes.solutions.html][Solutions]] |
-|       | [[file:exercises/foldr.html][Folds]]                  | Lecture 5             | [[file:exercises/foldr.solutions.html][Solutions]] |
+|       | [[file:exercises/types.html][Type Inference]]         | Lecture 2             | [[file:exercises/types.solutions.html][Solutions]] |
+|    37 | [[file:exercises/recursion.html][Recursion on Lists]]     | Lectures 2 and 3      | [[file:exercises/recursion.solutions.html][Solutions]] |
+|       | [[file:exercises/datatypes.html][Datatypes]]              | Lecture 4             | [[file:exercises/datatypes.solutions.html][Solutions]] |
+|    38 | [[file:exercises/foldr.html][Folds]]                  | Lecture 5             | [[file:exercises/foldr.solutions.html][Solutions]] |
 |       | [[file:exercises/hof.html][Higher order Functions]] |                       | [[file:exercises/hof.solutions.html][Solutions]] |
 | 38-39 | [[file:exercises/trees.html][Trees]]                  | Lecture 6             | [[file:exercises/trees.solutions.html][Solutions]] |
 |    39 | [[file:exercises/case_studies.html][Case Studies]]           | Lecture 7             | [[file:exercises/case_studies.solutions.html][Solutions]] |
