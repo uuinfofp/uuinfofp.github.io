@@ -44,7 +44,7 @@ title: Practicals
 <td><a href="https://domjudge.uu.nl/fp/domjudge">DOMjudge</a></td>
 </tr>
 <tr>
-<td>Sun 12 Nov 23:59</td>
+<td>Sun 10 Nov 23:59</td>
 <td><a href="practicals/project.pdf">5. Game, implementation</a></td>
 <td><a href="practicals/gloss-counter.zip">Example game</a></td>
 <td><a href="http://uu.blackboard.com">Blackboard</a></td>
