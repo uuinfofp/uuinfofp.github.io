@@ -111,6 +111,13 @@ currently still subject to change.
     <tr>
       <td>41</td>
       <td>Tue 8 Oct</td>
+      <td>No Lecture - No room :(</td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>41</td>
+      <td>Thu 10 Oct</td>
       <td><a href="slides/fp-10-monads-one.pdf">Functors and monads</a>
         <br><a href="slides/Lecture10.hs">Example code from lecture</a>
         </td>
@@ -119,7 +126,7 @@ currently still subject to change.
     </tr>
     <tr>
       <td></td>
-      <td>Thu 10 Oct</td>
+      <td>Tue 15 Oct</td>
       <td><a href="slides/fp-11-laws.pdf">Laws and induction</a>
         <br><a href="slides/Lecture11.hs">Example proofs from lecture</a>
         </td>
@@ -134,7 +141,7 @@ currently still subject to change.
     </tr>
     <tr>
       <td>42</td>
-      <td>Tue 15 Oct</td>
+      <td>Thu 17 Oct</td>
       <td><a href="slides/fp-13-quickcheck.pdf">Testing</a>
          <br><a href="slides/lectureTesting.hs">Code from the lecture</a>
       </td>
@@ -143,26 +150,19 @@ currently still subject to change.
     </tr>
     <tr>
       <td></td>
-      <td>Thu 17 Oct</td>
+      <td>Tue 22 Oct</td>
       <td><a href="slides/fp-12-lazy-eval.pdf">Lazy evaluation</a></td>
       <td>Chapter 15</td>
       <td>Frank</td>
     </tr>
     <tr>
       <td>43</td>
-      <td>Tue 22 Oct</td>
+      <td>Thu 24 Oct</td>
       <td><a href="slides/fp-14-monads-two.pdf">More monads and applicatives</a>
         <br><a href="slides/Lecture14Live.hs">Example code from lecture</a>
         </td>
       <td>Chapter 12.2</td>
       <td>Matthijs</td>
-    </tr>
-    <tr>
-      <td></td>
-      <td>Thu 24 Oct</td>
-      <td></td>
-      <td></td>
-      <td></td>
     </tr>
     <tr>
       <td>44</td>
