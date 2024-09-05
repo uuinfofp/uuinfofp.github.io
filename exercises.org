@@ -13,9 +13,9 @@ The following table lists exercises corresponding to the lectures.
 |       | [[file:exercises/datatypes.html][Datatypes]]              | Lecture 4             | [[file:exercises/datatypes.solutions.html][Solutions]] |
 |    38 | [[file:exercises/foldr.html][Folds]]                  | Lecture 5             | [[file:exercises/foldr.solutions.html][Solutions]] |
 |       | [[file:exercises/hof.html][Higher order Functions]] |                       | [[file:exercises/hof.solutions.html][Solutions]] |
-| 38-39 | [[file:exercises/trees.html][Trees]]                  | Lecture 6             | [[file:exercises/trees.solutions.html][Solutions]] |
-|    39 | [[file:exercises/case_studies.html][Case Studies]]           | Lecture 7             | [[file:exercises/case_studies.solutions.html][Solutions]] |
-|    40 | [[file:exercises/io.html][Input/Output]]           | Lectures 9 and 10     | [[file:exercises/io.solutions.html][Solutions]] |
+|    39 | [[file:exercises/trees.html][Trees]]                  | Lectures 4 and 6      | [[file:exercises/trees.solutions.html][Solutions]] |
+|       | [[file:exercises/case_studies.html][Case Studies]]           | Lecture 7             | [[file:exercises/case_studies.solutions.html][Solutions]] |
+| 40-41 | [[file:exercises/io.html][Input/Output]]           | Lectures 9 and 10     | [[file:exercises/io.solutions.html][Solutions]] |
 |    41 | [[file:exercises/laws_and_induction.html][Laws and Induction.]]    | Lecture 11            | [[file:exercises/laws_and_induction.solutions.html][Solutions]] |
 |    42 | [[file:exercises/testing.html][Testing]]                | Lecture 12            | [[file:exercises/testing.solutions.html][Solutions]] |
 |    42 | [[file:exercises/lazy.html][Lazy Evaluation.]]       | Lecture 13            | [[file:exercises/lazy.solutions.html][Solutions]] |
