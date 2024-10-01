@@ -180,12 +180,12 @@ e.g.
    #+END_SRC
 
    #+begin_src haskell :solution
-   annotate   :: LeafTree b Int -> LeafTree (Int,Int) Int
+   annotate   :: LeafTree Int b -> LeafTree Int (Int,Int)
    annotate t = case annotate' t of
                   (t',_,_) -> t'
 
    -- | Computes the annotated tree, as well as the minimum and maximum in the tree
-   annotate'              :: LeafTree b Int -> (LeafTree (Int,Int) Int, Int, Int)
+   annotate'              :: LeafTree Int b -> (LeafTree Int (Int,Int), Int, Int)
    annotate' (Leaf x)     = (Leaf x, x, x)
    annotate' (Node l _ r) = let (l',lmin,lmax) = annotate' l
                                 (r',rmin,rmax) = annotate' r
