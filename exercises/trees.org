@@ -161,7 +161,7 @@ the ~LeafTree a b~. Leaves have height one.
    #+end_src
 
 ** :inClass:
-Define a function ~annotate~, that given a ~LeafTree b Int~ labels every
+Define a function ~annotate~, that given a ~LeafTree Int b~ labels every
 internal node with the minimum and maximum value appearing in the
 leaves in its subtree.
 
