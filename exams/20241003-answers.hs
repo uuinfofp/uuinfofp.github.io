@@ -84,6 +84,10 @@ subsets = foldr (\x acc -> acc ++ map (x:) acc) [[]]
 -- Question 3a
 data Tree a = Leaf a | Node (Tree a) a (Tree a) deriving (Show, Eq)
 
+myTree = Node (Node (Leaf 4) 2 (Leaf 5))
+              1
+              (Node (Leaf 6) 3 (Node (Leaf 8) 7 (Leaf 9)))
+
 eulerEdges :: Tree a -> Int
 eulerEdges (Leaf _) = 0
 eulerEdges (Node l _ r) = 4 + eulerEdges l + eulerEdges r
