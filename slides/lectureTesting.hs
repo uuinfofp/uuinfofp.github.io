@@ -1,6 +1,9 @@
+{- cabal:
+build-depends: base, QuickCheck
+-}
 import Test.QuickCheck
 
--- compile with: 'ghc -package QuickCheck <thisfilename>.hs'
+-- load in ghci with: 'cabal repl <thisfilename>.hs' then run 'main'
 
 
 --------------------------------------------------------------------------------
@@ -9,6 +12,7 @@ import Test.QuickCheck
 -- The alternative to using the 'forAll' combinator is to use a newtype around [Int]:
 
 newtype SortedIntList = SortedIntList [Int]
+  deriving (Show)
 
 -- generate only sorted list of ints
 instance Arbitrary SortedIntList where
