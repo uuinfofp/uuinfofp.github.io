@@ -2,10 +2,14 @@
 title: Input and Output
 ---
 
+** :atHome:
 
-1. Extend the "guess a number" game to generate the bounds randomly.
+Extend the "guess a number" game to generate the bounds randomly.
 
-2. Write ~sequence~ and ~sequence_~ using ~(>>=)~ instead of ~do~-notation.
+** :atHome:
+
+Write ~sequence~ and ~sequence_~ using ~(>>=)~ instead of
+~do~-notation.
 
    #+BEGIN_SRC haskell  :solution
    sequence          :: [IO a] -> IO [a]
@@ -25,8 +29,12 @@ title: Input and Output
    sequence_ = foldr (>>) (return ())
    #+END_SRC
 
+** :atHome:
 
-3. Write a function which prompts for a filename, reads the file with this name, splits the file into a number of lines, splits each line in a number of words separated by ~' '~ (a space), and prints the total number of lines and words.
+Write a function which prompts for a filename, reads the file with
+this name, splits the file into a number of lines, splits each line in
+a number of words separated by ~' '~ (a space), and prints the total
+number of lines and words.
 
    #+BEGIN_SRC haskell  :solution
    linesAndWords :: IO ()
@@ -42,7 +50,11 @@ title: Input and Output
    main = linesAndWords
    #+END_SRC
 
-4. Given the function ~getInt :: IO Int~, which reads an integer value from standard input, write a program that results in the following input/output behaviour (the ~3~ has been typed in by the user):
+** :atHome:
+
+Given the function ~getInt :: IO Int~, which reads an integer value
+from standard input, write a program that results in the following
+input/output behaviour (the ~3~ has been typed in by the user):
 
      #+BEGIN_SRC
      Give a number: 3
@@ -67,18 +79,26 @@ title: Input and Output
     #+END_SRC
 
 
-5. Write a function of type ~[FilePath] −> FilePath −> IO ()~ which concatenates a list of files to a specific target file: the first parameter is a list of filenames and the second parameter the name of the target file. Do not use the function ~appendFile~.
+** :atHome:
 
-    - Write a program that first asks for the name of the target file, and then continues asking for names of files to be appended to that file until an empty line is entered. Note that the target files may be one of the source files!
+Write a function of type ~[FilePath] −> FilePath −> IO ()~ which
+concatenates a list of files to a specific target file: the first
+parameter is a list of filenames and the second parameter the name of
+the target file. Do not use the function ~appendFile~.
 
-    - If we know that none of the source files equals the target file
-      we may do a bit better using the function [[https://hackage.haskell.org/package/base/docs/System-IO.html#v:appendFile][~appendFile~ from
-      ~System.IO~]]. Change the function you have written above using
-      this function. What are the advantages and disadvantages of this
-      approach?
+- Write a program that first asks for the name of the target file, and
+  then continues asking for names of files to be appended to that file
+  until an empty line is entered. Note that the target files may be
+  one of the source files!
+
+- If we know that none of the source files equals the target file we
+  may do a bit better using the function [[https://hackage.haskell.org/package/base/docs/System-IO.html#v:appendFile][~appendFile~ from
+  ~System.IO~]]. Change the function you have written above using this
+  function. What are the advantages and disadvantages of this
+  approach?
 
 
-** Loading Binary Trees from a File
+** :atHome:
 
 Consider usual type of binary trees
 
@@ -107,8 +127,10 @@ You may use that
   - that the function
     ~getLine :: IO String~ that can read a ~String~ from standard input.
 
-1. Write a function ~readTree :: IO (Tree Int)~ that only performs
-     step 1. from the above description
+** :atHome:
+
+Write a function ~readTree :: IO (Tree Int)~ that only performs
+step 1. from the above description
 
      #+begin_src haskell :solution
      readTree :: IO (Tree Int)
@@ -121,8 +143,10 @@ You may use that
      readTree = read <$> readFile "myTree.txt"
      #+end_src
 
-2. Now write a full implementation of ~main :: IO ()~ that uses
-   ~readTree~ and performs all steps of the program sketched above.
+** :atHome:
+
+Now write a full implementation of ~main :: IO ()~ that uses
+~readTree~ and performs all steps of the program sketched above.
 
      #+begin_src haskell :solution
      main :: IO ()

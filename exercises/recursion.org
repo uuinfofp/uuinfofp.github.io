@@ -2,21 +2,22 @@
 title: Recursion on Lists
 ---
 
-recommended: or, all, filter, partition, group, foldr, splitAll
-challenging: insertEverywhere, permutations, transpose, maximum segment sum
+Implement the following functions using direct recursion. If no type
+signature is given, also give the type of the function. Note that
+these functions are actually all available in the standard library in
+the module ~Data.List~.
 
 
-** Implementing Functions from Data.List
+* :atHome:
 
-Write the following functions using direct recursion. If no type
-signature is given, also give the type of the function.
+~product :: Num a => [a] -> a~
 
-*** ~product :: Num a => [a] -> a~
-
-The product function computes the product of a finite list of numbers.
+The function computes the product of a finite list of numbers.
 
 
-*** ~concat~
+* :atHome:
+
+~concat~
 
 Concatenate a list of lists into a single list
 
@@ -25,7 +26,9 @@ concat []       = []
 concat (xs:xss) = xs ++ concat xss
 #+END_SRC
 
-*** ~and :: [Bool] -> Bool~
+* :atHome:
+
+~and :: [Bool] -> Bool~
 
 and returns the conjunction of a Boolean list.
 
@@ -34,11 +37,13 @@ and []     = True
 and (x:xs) = x && and xs
 #+END_SRC
 
-*** ~or :: [Bool] -> Bool~
+* :inClass:
+~or :: [Bool] -> Bool~
 
 or returns the disjunction of a Boolean list.
 
-*** ~all~
+* :inClass:
+~all~
 
 Applied to a predicate and a list, all determines if all elements of
 the list satisfy the predicate. For example,
@@ -51,14 +56,16 @@ all _ []     = True
 all p (x:xs) = p x && all p xs
 #+END_SRC
 
-*** ~map :: (a -> b) -> [a] -> [b]~
+* :atHome:
+~map :: (a -> b) -> [a] -> [b]~
 
 #+BEGIN_SRC haskell :solution
 map _ []     = []
 map f (x:xs) = f x : map f xs
 #+END_SRC
 
-*** ~intersperse~
+* :atHome:
+~intersperse~
 
 The intersperse function takes an element and a list and
 `intersperses' that element between the elements of the list. For
@@ -66,24 +73,28 @@ example,
 
 ~intersperse ',' "abcde" == "a,b,c,d,e"~
 
-*** ~concatMap~
+* :atHome:
+~concatMap~
 
 Map a function over a list and concatenate the results.
 
-*** ~unlines :: [String] -> String~
+* :atHome:
+~unlines :: [String] -> String~
 
 unlines is an inverse operation to lines. It joins lines, after
 appending a terminating newline to each.
 
 
-*** ~filter :: (a -> Bool) -> [a] -> [a]~
+* :inClass:
+~filter :: (a -> Bool) -> [a] -> [a]~
 
 filter, applied to a predicate and a list, returns the list of those
 elements that satisfy the predicate; i.e.,
 
 ~filter p xs = [ x | x <- xs, p x]~
 
-*** ~partition~
+* :inClass:
+~partition~
 
 The partition function takes a predicate a list and returns the pair
 of lists of elements which do and do not satisfy the predicate,
@@ -97,12 +108,14 @@ partition p (x:xs) | p x       = let (ts,fs) = partition p xs in (x:ts,  fs)
                    | otherwise = let (ts,fs) = partition p xs in (  ts,x:fs)
 #+END_SRC
 
-*** ~unzip :: [(a, b)] -> ([a], [b])~
+* :atHome:
+~unzip :: [(a, b)] -> ([a], [b])~
 
 unzip transforms a list of pairs into a list of first components and a
 list of second components.
 
-*** ~insert :: Ord a => a -> [a] -> [a]~
+* :atHome:
+~insert :: Ord a => a -> [a] -> [a]~
 
 The insert function takes an element and a (sorted) list and inserts
 the element into the list at the last position where it is still less
@@ -114,7 +127,8 @@ insert q (x:xs) | q > x     = x : insert q xs
                 | otherwise = q : x : xs
 #+END_SRC
 
-*** ~sort :: Ord a => [a] -> [a]~
+* :atHome:
+~sort :: Ord a => [a] -> [a]~
 
 The sort function implements a sorting algorithm.
 
@@ -123,7 +137,8 @@ sort []     = []
 sort (x:xs) = insert x (sort xs)
 #+END_SRC
 
-*** ~take~
+* :atHome:
+~take~
 
 take i returns the first i elements from the input list. If the list
 has fewer than i elements, the entire input list is returned.
@@ -135,7 +150,8 @@ take n []     = []
 take n (x:xs) = x : take (n-1) xs
 #+END_SRC
 
-*** ~takeWhile :: (a -> Bool) -> [a] -> [a]~
+* :atHome:
+~takeWhile :: (a -> Bool) -> [a] -> [a]~
 
 takeWhile, applied to a predicate p and a list xs, returns the longest
 prefix (possibly empty) of xs of elements that satisfy p:
@@ -150,7 +166,8 @@ takeWhile p (x:xs) | p x       = x : takeWhile p xs
                    | otherwise = []
 #+END_SRC
 
-*** ~group~
+* :inClass:
+~group~
 
 The group function takes a list and returns a list of lists such that
 the concatenation of the result is equal to the argument. Moreover,
@@ -166,7 +183,8 @@ group (x:xs) = case group xs of
                                | otherwise -> [x] :    ys : rs
 #+END_SRC
 
-***  ~remSuccessiveduplicates~
+*  :atHome:
+~remSuccessiveduplicates~
 
 The function remSuccessiveDuplicates removes succesive repeated
 elements from a list. For example
@@ -180,7 +198,8 @@ remSuccessiveduplicates (x:y:xs) | x == y    = remsuccessiveduplicates (y:xs)
                                  | otherwise = x : remsuccessiveduplicates (y:xs)
 #+END_SRC
 
-*** ~nub~
+* :atHome:
+~nub~
 
 The nub function removes duplicate elements from a list. In
 particular, it keeps only the first occurrence of each element. (The
@@ -194,7 +213,8 @@ nub l                   = nub' l [] where
         | otherwise     = x : nub' xs (x:seen)
 #+END_SRC
 
-*** ~union :: Eq a => [a] -> [a] -> [a]~
+* :atHome:
+~union :: Eq a => [a] -> [a] -> [a]~
 
 The union function returns the list union of the two lists. For example,
 
@@ -204,7 +224,8 @@ Duplicates, and elements of the first list, are removed from the the
 second list, but if the first list contains duplicates, so will the
 result.
 
-***  ~intersect :: Eq a => [a] -> [a] -> [a]~
+*  :atHome:
+~intersect :: Eq a => [a] -> [a] -> [a]~
 
 The intersect function takes the list intersection of two lists. For example,
 
@@ -214,7 +235,8 @@ If the first list contains duplicates, so will the result.
 
 ~[1,2,2,3,4] `intersect` [6,4,4,2] == [2,2,4]~
 
-*** ~maybeLast :: [a] -> Maybe a~
+* :atHome:
+~maybeLast :: [a] -> Maybe a~
 
 Extract the last element of a list. Returns ~Nothing~ if the list is empty.
 
@@ -225,7 +247,8 @@ maybeList (x:xs) = case maybeList xs of
                      jl      -> jl
 #+END_SRC
 
-*** ~insertEverywhere~
+* :atHome:challenging:
+~insertEverywhere~
 
 insertEverywhere x ys "inserts" x at every position in the list ys. I.e.:
 
@@ -237,7 +260,8 @@ insertEverywhere x []        = [[x]]
 insertEverywhere x xs@(y:ys) = (x:xs) : map (y:) (insertEverywhere x ys)
 #+END_SRC
 
-***  ~permutations :: [a] -> [[a]]~
+*  :atHome:challenging:
+~permutations :: [a] -> [[a]]~
 
 The permutations function returns the list of all permutations of the
 argument. E.g.:
@@ -257,7 +281,8 @@ permutations []     = [[]]
 permutations (x:xs) = concatMap (insertEverywhere x) $ permutations xs
 #+END_SRC
 
-*** ~foldr :: (a -> b -> b) -> b -> [a] -> b~
+* :inClass:challenging:
+~foldr :: (a -> b -> b) -> b -> [a] -> b~
 
 The function foldr takes a function 'f' and an unit element 'z' and
 "combines" all elements in the list using the function 'f', and
@@ -273,7 +298,8 @@ foldr _ z []     = z
 foldr f z (x:xs) = f x (foldr f z xs)
 #+END_SRC
 
-*** ~scanr :: (a -> b -> b) -> b -> [a] -> [b]~
+* :atHome:
+~scanr :: (a -> b -> b) -> b -> [a] -> [b]~
 
 scanr is similar to foldr but returns a list of successive reduced
 values from the right:
@@ -292,7 +318,8 @@ scanr f z (x:xs) = let rs@(r:_) = scanr f z xs
 #+END_SRC
 
 
-*** run length encoding: ~encode~
+* :atHome:
+run length encoding: ~encode~
 
 The function ~encode~ computes the run-length encoding of a list.
 That is, the list is mapped to a list of pairs whose first element
@@ -310,7 +337,8 @@ encode (x:xs) = case encode xs of
                                | otherwise -> (1,x)   : r
 #+END_SRC
 
-*** run length encoding: ~decode~
+* :atHome:
+run length encoding: ~decode~
 
 Given a run length encoded list, ~decode~ produces the original input
 list, e.g. from the example above:
@@ -326,7 +354,8 @@ decode = concatMap (\(i,x) -> replicate i x)
     -- replicate is actually already defined in the Prelude.
 #+END_SRC
 
-*** ~splitAll :: Int -> [a] -> [[a]]~
+* :inClass:
+~splitAll :: Int -> [a] -> [[a]]~
 
 The splitAll function divides the given list in sublists, where the
 sublists have the given length. Only the last list might be
@@ -352,7 +381,8 @@ splitAll i xs = case splitAt i xs of
                   (ys,rest) -> ys : splitAll i rest
 #+END_SRC
 
-*** ~zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]~
+* :atHome:
+~zipWith :: (a -> b -> c) -> [a] -> [b] -> [c]~
 
 zipWith combines two lists into a single list, by pairwise applying
 the given function. I.e. if ~f~ is the supplied function, and ~x~ and
@@ -369,7 +399,8 @@ zipWith f (x:xs) (y:ys) = (f x y) : zipWith f xs ys
 zipWith _ _      _      = []
 #+END_SRC
 
-*** ~transpose :: [[a]] -> [[a]]~
+* :atHome:challenging:
+~transpose :: [[a]] -> [[a]]~
 
 Transposes a matrix (represented by a list of equally long
 lists). That is, the function ~transpose :: [[a]] -> [[a]]~ which maps
@@ -397,7 +428,7 @@ transpose [] = []
 transpose xs = transpose' xs
 #+END_SRC
 
-** Maximum Segment Sum
+* Maximum Segment Sum :atHome:challenging:
 
 Given a list of numbers, we define a /segment/ as a contiguous
 sublist. For example ~[2,3,4]~ is a segment of ~l=[1,2,3,4,5,6]~ but
@@ -467,7 +498,7 @@ sum/ of ~l~ is the maximum sum over all possible segments of ~l~.
    maxSegSum = snd . maxPrefixAndSegSum
    #+end_src
 
-* Counting Trues
+* :atHome:
 
 Let ~countTrues :: [Bool] -> [int]~ be a function such that ~countTrues bs~ computes, for
 each prefix of the list ~bs~, the number of ~True~ s in the list.

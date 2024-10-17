@@ -18,19 +18,19 @@ title: Practicals
 <td><a href="https://domjudge.uu.nl/fp/domjudge">DOMjudge</a></td>
 </tr>
 <tr>
-<td>Wed 20 Sept 23:59</td>
+<td>Fri 13 Sept 23:59</td>
 <td><a href="practicals/Assignment1.pdf">1. Lists</a></td>
 <td><a href="practicals/Assignment1.hs"><tt>Assignment1.hs</tt></a></td>
 <td><a href="https://domjudge.uu.nl/fp/domjudge">DOMjudge</a></td>
 </tr>
 <tr>
-<td>Wed 27 Sept 23:59</td>
+<td>Wed 25 Sept 23:59</td>
 <td><a href="practicals/Assignment2.pdf">2. Data structures</a></td>
 <td><a href="practicals/Assignment2.hs"><tt>Assignment2.hs</tt></a></td>
 <td><a href="https://domjudge.uu.nl/fp/domjudge">DOMjudge</a></td>
 </tr>
 <tr>
-<td>Wed 11 Oct 23:59</td>
+<td>Wed 9 Oct 23:59</td>
 <td><a href="practicals/project.pdf">3. Game, design document</a></td>
 <td><a href="practicals/gloss-counter.zip">Example game</a><br/>
     <a href="practicals/example_design.pdf">Example design document</a>
@@ -38,19 +38,19 @@ title: Practicals
 <td><a href="http://uu.blackboard.com">Blackboard</a></td>
 </tr>
 <tr>
-<td>Wed 25 Oct 23:59</td>
+<td>Wed 16 Oct 23:59</td>
 <td><a href="practicals/Assignment4.pdf">4. Type classes</a></td>
 <td><a href="practicals/Assignment4.hs"><tt>Assignment4.hs</tt></a></td>
 <td><a href="https://domjudge.uu.nl/fp/domjudge">DOMjudge</a></td>
 </tr>
 <tr>
-<td>Sun 12 Nov 23:59</td>
+<td>Sun 10 Nov 23:59</td>
 <td><a href="practicals/project.pdf">5. Game, implementation</a></td>
 <td><a href="practicals/gloss-counter.zip">Example game</a></td>
 <td><a href="http://uu.blackboard.com">Blackboard</a></td>
 </tr>
 <!-- <tr> -->
-<!-- <td>Tue 12 Jan 23:59</td> -->
+<!-- <td>Fri 10 Jan 23:59</td> -->
 <!-- <td><a href="practicals/RetakeAssignment.pdf">Retake Assignment: Monads</a></td> -->
 <!-- <td><a href="practicals/RetakeAssignment.hs">RetakeAssignment.hs</a></td> -->
 <!-- <td><a href="https://domjudge.uu.nl/fp/domjudge">DOMjudge</a></td> -->
@@ -66,16 +66,16 @@ scratch.
 ### Coding style
 
 The most important question you should ask yourself to judge your own
-coding style is to ask yourself the question **"If another proficient
+coding style is **"If another proficient
 Haskell programmer reads my code, would this be the most readable code
 I could have written?"** Where *readable* can be understood as the
-time it would take him or her to understand what your code tries to
+time it would take them to understand what your code tries to
 accomplish and how it accomplishes this.
 
 * By far the most important factor that affects readability (and thus
   your grade) is proper use and reuse of existing library functions
   and syntactic sugar.
-* Use the proper idioms (e.g., use `Nothing` instead `(-1)` to
+* Use the proper idioms (e.g., use `Nothing` instead of `(-1)` to
   indicate failure of a function.)
 * Another factor impacting readability is proper indentation of your
   code, choice of variable and function names, and commenting your
@@ -136,7 +136,7 @@ The most important factor that affects readability is proper use and reuse of ex
        where g x = someFunction x `mod` 2 == 1
     ```
 
-* On the other, it is also possible to take this too far. Most people will probably consider
+* On the other hand, it is also possible to take this too far. Most people will probably consider
 
     ```haskell
     f = map (\x -> 3 * x + 1)
@@ -153,8 +153,8 @@ The most important factor that affects readability is proper use and reuse of ex
 
 #### Indentation
 
-* The most important aspect about indentation are probably that it is used consistently.
-* Try not to make your lines longer than 80 characters. A lot of people still prefer to print out source code, have two editors open side-by-side on their screen, or simply use a large font size on a small screen.
+* The most important aspect about indentation is probably that it is used consistently.
+* Try not to make your lines longer than 100 characters. A lot of people still prefer to print out source code, have two editors open side-by-side on their screen, or simply use a large font size on a small screen.
 * Try to align matching pieces of code. Instead of:
 
     ```haskell

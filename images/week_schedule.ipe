@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <!DOCTYPE ipe SYSTEM "ipe.dtd">
-<ipe version="70218" creator="Ipe 7.2.24">
-<info created="D:20200824120211" modified="D:20230828173912"/>
+<ipe version="70218" creator="Ipe 7.2.28">
+<info created="D:20200824120211" modified="D:20240829164055"/>
 <preamble>\usepackage[default]{gillius}
 \usepackage{sfmath}
 </preamble>
@@ -285,7 +285,8 @@ h
 <page>
 <layer name="alpha"/>
 <layer name="beta"/>
-<view layers="alpha" active="beta"/>
+<layer name="gamma"/>
+<view layers="alpha gamma" active="gamma"/>
 <path layer="alpha" matrix="0.895833 0 0 0.895833 6.66667 117.667" stroke="black" dash="dashed">
 64 592 m
 448 592 l
@@ -352,6 +353,13 @@ h
 <text matrix="1 0 0 1 52 -24" transformations="translations" pos="160 736" stroke="black" type="label" width="14.565" height="6.958" depth="0.12" halign="center" valign="baseline">Tue</text>
 <text matrix="1 0 0 1 108 -24" transformations="translations" pos="160 736" stroke="black" type="label" width="18.042" height="7.128" depth="0.13" halign="center" valign="baseline">Wed</text>
 <text matrix="1 0 0 1 164 -24" transformations="translations" pos="160 736" stroke="black" type="label" width="15.841" height="6.958" depth="0.12" halign="center" valign="baseline">Thu</text>
+<path matrix="1 0 0 1 0 -0.000268" stroke="black" fill="Bettina blue" opacity="70%" stroke-opacity="opaque" tiling="rising">
+184 704 m
+184 648 l
+240 648 l
+240 704 l
+h
+</path>
 <text matrix="1 0 0 1 220 -24" transformations="translations" pos="160 736" stroke="black" type="label" width="9.803" height="6.954" depth="0" halign="center" valign="baseline">Fri</text>
 <path matrix="0.895833 0 0 0.895833 6.66667 73.3333" stroke="black" pen="heavier">
 64 704 m
@@ -369,19 +377,6 @@ h
 128 720 m
 128 384 l
 </path>
-<path matrix="1 0 0 1 168 0" stroke="black" pen="heavier">
-128 720 m
-128 384 l
-</path>
-<path matrix="1 0 0 1 224 0" stroke="black" pen="heavier">
-128 720 m
-128 384 l
-</path>
-<path matrix="1 0 0 1 280 0" stroke="black" pen="heavier">
-128 720 m
-128 384 l
-</path>
-<text matrix="1 0 0 1 28 8" transformations="translations" pos="184 680" stroke="black" type="label" width="34.381" height="6.958" depth="0.12" halign="center" valign="baseline">Practical</text>
 <text layer="beta" matrix="1 0 0 1 20 8" transformations="translations" pos="192 664" stroke="black" type="label" width="24.608" height="6.958" depth="0.12" halign="center" valign="baseline">online</text>
 <text matrix="1 0 0 1 20 -56" transformations="translations" pos="192 664" stroke="black" type="label" width="24.608" height="6.958" depth="0.12" halign="center" valign="baseline">online</text>
 <text layer="alpha" matrix="1 0 0 1 28 -56" transformations="translations" pos="184 680" stroke="black" type="label" width="30.974" height="6.958" depth="0.12" halign="center" valign="baseline">Lecture</text>
@@ -396,5 +391,33 @@ h
 </path>
 <text layer="beta" matrix="1 0 0 1 132 -128" transformations="translations" pos="192 664" stroke="black" type="label" width="24.608" height="6.958" depth="0.12" halign="center" valign="baseline">online</text>
 <text layer="alpha" matrix="1 0 0 1 140 -192" transformations="translations" pos="184 680" stroke="black" type="label" width="30.974" height="6.958" depth="0.12" halign="center" valign="baseline">Lecture</text>
+<path matrix="1 0 0 1 168 0" stroke="black" pen="heavier">
+128 720 m
+128 384 l
+</path>
+<path matrix="1 0 0 1 224 0" stroke="black" pen="heavier">
+128 720 m
+128 384 l
+</path>
+<path matrix="1 0 0 1 280 0" stroke="black" pen="heavier">
+128 720 m
+128 384 l
+</path>
+<path layer="gamma" fill="Bettina yellow" opacity="90%" stroke-opacity="opaque">
+191.757 701.027 m
+191.757 690.428 l
+231.317 690.428 l
+231.317 701.027 l
+h
+</path>
+<path matrix="0.995381 0 0 1.11429 1.08712 -77.5753" fill="Bettina yellow" opacity="90%" stroke-opacity="opaque">
+188.174 689.234 m
+188.174 678.784 l
+235.347 678.784 l
+235.347 689.234 l
+h
+</path>
+<text layer="alpha" matrix="1 0 0 1 28 8" transformations="translations" pos="184 680" stroke="black" type="minipage" width="81.813" height="12.004" depth="7.03" halign="center" valign="baseline" style="center">Practical/\\
+Instruction</text>
 </page>
 </ipe>

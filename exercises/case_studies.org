@@ -1,4 +1,6 @@
-** Propositions
+---
+title: Case studies
+---
 
 Consider the following ~Prop~ that models propositions (Boolean
 formulas consisting of Boolean literals, variables, negation, and, or,
@@ -10,8 +12,10 @@ data Prop = Basic Bool | Var Char
           | Prop :/\: Prop | Prop :\/: Prop | Prop :=>: Prop
 #+END_SRC
 
-1. Define a function ~printProp :: Prop -> String~ which turns the
-     proposition into a printable ~String~.
+** :atHome:
+
+Define a function ~printProp :: Prop -> String~ which turns the
+proposition into a printable ~String~.
 
 
    #+BEGIN_SRC haskell :solution
@@ -28,19 +32,21 @@ data Prop = Basic Bool | Var Char
        parensPrintProp p = parens (printProp p)
    #+END_SRC
 
-2. Define a new ~printProp' :: Prop -> String~ which uses as few
-     parentheses as possible. For example, ~Var 'A' :\/: (Var 'B' :\/:
-     Var 'C')~ should be printed as ~A \/ B \/ C~.
+** :atHome:
 
-     *Hint:* define an auxiliary function ~printProp'' :: Prop ->
-     (String, LogicalOp)~ which remembers the top symbol of the
-     formula.
+Define a new ~printProp' :: Prop -> String~ which uses as few
+parentheses as possible. For example, ~Var 'A' :\/: (Var 'B' :\/: Var
+'C')~ should be printed as ~A \/ B \/ C~.
 
+*Hint:* define an auxiliary function ~printProp'' :: Prop -> (String,
+LogicalOp)~ which remembers the top symbol of the formula.
 
-3. Define a function ~satisfiable :: Prop -> Bool~ which returns
-   ~True~ is the proposition is satisfiable, that is, if there is at
-     least one assignment of truth values to variables which make the
-     proposition true.
+** :atHome:
+
+Define a function ~satisfiable :: Prop -> Bool~ which returns ~True~
+is the proposition is satisfiable, that is, if there is at least one
+assignment of truth values to variables which make the proposition
+true.
 
    #+BEGIN_SRC haskell :solution
    -- Using or :: [Bool] -> Bool
@@ -49,9 +55,11 @@ data Prop = Basic Bool | Var Char
    satisfiable p = any (\as -> tv as p) (assigns (vars p))
    #+END_SRC
 
-4. Refine the function ~satisFiable~ to return the assignment which
-   makes the proposition satisfiable. Which should be the type given
-   to such a function?
+** :atHome:
+
+Refine the function ~satisFiable~ to return the assignment which makes
+the proposition satisfiable. Which should be the type given to such a
+function?
 
    #+BEGIN_SRC haskell :solution
    -- we can use the function find :: (a -> Bool) -> [a] -> Maybe a to
@@ -60,11 +68,22 @@ data Prop = Basic Bool | Var Char
    satisfiable = find (\as -> tv as p) (assigns (vars p))
    #+END_SRC
 
-** Arithmetic Expressions
+** :atHome:
+
+Recall the following definitions for the ~ArithExpr~ type we used in class:
+
+#+BEGIN_SRC haskell
+data ArithOp = Plus | Minus | Times | Div deriving Show
+
+data ArithExpr = Constant Integer
+               | Variable Char
+               | Op ArithOp ArithExpr ArithExpr
+               deriving Show
+#+END_SRC
 
 Extend the definition of ~ArithExpr~ to include exponentiation and
-factorial functions. How should the evaluation functions change to
-support them?
+factorial functions. How should the evaluation function ~eval :: Map
+Char Integer -> ArithExpr -> Integer~ change to support them?
 
 #+BEGIN_SRC haskell :solution
 data UnArithOp  = Factorial

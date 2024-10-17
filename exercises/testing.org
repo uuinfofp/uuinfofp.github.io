@@ -42,7 +42,11 @@ runTests = do
   quickCheck (forAll genBSTI propInsertIsTreeWrong)
 #+END_SRC
 
-1. Consider the ubiquitous ~filter~ function. There are many properties that you can formulate for the input-output behaviour of ~filter~.
+** :atHome:
+
+Consider the ubiquitous ~filter~ function. There are many properties
+that you can formulate for the input-output behaviour of ~filter~.
+
     - Formulate the QuickCheck property that the result list cannot be
       longer than the input.
 
@@ -92,17 +96,20 @@ runTests = do
                                                      ]
       #+END_SRC
 
-2. Try to come up with a number of QuickCheck-verifiable properties
-   for the ~map~ function, and implement these. Are there any
-   properties of ~map~ that are awkward to verify?
+** :atHome:      
 
-3. Consider the function ~permutations~ from the ~Data.List~ library,
-   which computes all the possible permutations of elements in a
-   list. We shall be writing QuickCheck tests to verify that this
-   function.
+Try to come up with a number of QuickCheck-verifiable properties for
+the ~map~ function, and implement these. Are there any properties of
+~map~ that are awkward to verify?
 
-    - Write a QuickCheck property that checks that the correct number
-      of permutations is generated.
+** :atHome:   
+
+Consider the function ~permutations~ from the ~Data.List~ library,
+which computes all the possible permutations of elements in a list. We
+shall be writing QuickCheck tests to verify that this function.
+
+    a. Write a QuickCheck property that checks that the correct number
+       of permutations is generated.
 
       #+BEGIN_SRC haskell :solution
       fac 0 = 1
@@ -111,8 +118,8 @@ runTests = do
       propPermsLength xs = length (permutations xs) == fac (length xs)
       #+END_SRC
 
-    - Write a function ~isPerm :: Eq a => [a] -> [a] -> Bool~ that
-      verifies that the two argument lists are permutations of each other.
+    b. Write a function ~isPerm :: Eq a => [a] -> [a] -> Bool~ that
+       verifies that the two argument lists are permutations of each other.
 
       #+BEGIN_SRC haskell :solution
       isPerm xs ys = all (sameNumOcc xs ys) xs && all (sameNumOcc xs ys) ys
@@ -121,24 +128,29 @@ runTests = do
       numOcc xs x = length . filter (== x) $ xs
        #+END_SRC
 
-    - Write the QuickCheck property that every list in the output of
-      ~permutations~ is a permutation of the input.
+    c. Write the QuickCheck property that every list in the output of
+       ~permutations~ is a permutation of the input.
 
       #+BEGIN_SRC haskell :solution
       propPermsArePerms    :: Eq a => [a] -> Bool
       propPermsArePerms xs = all (isPerm xs) $ permutations xs
       #+END_SRC
 
-    - Formulate a set of properties to completely characterize the
-      ~permutations~ function (you may choose also from among the ones
-      you have just implemented). Make sure to remove properties that
-      are implied by (a subset of) the other properties. Implement the
-      properties that you still need as QuickCheck properties.
+    d. Formulate a set of properties to completely characterize the
+       ~permutations~ function (you may choose also from among the
+       ones you have just implemented). Make sure to remove properties
+       that are implied by (a subset of) the other
+       properties. Implement the properties that you still need as
+       QuickCheck properties.
 
-4. Do something similar for the function ~inits~ defined in Lecture 3.
+** :atHome:      
 
-5. Consider the following datatype definition for binary trees that we
-   shall want to use to implement binary search trees:
+Do something similar for the function ~inits~ defined in Lecture 3.
+
+** :atHome:   
+
+Consider the following datatype definition for binary trees that we
+shall want to use to implement binary search trees:
 
    #+BEGIN_SRC haskell
    data Tree a = Branch a (Tree a) (Tree a) | Leaf
