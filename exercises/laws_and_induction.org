@@ -2,17 +2,19 @@
 title: Laws and Induction
 ---
 
-1. Finish the proof of ~reverse . reverse = id~ from the lecture.
+** :atHome:
+
+Finish the proof of ~reverse . reverse = id~ from the lecture.
 
     #+BEGIN_SRC haskell :solution
-    -- claim: reverse . reverse = id 
+    -- claim: reverse . reverse = id
 
-    -- by extensional reasoning, it is enough to show that 
-    -- (reverse . reverse) zs = id zs 
-    -- for all lists zs 
+    -- by extensional reasoning, it is enough to show that
+    -- (reverse . reverse) zs = id zs
+    -- for all lists zs
 
-    -- we distinguish the cases zs = [] and zs = x:xs 
-    -- and prove the claim by induction on zs 
+    -- we distinguish the cases zs = [] and zs = x:xs
+    -- and prove the claim by induction on zs
 
 
     -- base case zs = []:
@@ -20,37 +22,37 @@ title: Laws and Induction
     = -- def (.)
     reverse (reverse [])
     = -- def reverse
-    reverse [] 
-    = -- def reverse 
-    [] 
-    = -- def id 
-    id [] 
+    reverse []
+    = -- def reverse
+    []
+    = -- def id
+    id []
 
     -- inductive case zs = x:xs:
     -- we assume the induction hypothesis (I.H.) (reverse . reverse) xs = id xs
-    -- then 
+    -- then
 
     (reverse.reverse) (x:xs)
     = -- def (.)
     reverse (reverse (x:xs))
-    = -- def reverse 
+    = -- def reverse
     reverse (reverse xs ++ [x])
     = -- lemma 1
     reverse [x] ++ reverse (reverse xs)
     = -- lemma 2
     [x] ++ reverse (reverse xs)
     =  -- def (.)
-    [x] ++ (reverse.reverse) xs 
+    [x] ++ (reverse.reverse) xs
     = -- induction hypothesis
-    [x] ++ id xs 
+    [x] ++ id xs
     = -- def id
-    [x] ++ xs 
+    [x] ++ xs
     = -- sugar [x]
-    (x:[]) ++ xs 
+    (x:[]) ++ xs
     = -- def ++
     x : ([] ++ xs)
-    = -- def ++ 
-    x : xs  
+    = -- def ++
+    x : xs
     = -- def id
     id (x : xs)
 
@@ -63,32 +65,32 @@ title: Laws and Induction
     = -- sugar [x]
     reverse (x : [])
     = -- def reverse
-    reverse [] ++ [x] 
+    reverse [] ++ [x]
     = -- def reverse
     [] ++ [x]
     = -- def ++
     [x]
 
     -- lemma 1 : reverse (zs ++ ys) = reverse ys ++ reverse zs
-    -- we prove this lemma by induction on zs, distinguishing the 
-    -- cases zs = [] and zs = x:xs 
+    -- we prove this lemma by induction on zs, distinguishing the
+    -- cases zs = [] and zs = x:xs
 
-    -- base case zs = []: 
+    -- base case zs = []:
     reverse ([] ++ ys)
     = -- def ++
-    reverse ys 
+    reverse ys
     = -- lemma 3
-    reverse ys ++ [] 
+    reverse ys ++ []
     = -- def reverse
-    reverse ys  ++ reverse [] 
+    reverse ys  ++ reverse []
 
-    -- inductive case zs = x:xs 
-    -- we assume the induction hypothesis 
+    -- inductive case zs = x:xs
+    -- we assume the induction hypothesis
     -- reverse (xs ++ ys) = reverse ys ++ reverse xs
 
 
     reverse ((x:xs) ++ ys)
-    = -- def ++ 
+    = -- def ++
     reverse (x : (xs ++ ys))
     = -- def reverse
     reverse (xs ++ ys) ++ [x]
@@ -102,15 +104,15 @@ title: Laws and Induction
     -- Lemma 2 now follows by induction on zs.
 
 
-    -- The proof of lemma 1 above depended on a third and fourth lemma, 
+    -- The proof of lemma 1 above depended on a third and fourth lemma,
     -- which we prove now.
 
 
     -- lemma 3: zs ++ [] == zs
     -- we prove this by induction on zs, ditinguishing the cases
-    -- zs = [] and zs = y:ys 
+    -- zs = [] and zs = y:ys
 
-    -- base case: zs = [] 
+    -- base case: zs = []
     [] ++ []
     = - def ++
     []
@@ -121,27 +123,27 @@ title: Laws and Induction
     = -- def ++
     y : (ys ++ [])
     = -- induction hypothesis
-    y : ys 
+    y : ys
 
     -- Lemma 3 now follows by induction on ys.
 
-    -- Lemma 4: xs ++ (ys ++ zs) = (xs ++ ys) ++ zs 
+    -- Lemma 4: xs ++ (ys ++ zs) = (xs ++ ys) ++ zs
     -- We prove this by induction on xs, distinguishing the cases xs = [] and xs = w:ws
 
-    -- Base case xs = [] 
+    -- Base case xs = []
     [] ++ (ys ++ zs)
-    = -- def ++ 
-    ys ++ zs 
+    = -- def ++
+    ys ++ zs
     = -- def ++
     ([] ++ ys) ++ zs
 
     -- Inductive case xs = w : ws .
-    -- We assume the induction hypothesis ws ++ (ys ++ zs) = (ws ++ ys) ++ zs 
+    -- We assume the induction hypothesis ws ++ (ys ++ zs) = (ws ++ ys) ++ zs
 
-    ((w:ws) ++ ys) ++ zs 
-    = def ++ 
-    (w : (ws ++ ys)) ++ zs 
-    = def ++ 
+    ((w:ws) ++ ys) ++ zs
+    = def ++
+    (w : (ws ++ ys)) ++ zs
+    = def ++
     w : ((ws ++ ys) ++ zs)
     = I.H.
     w : (ws ++ (ys ++ zs))
@@ -151,8 +153,10 @@ title: Laws and Induction
     -- Lemma 4 now follows by induction on xs.
     #+END_SRC
 
-2. Prove the following laws about list functions.
-    - Hint: if you get stuck, the proofs can be found in Chapter 13 of the [[http://www.staff.science.uu.nl/~hage0101/FP-elec.pdf][Lecture Notes]].
+** :inClass:
+
+Prove the following laws about list functions.
+- Hint: if you get stuck, the proofs can be found in Chapter 13 of the [[http://www.staff.science.uu.nl/~hage0101/FP-elec.pdf][Lecture Notes]].
 
     #+BEGIN_SRC haskell
     -- Laws about list length
@@ -168,18 +172,26 @@ title: Laws and Induction
     map f . concat = concat . map (map f)  -- Hard!
     #+END_SRC
 
-3. Prove that ~sum (map (1+) xs) = length xs + sum xs~ for all lists ~xs~.
+** :atHome:
+
+Prove that ~sum (map (1+) xs) = length xs + sum xs~ for all lists
+~xs~.
+
     a. State a similar law for a linear function ~sum (map ((k+) . (n*)) xs) = ??~.
     b. Prove the law from (a).
     c. Which laws from the previous exercise can be deduced from the general law?
 
-4. Prove the following law: if ~op~ is an associative operator and ~e~ its neutral element, then
+** :atHome:
+
+Prove the following law: if ~op~ is an associative operator and ~e~ its neutral element, then
 
     #+BEGIN_SRC haskell
     foldr op e . concat = foldr op e . map (foldr op e)
     #+END_SRC
 
-5. Find a function ~g~ and a value ~e~ such that
+** :inClass:
+
+Find a function ~g~ and a value ~e~ such that
 
     #+BEGIN_SRC haskell
     map f = foldr g e
@@ -189,58 +201,66 @@ title: Laws and Induction
 
     #+BEGIN_SRC haskell :solution
     -- We claim that
-    g x acc = f x : acc 
+    g x acc = f x : acc
     e = []
     -- does the trick.
 
-    -- By extensional reasoning, it suffices to prove that 
+    -- By extensional reasoning, it suffices to prove that
     map f xs = foldr g e xs
-    -- for all lists xs 
+    -- for all lists xs
 
-    -- We prove this by induction on xs, distinguishing 
-    -- the cases xs = [] and xs = z:zs 
+    -- We prove this by induction on xs, distinguishing
+    -- the cases xs = [] and xs = z:zs
 
-    -- Base case: xs = [] 
-    map f [] 
-    = -- def map 
-    [] 
-    = -- def e 
+    -- Base case: xs = []
+    map f []
+    = -- def map
+    []
+    = -- def e
     e
-    = -- def foldr 
-    foldr g e [] 
+    = -- def foldr
+    foldr g e []
 
-    -- Inductive case: xs = z:zs 
-    -- where we assume the induction hypothesis 
-    map f zs = foldr g e zs 
+    -- Inductive case: xs = z:zs
+    -- where we assume the induction hypothesis
+    map f zs = foldr g e zs
 
     map f (z:zs)
-    = -- def map 
-    f z : map f zs 
+    = -- def map
+    f z : map f zs
     = -- def g
     g z (map f zs)
-    = -- I.H. 
+    = -- I.H.
     g z (foldr g e zs)
-    = -- def foldr 
+    = -- def foldr
     foldr g e (z:zs)
 
     -- The claim now follows by induction on xs.
     #+END_SRC
 
-6. Prove that addition is commutative, that is, ~add n m = add m n~.
-    - Hint: you might need as lemmas that ~add n Zero = n~ and ~add n (Succ m) = Succ (add n m)~.
+** :atHome:
 
-7. Prove that multiplication is commutative, that is, ~mult n m = mul m n~.
-    - Hint: you need lemmas similar to the previous exercise.
+Prove that addition is commutative, that is, ~add n m = add m n~.
 
-8. Prove that for all trees ~size t = length (enumInfix t)~, where 
+- Hint: you might need as lemmas that ~add n Zero = n~ and ~add n (Succ m) = Succ (add n m)~.
+
+** :atHome:
+
+Prove that multiplication is commutative, that is, ~mult n m = mul m n~.
+
+- Hint: you need lemmas similar to the previous exercise.
+
+** :inClass:
+
+Prove that for all trees ~size t = length (enumInfix t)~, where
 
     #+BEGIN_SRC haskell
     data Tree a = Leaf a | Node (Tree a) a (Tree a)
 
     size :: Tree a -> Int
-    size Leaf = 0 
+    size Leaf = 0
     size (Node l x r) = size l + 1 + size r
-    
+
     enumInfix :: Tree a -> [a]
     enumInfix Leaf = []
     enumInfix (Node l x r) = enumInfix l ++ [x] ++ enumInfix r
@@ -248,7 +268,9 @@ title: Laws and Induction
 
     - Hint: you might needs some of the laws in exercise 2 as lemmas.
 
-9. Prove that ~length . catMaybes = length . filter isJust~, where
+** :atHome:
+
+Prove that ~length . catMaybes = length . filter isJust~, where
 
     #+BEGIN_SRC haskell
     catMaybes :: [Maybe a] -> [a]

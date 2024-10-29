@@ -2,16 +2,16 @@
 title: Trees
 ---
 
-** Binary Search Trees
-
 Consider the following Binary Tree type
 
 #+BEGIN_SRC haskell
 data Tree a = Leaf | Node (Tree a) a (Tree a)
 #+END_SRC
 
-1. Write the function ~elemTree~ that tests if an element ~x~ occurs
-   in a binary search tree of type ~Tree a~.
+** :inClass:
+
+Write the function ~elemTree~ that tests if an element ~x~ occurs in a
+binary search tree of type ~Tree a~.
 
    #+BEGIN_SRC haskell :solution
    elemTree :: Ord a => a -> Tree a -> Bool
@@ -26,9 +26,11 @@ data Tree a = Leaf | Node (Tree a) a (Tree a)
                            | otherwise = elemTree q r
    #+END_SRC
 
-2. Write functions that return all values of type ~a~ in a tree of
-   type ~Tree a~ in depth-first (pre-order), depth-first (in-order),
-   and breadth-first order.
+** :atHome:
+
+Write functions that return all values of type ~a~ in a tree of type
+~Tree a~ in depth-first (pre-order), depth-first (in-order), and
+breadth-first order.
 
    #+BEGIN_SRC haskell :solution
    traverseTree                      :: ([a] -> a -> [a] -> [a]) -> Tree a -> [a]
@@ -43,14 +45,18 @@ data Tree a = Leaf | Node (Tree a) a (Tree a)
    inOrderTraversal = traverseTree (\l x r -> l ++ (x : r))
    #+END_SRC
 
-3. Write a function ~showTree~ that gives a nice representation as a
-   ~String~ for a given tree. Every leaf should be placed on a
-   different line (separated by ~"\n"~). Leaves that are deeper in the
-   tree should be further to the right than leaves higher in the tree.
+** :atHome:
 
-4. Write a function ~mapTree~ and a function ~foldTree~ that work on a
-   ~Tree~, analoguous to ~map~ and ~foldr~ on lists. Also give the
-   type of these functions.
+Write a function ~showTree~ that gives a nice representation as a
+~String~ for a given tree. Every leaf should be placed on a different
+line (separated by ~"\n"~). Leaves that are deeper in the tree should
+be further to the right than leaves higher in the tree.
+
+** :inClass:
+
+Write a function ~mapTree~ and a function ~foldTree~ that work on a
+~Tree~, analoguous to ~map~ and ~foldr~ on lists. Also give the type
+of these functions.
 
    #+BEGIN_SRC haskell :solution
    mapTree                :: (a -> b) -> Tree a -> Tree b
@@ -61,40 +67,49 @@ data Tree a = Leaf | Node (Tree a) a (Tree a)
    foldTree _ z Leaf         = z
    foldTree f z (Node l x r) = f (foldTree f z l) x (foldTree f z r)
    #+END_SRC
+** :inClass:
 
-5. Write a function ~height~, that computes the amount of levels in a
-   ~Tree~. Give a definition using recursion, and a different
-   definition using ~foldTree~.
+Write a function ~height~, that computes the amount of levels in a
+~Tree~. Give a definition using recursion, and a different definition
+using ~foldTree~.
 
    #+BEGIN_SRC haskell :solution
    height = foldTree (\l _ r -> 1 + l `max` r) 1
    #+END_SRC
+** :atHome:
 
-6. Suppose that a tree ~t~ has height ~n~. What is the minimal and
-   maximal amount of leaves that ~t~ could have?
+Suppose that a tree ~t~ has height ~n~. What is the minimal and
+maximal amount of leaves that ~t~ could have?
 
-7. Write a function that computes all paths of type ~[a]~ from the
-   root up to a leaf for a tree of type ~Tree a~.
+** :atHome:
+
+Write a function that computes all paths of type ~[a]~ from the root
+up to a leaf for a tree of type ~Tree a~.
 
    #+BEGIN_SRC haskell :solution
    paths              :: Tree a -> [[a]]
    paths Leaf         = [[]]
    paths (Node l x r) = map (x:) (paths l) ++ map (x:) (paths r)
    #+END_SRC
+** :atHome:
 
-8. Write a function that computes a list of nodes that occur on one of
-   the longest paths from the root up to a leaf. Try to keep the
-   solution linear with respect to the size of the tree.
+Write a function that computes a list of nodes that occur on one of
+the longest paths from the root up to a leaf. Try to keep the solution
+linear with respect to the size of the tree.
 
-9. Write ~mapTree~ using ~foldTree~
+** :atHome:
+
+Write ~mapTree~ using ~foldTree~
 
    #+BEGIN_SRC haskell :solution
    mapTree f = foldTree (\l x r -> Node l (f x) r) Leaf
    #+END_SRC
 
-10. Write a function ~extractMin~ that removes the smallest element
-    from a binary search tree. Returns the smallest element and the
-    remainder of the tree.
+** :inClass:
+
+Write a function ~extractMin~ that removes the smallest element from a
+binary search tree. Returns the smallest element and the remainder of
+the tree.
 
    #+BEGIN_SRC haskell :solution
    extractMin              :: Tree a -> Maybe (a, Tree a)
@@ -103,13 +118,13 @@ data Tree a = Leaf | Node (Tree a) a (Tree a)
                                Nothing     -> Just (k, r)
                                Just (m,l') -> Just (m, Node l' k r)
    #+END_SRC
+** :inClass:
 
-11. Write a function ~delete~ that deletes an element from the
-    tree. You can assume the element appears at most once. Your new
-    tree should remain a binary search tree.
+Write a function ~delete~ that deletes an element from the tree. You
+can assume the element appears at most once. Your new tree should
+remain a binary search tree.
 
-    Hint: You may want to use the function ~extractMin~ you defined
-    above.
+Hint: You may want to use the function ~extractMin~ you defined above.
 
    #+BEGIN_SRC haskell :solution
    delete                :: Ord a => a -> Tree a -> Tree a
@@ -124,31 +139,33 @@ data Tree a = Leaf | Node (Tree a) a (Tree a)
    #+END_SRC
 
 
-** Trees with values in the Leaves
-
-1. Define a binary tree type in which leaves store values of type ~a~
-   and internal nodes store values of type ~b~
+** :inClass:
+Define a binary tree type ~LeafTree~ in which leaves store values of
+   type ~a~ and internal nodes store values of type ~b~
 
    #+begin_src haskell :solution
-   data Tree a b = Leaf a
-                 | Node (Tree a b) b (Tree a b)
-                 deriving (Show,Eq)
+   data LeafTree a b = Leaf a
+                     | Node (LeafTree a b) b (LeafTree a b)
+                     deriving (Show,Eq)
    #+end_src
 
-2. Define a function ~height~ that given a Tree computes the height of
-   the ~Tree a b~. Leaves have height one.
+** :atHome:
+
+Define a function ~height~ that given a LeafTree computes the height of
+the ~LeafTree a b~. Leaves have height one.
 
    #+begin_src haskell :solution
-   height              :: Tree a b -> Int
+   height              :: LeafTree a b -> Int
    height (Leaf _)     = 1
    height (Node l _ r) = 1 + max (height l) (height r)
    #+end_src
 
-3. Define a function ~annotate~, that given a ~Tree b Int~ labels
-   every internal node with the minimum and maximum value appearing
-   in the leaves in its subtree.
+** :inClass:
+Define a function ~annotate~, that given a ~LeafTree Int b~ labels every
+internal node with the minimum and maximum value appearing in the
+leaves in its subtree.
 
-   e.g.
+e.g.
 
    #+BEGIN_SRC haskell
    Node (Node (Leaf 3) "left" (Leaf 5))
@@ -163,12 +180,12 @@ data Tree a = Leaf | Node (Tree a) a (Tree a)
    #+END_SRC
 
    #+begin_src haskell :solution
-   annotate   :: Tree b Int -> Tree (Int,Int) Int
+   annotate   :: LeafTree Int b -> LeafTree Int (Int,Int)
    annotate t = case annotate' t of
                   (t',_,_) -> t'
 
    -- | Computes the annotated tree, as well as the minimum and maximum in the tree
-   annotate'              :: Tree b Int -> (Tree (Int,Int) Int, Int, Int)
+   annotate'              :: LeafTree Int b -> (LeafTree Int (Int,Int), Int, Int)
    annotate' (Leaf x)     = (Leaf x, x, x)
    annotate' (Node l _ r) = let (l',lmin,lmax) = annotate' l
                                 (r',rmin,rmax) = annotate' r
@@ -177,28 +194,32 @@ data Tree a = Leaf | Node (Tree a) a (Tree a)
                             in (Node l' (mi,ma) r', mi, ma)
    #+end_src
 
-4. Write a function ~withDepth~ that annotates the tree by its depth. The
-   depth of a node ~v~ is the length of the path from the root to ~v~.
+** :atHome:
+
+Write a function ~withDepth~ that annotates the tree by its depth. The
+depth of a node ~v~ is the length of the path from the root to ~v~.
 
    #+begin_src haskell :solution
-   withDepth :: Tree a b -> Tree (a,Int) (b,Int)
+   withDepth :: LeafTree a b -> LeafTree (a,Int) (b,Int)
    withDepth = withDepth' 0
 
-   withDepth'                :: Int -> Tree a b -> Tree (a,Int) (b,Int)
+   withDepth'                :: Int -> LeafTree a b -> LeafTree (a,Int) (b,Int)
    withDepth' d (Leaf x)     = Leaf (x,d)
    withDepth' d (Node l x r) = Node (withDepth' (d+1) l) (x,d) (withDepth' (d+1) r)
    #+end_src
 
-5. Write a function ~trimWhen :: (a -> Bool) -> (b -> Bool) -> Tree a
-   b -> Tree (Tree a b) b~ that 'trims' the subtree depending on two
-   predicates ~p :: a -> Bool~ and ~q :: b -> Bool~ . In particular,
-   predicate ~p x~ returns True if and only if we should trim the leaf
-   storing some value ~x~ and ~q y~ returns True if and only if the
-   subtree whose root stores a ~y~ should be trimmed.
+** :atHome:
+
+Write a function ~trimWhen :: (a -> Bool) -> (b -> Bool) -> LeafTree a b
+-> LeafTree (LeafTree a b) b~ that 'trims' the subtree depending on two
+predicates ~p :: a -> Bool~ and ~q :: b -> Bool~ . In particular,
+predicate ~p x~ returns True if and only if we should trim the leaf
+storing some value ~x~ and ~q y~ returns True if and only if the
+subtree whose root stores a ~y~ should be trimmed.
 
    #+begin_src haskell :solution
-   trimWhen       :: (a -> Bool) -> (b -> Bool) -> Tree a b
-                  -> Tree (Maybe (Tree a b)) b
+   trimWhen       :: (a -> Bool) -> (b -> Bool) -> LeafTree a b
+                  -> LeafTree (Maybe (LeafTree a b)) b
    trimWhen p q t = case t of
                       Leaf x | p x           -> Leaf (Just t)
                              | otherwise     -> Leaf Nothing
@@ -206,20 +227,24 @@ data Tree a = Leaf | Node (Tree a) a (Tree a)
                                  | otherwise -> Node (trimWhen p q l) y (trimWhen p q r)
    #+end_src
 
-6.write a function ~bimapTree :: (a -> c) -> (b -> d) -> Tree a b -> Tree c d~.
+** :atHome:
+
+Write a function ~bimapTree :: (a -> c) -> (b -> d) -> LeafTree a b -> LeafTree c d~.
 
    #+begin_src haskell :solution
-   bimapTree       :: (a -> c) -> (b -> d) -> Tree a b -> Tree c d
+   bimapTree       :: (a -> c) -> (b -> d) -> LeafTree a b -> LeafTree c d
    bimapTree f g t = case t of
                        Leaf x     -> Leaf (f x)
                        Node l x r -> Node (bimapTree f g l) (g x) (bimapTree f g r)
    #+end_src
 
-7. Write a function ~trim :: Int -> Tree a b -> Tree (Maybe (Tree a b)
-   b)~ that trims a tree at the given depth.
+** :atHome:
+
+Write a function ~trim :: Int -> LeafTree a b -> LeafTree (Maybe (LeafTree a b)
+b)~ that trims a tree at the given depth.
 
    #+begin_src haskell :solution
-   trim   :: Int -> Tree a b -> Tree (Maybe (Tree a b)) b
+   trim   :: Int -> LeafTree a b -> LeafTree (Maybe (LeafTree a b)) b
    trim d = bimapTree f fst . trimWhen p p . withDepth
      where
        p        :: (c,Int) -> Bool
@@ -229,9 +254,9 @@ data Tree a = Leaf | Node (Tree a) a (Tree a)
        f (Just t) = Just $ bimapTree fst fst t
    #+end_src
 
-** TT-Trees
+** :atHome:
 
-1. Define a Tree type ~TTTree a~ that models trees in which
+Define a Tree type ~TTTree a~ that models trees in which
 
    - the leaves store values of type ~a~,
    - internal nodes either have 2 or 3 children, and
@@ -244,13 +269,14 @@ data Tree a = Leaf | Node (Tree a) a (Tree a)
                  | Node3 Int (TTTree a) (TTTree a) (TTTree a)
    #+END_SRC
 
-2. Define a function ~insert~ that inserts a new element in a
-   ~TTtree~, while maintaining the subtree size invariant, and while
-   keeping the height low (e.g. try to avoid increasing the height if
-   possible).
+** :atHome:
+Define a function ~insert~ that inserts a new element in a ~TTTree~,
+while maintaining the subtree size invariant, and while keeping the
+height low (e.g. try to avoid increasing the height if possible).
 
-3. Define ~mapTTTree~ and ~foldTTTree~ functions for your ~TTTree~
-   data type.
+** :atHome:
+Define ~mapTTTree~ and ~foldTTTree~ functions for your ~TTTree~ data
+type.
 
    #+BEGIN_SRC haskell :solution
    foldTTTree           :: (a -> b) -> (Int -> b -> b -> b) -> (Int -> b -> b -> b -> b) -> TTTree a -> b
@@ -262,20 +288,23 @@ data Tree a = Leaf | Node (Tree a) a (Tree a)
    mapTTTree f = foldTTTree (Leaf . f) Node2 Node3
    #+END_SRC
 
-4. Define function ~sized~ that, given an ~Int~ $n$, returns all
-   subtrees of size $n$.
+** :atHome:
+Define function ~sized~ that, given an ~Int~ $n$, returns all subtrees
+of size $n$.
 
-5. It is not possible to write the ~sized~ function directly using
-   ~foldTTTree~. However, we can use ~foldTTTree~ to do most of the
-   work; that is, we can define a function ~sized'~ using ~foldTTTree~
-   such that
+** :atHome:
+
+It is not possible to write the ~sized~ function directly using
+~foldTTTree~. However, we can use ~foldTTTree~ to do most of the work;
+that is, we can define a function ~sized'~ using ~foldTTTree~ such
+that
 
   #+BEGIN_SRC haskell
   sized   :: Int -> TTTree a -> [TTTree a]
   sized n = snd . sized' n
   #+END_SRC
 
-  write the function ~sized'~
+write the function ~sized'~
 
   #+BEGIN_SRC haskell :solution
   sized   :: Int -> TTTree a -> (TTTRee a, [TTTree a])
@@ -293,9 +322,10 @@ data Tree a = Leaf | Node (Tree a) a (Tree a)
                                   in (t, singleton s t ++ ls ++ ms ++ rs)
   #+END_SRC
 
-6. A ~TTTree~ is *valid* if all root to leaf paths are equally
-   long. Write a function ~height~ that computes the height of a
-   ~TTtree~ if it is valid. Think about a suitable type for your function.
+** :atHome:
+A ~TTTree~ is *valid* if all root to leaf paths are equally
+long. Write a function ~height~ that computes the height of a ~TTtree~
+if it is valid. Think about a suitable type for your function.
 
    #+BEGIN_SRC haskell :solution
    height :: TTTree a -> Maybe Int
@@ -312,30 +342,30 @@ data Tree a = Leaf | Node (Tree a) a (Tree a)
                            | otherwise = Nothing
    #+END_SRC
 
-** Red-Black Trees
+** Red-Black Trees                                                  :atHome:
 
 Write a function ~validRBTree :: RBTree a -> Bool~ that checks if a
 given ~RBTree a~ satisfies all red-black tree properties.
 
 
-** Complete Binary Trees
+** :atHome:
 
-Consider the following data type of binary trees ~Tree a~ that we
+Consider the following data type of binary trees ~BST a~ that we
 intend to use to implement binary search trees. We will store "real"
 elements (the elements we care about) only in the Leaves of the
 tree. The ~a~ field in a ~Node~ is used only as a routing element (to
 guide searches).
 
 #+begin_src haskell
-data Tree a = Leaf a
-            | Node (Tree a) a (Tree a)
-            deriving (Show,Read,Eq)
+data BST a = Leaf a
+           | Node (BST a) a (BST a)
+           deriving (Show,Read,Eq)
 #+end_src
 
 We can compute the elements we care about of such a tree as follows:
 
 #+begin_src haskell
-elems :: Tree a -> [a]
+elems :: BST a -> [a]
 elems (Leaf x) = [x]
 elems (Node l _ r) = elems l ++ elems r
 #+end_src
@@ -351,13 +381,13 @@ Here, the only purpose of the element 8, for example, is to signal
 that all the elements in the left subtree are $\leq 8$ and that all
 the elements in the right subtree are $> 8$.
 
-1. Write a function ~complete~ that constructs a complete balanced
-   binary search tree out of an sorted list of $2^h$, with $h \geq 0$, elements (with
-   those elements in the same order as given.).
+*The question*: write a function ~complete~ that constructs a complete
+balanced binary search tree out of an sorted list of $2^h$, with $h
+\geq 0$, elements (with those elements in the same order as given.).
 
    #+begin_src haskell :solution
    -- | This runs in O(n\log n) time.
-   complete :: [a] -> Tree a
+   complete :: [a] -> BST a
    complete [x] = Leaf x
    complete xs  = let (ls,rs) = splitAt (n `div` 2) xs
                       n       = length xs
@@ -366,17 +396,21 @@ the elements in the right subtree are $> 8$.
 
    *Bonus*: Write ~complete~ so that it runs in linear time.
 
-2. Give the type of a function ~delete~, such that, given an element
-   ~a~ and tree ~t~, ~delete a t~ looks whether ~a~ is present in ~t~
-   and if so, removes ~a~ from ~t~. The function delete should always
-   be able to produce a valid element of the result type, i.e. it may
-   not produce an error.
+** :atHome:
+
+Give the type of a function ~delete~, such that, given an element ~a~
+and tree ~t~, ~delete a t~ looks whether ~a~ is present in ~t~ and if
+so, removes ~a~ from ~t~. The function delete should always be able to
+produce a valid element of the result type, i.e. it may not produce an
+error.
 
    #+begin_src haskell :solution
-   delete :: Ord a => a -> Tree a -> Maybe (Tree a)
+   delete :: Ord a => a -> BST a -> Maybe (BST a)
    #+end_src
 
-3. Please implement the above function ~delete~.
+** :atHome:
+
+Please implement the above function ~delete~.
 
    #+begin_src haskell :solution
    delete x t = case t of
@@ -391,12 +425,14 @@ the elements in the right subtree are $> 8$.
    #+end_src
 
 
-4. Use higher order functions (i.e. ~foldr~, ~foldl'~, ~map~, ~filter~) to
-   write a function ~batchDelete~ that removes all elements from a
-   given list from a tree. Give the type of this function as well.
+** :atHome:
+
+Use higher order functions (i.e. ~foldr~, ~foldl'~, ~map~, ~filter~)
+to write a function ~batchDelete~ that removes all elements from a
+given list from a tree. Give the type of this function as well.
 
    #+begin_src haskell :solution
-   batchDelete      :: Ord a => [a] -> Tree a -> Maybe (Tree a)
+   batchDelete      :: Ord a => [a] -> BST a -> Maybe (BST a)
    batchDelete xs t = foldr (\x mt -> mt >>= \t -> delete x t) (Just t) xs
      where
        -- This funny operator is called "bind" and is actually defined in

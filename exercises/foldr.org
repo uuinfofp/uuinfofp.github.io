@@ -111,7 +111,7 @@ concat = foldr f e
     e     = []
 #+END_SRC
 
-** ~concatMap~ :atHome:
+** ~concatMap~ :inClass:
 
 Map a function over a list and concatenate the results.
 
