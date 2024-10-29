@@ -171,7 +171,7 @@ currently still subject to change.
         <!-- <br><a href="slides/Test.hs">Example questions</a> -->
         <!-- <br><a href="slides/Test-Answers.hs">Example questions solutions</a> -->
       </td>
-      <td><a href="slides/231102QA-answers.hs">Solutions to exercises discussed</a>
+      <td><a href="slides/QandA2024.hs">Code from the lecture</a>
        <br><a href="slides/Lecture15-syllabus.txt">Syllabus</a></td>
       <td>Frank</td>
     </tr>
