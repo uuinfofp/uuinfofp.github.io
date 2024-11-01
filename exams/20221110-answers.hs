@@ -49,7 +49,7 @@ noMissing = consecutive . List.sort . map roomNumber . rooms
 
 
 isValidFloor   :: Floor -> Bool
-isValidFloor = not . any (\g -> length g > 1) . List.group . List.sort . rooms
+isValidFloor = not . any (\g -> length g > 1) . List.group . List.sort . map roomNumber . rooms
 
 
 -- d) As code completion question:
