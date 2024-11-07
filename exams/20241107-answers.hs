@@ -78,6 +78,8 @@ f x
 = -- d
 id f x
 
+This proves the claim.
+
 -}
 
 
@@ -88,13 +90,14 @@ id f x
 {-
 We distinguish the cases where t = Leaf and t = Node l v r .
 
+Base case of t = Leaf:
 mapTree id Leaf 
 = -- e
 Leaf
 
-Assume the induction hypotheses that mapTree id l = l and mapTree id r = r.
+Inductive case of t = Node l v r:
+Assume the induction hypotheses that mapTree id l = l (I.H. 1) and mapTree id r = r (I.H. 2).
 Then,
-
 mapTree id (Node l v r)
 = -- f
 Node (mapTree id l) (id v) (mapTree id r)
@@ -105,7 +108,7 @@ Node l v (mapTree id r)
 = --I.H. 2
 Node l v r
 
-The claim now follows by induction.
+The claim now follows by induction on t.
 -}
 
 
