@@ -16,8 +16,8 @@ title: Exams from previous years
 <td>2024</td>
 <td><a href="exams/20241003.pdf">No answers</a></td>
 <td><a href="exams/20241003-answers.hs">Answers</a></td>
-<td><a> </a></td>
-<td><a > </a></td>
+<td><a href="exams/20241107.pdf">No answers</a></td>
+<td><a href="exams/20241107-answers.hs">Answers</a></td>
 <td></td>
 <td></td>
 </tr>
