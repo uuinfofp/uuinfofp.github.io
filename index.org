@@ -47,27 +47,6 @@ By the end of the course you will be able to
 + reason about the correctness and the types of functions.
 + develop a small, real world game in the functional language Haskell.
 
-* Announcements
-
-*** 2023-08-16, GHC Installation Instructions
-
-To successfully complete the course you will need
-
-- GHC   :: A Haskell compiler, and
-- cabal :: A tool to install Haskell libraries (in particular the
-  'gloss' library you will need for the final project in the course).
-
-Installing GHC is, or at least was, often somewhat
-troublesome. Fortunately, the situation has improved a bit with
-respect to earlier years. We currently recommend that you install GHC
-using a tool called 'ghcup'. In particular, you can follow
-[[https://www.haskell.org/ghcup/][these]] instructions to install 'ghc'
-and 'cabal'.
-
-If you want as you type error checking and intelligent completions in
-your editor, you may also want to install HLS, the Haskell Language
-server. You can also do so using ghcup.
-
 * Schedule
 
 There are weekly [[./lectures.html][lectures]] (2 × 2 hour),
@@ -155,3 +134,22 @@ The *final result* of the course is:
     * If you need to re-submit the final programming project, that grade is a 6 maximum.
 
 - Not passed with NVD otherwise.
+
+* GHC Installation Instructions
+
+To successfully complete the course you will need
+
+- GHC   :: A Haskell compiler, and
+- cabal :: A tool to install Haskell libraries (in particular the
+  'gloss' library you will need for the final project in the course).
+
+Installing GHC is, or at least was, often somewhat
+troublesome. Fortunately, the situation has improved a bit with
+respect to earlier years. We currently recommend that you install GHC
+using a tool called 'ghcup'. In particular, you can follow
+[[https://www.haskell.org/ghcup/][these]] instructions to install 'ghc'
+and 'cabal'.
+
+If you want as you type error checking and intelligent completions in
+your editor, you may also want to install HLS, the Haskell Language
+server. You can also do so using ghcup.
