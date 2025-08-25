@@ -1,0 +1,65 @@
+---
+title: Getting Started
+---
+
+Here are some small exercises to get started programming in Haskell;
+the language we will be using throughout the course. In case you have
+not done so:
+
+- Make sure you have installed GHC, the haskell compiler.
+- Hand in Practical 0; a demo practical assignment.
+
+You can then start exploring Haskell using the following exercises. We
+will cover the the material you need in these questions during the
+first lecture, so don't worry too much if you get stuck; just ask a TA
+for a quick hint if needed, and let your curiosity guide you :).
+
+Let's say that a string (= list of characters) is long when it consists
+of at least 10 characters. Here is a little program that, given a list
+of strings, computes the number of long strings:
+
+#+BEGIN_SRC haskell
+numLong        :: [String] -> Int
+numLong []     = 0
+numLong (s:ss) = (if isLong s then 1 else 0) + numLong ss
+#+END_SRC
+
+The first line states the type of our function ~numLong~. As promised,
+it takes a list of ~String~s, i.e. a value of type ~[String]~, as
+input, and produces an ~Int~.
+
+The second line states that if the input list is the empty list
+(denoted by ~[]~), then there are zero long strings.
+
+The third line states that if the input list is non-empty, in
+particular, when the first element of the list (the /head/ of the
+list) is a string named s, and the rest of the list (the /tail/ of the
+list) is a list named ss, we can express the number of long strings
+recursively: it is the number of long strings in the list ss plus
+either 1 or 0, depending on whether our string s is long or not.
+
+1) Implement the function ~isLong~. You may use that a ~String~ really
+   is just a list of characters (~Char~ s); i.e. ~String~ = ~[Char]~,
+   and that the standard library (called Prelude) has a function
+   ~length :: [a] -> Int~ with type ~[a] -> Int~.
+
+2) Implement the function ~isLong~ by explicitly using recursion
+   (meaning that the implementation of ~isLong~ will call the function
+   ~isLong~ itself, as is done in the ~numLong~ example.
+
+3) Adapt the definition of the function ~numLong~ to actually return
+   all long strings (rather than just count them). What is the type of
+   your function?
+
+4) The type of the function ~numLong~ is actually a bit more general
+   than ~[String] -> Int~. What do you think the type is/should be?
+   Argue why.
+
+5) Can you adapt the function so that the "length to be considered
+   long" is a parameter of your function? What should the type of your
+   new function be?
+
+6) Try to write a function ~longest~ that compute the longest string
+   in a non-empty list of strings. What should the base case of your
+   function be? What is the type of your function? Can you see
+   anything "wrong" about it?

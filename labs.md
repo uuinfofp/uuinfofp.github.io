@@ -2,6 +2,10 @@
 title: Practicals
 ---
 
+During the very first practical on Tuesday 2 September, you can have a
+look at the [getting started](exercises/getting_started.html) page
+that has some small getting started exercises.
+
 ### Assignments
 
 <table class="table table-stripped" style="font-size: 15px;">
