@@ -40,18 +40,17 @@ jobs:
           key: ${{ runner.os }}-${{ matrix.compiler }}-${{ github.sha }}
           path: ~/.cabal/store
           restore-keys: ${{ runner.os }}-${{ matrix.compiler }}-
-      - name: build
+      - name: build binary
         run: |
           cabal update
           cabal build
-      - name: haddock
+      - name: build page
         run: |
           cabal run fp-website build
-      - name: copy-to-pages
-        run: |
-          cp haddock.txt _site/
-          cp haddock_badge.json _site/
-
+      # - name: copy-to-pages
+      #   run: |
+      #     cp haddock.txt _site/
+      #     cp haddock_badge.json _site/
       - name: Deploy 🚀
         uses: JamesIves/github-pages-deploy-action@v4
         with:
