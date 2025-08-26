@@ -2,7 +2,8 @@
 title: Exercises
 ---
 
-The following table lists exercises corresponding to the lectures.
+The following table lists exercises corresponding to the lectures. You
+may also want to practice by making exercises from old [[file:exams.html][exams]].
 
 #+ATTR_HTML: :class table table-striped
 |  Week | Topic                  | Corresponding Lecture |           |
@@ -20,7 +21,6 @@ The following table lists exercises corresponding to the lectures.
 |    42 | [[file:exercises/testing.html][Testing]]                | Lecture 12            | [[file:exercises/testing.solutions.html][Solutions]] |
 |    43 | [[file:exercises/lazy.html][Lazy Evaluation.]]       | Lecture 13            | [[file:exercises/lazy.solutions.html][Solutions]] |
 |    44 | [[file:exercises/functor_monad.html][Functors, Monads, etc.]] | Lecture 14            | [[file:exercises/functor_monad.solutions.html][Solutions]] |
-
 
 
 ** Additional Exercises
