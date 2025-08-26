@@ -1,0 +1,66 @@
+name: GH-Pages
+on:
+  push:
+    branches:
+      - master
+jobs:
+  linux:
+    name: GH-Pages - Linux - ${{ matrix.compiler }}
+    runs-on: ubuntu-22.04
+    timeout-minutes:
+      60
+    continue-on-error: ${{ matrix.allow-failure }}
+    strategy:
+      matrix:
+        include:
+          - compiler: ghc-9.10.1
+            compilerKind: ghc
+            compilerVersion: 9.10.1
+            setup-method: ghcup
+            allow-failure: false
+            cabalVersion: 3.14.1.1
+      fail-fast: false
+    steps:
+      - name: Set environment variables
+        run: |
+          echo "CABAL_DIR=$HOME/.cabal" >> "$GITHUB_ENV"
+      - name: env
+        run: |
+          env
+      - uses: actions/checkout@v3
+      - name: Setup toolchain
+        run: |
+          # ghcup install cabal --set ${{ matrix.cabalVersion }}
+          ghcup install cabal -u https://github.com/haskell/cabal/releases/download/cabal-head/cabal-head-Linux-x86_64.tar.gz head
+          ghcup install ghc --set ${{ matrix.compilerVersion }}
+
+      - name: restore cache
+        uses: actions/cache/restore@v3
+        with:
+          key: ${{ runner.os }}-${{ matrix.compiler }}-${{ github.sha }}
+          path: ~/.cabal/store
+          restore-keys: ${{ runner.os }}-${{ matrix.compiler }}-
+      - name: build
+        run: |
+          cabal update
+          cabal build
+      - name: haddock
+        run: |
+          cabal run fp-website build
+      - name: copy-to-pages
+        run: |
+          cp haddock.txt _site/
+          cp haddock_badge.json _site/
+
+      - name: Deploy 🚀
+        uses: JamesIves/github-pages-deploy-action@v4
+        with:
+          branch: pub # The branch the action should deploy to.
+          folder: _site # The folder the action should deploy.
+
+      - name: save cache
+        uses: actions/cache/save@v3
+        if: always()
+        with:
+          key: ${{ runner.os }}-${{ matrix.compiler }}-${{ github.sha }}
+          path: ~/.cabal/store
