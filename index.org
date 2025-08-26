@@ -87,6 +87,7 @@ You can find the exams of several previous years [[./exams.html][here]].
 
 There are two kinds of *mandatory* assignments:
 
+
 - [[./labs.html][Practical assignments]] pose programming problems with the aim of
   practicing your Haskell skills. These assignments are automatically
   corrected by [[https://prairielearn.science.uu.nl][PrairieLearn]]. You can ask any of the teaching assistants to
@@ -113,8 +114,8 @@ The final grade depends on the two exams and the assignments.
 - The *practical* grade is P is grade of final programming
   project (The game).
 
-  - CP :: You need to pass at least two out of three DomJudge
-    assignments, hand in the Game Design Document, and obtain P >= 5
+  - CP :: You need to pass at least two out of three Practical
+    Assignments, hand in the Game Design Document, and obtain P >= 5
     to pass the course.
 
 - The *optional assignment* grade is O.
@@ -127,7 +128,7 @@ The *final result* of the course is:
 - Passed with grade F (appropriately rounded according to the OER
   rules) if F >= 5.5 and you satisfy conditions CT and CP.
 
-- Not passed with AANV if F >= 4.0, you passed at least one DomJudge
+- Not passed with AANV if F >= 4.0, you passed at least one Practical
   assignment, but you do not satisfy the conditions CT and CP.
 
     * In this case you are entitled to *aanvullende toets*, to be determined per student.
@@ -135,7 +136,7 @@ The *final result* of the course is:
 
 - Not passed with NVD otherwise.
 
-* GHC Installation Instructions
+GHC Installation Instructions
 
 To successfully complete the course you will need
 
@@ -143,12 +144,12 @@ To successfully complete the course you will need
 - cabal :: A tool to install Haskell libraries (in particular the
   'gloss' library you will need for the final project in the course).
 
-Installing GHC is, or at least was, often somewhat
-troublesome. Fortunately, the situation has improved a bit with
-respect to earlier years. We currently recommend that you install GHC
-using a tool called 'ghcup'. In particular, you can follow
-[[https://www.haskell.org/ghcup/][these]] instructions to install 'ghc'
-and 'cabal'.
+Installing GHC used to be a bit of a hassle. Fortunately, the
+situation has improved a bit with respect to earlier years. We
+currently recommend that you install GHC using a tool called
+'ghcup'. In particular, you can follow
+[[https://www.haskell.org/ghcup/][these]] instructions to install
+'ghc' and 'cabal'.
 
 If you want as you type error checking and intelligent completions in
 your editor, you may also want to install HLS, the Haskell Language
