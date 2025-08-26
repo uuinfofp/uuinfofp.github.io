@@ -223,9 +223,12 @@ The most important factor that affects readability is proper use and reuse of ex
 
 #### Tools
 
-There are two important tools than can give you feedback on your coding style. The first is HLint, a tool designed by Neil Mitchell specifically for giving feedback on your coding style. The second is `ghc`, the Haskell compiler itself. When you submit your assignment to PrairieLearn both tools will be run on your program. You can view the results of these tools by clicking on your assignment in the list of submission you made on in PrairieLearn.
-
-You can install HLint by opening a command prompt and typing:
+There are two important tools than can give you feedback on your
+coding style. The first is `ghc`, the Haskell compiler itself. It will
+give warnings about e.g. missing cases etc. Generally, it is a good
+idea to address these. The second is `HLint`, a tool designed by Neil
+Mitchell specifically for giving feedback on your coding style. You
+can install HLint by opening a command prompt and typing:
 
 ```
 cabal update && cabal install hlint
@@ -237,12 +240,20 @@ After HLint has been installed you can run it on your source code (which we'll a
 hlint Assignment.hs
 ```
 
-HLint will then output a list of suggestions for improving your coding style. Most, although not all, of these suggestions will help to improve your coding style and thus your grade. Of course, computer programs sometimes mistake about subjective issues like coding style, so always use your common sense as well. For example, hlint will always suggest you change `map f (map g)` xs into `map (f . g) xs` (this is called map fusion). If `f` and `g` are simple expressions this will generally be an improvement, but if they are already quite complex, this may not help to improve readability.
+HLint will then output a list of suggestions for improving your coding
+style. Most, although not all, of these suggestions will help to
+improve your coding style. Of course, computer programs sometimes
+mistake about subjective issues like coding style, so always use your
+common sense as well. For example, hlint will always suggest you
+change `map f (map g)` xs into `map (f . g) xs` (this is called map
+fusion). If `f` and `g` are simple expressions this will generally be
+an improvement, but if they are already quite complex, this may not
+help to improve readability.
 
 #### "bad" functions
 
-For the assignments 0, 1, 2, and 4, try to avoid using the following functions/expressions as they 
-are (usually) bad form/style:
+For the assignments 0, 1, 2, and 4, try to avoid using the following
+functions/expressions as they are (usually) bad form/style:
 
 ```
 Conditionals => use guards over if-then-else
