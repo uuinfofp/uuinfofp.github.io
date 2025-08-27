@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Functional Programming - Lazy Evaluation</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/syntax.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrapify.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+  </head>
+  <body>
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">Functional Programming</a> <!--  -->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!-- <li><a href="/description.html">Description</a></li> -->
+            <li><a href="../lectures.html">Lectures</a></li>
+            <li><a href="../labs.html">Practicals</a></li>
+            <li><a href="../exercises.html">Exercises</a></li>
+            <li><a href="../optional.html">Optional Assignment</a></li>
+            <li><a href="../exams.html">Old Exams</a></li>
+            <!-- <li><a href="projects.html">Projects</a></li> -->
+            <li><a target="_blank" href="https://cursusplanner.uu.nl/course/INFOFP/2025/1">Education page</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container" id="main">
+      <h2>Lazy Evaluation</h2>
+
+      <ol type="1">
+<li><p>In an older version of the base library the function <code>intersperse</code>,
+which places an element between all elements of a list, was defined
+as:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>intersperse _ []       <span class="ot">=</span> []</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>intersperse _ [x]      <span class="ot">=</span> [x]</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>intersperse e (x<span class="op">:</span>y<span class="op">:</span>ys) <span class="ot">=</span> x <span class="op">:</span> e <span class="op">:</span> intersperse e (y<span class="op">:</span>ys)</span></code></pre></div>
+<ul>
+<li><p>What would you expect the result of the expression <code>intersperse 'a' ('b' : undefined)</code> to be?</p></li>
+<li><p>Can you give a definition of <code>intersperse</code> which is less strict?</p>
+<div class="sourceCode" id="cb2" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- error undefined. Instead, we could hope to already get the</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- 'b' before getting the error.</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>intersperse _ []     <span class="ot">=</span> []</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>intersperse e (x<span class="op">:</span>xs) <span class="ot">=</span> x <span class="op">:</span> <span class="kw">case</span> xs <span class="kw">of</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                             []    <span class="ot">-&gt;</span> []</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                             (_<span class="op">:</span>_) <span class="ot">-&gt;</span> e <span class="op">:</span> intersperse e xs</span></code></pre></div></li>
+</ul></li>
+<li><p>Given the data type of binary trees:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Tree</span> a <span class="ot">=</span> <span class="dt">Leaf</span> a <span class="op">|</span> <span class="dt">Node</span> (<span class="dt">Tree</span> a) (<span class="dt">Tree</span> a)</span></code></pre></div>
+<p>we define the function <code>tja</code>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tja t <span class="ot">=</span> <span class="kw">let</span> tja' (<span class="dt">Leaf</span> a)   n ls <span class="ot">=</span> (<span class="dv">0</span>, <span class="kw">if</span> n <span class="op">==</span> <span class="dv">0</span> <span class="kw">then</span> a <span class="op">:</span> ls <span class="kw">else</span> ls)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>            tja' (<span class="dt">Node</span> l r) n ls <span class="ot">=</span> <span class="kw">let</span> (lm, ll) <span class="ot">=</span> tja' l (n<span class="op">-</span><span class="dv">1</span>) rl</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>                                       (rm, rl) <span class="ot">=</span> tja' r (n<span class="op">-</span><span class="dv">1</span>) ls</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>                                    <span class="kw">in</span> ((lm <span class="ot">`min`</span> rm) <span class="op">+</span> <span class="dv">1</span>, ll)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>            (m, r) <span class="ot">=</span> tja' t m []</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>         <span class="kw">in</span> r</span></code></pre></div>
+<p>If this code computes something, explain what it computes, maybe with the aid of a small example. If it does not compute anything, explain why this is the case.</p></li>
+<li><p>For each of these expressions, indicate if they are in WHNF or
+not. For the ones that are in WHNF, state in one sentence why. For
+the ones not in WHNF, evaluate them to WHNF or, in case they crash
+upon evaluation, indicate this.</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="op">+</span> <span class="dv">5</span>) <span class="op">:</span> <span class="fu">succ</span> <span class="dv">4</span> <span class="op">:</span> <span class="fu">map</span> (<span class="op">+</span><span class="dv">1</span>) [<span class="dv">1</span>,<span class="dv">2</span>]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>isNothing (<span class="dt">Just</span> <span class="dv">4</span>)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>\a b c <span class="ot">-&gt;</span> <span class="fu">and</span> b</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="fu">foldr</span> <span class="fu">undefined</span> e []</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span> <span class="fu">fmap</span></span></code></pre></div>
+<div class="sourceCode" id="cb6" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="op">+</span> <span class="dv">5</span>) <span class="op">:</span> <span class="fu">succ</span> <span class="dv">4</span> <span class="op">:</span> <span class="fu">map</span> (<span class="op">+</span><span class="dv">1</span>) [<span class="dv">1</span>,<span class="dv">2</span>]   <span class="co">-- WNNF: since (:) is a constructor</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>isNothing (<span class="dt">Just</span> <span class="dv">4</span>)                  <span class="co">-- not WHNF -&gt; False</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>\a b c <span class="ot">-&gt;</span> <span class="fu">and</span> b                     <span class="co">-- WHNF: since lambda function</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="fu">foldr</span> <span class="fu">undefined</span> <span class="dt">True</span> []             <span class="co">-- not WHNF -&gt; True</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span> <span class="fu">fmap</span>                            <span class="co">-- WHNF: function that still requires arguments</span></span></code></pre></div></li>
+<li><p>Implement the Sieve of Eratosthenes for computing prime numbers in
+Haskell. Recall that the algorithm works as follows. Start from
+the natural numbers greater than or equal to 2, keep 2 as it is a
+prime, then strike out all multiples of 2 from the rest of the
+numbers. The smallest remaining number is also a prime, so keep
+it. Next, remove all multiples of it from the remaining
+numbers. Etc.</p></li>
+</ol>
+    </div>
+  </body>
+</html>

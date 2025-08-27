@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Functional Programming - Testing</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/syntax.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrapify.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+  </head>
+  <body>
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">Functional Programming</a> <!--  -->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!-- <li><a href="/description.html">Description</a></li> -->
+            <li><a href="../lectures.html">Lectures</a></li>
+            <li><a href="../labs.html">Practicals</a></li>
+            <li><a href="../exercises.html">Exercises</a></li>
+            <li><a href="../optional.html">Optional Assignment</a></li>
+            <li><a href="../exams.html">Old Exams</a></li>
+            <!-- <li><a href="projects.html">Projects</a></li> -->
+            <li><a target="_blank" href="https://cursusplanner.uu.nl/course/INFOFP/2025/1">Education page</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container" id="main">
+      <h2>Testing</h2>
+
+      <p>For the exercises below you may want to consult the functions provided
+by the <span class="spurious-link" target="hackage.haskell.org/package/QuickCheck-2.4.2/docs/Test-QuickCheck.html"><em>QuickCheck library</em></span>, in particular functions such as <code>choose</code>,
+<code>sized</code>, <code>elements</code> and <code>frequency</code>. We encourage experimenting with
+your code in an interpreter session. To be able to experiment with
+QuickCheck, the first two exercises work better if you can <code>show</code>
+functions. For that you can add the following instance definition to
+your code:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ot">{-# LANGUAGE FlexibleInstances #-}</span> <span class="co">-- put this at the top of your file</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> (<span class="dt">Enum</span> a, <span class="dt">Bounded</span> a, <span class="dt">Show</span>  a) <span class="ot">=&gt;</span> <span class="dt">Show</span> (a <span class="ot">-&gt;</span> <span class="dt">Bool</span>) <span class="kw">where</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">show</span> f <span class="ot">=</span> intercalate <span class="st">&quot;\n&quot;</span> (<span class="fu">map</span> (\x <span class="ot">-&gt;</span> <span class="st">&quot;f &quot;</span> <span class="op">++</span> <span class="fu">show</span> x <span class="op">++</span> <span class="st">&quot; = &quot;</span> <span class="op">++</span> <span class="fu">show</span> (f x)) [<span class="fu">minBound</span> <span class="op">..</span> <span class="fu">maxBound</span>])</span></code></pre></div>
+<p>Also when you run your tests, you sometimes need to specialize the
+types a bit. For example, the following code calls all kinds of test
+functions that the exercises below (except for 4) expect you to come
+up with.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ot">runTests ::</span> <span class="dt">IO</span> ()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>runTests <span class="ot">=</span> <span class="kw">do</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">putStrLn</span> <span class="st">&quot;\nExercise 14.1&quot;</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  quickCheck (<span class="ot">propFilterNoLonger      ::</span> (<span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span>) <span class="ot">-&gt;</span> [<span class="dt">Bool</span>] <span class="ot">-&gt;</span> <span class="dt">Bool</span>)</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>  quickCheck (<span class="ot">propFilterAllSatisfy    ::</span> (<span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span>) <span class="ot">-&gt;</span> [<span class="dt">Bool</span>] <span class="ot">-&gt;</span> <span class="dt">Bool</span>)</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>  quickCheck (<span class="ot">propFilterAllElements   ::</span> (<span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span>) <span class="ot">-&gt;</span> [<span class="dt">Bool</span>] <span class="ot">-&gt;</span> <span class="dt">Bool</span>)</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>  quickCheck (<span class="ot">propFilterCorrect       ::</span> (<span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span>) <span class="ot">-&gt;</span> [<span class="dt">Bool</span>] <span class="ot">-&gt;</span> <span class="dt">Bool</span>)</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">putStrLn</span> <span class="st">&quot;\nExercise 14.2&quot;</span></span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  quickCheck (<span class="ot">propMapLength ::</span> (<span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span>) <span class="ot">-&gt;</span> [<span class="dt">Bool</span>] <span class="ot">-&gt;</span> <span class="dt">Bool</span>)</span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">putStrLn</span> <span class="st">&quot;\nExercise 14.3&quot;</span></span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  quickCheck <span class="op">$</span> once (<span class="ot">propPermsLength   ::</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> <span class="dt">Bool</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  quickCheck <span class="op">$</span> once (<span class="ot">propPermsArePerms ::</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> <span class="dt">Bool</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  quickCheck <span class="op">$</span> once (<span class="ot">propPermsCorrect  ::</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> <span class="dt">Bool</span>)</span>
+<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">putStrLn</span> <span class="st">&quot;\nExercise 14.5&quot;</span></span>
+<span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  quickCheck (forAll genBSTI isSearchTree)    <span class="co">-- Use forAll to use custom generator</span></span>
+<span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  quickCheck (forAll genBSTI propInsertIsTree)</span>
+<span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>  quickCheck (forAll genBSTI propInsertIsTreeWrong)</span></code></pre></div>
+<h2 data-number="1" id="section-1"><span class="header-section-number">1</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Consider the ubiquitous <code>filter</code> function. There are many properties
+that you can formulate for the input-output behaviour of <code>filter</code>.</p>
+<ul>
+<li><p>Formulate the QuickCheck property that the result list cannot be
+longer than the input.</p></li>
+<li><p>Formulate the QuickCheck property that all elements in the result list satisfy the given property.</p></li>
+<li><p>Formulate the QuickCheck property that all elements in the
+result list are present in the input list.</p></li>
+<li><p>Formulate a set of QuickCheck properties to completely characterize the <code>filter</code> function (you may choose also from among the three you have just implemented). Make sure to remove properties that are implied by (a subset of) the other properties.</p></li>
+</ul>
+<h2 data-number="2" id="section-2"><span class="header-section-number">2</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Try to come up with a number of QuickCheck-verifiable properties for
+the <code>map</code> function, and implement these. Are there any properties of
+<code>map</code> that are awkward to verify?</p>
+<h2 data-number="3" id="section-3"><span class="header-section-number">3</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Consider the function <code>permutations</code> from the <code>Data.List</code> library,
+which computes all the possible permutations of elements in a list. We
+shall be writing QuickCheck tests to verify that this function.</p>
+<ol type="a">
+<li><p>Write a QuickCheck property that checks that the correct number
+of permutations is generated.</p></li>
+<li><p>Write a function <code>isPerm :: Eq a =&gt; [a] -&gt; [a] -&gt; Bool</code> that
+verifies that the two argument lists are permutations of each other.</p></li>
+<li><p>Write the QuickCheck property that every list in the output of
+<code>permutations</code> is a permutation of the input.</p></li>
+<li><p>Formulate a set of properties to completely characterize the
+<code>permutations</code> function (you may choose also from among the
+ones you have just implemented). Make sure to remove properties
+that are implied by (a subset of) the other
+properties. Implement the properties that you still need as
+QuickCheck properties.</p></li>
+</ol>
+<h2 data-number="4" id="section-4"><span class="header-section-number">4</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Do something similar for the function <code>inits</code> defined in Lecture 3.</p>
+<h2 data-number="5" id="section-5"><span class="header-section-number">5</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Consider the following datatype definition for binary trees that we
+shall want to use to implement binary search trees:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Tree</span> a <span class="ot">=</span> <span class="dt">Branch</span> a (<span class="dt">Tree</span> a) (<span class="dt">Tree</span> a) <span class="op">|</span> <span class="dt">Leaf</span></span></code></pre></div>
+<p>Write a function <code>isSearchTree :: Ord a =&gt; Tree a -&gt; Bool</code> that verifies
+that its argument is a binary search tree. Then write a function
+<code>genBSTI :: Gen (Tree Int)</code> that generates binary search trees. Now test the property
+that given a binary search tree <code>t</code>, inserting a value into the
+tree results in yet another binary search tree. The code for
+inserting a new value into the tree is:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ot">insertTree ::</span> <span class="dt">Ord</span> a <span class="ot">=&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Tree</span> a <span class="ot">-&gt;</span> <span class="dt">Tree</span> a</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>insertTree e <span class="dt">Leaf</span> <span class="ot">=</span> <span class="dt">Branch</span> e <span class="dt">Leaf</span> <span class="dt">Leaf</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>insertTree e (<span class="dt">Branch</span> x li re)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="op">|</span> e <span class="op">&lt;=</span> x <span class="ot">=</span> <span class="dt">Branch</span> x (insertTree e li) re</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="op">|</span> e <span class="op">&gt;</span>  x <span class="ot">=</span> <span class="dt">Branch</span> x li (insertTree e re)</span></code></pre></div>
+<p>Experiment with mutating the implementation of <code>insertTree</code> to
+find out whether your property can in fact discover that the
+mutated implementation no longer maps binary search trees to
+binary search trees.</p>
+    </div>
+  </body>
+</html>

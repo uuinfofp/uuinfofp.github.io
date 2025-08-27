@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Functional Programming - Optional assignment</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/syntax.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/bootstrapify.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+  </head>
+  <body>
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="./index.html">Functional Programming</a> <!--  -->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!-- <li><a href="/description.html">Description</a></li> -->
+            <li><a href="./lectures.html">Lectures</a></li>
+            <li><a href="./labs.html">Practicals</a></li>
+            <li><a href="./exercises.html">Exercises</a></li>
+            <li><a href="./optional.html">Optional Assignment</a></li>
+            <li><a href="./exams.html">Old Exams</a></li>
+            <!-- <li><a href="projects.html">Projects</a></li> -->
+            <li><a target="_blank" href="https://cursusplanner.uu.nl/course/INFOFP/2025/1">Education page</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container" id="main">
+      <h2>Optional assignment</h2>
+
+      <p>To receive extra credit (see Description/Grading for precise grading
+scheme) we encourage you to work in pairs to make a five to ten minute
+video about a Haskell package or language extension. The point of the
+video will be to explain the purpose of the package/extension as well
+as to give examples of how to use it. The video should be able to
+serve as a how-to guide for others getting started with Haskell. You
+can think of the target audience as your co-students.</p>
+<p>You can find an overview of Haskell packages on
+<a href="https://hackage.haskell.org/">Hackage</a> and of language extensions in
+the <a href="https://downloads.haskell.org/ghc/latest/docs/users_guide/index.html">GHC
+documentation</a>.</p>
+<p>If you have a package or extension in mind that you would like to make
+a video about, please contact <a href="mailto:F.Staals@uu.nl">Frank
+Staals</a> or <a href="mailto:m.i.l.vakar@uu.nl">Matthijs Vákár</a>
+<strong>before the midterm on 02 October 2025</strong> to ensure that the choice is
+appropriate. The final video should be submitted <strong>by Fri 31 Oct
+23:59</strong>.</p>
+<h3 id="some-examples">Some examples</h3>
+<p>Here are a few examples of what such a video could look like.</p>
+<ul>
+<li><a href="https://www.youtube.com/watch?v=qoQsDTzBojs">List comprehensions</a></li>
+<li><a href="https://www.youtube.com/watch?v=TQB2JbxNEUI">Using servant-client</a></li>
+<li><a href="https://www.youtube.com/watch?v=7fbziKgQjnw">A brief view at lenses</a></li>
+</ul>
+<h3 id="list-of-topics">List of topics</h3>
+<p>The following topics are provided as a suggestion, but many other are possible.</p>
+<h4 id="language-extensions">Language extensions</h4>
+<ul>
+<li><a href="https://downloads.haskell.org/ghc/latest/docs/users_guide/exts/gadt.html">Generalised ADTs</a></li>
+<li><a href="https://downloads.haskell.org/ghc/latest/docs/users_guide/exts/multi_param_type_classes.html">Multi-parameter type classes &amp; Functional Dependencies</a></li>
+<li><a href="https://downloads.haskell.org/ghc/latest/docs/users_guide/exts/pattern_synonyms.html">Pattern synonyms &amp; View Patterns</a></li>
+<li><a href="https://downloads.haskell.org/ghc/latest/docs/users_guide/exts/type_families.html">Type
+Families</a>
+(<span class="math inline">\(\approx\)</span> “functions on the type level”)</li>
+<li><a href="https://downloads.haskell.org/ghc/latest/docs/users_guide/exts/primitives.html">Unboxed Types &amp; Primitives</a></li>
+</ul>
+<h4 id="structures">Structures</h4>
+<ul>
+<li><a href="https://www.schoolofhaskell.com/school/to-infinity-and-beyond/pick-of-the-week/profunctors">Contravariant functors and bifunctors</a></li>
+<li><a href="https://dl.acm.org/citation.cfm?id=2500613">Semirings</a></li>
+<li><a href="https://www.haskell.org/arrows/">Arrows</a></li>
+</ul>
+<h4 id="libraries">Libraries</h4>
+<ul>
+<li><a href="http://hackage.haskell.org/package/foldl">foldl</a> : composable folds</li>
+<li><a href="https://www.spock.li/">Spock</a> : HTTP server</li>
+<li><a href="https://www.servant.dev/">Servant</a> : HTTP server</li>
+<li><a href="http://hackage.haskell.org/package/logict">logict</a> : logic programming</li>
+<li><a href="http://hackage.haskell.org/package/regex-applicative">regex-applicative</a> :
+regular rexpressions</li>
+<li><a href="https://hackage.haskell.org/package/optparse-applicative">optparse-applicative</a> :
+command line argument parsing</li>
+<li><a href="http://hackage.haskell.org/package/monad-par">monad-par</a> : parallel programming</li>
+<li><a href="http://hackage.haskell.org/package/persistent">persistent</a> : database access</li>
+</ul>
+    </div>
+  </body>
+</html>

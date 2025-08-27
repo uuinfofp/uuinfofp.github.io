@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Functional Programming - Practicals</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/syntax.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/bootstrapify.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+  </head>
+  <body>
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="./index.html">Functional Programming</a> <!--  -->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!-- <li><a href="/description.html">Description</a></li> -->
+            <li><a href="./lectures.html">Lectures</a></li>
+            <li><a href="./labs.html">Practicals</a></li>
+            <li><a href="./exercises.html">Exercises</a></li>
+            <li><a href="./optional.html">Optional Assignment</a></li>
+            <li><a href="./exams.html">Old Exams</a></li>
+            <!-- <li><a href="projects.html">Projects</a></li> -->
+            <li><a target="_blank" href="https://cursusplanner.uu.nl/course/INFOFP/2025/1">Education page</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container" id="main">
+      <h2>Practicals</h2>
+
+      <p>During the very first practical on Tuesday 2 September, you can have a
+look at the <a href="exercises/getting_started.html">getting started</a> page
+that has some small getting started exercises.</p>
+<h3 id="assignments">Assignments</h3>
+<table class="table table-stripped" style="font-size: 15px;">
+<tr>
+<th>
+Deadline
+</th>
+<th>
+Assignment
+</th>
+<th>
+Starting framework
+</th>
+<th>
+Hand in
+</th>
+</tr>
+<tr>
+<td>
+</td>
+<td>
+<a href="practicals/Assignment0.pdf">0. Introduction</a>
+</td>
+<td>
+None
+</td>
+<td>
+<a href="https://prairielearn.science.uu.nl">PrairieLearn</a>
+</td>
+</tr>
+<tr>
+<td>
+Fri 12 Sept 23:59
+</td>
+<td>
+<a href="practicals/Assignment1.pdf">1. Lists</a>
+</td>
+<td>
+<a href="practicals/Assignment1.hs"><tt>Assignment1.hs</tt></a>
+</td>
+<td>
+<a href="https://prairielearn.science.uu.nl">PrairieLearn</a>
+</td>
+</tr>
+<tr>
+<td>
+Wed 24 Sept 23:59
+</td>
+<td>
+<a href="practicals/Assignment2.pdf">2. Data structures</a>
+</td>
+<td>
+<a href="practicals/Assignment2.hs"><tt>Assignment2.hs</tt></a>
+</td>
+<td>
+<a href="https://prairielearn.science.uu.nl">PrairieLearn</a>
+</td>
+</tr>
+<tr>
+<td>
+Wed 8 Oct 23:59
+</td>
+<td>
+<a href="practicals/project.pdf">3. Game, design document</a>
+</td>
+<td>
+<a href="practicals/gloss-counter.zip">Example game</a><br />
+<a href="practicals/example_design.pdf">Example design document</a>
+</td>
+<td>
+<a href="http://uu.brightspace.com">Brightspace</a>
+</td>
+</tr>
+<tr>
+<td>
+Wed 15 Oct 23:59
+</td>
+<td>
+<a href="practicals/Assignment4.pdf">4. Type classes</a>
+</td>
+<td>
+<a href="practicals/Assignment4.hs"><tt>Assignment4.hs</tt></a>
+</td>
+<td>
+<a href="https://prairielearn.science.uu.nl">PrairieLearn</a>
+</td>
+</tr>
+<tr>
+<td>
+Sun 10 Nov 23:59
+</td>
+<td>
+<a href="practicals/project.pdf">5. Game, implementation</a>
+</td>
+<td>
+<a href="practicals/gloss-counter.zip">Example game</a>
+</td>
+<td>
+<a href="http://uu.brightspace.com">Brightspace</a>
+</td>
+</tr>
+<tr>
+<td>
+Sun 12 Jan 23:59
+</td>
+<td>
+<a href="practicals/RetakeAssignment.pdf">Retake Assignment: Monads</a>
+</td>
+<td>
+<a href="practicals/RetakeAssignment.hs">RetakeAssignment.hs</a>
+</td>
+<td>
+<a href="https://prairielearn.science.uu.nl">PrairieLearn</a>
+</td>
+</tr>
+</table>
+<h3 id="practicals-from-previous-years">Practicals from previous years</h3>
+<p>Even if you passed the practicals last year, you still need to submit
+the solutions via PrairieLearn and do a new game practical from
+scratch.</p>
+<h3 id="coding-style">Coding style</h3>
+<p>The most important question you should ask yourself to judge your own
+coding style is <strong>“If another proficient
+Haskell programmer reads my code, would this be the most readable code
+I could have written?”</strong> Where <em>readable</em> can be understood as the
+time it would take them to understand what your code tries to
+accomplish and how it accomplishes this.</p>
+<ul>
+<li>By far the most important factor that affects readability (and thus
+your grade) is proper use and reuse of existing library functions
+and syntactic sugar.</li>
+<li>Use the proper idioms (e.g., use <code>Nothing</code> instead of <code>(-1)</code> to
+indicate failure of a function.)</li>
+<li>Another factor impacting readability is proper indentation of your
+code, choice of variable and function names, and commenting your
+code.</li>
+</ul>
+<p>To give a concrete example: can you figure out what the following function does?</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>f [a] <span class="ot">=</span> h a  <span class="co">-- Base case: call the helper function h on the element in a singleton list</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">where</span> h [] <span class="ot">=</span> <span class="dv">0</span>  <span class="co">-- Return zero for the empty list</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>          h (ss<span class="op">:</span>s) <span class="ot">=</span> <span class="dv">1</span> <span class="op">+</span> h s      <span class="co">-- Add one to the recursive call of h.</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>f (b<span class="op">:</span>a) <span class="ot">=</span> <span class="kw">if</span> g b <span class="op">&gt;</span> f a <span class="kw">then</span> g b <span class="kw">else</span> f a      <span class="co">-- If g b is greater than g a then we return g b, otherwise f a</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>    <span class="kw">where</span> g f <span class="ot">=</span> <span class="fu">foldr</span> (\f g <span class="ot">-&gt;</span> g <span class="op">+</span> <span class="dv">1</span>) <span class="dv">0</span> f   <span class="co">-- Use foldr and a lambda to recurse over f</span></span></code></pre></div>
+<p>And what about this one?</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Find the length of the longest list in a non-empty list of lists.</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ot">lengthOfLongestList ::</span> [[a]] <span class="ot">-&gt;</span> <span class="dt">Int</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>lengthOfLongestList <span class="ot">=</span> <span class="fu">maximum</span> <span class="op">.</span> <span class="fu">map</span> <span class="fu">length</span></span></code></pre></div>
+<p>They are equivalent, but it’s much easier to figure out what the second one does due to proper coding style. The first definition would get you zero points for style, the second definition all of them.</p>
+<h4 id="use-and-reuse">Use and reuse</h4>
+<p>The most important factor that affects readability is proper use and reuse of existing library functions and syntactic sugar. Some important cases:</p>
+<ul>
+<li><p>If you want to apply a function uniformly to all the elements in a list then use map instead of writing out the recursion yourself. Instead of writing</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ot">addOne ::</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> [<span class="dt">Int</span>]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>addOne []     <span class="ot">=</span> []</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>addOne (x<span class="op">:</span>xs) <span class="ot">=</span> x <span class="op">+</span> <span class="dv">1</span> <span class="op">:</span> addOne xs</span></code></pre></div>
+<p>write</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ot">addOne ::</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> [<span class="dt">Int</span>]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>addOne <span class="ot">=</span> <span class="fu">map</span> (<span class="op">+</span><span class="dv">1</span>)</span></code></pre></div>
+<p>All proficient Haskell programmers know that map applies a function uniformly to all elements of a list, while it takes them just a bit longer to figure out this is what is happening if you write out the recursion explicitly.</p></li>
+<li><p>If you can write a function or argument to a higher-order function as the composition of existing functions from the standard library, then it is probably a good thing to do so. Write</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">=</span> <span class="fu">filter</span> (<span class="fu">odd</span> <span class="op">.</span> someFunction)</span></code></pre></div>
+<p>instead of</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>f xs <span class="ot">=</span> <span class="fu">filter</span> g xs</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>   <span class="kw">where</span> g x <span class="ot">=</span> someFunction x <span class="ot">`mod`</span> <span class="dv">2</span> <span class="op">==</span> <span class="dv">1</span></span></code></pre></div></li>
+<li><p>On the other hand, it is also possible to take this too far. Most people will probably consider</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">=</span> <span class="fu">map</span> (\x <span class="ot">-&gt;</span> <span class="dv">3</span> <span class="op">*</span> x <span class="op">+</span> <span class="dv">1</span>)</span></code></pre></div>
+<p>to be more readable than</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>f <span class="ot">=</span> <span class="fu">map</span> ((<span class="op">+</span><span class="dv">1</span>) <span class="op">.</span> (<span class="op">*</span><span class="dv">3</span>))</span></code></pre></div></li>
+<li><p>Many complicated functions manipulating lists can be written elegantly using list comprehensions.</p></li>
+<li><p>Using guards is often preferable over <code>if</code>-<code>then</code>-<code>else</code> or <code>case</code>-expressions. Sometimes even if this requires introducing a helper function.</p></li>
+</ul>
+<h4 id="indentation">Indentation</h4>
+<ul>
+<li><p>The most important aspect about indentation is probably that it is used consistently.</p></li>
+<li><p>Try not to make your lines longer than 100 characters. A lot of people still prefer to print out source code, have two editors open side-by-side on their screen, or simply use a large font size on a small screen.</p></li>
+<li><p>Try to align matching pieces of code. Instead of:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>f [] <span class="ot">=</span> []</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>f (x<span class="op">:</span>xs) <span class="op">|</span> x <span class="op">&lt;</span> <span class="dv">0</span> <span class="ot">=</span> x<span class="op">+</span>x <span class="op">:</span> f (<span class="fu">filter</span> <span class="fu">odd</span> xs)</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>         <span class="op">|</span> <span class="fu">even</span> x <span class="ot">=</span> compute x <span class="op">:</span> f xs</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>         <span class="op">|</span> <span class="fu">otherwise</span> <span class="ot">=</span> <span class="dv">2</span><span class="op">*</span>x<span class="op">+</span><span class="dv">1</span> <span class="op">:</span> f xs</span></code></pre></div>
+<p>write:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>f []     <span class="ot">=</span> []</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>f (x<span class="op">:</span>xs) <span class="op">|</span> x <span class="op">&lt;</span> <span class="dv">0</span>     <span class="ot">=</span> x <span class="op">+</span> x     <span class="op">:</span> <span class="fu">filter</span> <span class="fu">odd</span> (f xs)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>         <span class="op">|</span> <span class="fu">even</span> x    <span class="ot">=</span> compute x <span class="op">:</span>             f xs</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>         <span class="op">|</span> <span class="fu">otherwise</span> <span class="ot">=</span> <span class="dv">3</span> <span class="op">*</span> x <span class="op">-</span> <span class="dv">1</span> <span class="op">:</span>             f xs</span></code></pre></div></li>
+</ul>
+<h4 id="naming-conventions">Naming conventions</h4>
+<ul>
+<li>Give all your top-level functions descriptive names. Ideally it should be possible to correctly guess what the function does by only knowing its type and name.</li>
+<li>When naming parameters the situation depends on the type of the parameter and what the function does with it:
+<ul>
+<li><p>If the function only takes one <code>Integer</code> parameter then a short name like <code>i</code>, <code>k</code> or <code>n</code> usually suffices. Example:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ot">fac ::</span> <span class="dt">Integer</span> <span class="ot">-&gt;</span> <span class="dt">Integer</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>fac n <span class="ot">=</span> <span class="fu">product</span> [<span class="dv">1</span><span class="op">..</span>n]</span></code></pre></div></li>
+<li><p>If the function takes a polymorphic list as an argument or does not inspect the elements in the lists then a short name ending in -s, such as <code>xs</code>, <code>ys</code> or <code>zs</code>, usually suffices. Example:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span> _ []     <span class="ot">=</span> []</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span> f (x<span class="op">:</span>xs) <span class="ot">=</span> f x <span class="op">:</span> <span class="fu">map</span> f xs</span></code></pre></div></li>
+<li><p>If the function does inspect the elements in the list then a more descriptive name might be in order.</p></li>
+<li><p>If the function takes one or two other other functions as parameters then the names <code>f</code>, <code>g</code>, … are used. However, if the function parameter is of type <code>a -&gt; Bool</code> then the name <code>p</code> (from “predicate”) is often used. Example:</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">until</span><span class="ot"> ::</span> (a <span class="ot">-&gt;</span> <span class="dt">Bool</span>) <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> a) <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> a</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="fu">until</span> p f x <span class="op">|</span> p x       <span class="ot">=</span> x</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>            <span class="op">|</span> <span class="fu">otherwise</span> <span class="ot">=</span> <span class="fu">until</span> p f (f x)</span></code></pre></div></li>
+<li><p>When applying a higher-order function to a list and you need to use a lambda to pass as an argument then name the variable bound by the lambda such that it is easy to figure out to which lists the function gets applied. For example, write:</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>f xs ys <span class="ot">=</span> xs <span class="op">++</span> <span class="fu">map</span> (\y <span class="ot">-&gt;</span> <span class="dv">3</span> <span class="op">*</span> y <span class="op">+</span> <span class="dv">1</span>) ys</span></code></pre></div>
+<p>instead of:</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>f xs ys <span class="ot">=</span> xs <span class="op">++</span> <span class="fu">map</span> (\x <span class="ot">-&gt;</span> <span class="dv">3</span> <span class="op">*</span> x <span class="op">+</span> <span class="dv">1</span>) ys</span></code></pre></div></li>
+</ul></li>
+</ul>
+<h4 id="comments">Comments</h4>
+<ul>
+<li>Document your functions by writing a short descriptive summary above your code on what the function does (not necessarily how it manages to do this) and what the side conditions are assumed to be satisfied when the function is called. Some good examples can be found at the <a href="http://hackage.haskell.org/packages/archive/base/latest/doc/html/Data-List.html"><code>Data.List</code> module</a>. For example, the documentation for <code>head</code>: “Extract the first element of a list, which must be non-empty.”</li>
+<li>If you find that you cannot write your code any simpler than you have done so, and you still think understanding it takes effort, then add comments to explain how something has been implemented. An example might be that you chose a particular solution for its efficiency over a clearer solution, and you would like to explain why you chose that solution, and how it works.</li>
+</ul>
+<h4 id="tools">Tools</h4>
+<p>There are two important tools than can give you feedback on your
+coding style. The first is <code>ghc</code>, the Haskell compiler itself. It will
+give warnings about e.g. missing cases etc. Generally, it is a good
+idea to address these. The second is <code>HLint</code>, a tool designed by Neil
+Mitchell specifically for giving feedback on your coding style. You
+can install HLint by opening a command prompt and typing:</p>
+<pre><code>cabal update &amp;&amp; cabal install hlint</code></pre>
+<p>After HLint has been installed you can run it on your source code (which we’ll assume you have named <code>Assignment.hs</code>) by typing:</p>
+<pre><code>hlint Assignment.hs</code></pre>
+<p>HLint will then output a list of suggestions for improving your coding
+style. Most, although not all, of these suggestions will help to
+improve your coding style. Of course, computer programs sometimes
+mistake about subjective issues like coding style, so always use your
+common sense as well. For example, hlint will always suggest you
+change <code>map f (map g)</code> xs into <code>map (f . g) xs</code> (this is called map
+fusion). If <code>f</code> and <code>g</code> are simple expressions this will generally be
+an improvement, but if they are already quite complex, this may not
+help to improve readability.</p>
+<h4 id="bad-functions">“bad” functions</h4>
+<p>For the assignments 0, 1, 2, and 4, try to avoid using the following
+functions/expressions as they are (usually) bad form/style:</p>
+<pre><code>Conditionals =&gt; use guards over if-then-else
+
+List =&gt; use pattern matching
+- head
+- tail
+- lst !! 0
+- lst == []
+- lst /= []
+- length x == 0
+- length x /= 0
+- length x &gt; 0
+
+Maybe =&gt; use pattern matching
+- isJust
+- isNothing
+- fromJust
+- fromMaybe
+- x == Nothing
+- x /= Nothing
+
+Don't use custom/reimplementations
+- of head: f (x:xs) = x
+- of tail: f (x:xs) = xs
+- of isJust: f (Just x) = True
+             f Nothing  = False
+- of isNothing: f (Just x) = False
+                f Nothing  = True
+- of fromJust: f (Just x) = x
+- of fromMaybe: f x (Just y) = y
+                f x Nothing  = x</code></pre>
+    </div>
+  </body>
+</html>

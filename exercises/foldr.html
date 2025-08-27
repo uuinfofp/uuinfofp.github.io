@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Functional Programming - Fold Exercises</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/syntax.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrapify.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+  </head>
+  <body>
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">Functional Programming</a> <!--  -->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!-- <li><a href="/description.html">Description</a></li> -->
+            <li><a href="../lectures.html">Lectures</a></li>
+            <li><a href="../labs.html">Practicals</a></li>
+            <li><a href="../exercises.html">Exercises</a></li>
+            <li><a href="../optional.html">Optional Assignment</a></li>
+            <li><a href="../exams.html">Old Exams</a></li>
+            <!-- <li><a href="projects.html">Projects</a></li> -->
+            <li><a target="_blank" href="https://cursusplanner.uu.nl/course/INFOFP/2025/1">Education page</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container" id="main">
+      <h2>Fold Exercises</h2>
+
+      <p>Write the following functions using the <code>foldr</code> or <code>foldl</code> function. If no type
+signature is given, also give the type of the function.</p>
+<p>A good strategy to get started is to first write the function using
+explicit recursion, and then somewhat mechanically convert it to using
+<code>foldr</code> or <code>foldl</code>.</p>
+<h2 data-number="1" id="length"><span class="header-section-number">1</span> <code>length</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>length returns the length of a finite list.</p>
+<h2 data-number="2" id="section-1"><span class="header-section-number">2</span> <code>(++)</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Append two lists.</p>
+<h2 data-number="3" id="product"><span class="header-section-number">3</span> <code>product</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>The product function computes the product of a finite list of numbers.</p>
+<h2 data-number="4" id="or"><span class="header-section-number">4</span> <code>or</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>or returns the disjunction of a Boolean list.</p>
+<h2 data-number="5" id="any"><span class="header-section-number">5</span> <code>any</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Applied to a predicate and a list, any determines if any element of
+the list satisfies the predicate.</p>
+<h2 data-number="6" id="all"><span class="header-section-number">6</span> <code>all</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Applied to a predicate and a list, all determines if all elements of
+the list satisfy the predicate.</p>
+<h2 data-number="7" id="map"><span class="header-section-number">7</span> <code>map</code> <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<h2 data-number="8" id="reverse"><span class="header-section-number">8</span> <code>reverse</code> <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>reverse xs returns the elements of xs in reverse order. xs must be finite.</p>
+<h2 data-number="9" id="concat"><span class="header-section-number">9</span> <code>concat</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Concatenate a list of lists into a single list.</p>
+<h2 data-number="10" id="concatmap"><span class="header-section-number">10</span> <code>concatMap</code> <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>Map a function over a list and concatenate the results.</p>
+<h2 data-number="11" id="elem-eq-a-a---a---bool"><span class="header-section-number">11</span> <code>elem :: Eq a =&gt; a -&gt; [a] -&gt; Bool</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>elem is the list membership predicate, usually written in infix form,
+e.g., x `elem` xs.</p>
+<h2 data-number="12" id="filter"><span class="header-section-number">12</span> <code>filter</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>filter, applied to a predicate and a list, returns the list of those
+elements that satisfy the predicate; i.e.,</p>
+<p><code>filter p xs = [ x | x &lt;- xs, p x]</code> :atHome:</p>
+<h2 data-number="13" id="maybelast-a---maybe-a"><span class="header-section-number">13</span> <code>maybeLast :: [a] -&gt; Maybe a</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Extract the last element of a list. Returns <code>Nothing</code> if the list is empty.</p>
+<h2 data-number="14" id="partition"><span class="header-section-number">14</span> <code>partition</code> <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>The partition function takes a predicate a list and returns the pair
+of lists of elements which do and do not satisfy the predicate,
+respectively; i.e.,</p>
+<p><code>partition p xs == (filter p xs, filter (not . p) xs)</code></p>
+<h2 data-number="15" id="unzip-a-b---a-b"><span class="header-section-number">15</span> <code>unzip :: [(a, b)] -&gt; ([a], [b])</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>unzip transforms a list of pairs into a list of first components and a
+list of second components.</p>
+<h2 data-number="16" id="unlines-string---string"><span class="header-section-number">16</span> <code>unlines :: [String] -&gt; String</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>unlines is an inverse operation to lines. It joins lines, after
+appending a terminating newline to each.</p>
+<h2 data-number="17" id="nub"><span class="header-section-number">17</span> <code>nub</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>The nub function removes duplicate elements from a list. In
+particular, it keeps only the first occurrence of each element. (The
+name nub means `essence’.)</p>
+<h2 data-number="18" id="union-eq-a-a---a---a"><span class="header-section-number">18</span> <code>union :: Eq a =&gt; [a] -&gt; [a] -&gt; [a]</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>The union function returns the list union of the two lists. For example,</p>
+<p><code>"dog" `union` "cow" == "dogcw"</code></p>
+<p>Duplicates, and elements of the first list, are removed from the the
+second list, but if the first list contains duplicates, so will the
+result.</p>
+<h2 data-number="19" id="intersect-eq-a-a---a---a"><span class="header-section-number">19</span> <code>intersect :: Eq a =&gt; [a] -&gt; [a] -&gt; [a]</code> <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>The intersect function takes the list intersection of two lists. For example,</p>
+<p><code>[1,2,3,4] `intersect` [2,4,6,8] == [2,4]</code></p>
+<p>If the first list contains duplicates, so will the result.</p>
+<p><code>[1,2,2,3,4] `intersect` [6,4,4,2] == [2,2,4]</code></p>
+<h2 data-number="20" id="sort-ord-a-a---a"><span class="header-section-number">20</span> <code>sort :: Ord a =&gt; [a] -&gt; [a]</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>The sort function implements a stable sorting algorithm.</p>
+<p>You can assume that there is a function <code>insert :: Ord a =&gt; a -&gt; [a] -&gt; [a]</code> that takes an element and a list and inserts the element into
+the list at the last position where it is still less than or equal to
+the next element.</p>
+<h2 data-number="21" id="null"><span class="header-section-number">21</span> <code>null</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Test whether a list is empty.</p>
+<h2 data-number="22" id="intersperse"><span class="header-section-number">22</span> <code>intersperse</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>The intersperse function takes an element and a list and `intersperses’ that element between the elements of the list. For example,</p>
+<p><code>intersperse ',' "abcde" == "a,b,c,d,e"</code></p>
+<h2 data-number="23" id="permutations-a---a"><span class="header-section-number">23</span> <code>permutations :: [a] -&gt; [[a]]</code> <span class="tag" data-tag-name="challenging"><span class="smallcaps">challenging</span></span> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>The permutations function returns the list of all permutations of the
+argument. E.g.:</p>
+<p><code>permutations "abc" == ["abc","bac","bca","acb","cab","cba"]</code></p>
+<p>Note that it is ok if your solution returns the permutations in any
+order. E.g.</p>
+<p><code>permutations "abc" == ["abc","bac","cba","bca","cab","acb"]</code></p>
+<p>is also correct.</p>
+<h2 data-number="24" id="takewhile"><span class="header-section-number">24</span> <code>takeWhile</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>takeWhile, applied to a predicate p and a list xs, returns the longest prefix (possibly empty) of xs of elements that satisfy p:</p>
+<ul>
+<li><code>takeWhile (&lt; 3) [1,2,3,4,1,2,3,4] == [1,2]</code></li>
+<li><code>takeWhile (&lt; 9) [1,2,3] == [1,2,3]</code></li>
+<li><code>takeWhile (&lt; 0) [1,2,3] == []</code></li>
+</ul>
+<h2 data-number="25" id="tails-a---a"><span class="header-section-number">25</span> <code>tails :: [a] -&gt; [[a]]</code> <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>The tails function returns all final segments of the argument, longest first. For example,</p>
+<p><code>tails "abc" == ["abc", "bc", "c",""]</code></p>
+<h2 data-number="26" id="group-eq-a-a---a"><span class="header-section-number">26</span> <code>group :: Eq a =&gt; [a] -&gt; [[a]]</code> <span class="tag" data-tag-name="challenging"><span class="smallcaps">challenging</span></span> <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>The group function takes a list and returns a list of lists such that the concatenation of the result is equal to the argument. Moreover, each sublist in the result contains only equal elements. For example,</p>
+<p><code>group "Mississippi" = ["M","i","ss","i","ss","i","pp","i"]</code></p>
+<h2 data-number="27" id="scanr-a---b---b---b---a---b"><span class="header-section-number">27</span> <code>scanr :: (a -&gt; b -&gt; b) -&gt; b -&gt; [a] -&gt; [b]</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>scanr is similar to foldr but returns a list of successive reduced
+values from the right:</p>
+<p><code>scanr g z [x_1, x_2, .., x_n] == [x_1 `g` .., .., x_(n-1) `g` z ,x_n `g` z,z]</code></p>
+<p>That is, it also returns all intermediate answers of a foldr. Note in
+particular that</p>
+<p><code>head (scanr g z xs) == foldr g z xs</code> :athome</p>
+<h2 data-number="28" id="mapaccumr-acc---x---acc-y---acc---x---acc-y"><span class="header-section-number">28</span> <code>mapAccumR :: (acc -&gt; x -&gt; (acc, y)) -&gt; acc -&gt; [x] -&gt; (acc, [y])</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>The mapAccumR function behaves like a combination of map and foldr; it
+applies a function to each element of a list, passing an accumulating
+parameter from right to left, and returning a final value of this
+accumulator together with the new list.</p>
+    </div>
+  </body>
+</html>

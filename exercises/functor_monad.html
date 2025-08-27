@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Functional Programming - Functors, monads, applicatives and traversables</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/syntax.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrapify.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+  </head>
+  <body>
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">Functional Programming</a> <!--  -->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!-- <li><a href="/description.html">Description</a></li> -->
+            <li><a href="../lectures.html">Lectures</a></li>
+            <li><a href="../labs.html">Practicals</a></li>
+            <li><a href="../exercises.html">Exercises</a></li>
+            <li><a href="../optional.html">Optional Assignment</a></li>
+            <li><a href="../exams.html">Old Exams</a></li>
+            <!-- <li><a href="projects.html">Projects</a></li> -->
+            <li><a target="_blank" href="https://cursusplanner.uu.nl/course/INFOFP/2025/1">Education page</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container" id="main">
+      <h2>Functors, monads, applicatives and traversables</h2>
+
+      <ol type="1">
+<li><p>Given the definition</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">newtype</span> <span class="dt">Map</span> k v <span class="ot">=</span> <span class="dt">MkMap</span> [(k, v)]</span></code></pre></div>
+<p>What is the kind of <code>Map</code>? Please make <code>Map k</code> an instance of <code>Functor</code>.</p></li>
+<li><p>Show that the definition of the arithmetic evaluator using <code>next</code> in Lecture 10 is the same as the one using nested <code>case</code> clauses by expanding the definition of the former.</p></li>
+<li><p>Define a function <code>tuple :: Monad m =&gt; m a -&gt; m b -&gt; m (a, b)</code>
+using explicit <code>(&gt;&gt;=)</code>, <code>do</code>-notation and applicative operators.</p>
+<ul>
+<li><p>What does the function do for the <code>Maybe</code> monad?</p></li>
+</ul></li>
+<li><p>Define the following set of actions for <code>State s a</code> :</p>
+<ul>
+<li>A computation <code>get</code> of type <code>State s s</code> that obtains the current value of the state.</li>
+<li>A function <code>modify</code> of type <code>(s -&gt; s) -&gt; State s ()</code> that updates the current state using the given function.</li>
+<li>A function <code>put</code> of type <code>s -&gt; State s ()</code> that overwrites the current state with the given value.</li>
+</ul>
+<p>Using those primitive operations:</p>
+<ul>
+<li><p>Define <code>modify</code> using <code>get</code> and <code>put</code>.</p></li>
+<li><p>Define <code>put</code> using <code>modify</code>.</p></li>
+</ul></li>
+<li><p>Explain the behavior of <code>sequence</code> for the <code>Maybe</code> monad.</p></li>
+<li><p>Define a monadic generalisation of <code>foldl</code>:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ot">foldM ::</span> <span class="dt">Monad</span> m <span class="ot">=&gt;</span> (a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> m a) <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> [b] <span class="ot">-&gt;</span> m a</span></code></pre></div></li>
+<li><p>Show that the <code>Maybe</code> monad satisfies the monad laws.</p></li>
+<li><p>Given the type:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Expr</span> a <span class="ot">=</span> <span class="dt">Var</span> a <span class="op">|</span> <span class="dt">Val</span> <span class="dt">Int</span> <span class="op">|</span> <span class="dt">Add</span> (<span class="dt">Expr</span> a) (<span class="dt">Expr</span> a)</span></code></pre></div>
+<p>of expressions built from variables of type <code>a</code>, show that this
+type is monadic by completing the following declaration:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">Monad</span> <span class="dt">Expr</span> <span class="kw">where</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- return :: a -&gt; Expr a</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span> x <span class="ot">=</span> <span class="op">...</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="co">-- (&gt;&gt;=) :: Expr a -&gt; (a -&gt; Expr b) -&gt; Expr b</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  (<span class="dt">Var</span> a)   <span class="op">&gt;&gt;=</span> f <span class="ot">=</span> <span class="op">...</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>  (<span class="dt">Val</span> n)   <span class="op">&gt;&gt;=</span> f <span class="ot">=</span> <span class="op">...</span></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>  (<span class="dt">Add</span> x y) <span class="op">&gt;&gt;=</span> f <span class="ot">=</span> <span class="op">...</span></span></code></pre></div>
+<p>With the aid of an example, explain what the <code>(&gt;&gt;=)</code> operator for this type does.</p></li>
+<li><p>To show how <code>(&gt;&gt;=) :: Monad m =&gt; m a -&gt; (a -&gt; m b) -&gt; m b</code>
+generalizes function application and how <code>do</code>-notation
+generalizes <code>let</code>-bindings, consider the following definition of function
+application with the arguments swapped:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ot">(&amp;) ::</span> a <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> b </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>(<span class="op">&amp;</span>) <span class="ot">=</span> <span class="fu">flip</span> (<span class="op">$</span>)</span></code></pre></div>
+<p>Then, we can consider</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="kw">let</span> x <span class="ot">=</span> a <span class="kw">in</span> b</span></code></pre></div>
+<p>to be syntactic sugar for</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">&amp;</span> \x <span class="ot">-&gt;</span> b</span></code></pre></div>
+<p>similar to how</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">do</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  x <span class="ot">&lt;-</span> a</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  b</span></code></pre></div>
+<p>is syntactic sugar for</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>a <span class="op">&gt;&gt;=</span> \x <span class="ot">-&gt;</span> b</span></code></pre></div>
+<p>Please desugar the following definition into code that explicitly uses <code>(&amp;)</code>:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>compute x <span class="ot">=</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    <span class="kw">let</span> a <span class="ot">=</span> x <span class="op">+</span> <span class="dv">5</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>        b <span class="ot">=</span> a <span class="op">*</span> <span class="dv">3</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>        c <span class="ot">=</span> b <span class="op">/</span> <span class="dv">2</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>        d <span class="ot">=</span> c <span class="op">-</span> <span class="dv">7</span></span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>        e <span class="ot">=</span> d <span class="op">*</span> d</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    <span class="kw">in</span>  e</span></code></pre></div>
+<p>Please desugar the following definition into code that explicitly uses <code>(&gt;&gt;=)</code>:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>main <span class="ot">=</span> <span class="kw">do</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">putStrLn</span> <span class="st">&quot;Enter the first number:&quot;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    num1 <span class="ot">&lt;-</span> <span class="fu">readLn</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">putStrLn</span> <span class="st">&quot;Enter the second number:&quot;</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    num2 <span class="ot">&lt;-</span> <span class="fu">readLn</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">putStrLn</span> <span class="op">$</span> <span class="st">&quot;The sum of the numbers is: &quot;</span> <span class="op">++</span> <span class="fu">show</span> (num1 <span class="op">+</span> num2)</span></code></pre></div></li>
+<li><p>Given the type:</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Error</span> m a <span class="ot">=</span> <span class="dt">Error</span> m <span class="op">|</span> <span class="dt">OK</span> a</span></code></pre></div>
+<p>Give a <code>Functor</code> instance for <code>Error m</code>. Please explain in words what this functor instance achieves.</p>
+<p>Give an <code>Applicative</code> instance for <code>Error m</code> that we can use to accumulate errors, meaning that we accumulate all error messages of all subcomputations that fail.</p>
+<p>Give a <code>Monad</code> instance for <code>Error m</code>. Please explain what this <code>Monad</code> instance can be used for. Please explain how the induced <code>Applicative</code> instance</p>
+<div class="sourceCode" id="cb13"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">Applicative</span> (<span class="dt">Error</span> m) <span class="kw">where</span> </span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pure</span> <span class="ot">=</span> <span class="fu">return</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  (<span class="op">&lt;*&gt;</span>) mf ma <span class="ot">=</span> <span class="kw">do</span> </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>      f <span class="ot">&lt;-</span> mf </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>      a <span class="ot">&lt;-</span> ma </span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>      <span class="fu">return</span> (f a)</span></code></pre></div>
+<p>differs in behaviour from the error accumulation instance we defined previously.</p></li>
+<li><p>Given the types</p>
+<div class="sourceCode" id="cb14"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="kw">newtype</span> <span class="dt">State</span> s a <span class="ot">=</span> <span class="dt">State</span> {<span class="ot">runState ::</span> s <span class="ot">-&gt;</span> (a, s)}</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> <span class="dt">StatePassing</span> s a b <span class="ot">=</span> (a, s) <span class="ot">-&gt;</span> (b, s)</span></code></pre></div>
+<p>Define functions</p>
+<div class="sourceCode" id="cb15"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ot">statePass ::</span> (a <span class="ot">-&gt;</span> <span class="dt">State</span> s b) <span class="ot">-&gt;</span> <span class="dt">StatePassing</span> s a b </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ot">unStatePass ::</span> <span class="dt">StatePassing</span> s a b <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> <span class="dt">State</span> s b)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ot">statePass' ::</span> <span class="dt">State</span> s b <span class="ot">-&gt;</span> <span class="dt">StatePassing</span> s () b </span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="ot">unStatePass' ::</span> <span class="dt">StatePassing</span> s () b <span class="ot">-&gt;</span> <span class="dt">State</span> s b</span></code></pre></div>
+<p>such that <code>statePass . unStatePass = id</code>, <code>unStatePass . statePass = id</code>, <code>statePass' . unStatePass' = id</code> and <code>unStatePass' . statePass' = id</code>.</p>
+<p>Give a <code>Monad</code> instance for <code>State s</code> where you define <code>return</code> and <code>&gt;&gt;=</code> in terms of the four functions above.</p>
+<p>Prove that these definitions of <code>return</code> and <code>&gt;&gt;=</code> are equivalent to the usual definitions</p>
+<div class="sourceCode" id="cb16"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">Monad</span> (<span class="dt">State</span> s) <span class="kw">where</span> </span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span> a <span class="ot">=</span> <span class="dt">State</span> (\s <span class="ot">-&gt;</span> (a, s))</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  (<span class="dt">State</span> f) <span class="op">&gt;&gt;=</span> g <span class="ot">=</span> <span class="dt">State</span> (\s <span class="ot">-&gt;</span> <span class="kw">let</span> (a, s') <span class="ot">=</span> f s <span class="kw">in</span> <span class="kw">let</span> <span class="dt">State</span> h <span class="ot">=</span> g a <span class="kw">in</span> h s')</span></code></pre></div>
+<p>Using the four <code>StatePassing</code> helper functions we defined above, define</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ot">get ::</span> <span class="dt">State</span> s s </span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ot">put ::</span> s <span class="ot">-&gt;</span> <span class="dt">State</span> s () </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a><span class="ot">modify ::</span> (s <span class="ot">-&gt;</span> s) <span class="ot">-&gt;</span> <span class="dt">State</span> s () </span></code></pre></div>
+<p>We see that code written in the <code>State s</code> monad is equivalent to code in “state passing style”, i.e. code where in place of functions of type <code>A -&gt; B</code> we instead work with functions of type <code>(A, s) -&gt; (B, s)</code> that always thread through an extra argument and return value (the state) of type <code>s</code>.</p></li>
+<li><p>(Challenging) Given the types</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">newtype</span> <span class="dt">Cont</span> r a <span class="ot">=</span> <span class="dt">Cont</span> {<span class="ot"> runCont ::</span> (a <span class="ot">-&gt;</span> r) <span class="ot">-&gt;</span> r}</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="kw">type</span> <span class="dt">ContPassing</span> r a b <span class="ot">=</span> (b <span class="ot">-&gt;</span> r) <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> r)</span></code></pre></div>
+<p>Define functions</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ot">contPass ::</span> (a <span class="ot">-&gt;</span> <span class="dt">Cont</span> r b) <span class="ot">-&gt;</span> <span class="dt">ContPassing</span> r a b</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="ot">unContPass ::</span> <span class="dt">ContPassing</span> r a b  <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> <span class="dt">Cont</span> r b)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a><span class="ot">contPass' ::</span> <span class="dt">Cont</span> r b <span class="ot">-&gt;</span> <span class="dt">ContPassing</span> r () b</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="ot">unContPass' ::</span> <span class="dt">ContPassing</span> r () b <span class="ot">-&gt;</span> <span class="dt">Cont</span> r b</span></code></pre></div>
+<p>such that <code>contPass . unContPass = id</code>, <code>unContPass . contPass = id</code>, <code>contPass' . unContPass' = id</code> and <code>unContPass' . contPass' = id</code>.</p>
+<p>Give a <code>Monad</code> instance for <code>Cont r</code>. Hint: you may want to use the functions we defined previously.</p>
+<p>Define a function</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ot">callCC ::</span> ((a <span class="ot">-&gt;</span> <span class="dt">Cont</span> r b) <span class="ot">-&gt;</span> <span class="dt">Cont</span> r a) <span class="ot">-&gt;</span> <span class="dt">Cont</span> r a</span></code></pre></div>
+<p>Hint: you may want to define <code>callCC</code> in terms of a helper function</p>
+<div class="sourceCode" id="cb21"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ot">callCCHelp ::</span> (<span class="dt">ContPassing</span> r a b <span class="ot">-&gt;</span> <span class="dt">ContPassing</span> r () a) <span class="ot">-&gt;</span> <span class="dt">ContPassing</span> r () a </span></code></pre></div>
+<p>that you define first.</p>
+<p>We see that code written in the <code>Cont r</code> monad is equivalent to code in “continuation passing style”, i.e. code where in place of functions of type <code>A -&gt; B</code> we instead write functions of type <code>(B -&gt; r) -&gt; (A -&gt; r)</code> that operate in reverse on “continuations”.</p>
+<p>Context: similarly to how <code>State</code> monads allow us to emulate computation with non-local data flow through mutable variables, <code>Cont</code> (inuation) monads can be used to emulate computation with non-local control flow where stack discipline is not respected in the call stack and we can instead perform arbitrary reads and writes of the current continuation. The example below demonstrates how this can work in practice.</p>
+<div class="sourceCode" id="cb22"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ot">fun ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">String</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>fun n <span class="ot">=</span> (<span class="ot">`runCont`</span> <span class="fu">id</span>) <span class="op">$</span> <span class="kw">do</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    str <span class="ot">&lt;-</span> callCC <span class="op">$</span> \exit1 <span class="ot">-&gt;</span> <span class="kw">do</span>                            <span class="co">-- define &quot;exit1&quot;</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>        when (n <span class="op">&lt;</span> <span class="dv">10</span>) (exit1 (<span class="fu">show</span> n))</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>        <span class="kw">let</span> ns <span class="ot">=</span> <span class="fu">map</span> <span class="fu">digitToInt</span> (<span class="fu">show</span> (n <span class="ot">`div`</span> <span class="dv">2</span>))</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>        n' <span class="ot">&lt;-</span> callCC <span class="op">$</span> \exit2 <span class="ot">-&gt;</span> <span class="kw">do</span>                         <span class="co">-- define &quot;exit2&quot;</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>            when ((<span class="fu">length</span> ns) <span class="op">&lt;</span> <span class="dv">3</span>) (exit2 (<span class="fu">length</span> ns))</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>            when ((<span class="fu">length</span> ns) <span class="op">&lt;</span> <span class="dv">5</span>) (exit2 n)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>            when ((<span class="fu">length</span> ns) <span class="op">&lt;</span> <span class="dv">7</span>) <span class="op">$</span> <span class="kw">do</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>                <span class="kw">let</span> ns' <span class="ot">=</span> <span class="fu">map</span> <span class="fu">intToDigit</span> (<span class="fu">reverse</span> ns)</span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>                exit1 (<span class="fu">dropWhile</span> (<span class="op">==</span><span class="ch">'0'</span>) ns')               <span class="co">--escape 2 levels</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>            <span class="fu">return</span> <span class="op">$</span> <span class="fu">sum</span> ns</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>        <span class="fu">return</span> <span class="op">$</span> <span class="st">&quot;(ns = &quot;</span> <span class="op">++</span> (<span class="fu">show</span> ns) <span class="op">++</span> <span class="st">&quot;) &quot;</span> <span class="op">++</span> (<span class="fu">show</span> n')</span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">return</span> <span class="op">$</span> <span class="st">&quot;Answer: &quot;</span> <span class="op">++</span> str</span>
+<span id="cb22-15"><a href="#cb22-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-16"><a href="#cb22-16" aria-hidden="true" tabindex="-1"></a><span class="ot">when      ::</span> (<span class="dt">Applicative</span> f) <span class="ot">=&gt;</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> f () <span class="ot">-&gt;</span> f ()</span>
+<span id="cb22-17"><a href="#cb22-17" aria-hidden="true" tabindex="-1"></a>when p s  <span class="ot">=</span> <span class="kw">if</span> p <span class="kw">then</span> s <span class="kw">else</span> <span class="fu">pure</span> ()</span></code></pre></div></li>
+</ol>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Functional Programming - Input and Output</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/syntax.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrapify.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+  </head>
+  <body>
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">Functional Programming</a> <!--  -->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!-- <li><a href="/description.html">Description</a></li> -->
+            <li><a href="../lectures.html">Lectures</a></li>
+            <li><a href="../labs.html">Practicals</a></li>
+            <li><a href="../exercises.html">Exercises</a></li>
+            <li><a href="../optional.html">Optional Assignment</a></li>
+            <li><a href="../exams.html">Old Exams</a></li>
+            <!-- <li><a href="projects.html">Projects</a></li> -->
+            <li><a target="_blank" href="https://cursusplanner.uu.nl/course/INFOFP/2025/1">Education page</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container" id="main">
+      <h2>Input and Output</h2>
+
+      <h2 data-number="1" id="section-1"><span class="header-section-number">1</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Extend the “guess a number” game to generate the bounds randomly.</p>
+<h2 data-number="2" id="section-2"><span class="header-section-number">2</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Write <code>sequence</code> and <code>sequence_</code> using <code>(&gt;&gt;=)</code> instead of
+<code>do</code>-notation.</p>
+<div class="sourceCode" id="cb1" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sequence</span><span class="ot">          ::</span> [<span class="dt">IO</span> a] <span class="ot">-&gt;</span> <span class="dt">IO</span> [a]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">sequence</span> []       <span class="ot">=</span> <span class="fu">return</span> []</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">sequence</span> (a<span class="op">:</span>acts) <span class="ot">=</span> a <span class="op">&gt;&gt;=</span> \x <span class="ot">-&gt;</span> <span class="fu">sequence</span> acts <span class="op">&gt;&gt;=</span> \xs <span class="ot">-&gt;</span> <span class="fu">return</span> (x<span class="op">:</span>xs)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co">-- or using a foldr:</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">sequence</span><span class="ot"> ::</span> [<span class="dt">IO</span> a] <span class="ot">-&gt;</span> <span class="dt">IO</span> [a]</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sequence</span> <span class="ot">=</span> <span class="fu">foldr</span> (\a r <span class="ot">-&gt;</span> a <span class="op">&gt;&gt;=</span> \x <span class="ot">-&gt;</span> r <span class="op">&gt;&gt;=</span> \xs <span class="ot">-&gt;</span> <span class="fu">return</span> (x<span class="op">:</span>xs)) (<span class="fu">return</span> [])</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="co">-- sequence_ just throws away the results:</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="fu">sequence_</span><span class="ot"> ::</span> [<span class="dt">IO</span> ()] <span class="ot">-&gt;</span> <span class="dt">IO</span> ()</span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">sequence_</span> <span class="ot">=</span> <span class="fu">foldr</span> (\a r <span class="ot">-&gt;</span> a <span class="op">&gt;&gt;=</span> \_ <span class="ot">-&gt;</span> r) (<span class="fu">return</span> ())</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a><span class="co">-- or even:</span></span>
+<span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a><span class="fu">sequence_</span><span class="ot"> ::</span> [<span class="dt">IO</span> ()] <span class="ot">-&gt;</span> <span class="dt">IO</span> ()</span>
+<span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a><span class="fu">sequence_</span> <span class="ot">=</span> <span class="fu">foldr</span> (<span class="op">&gt;&gt;</span>) (<span class="fu">return</span> ())</span></code></pre></div>
+<h2 data-number="3" id="section-3"><span class="header-section-number">3</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Write a function which prompts for a filename, reads the file with
+this name, splits the file into a number of lines, splits each line in
+a number of words separated by <code>' '</code> (a space), and prints the total
+number of lines and words.</p>
+<div class="sourceCode" id="cb2" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ot">linesAndWords ::</span> <span class="dt">IO</span> ()</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>linesAndWords <span class="ot">=</span> <span class="kw">do</span> <span class="fu">putStrLn</span> <span class="st">&quot;Path to file:&quot;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>                   fp <span class="ot">&lt;-</span> <span class="fu">getLine</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>                   fileContents <span class="ot">&lt;-</span> <span class="fu">readFile</span> fp</span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>                   <span class="kw">let</span> n <span class="ot">=</span> <span class="fu">length</span> <span class="op">.</span> <span class="fu">lines</span> <span class="op">$</span> fileContents</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>                       m <span class="ot">=</span> <span class="fu">length</span> <span class="op">.</span> <span class="fu">words</span> <span class="op">$</span> fileContents</span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">putStrLn</span> <span class="op">$</span> <span class="st">&quot;Number of lines: &quot;</span> <span class="op">++</span> <span class="fu">show</span> n</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">putStrLn</span> <span class="op">$</span> <span class="st">&quot;Number of words: &quot;</span> <span class="op">++</span> <span class="fu">show</span> m</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="ot">main ::</span> <span class="dt">IO</span> ()</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>main <span class="ot">=</span> linesAndWords</span></code></pre></div>
+<h2 data-number="4" id="section-4"><span class="header-section-number">4</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Given the function <code>getInt :: IO Int</code>, which reads an integer value
+from standard input, write a program that results in the following
+input/output behaviour (the <code>3</code> has been typed in by the user):</p>
+<pre><code>Give a number: 3
+1 * 3 = 3
+2 * 3 = 6
+3 * 3 = 9
+...
+10 * 3 = 30
+Goodbye
+</code></pre>
+<p>Try to use <code>sequence_</code>, <code>mapM_</code> or <code>forM_</code>.</p>
+<div class="sourceCode" id="cb4" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>tabulate <span class="ot">=</span> <span class="kw">do</span> <span class="fu">putStr</span> <span class="st">&quot;Give a number: &quot;</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>              n <span class="ot">&lt;-</span> getInt</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>              <span class="fu">mapM_</span> (<span class="fu">putStrLn</span> <span class="op">.</span> f n) [<span class="dv">1</span><span class="op">..</span><span class="dv">10</span>]</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>              <span class="fu">putStrLn</span> <span class="st">&quot;Goodbye&quot;</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="ot">    f     ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">String</span></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>    f n i <span class="ot">=</span> <span class="fu">unwords</span> [ <span class="fu">show</span> i, <span class="st">&quot;*&quot;</span>, <span class="fu">show</span> n, <span class="st">&quot;=&quot;</span>, <span class="fu">show</span> <span class="op">$</span> i <span class="op">*</span> n]</span></code></pre></div>
+<h2 data-number="5" id="section-5"><span class="header-section-number">5</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Write a function of type <code>[FilePath] −&gt; FilePath −&gt; IO ()</code> which
+concatenates a list of files to a specific target file: the first
+parameter is a list of filenames and the second parameter the name of
+the target file. Do not use the function <code>appendFile</code>.</p>
+<ul>
+<li><p>Write a program that first asks for the name of the target file, and
+then continues asking for names of files to be appended to that file
+until an empty line is entered. Note that the target files may be
+one of the source files!</p></li>
+<li><p>If we know that none of the source files equals the target file we
+may do a bit better using the function <a href="https://hackage.haskell.org/package/base/docs/System-IO.html#v:appendFile"><code>appendFile</code> from <code>System.IO</code></a>. Change the function you have written above using this
+function. What are the advantages and disadvantages of this
+approach?</p></li>
+</ul>
+<h2 data-number="6" id="section-6"><span class="header-section-number">6</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Consider usual type of binary trees</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Tree</span> a <span class="ot">=</span> <span class="dt">Leaf</span> a</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>            <span class="op">|</span> <span class="dt">Node</span> (<span class="dt">Tree</span> a) a (<span class="dt">Tree</span> a)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>            <span class="kw">deriving</span> (<span class="dt">Show</span>,<span class="dt">Read</span>,<span class="dt">Eq</span>)</span></code></pre></div>
+<p>and let “myTree.txt” be a text file that stores (the string
+representation as given by Show) of a <code>Tree Int</code>.</p>
+<p>We will write a short program <code>main :: IO ()</code> that:</p>
+<ol type="1">
+<li>Loads the tree from “myTree.hs” in memory</li>
+<li>asks the user for an number (an Int) <code>q</code></li>
+<li>prints if <code>q</code> appears in the tree or not.</li>
+</ol>
+<p>You may use that</p>
+<ul>
+<li>the function
+<code>readFile :: FilePath -&gt; IO String</code> can load the data
+from a file (as specified by the path) into a <code>String</code>,</li>
+<li>that the function
+<code>putStrLn :: String -&gt; IO ()</code> can print a <code>String</code> to standard output, and</li>
+<li>that the function
+<code>getLine :: IO String</code> that can read a <code>String</code> from standard input.</li>
+</ul>
+<h2 data-number="7" id="section-7"><span class="header-section-number">7</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Write a function <code>readTree :: IO (Tree Int)</code> that only performs
+step 1. from the above description</p>
+<div class="sourceCode" id="cb6" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ot">readTree ::</span> <span class="dt">IO</span> (<span class="dt">Tree</span> <span class="dt">Int</span>)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>readTree <span class="ot">=</span> <span class="kw">do</span> s <span class="ot">&lt;-</span> <span class="fu">readFile</span> <span class="st">&quot;myTree.txt&quot;</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>              <span class="fu">return</span> <span class="op">$</span> <span class="fu">read</span> s</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="co">-- or using that 'IO' is a Functor:</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>readTree <span class="ot">=</span> <span class="fu">fmap</span> <span class="fu">read</span> <span class="op">$</span> <span class="fu">readFile</span> <span class="st">&quot;myTree.txt&quot;</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="co">-- or</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>readTree <span class="ot">=</span> <span class="fu">read</span> <span class="op">&lt;$&gt;</span> <span class="fu">readFile</span> <span class="st">&quot;myTree.txt&quot;</span></span></code></pre></div>
+<h2 data-number="8" id="section-8"><span class="header-section-number">8</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Now write a full implementation of <code>main :: IO ()</code> that uses
+<code>readTree</code> and performs all steps of the program sketched above.</p>
+<div class="sourceCode" id="cb7" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ot">main ::</span> <span class="dt">IO</span> ()</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>main <span class="ot">=</span> <span class="kw">do</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>   t <span class="ot">&lt;-</span> readTree</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>   <span class="fu">putStrLn</span> <span class="st">&quot;Please input a number.&quot;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>   qs <span class="ot">&lt;-</span> <span class="fu">getLine</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>   <span class="kw">let</span> q <span class="ot">=</span> <span class="fu">read</span> qs</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>   <span class="fu">putStrLn</span> <span class="op">$</span> <span class="fu">show</span> (q <span class="ot">`elem`</span> elems t)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co">-- or, again using that IO is a Functor:</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="ot">main ::</span> <span class="dt">IO</span> ()</span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>main <span class="ot">=</span> <span class="kw">do</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>   t <span class="ot">&lt;-</span> readTree</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>   <span class="fu">putStrLn</span> <span class="st">&quot;Please input a number.&quot;</span></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a>   q <span class="ot">&lt;-</span> <span class="fu">read</span> <span class="op">&lt;$&gt;</span> <span class="fu">getLine</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>   <span class="fu">putStrLn</span> <span class="op">$</span> <span class="fu">show</span> (q <span class="ot">`elem`</span> elems t)</span></code></pre></div>
+    </div>
+  </body>
+</html>

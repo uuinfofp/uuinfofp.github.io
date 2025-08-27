@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Functional Programming - INFOFP 2025-2026 Functional Programming</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/syntax.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/bootstrapify.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+  </head>
+  <body>
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="./index.html">Functional Programming</a> <!--  -->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!-- <li><a href="/description.html">Description</a></li> -->
+            <li><a href="./lectures.html">Lectures</a></li>
+            <li><a href="./labs.html">Practicals</a></li>
+            <li><a href="./exercises.html">Exercises</a></li>
+            <li><a href="./optional.html">Optional Assignment</a></li>
+            <li><a href="./exams.html">Old Exams</a></li>
+            <!-- <li><a href="projects.html">Projects</a></li> -->
+            <li><a target="_blank" href="https://cursusplanner.uu.nl/course/INFOFP/2025/1">Education page</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container" id="main">
+      <h2>INFOFP 2025-2026 Functional Programming</h2>
+
+      <p>This course introduces <strong>functional programming</strong> through the
+programming language Haskell. In contrast with the language C# –
+introduced in Imperatief/Game/Mobiel programmeren – which is based
+on statements, organized in methods and classes, functional
+programming is based entirely on expressions and functions. This
+shifts the focus from <em>how</em> a program operates to <em>what</em> it does.</p>
+<p>Concrete topics treated in this course include higher-order functions,
+parametric and ad-hoc polymorphism (also known as generics and
+overloading in other programming languages), algebraic data types and
+pattern matching. These ideas appear not only in Haskell, but in other
+modern languages such as Scala, Swift or Kotlin. An important part of
+the course is devoted to <em>reasoning about programs</em>, either by
+equations or by induction.</p>
+<p>The language Haskell imposes a strong separation between pure
+computations and those with <em>side-effects</em>, such as input and
+output. <em>Monads</em> are introduced to model the idea of sequential
+computation in a functional language. Similar abstractions such as
+<em>functors</em> are also part of the contents of this course.</p>
+<dl>
+<dt>Lecturers</dt>
+<dd>
+<p><a href="mailto:m.i.l.vakar@uu.nl">Matthijs Vákár</a> and <a href="mailto:F.Staals@uu.nl">Frank Staals</a></p>
+<p>For any enquiry about the course, please mention [INFOFP] in the title.</p>
+</dd>
+</dl>
+<h1 id="teaching-objectives">Teaching Objectives</h1>
+<p>By the end of the course you will be able to</p>
+<ul>
+<li>solve problems using a ‘functional approach’. That is, define <em>what</em>
+needs to be computed using techniques and concepts such as
+<ul>
+<li>recursion,</li>
+<li>pattern matching,</li>
+<li>composition,</li>
+<li>higher order functions,</li>
+<li>algebraic data types,</li>
+<li>monads,</li>
+<li>immutable and persistent data structures, and</li>
+<li>laziness.</li>
+</ul></li>
+<li>reason about the correctness and the types of functions.</li>
+<li>develop a small, real world game in the functional language Haskell.</li>
+</ul>
+<h1 id="schedule">Schedule</h1>
+<p>There are weekly <a href="./lectures.html">lectures</a> (2 × 2 hour),
+<a href="./exercises.html">instructions</a> (1 × 2 hour) and
+<a href="./labs.html">practicals</a> (1 × 2 hour). Attendance is not strictly
+mandatory (albeit strongly recommended).</p>
+<p><strong>You are expected to work on your own in addition to these hours!</strong></p>
+<p>The lectures, instructions, and practicals typically take place at the
+Utrecht Science Park (‘de Uithof’). In particular, the weekly schedule
+is:</p>
+<p><img src="./images/week_schedule.svg" /></p>
+<h1 id="literature">Literature</h1>
+<p>We will use the book “<a href="http://www.cs.nott.ac.uk/~pszgmh/pih.html">Programming in Haskell</a>” by Graham Hutton. Each
+lecture typically corresponds to (a part of) a chapter from this
+book. You are expected to read this part of the book on your own.</p>
+<p>There is plenty of additional reading material available on the
+internet. In particularly, you may find the following material useful:</p>
+<ul>
+<li><a href="https://webspace.science.uu.nl/~hage0101/FP-elec.pdf">Lecture Notes from 2015/2016</a>, mostly in Dutch</li>
+<li><a href="https://learnyouahaskell.github.io/">Learn You a Haskell for Great Good</a> by Miran Lipovača</li>
+<li><a href="https://en.wikibooks.org/wiki/Haskell">Haskell Wikibook</a></li>
+</ul>
+<h1 id="exams">Exams</h1>
+<p>There will be a midterm and a final exam. The exams are closed book,
+and focus on “pen-and-paper” type programming
+questions.</p>
+<p>You can find the exams of several previous years <a href="./exams.html">here</a>.</p>
+<h1 id="assignments">Assignments</h1>
+<p>There are two kinds of <strong>mandatory</strong> assignments:</p>
+<ul>
+<li><a href="./labs.html">Practical assignments</a> pose programming problems with the aim of
+practicing your Haskell skills. These assignments are automatically
+corrected by <a href="https://prairielearn.science.uu.nl">PrairieLearn</a>. You can ask any of the teaching assistants to
+suggest improvements to your code style during labs sessions.</li>
+<li>The <a href="./labs.html">final programming project</a> consists of programming a small game
+in Haskell. The code is graded for correctness, design and style.</li>
+</ul>
+<p>In addition to those mandatory assignments, there is an <strong>optional</strong>
+assignment to be made in groups to get some extra points in the
+grade. The assignment involves exploring and presenting some
+<a href="https://downloads.haskell.org/~ghc/latest/docs/html/users_guide/lang.html">language extension</a> or <a href="http://hackage.haskell.org/">Haskell library</a>.</p>
+<h1 id="grading">Grading</h1>
+<p>The final grade depends on the two exams and the assignments.</p>
+<ul>
+<li><p>The <strong>theory</strong> grade is T = 0.3 × grade of mid-term + 0.7 × grade of
+final exam.</p>
+<dl>
+<dt>CT</dt>
+<dd>
+You need T &gt;= 5 to pass the course.
+</dd>
+</dl></li>
+<li><p>The <strong>practical</strong> grade is P is grade of final programming
+project (The game).</p>
+<dl>
+<dt>CP</dt>
+<dd>
+You need to pass at least two out of three Practical
+Assignments, hand in the Game Design Document, and obtain P &gt;= 5
+to pass the course.
+</dd>
+</dl></li>
+<li><p>The <strong>optional assignment</strong> grade is O.</p></li>
+</ul>
+<p>The <strong>final grade</strong> is computed as F = min( 0.5 × T + 0.5 × P + 0.05 ×
+O, 10 ).</p>
+<p>The <strong>final result</strong> of the course is:</p>
+<ul>
+<li><p>Passed with grade F (appropriately rounded according to the OER
+rules) if F &gt;= 5.5 and you satisfy conditions CT and CP.</p></li>
+<li><p>Not passed with AANV if F &gt;= 4.0, you passed at least one Practical
+assignment, but you do not satisfy the conditions CT and CP.</p>
+<ul>
+<li>In this case you are entitled to <strong>aanvullende toets</strong>, to be determined per student.</li>
+<li>If you need to re-submit the final programming project, that grade is a 6 maximum.</li>
+</ul></li>
+<li><p>Not passed with NVD otherwise.</p></li>
+</ul>
+<p>GHC Installation Instructions</p>
+<p>To successfully complete the course you will need</p>
+<dl>
+<dt>GHC</dt>
+<dd>
+A Haskell compiler, and
+</dd>
+<dt>cabal</dt>
+<dd>
+A tool to install Haskell libraries (in particular the
+‘gloss’ library you will need for the final project in the course).
+</dd>
+</dl>
+<p>Installing GHC used to be a bit of a hassle. Fortunately, the
+situation has improved a bit with respect to earlier years. We
+currently recommend that you install GHC using a tool called
+‘ghcup’. In particular, you can follow
+<a href="https://www.haskell.org/ghcup/">these</a> instructions to install
+‘ghc’ and ‘cabal’.</p>
+<p>If you want as you type error checking and intelligent completions in
+your editor, you may also want to install HLS, the Haskell Language
+server. You can also do so using ghcup.</p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Functional Programming - Data Types and Typeclasses</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/syntax.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrapify.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+  </head>
+  <body>
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">Functional Programming</a> <!--  -->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!-- <li><a href="/description.html">Description</a></li> -->
+            <li><a href="../lectures.html">Lectures</a></li>
+            <li><a href="../labs.html">Practicals</a></li>
+            <li><a href="../exercises.html">Exercises</a></li>
+            <li><a href="../optional.html">Optional Assignment</a></li>
+            <li><a href="../exams.html">Old Exams</a></li>
+            <!-- <li><a href="projects.html">Projects</a></li> -->
+            <li><a target="_blank" href="https://cursusplanner.uu.nl/course/INFOFP/2025/1">Education page</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container" id="main">
+      <h2>Data Types and Typeclasses</h2>
+
+      <h2 data-number="1" id="natural-numbers"><span class="header-section-number">1</span> Natural numbers <span class="tag" data-tag-name="recommended"><span class="smallcaps">recommended</span></span> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Consider the set of natural numbers <span class="math inline">\(\mathbb{N}\)</span>, and observe that:</p>
+<ul>
+<li>zero is a natural number, and</li>
+<li>any other natural number is the successor of some other natural
+number.</li>
+</ul>
+<ol type="1">
+<li><p>Define a data type <code>Nat</code> representing natural numbers using the
+above observation.</p>
+<div class="sourceCode" id="cb1" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Nat</span> <span class="ot">=</span> <span class="dt">Zero</span> <span class="op">|</span> <span class="dt">Succ</span> <span class="dt">Nat</span></span></code></pre></div></li>
+<li><p>Write functions <code>toInt :: Nat -&gt; Int</code> and <code>fromInt :: Int -&gt; Nat</code>
+that allows you to convert between <code>Nat</code> and <code>Int</code>.</p>
+<div class="sourceCode" id="cb2" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">toInt</span> <span class="dt">Zero</span>     <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">toInt</span> (<span class="dt">Succ</span> n) <span class="ot">=</span> <span class="dv">1</span> <span class="op">+</span> <span class="fu">toInt</span> n</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="fu">fromInt</span> i <span class="ot">=</span> <span class="kw">case</span> i <span class="ot">`compare`</span> <span class="dv">0</span> <span class="kw">of</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>              <span class="dt">LT</span> <span class="ot">-&gt;</span> <span class="fu">error</span> <span class="st">&quot;negative number!&quot;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>              <span class="dt">EQ</span> <span class="ot">-&gt;</span> <span class="dt">Zero</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>              <span class="dt">GT</span> <span class="ot">-&gt;</span> <span class="dt">Succ</span> (<span class="fu">fromInt</span> <span class="op">$</span> i<span class="op">-</span><span class="dv">1</span>)</span></code></pre></div></li>
+</ol>
+<h2 data-number="2" id="section-1"><span class="header-section-number">2</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Give a direct definition of the <code>&lt;</code> operator on lists. This definition
+should not use operators like <code>&lt;=</code> for lists.</p>
+<p>When trying out this definition using <code>ghci</code>, do not use the <code>&lt;</code>
+symbol, since it is already defined in the <code>Prelude</code>.</p>
+<div class="sourceCode" id="cb3" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ot">(&lt;)         ::</span> <span class="dt">Ord</span> a <span class="ot">=&gt;</span> [a] <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> <span class="dt">Bool</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>[]     <span class="op">&lt;</span> []     <span class="ot">=</span> <span class="dt">False</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>[]     <span class="op">&lt;</span> _      <span class="ot">=</span> <span class="dt">True</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>(_<span class="op">:</span>_)  <span class="op">&lt;</span> []     <span class="ot">=</span> <span class="dt">False</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>(x<span class="op">:</span>xs) <span class="op">&lt;</span> (y<span class="op">:</span>ys) <span class="ot">=</span> x <span class="op">&lt;</span> y <span class="op">&amp;&amp;</span> xs <span class="op">&lt;</span> ys</span></code></pre></div>
+<h2 data-number="3" id="complex-numbers"><span class="header-section-number">3</span> Complex numbers <span class="tag" data-tag-name="recommended"><span class="smallcaps">recommended</span></span> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<ol type="1">
+<li><p>Write a data type <code>Complex</code> to represent complex numbers. A complex number is defined as a pair of real numbers <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>, and is written as
+<span class="math inline">\(a + b*i\)</span>.</p>
+<div class="sourceCode" id="cb4" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Complex</span> <span class="ot">=</span> <span class="dt">C</span> <span class="dt">Float</span> <span class="dt">Float</span></span></code></pre></div></li>
+<li><p>Make <code>Complex</code> an instance of <code>Show</code>, <code>Eq</code>, and <code>Num</code> (write the
+instances explicitly rather than deriving them). For more information
+about operations on complex numbers, see <a href="https://en.wikipedia.org/wiki/Complex_number#Relations_and_operations">Wikipedia</a>.</p>
+<div class="sourceCode" id="cb5" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">Num</span> <span class="dt">Complex</span> <span class="kw">where</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  (<span class="dt">C</span> a b) <span class="op">+</span> (<span class="dt">C</span> x y) <span class="ot">=</span> <span class="dt">C</span> (a <span class="op">+</span> x)    (b <span class="op">+</span> y)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  (<span class="dt">C</span> a b) <span class="op">-</span> (<span class="dt">C</span> x y) <span class="ot">=</span> <span class="dt">C</span> (a <span class="op">-</span> x)    (b <span class="op">-</span> y)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  (<span class="dt">C</span> a b) <span class="op">*</span> (<span class="dt">C</span> x y) <span class="ot">=</span> <span class="dt">C</span> (a<span class="op">*</span>x<span class="op">-</span>b<span class="op">*</span>y)  (a<span class="op">*</span>y<span class="op">+</span>b<span class="op">*</span>x)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">negate</span> (<span class="dt">C</span> a b)    <span class="ot">=</span> <span class="dt">C</span> (<span class="fu">negate</span> a) (<span class="fu">negate</span> b)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">abs</span>    (<span class="dt">C</span> a b)    <span class="ot">=</span> <span class="dt">C</span> (a<span class="op">*</span>a<span class="op">+</span>b<span class="op">*</span>b)  <span class="dv">0</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">fromInteger</span> i     <span class="ot">=</span> <span class="dt">C</span> (<span class="fu">fromInteger</span> i) <span class="dv">0</span></span></code></pre></div></li>
+</ol>
+<h2 data-number="4" id="bikes"><span class="header-section-number">4</span> Bikes <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<ol type="1">
+<li><p>Define data types that model the following situation as precisely
+as possible:</p>
+<blockquote>
+<p>A bikeshop sells three kinds of bikes: city bikes, road bikes and
+mountainbikes, in three different sizes. In most cases, bike sizes are
+standardized into (small, medium, and large), however it is also
+possible for bikes to have a custom (integral) size (the size of the
+frame in inches). The mountainbikes and road bikes have gears. They
+have a cassette with many cogs on the rear wheel, and some of them may
+have a second chainring in the front (doubling the number of available
+gears). City bikes do not have gears. However, unlike the other types
+of bikes they have fenders either in the front, the back, or on both
+wheels). Fenders themselves come in two types; they are either made
+from plastic or metal.</p>
+</blockquote>
+<div class="sourceCode" id="cb6" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- some variations are possible, but the following answer captures the</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- situation fairly precisely:</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">StandardSize</span> <span class="ot">=</span> <span class="dt">Small</span> <span class="op">|</span> <span class="dt">Medium</span> <span class="op">|</span> <span class="dt">Large</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">BikeSize</span> <span class="ot">=</span> <span class="dt">Standardized</span> <span class="dt">StandardSize</span> <span class="op">|</span> <span class="dt">CustomSize</span> <span class="dt">Int</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">FrontChainrings</span> <span class="ot">=</span> <span class="dt">SingleChainring</span> <span class="op">|</span> <span class="dt">TwoChainRings</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Gears</span> <span class="ot">=</span> <span class="dt">Gears</span> <span class="dt">FrontChainrings</span> <span class="dt">Int</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Fender</span> <span class="ot">=</span> <span class="dt">PlasticFender</span> <span class="op">|</span> <span class="dt">MetalFender</span></span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Bike</span> <span class="ot">=</span> <span class="dt">CityBike</span> <span class="dt">BikeSize</span> (<span class="dt">Maybe</span> <span class="dt">Fender</span>) (<span class="dt">Maybe</span> <span class="dt">Fender</span>)</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>          <span class="op">|</span> <span class="dt">RoadBike</span> <span class="dt">BikeSize</span> <span class="dt">Gears</span></span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>          <span class="op">|</span> <span class="dt">MTB</span>      <span class="dt">BikeSize</span> <span class="dt">Gears</span></span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Bikeshop</span> <span class="ot">=</span> <span class="dt">Bikeshop</span> [<span class="dt">Bike</span>]</span></code></pre></div></li>
+<li><p>Consider a function <code>getFenders</code> that returns the fenders of a bike,
+if it has any. What would be a good type for this function?</p>
+<div class="sourceCode" id="cb7" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ot">getFenders ::</span> <span class="dt">Bike</span> <span class="ot">-&gt;</span> (<span class="dt">Maybe</span> <span class="dt">Fender</span>, <span class="dt">Maybe</span> <span class="dt">Fender</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- or potentially one could even define a custom return type:</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Fenders</span> <span class="ot">=</span> <span class="dt">Fenders</span> {<span class="ot"> frontFender ::</span> <span class="dt">Maybe</span> <span class="dt">Fender</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>                       ,<span class="ot"> backFender  ::</span> <span class="dt">Maybe</span> <span class="dt">Fender</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                       }</span></code></pre></div></li>
+<li><p>Write the function <code>getFenders</code></p></li>
+<li><p>Write a function <code>byGears</code> that lists all bikes available in the
+bikeshop, ordered by number of gears.</p></li>
+</ol>
+<h2 data-number="5" id="sets"><span class="header-section-number">5</span> Sets <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<ol type="1">
+<li><p>Define a type <code>Set a</code> whose values represent sets of elements of
+type <code>a</code>, and define a function <code>subset :: Eq a =&gt; Set a -&gt; Set a   -&gt; Bool</code> which checks whether all the elements in the first set
+also belong to the second.</p></li>
+<li><p>Use the <code>subset</code> function above to define an <code>Eq</code> instance for <code>Set   a</code>.</p></li>
+<li><p>Why do we have to define <code>Set a</code> as its own data type, instead of
+an alias over <code>[a]</code>?</p></li>
+</ol>
+<h2 data-number="6" id="finite"><span class="header-section-number">6</span> <code>Finite</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Define a class <code>Finite</code>. This class has only one method: the list of
+all the elements of that type. The idea is that such list is finite,
+hence the name. Define the following instances for <code>Finite</code>:</p>
+<ul>
+<li><code>Bool</code>.</li>
+<li><code>Char</code>.</li>
+<li><code>(a, b)</code> for finite <code>a</code> and <code>b</code>.</li>
+<li><code>Set a</code>, as defined in the previous exercise, when <code>a</code> is finite.</li>
+<li><code>a -&gt; b</code> whenever <code>a</code> and <code>b</code> are finite and <code>a</code> supports
+equality. Use this to make <code>a -&gt; b</code> an instance of <code>Eq</code>.</li>
+</ul>
+<div class="sourceCode" id="cb8" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> <span class="dt">Finite</span> a <span class="kw">where</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ot">  elements ::</span> [a]</span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">Finite</span> <span class="dt">Bool</span> <span class="kw">where</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>  elements <span class="ot">=</span> [<span class="dt">False</span>, <span class="dt">True</span>]</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> (<span class="dt">Finite</span> a, <span class="dt">Finite</span> b) <span class="ot">=&gt;</span> <span class="dt">Finite</span> (a, b) <span class="kw">where</span></span>
+<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a>  elements <span class="ot">=</span> [(x, y) <span class="op">|</span> x <span class="ot">&lt;-</span> elements, y <span class="ot">&lt;-</span> elements]</span>
+<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="co">-- Auxiliary definition for Finite (Set a)</span></span>
+<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="co">-- Computes all subsets for the given elements,</span></span>
+<span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a><span class="co">-- that is, all combinations where each element</span></span>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a><span class="co">-- in the list may or may not appear</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a><span class="ot">allSubsets ::</span> [a] <span class="ot">-&gt;</span> [<span class="dt">Set</span> a]</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>allSubsets []     <span class="ot">=</span> [[]]</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>allSubsets (v<span class="op">:</span>vs) <span class="ot">=</span> <span class="kw">let</span> ss <span class="ot">=</span> allSubsets vs</span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>                     <span class="kw">in</span> ss <span class="op">++</span> [v<span class="op">:</span>s <span class="op">|</span> s <span class="ot">&lt;-</span> ss]</span>
+<span id="cb8-18"><a href="#cb8-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-19"><a href="#cb8-19" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">Finite</span> a <span class="ot">=&gt;</span> <span class="dt">Finite</span> (<span class="dt">Set</span> a) <span class="kw">where</span></span>
+<span id="cb8-20"><a href="#cb8-20" aria-hidden="true" tabindex="-1"></a>  elements <span class="ot">=</span> allSubsets elements</span>
+<span id="cb8-21"><a href="#cb8-21" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-22"><a href="#cb8-22" aria-hidden="true" tabindex="-1"></a><span class="co">-- Auxiliary definition for Finite (a -&gt; b)</span></span>
+<span id="cb8-23"><a href="#cb8-23" aria-hidden="true" tabindex="-1"></a><span class="co">-- Computes all key-value pairs from two lists,</span></span>
+<span id="cb8-24"><a href="#cb8-24" aria-hidden="true" tabindex="-1"></a><span class="co">-- the first one gives the keys and the second</span></span>
+<span id="cb8-25"><a href="#cb8-25" aria-hidden="true" tabindex="-1"></a><span class="co">-- one gives the possible values</span></span>
+<span id="cb8-26"><a href="#cb8-26" aria-hidden="true" tabindex="-1"></a><span class="ot">allKVPairs ::</span> [k] <span class="ot">-&gt;</span> [v] <span class="ot">-&gt;</span> [[(k, v)]]</span>
+<span id="cb8-27"><a href="#cb8-27" aria-hidden="true" tabindex="-1"></a>allKVPairs []     _  <span class="ot">=</span> [[]]</span>
+<span id="cb8-28"><a href="#cb8-28" aria-hidden="true" tabindex="-1"></a>allKVPairs (k<span class="op">:</span>ks) vs <span class="ot">=</span> [(k,v)<span class="op">:</span>kvs</span>
+<span id="cb8-29"><a href="#cb8-29" aria-hidden="true" tabindex="-1"></a>                         <span class="op">|</span> kvs <span class="ot">&lt;-</span> allKVPairs ks vs</span>
+<span id="cb8-30"><a href="#cb8-30" aria-hidden="true" tabindex="-1"></a>                         , v   <span class="ot">&lt;-</span> vs]</span>
+<span id="cb8-31"><a href="#cb8-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb8-32"><a href="#cb8-32" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> (<span class="dt">Finite</span> a, <span class="dt">Finite</span> b, <span class="dt">Eq</span> a) <span class="ot">=&gt;</span> <span class="dt">Finite</span> (a <span class="ot">-&gt;</span> b) <span class="kw">where</span></span>
+<span id="cb8-33"><a href="#cb8-33" aria-hidden="true" tabindex="-1"></a>  elements <span class="ot">=</span> [\k <span class="ot">-&gt;</span> fromJust (<span class="fu">lookup</span> k kv)</span>
+<span id="cb8-34"><a href="#cb8-34" aria-hidden="true" tabindex="-1"></a>               <span class="op">|</span> kv <span class="ot">&lt;-</span> allKVPairs elements elements]</span></code></pre></div>
+<h2 data-number="7" id="lines"><span class="header-section-number">7</span> Lines <span class="tag" data-tag-name="recommended"><span class="smallcaps">recommended</span></span> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Given the data types</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Point</span> <span class="ot">=</span> <span class="dt">Point</span> <span class="dt">Float</span> <span class="dt">Float</span> <span class="co">-- Point x y is the point with coordinates (x, y) in the plane</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Vector</span> <span class="ot">=</span> <span class="dt">Vector</span> <span class="dt">Float</span> <span class="dt">Float</span> <span class="co">-- Vector dx dy is the 2d vector in the direction (dx, dy)</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">EqLine</span> <span class="ot">=</span> <span class="dt">EqLine</span> <span class="dt">Float</span> <span class="dt">Float</span> <span class="dt">Float</span> <span class="co">-- EqLine a b c represents the line a * x + b * y + c = 0</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">VectLine</span> <span class="ot">=</span> <span class="dt">VectLine</span> <span class="dt">Point</span> <span class="dt">Vector</span> <span class="co">-- VectLine p v represents the line through p in the direction v </span></span></code></pre></div>
+<p>define a class <code>Line</code> whose instances <code>l</code> implement a method that calculates the distance from an <code>l</code> to a <code>Point</code>
+and a method <code>vshift</code> that shifts the line vertically by a <code>Float</code> offset.</p>
+<div class="sourceCode" id="cb10" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> <span class="dt">Line</span> l <span class="kw">where</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    distance ::</span> l <span class="ot">-&gt;</span> <span class="dt">Point</span> <span class="ot">-&gt;</span> <span class="dt">Float</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    vshift ::</span> <span class="dt">Float</span> <span class="ot">-&gt;</span> l <span class="ot">-&gt;</span> l</span></code></pre></div>
+<p>Please make <code>EqLine</code> and <code>VectLine</code> instances of <code>Line</code>.</p>
+<div class="sourceCode" id="cb11" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">Line</span> <span class="dt">EqLine</span> <span class="kw">where</span> </span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>    distance (<span class="dt">EqLine</span> a b c) (<span class="dt">Point</span> x y) <span class="ot">=</span> <span class="fu">abs</span>(a <span class="op">*</span> x <span class="op">+</span> b <span class="op">*</span> y <span class="op">+</span> c) <span class="op">/</span> <span class="fu">sqrt</span>(a <span class="op">*</span> a <span class="op">+</span> b <span class="op">*</span> b)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>    vshift f (<span class="dt">EqLine</span> a b c) <span class="ot">=</span> <span class="dt">EqLine</span> a b (c <span class="op">-</span> b <span class="op">*</span> f)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
+<div class="sourceCode" id="cb12" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">Line</span> <span class="dt">VectLine</span> <span class="kw">where</span> </span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    distance (<span class="dt">VectLine</span> (<span class="dt">Point</span> x' y') (<span class="dt">Vector</span> dx dy)) (<span class="dt">Point</span> x y) <span class="ot">=</span> <span class="fu">abs</span>(dx <span class="op">*</span> (y' <span class="op">-</span> y) <span class="op">-</span> (x' <span class="op">-</span> x) <span class="op">*</span> dy) <span class="op">/</span> <span class="fu">sqrt</span> (dx <span class="op">^</span> <span class="dv">2</span> <span class="op">+</span> dy <span class="op">^</span> <span class="dv">2</span>) </span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    vshift f (<span class="dt">VectLine</span> (<span class="dt">Point</span> x' y') v) <span class="ot">=</span> <span class="dt">VectLine</span> (<span class="dt">Point</span> x' (y' <span class="op">+</span> f)) v </span></code></pre></div>
+<p>Can you think of any more, different representations for lines? If so,
+please implement them as a datatype and make them an instance of <code>Line</code>.</p>
+<div class="sourceCode" id="cb13" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- For example:</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">TwoPointLine</span> <span class="ot">=</span> <span class="dt">TwoPointLine</span> <span class="dt">Point</span> <span class="dt">Point</span> <span class="co">-- TwoPointLine p1 p2 represents the line through p1 and p2</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">Line</span> <span class="dt">TwoPointLine</span> <span class="kw">where</span> </span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    distance (<span class="dt">TwoPointLine</span> (<span class="dt">Point</span> x1 y1) (<span class="dt">Point</span> x2 y2))  (<span class="dt">Point</span> x y) <span class="ot">=</span> <span class="fu">abs</span>((x2 <span class="op">-</span> x1) <span class="op">*</span> (y1 <span class="op">-</span> y) <span class="op">-</span> (x1 <span class="op">-</span> x) <span class="op">*</span> (y2 <span class="op">-</span> y1)) <span class="op">/</span> <span class="fu">sqrt</span> ((x2 <span class="op">-</span> x1) <span class="op">^</span> <span class="dv">2</span> <span class="op">+</span> (y2 <span class="op">-</span> y1) <span class="op">^</span> <span class="dv">2</span>) </span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>    vshift f (<span class="dt">TwoPointLine</span> (<span class="dt">Point</span> x1 y1) (<span class="dt">Point</span> x2 y2)) <span class="ot">=</span> <span class="dt">TwoPointLine</span> (<span class="dt">Point</span> x1 (y1 <span class="op">+</span> f)) (<span class="dt">Point</span> x2 (y2 <span class="op">+</span> f))</span></code></pre></div>
+<div class="sourceCode" id="cb14" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Or:</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">AngleLine</span> <span class="ot">=</span> <span class="dt">AngleLine</span> <span class="dt">Point</span> <span class="dt">Float</span> <span class="co">-- AngleLine p theta represents the line through p with angle theta</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">Line</span> <span class="dt">AngleLine</span> <span class="kw">where</span> </span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    distance (<span class="dt">AngleLine</span> (<span class="dt">Point</span> x' y') theta) (<span class="dt">Point</span> x y) <span class="ot">=</span> <span class="fu">abs</span> (<span class="fu">cos</span> theta <span class="op">*</span> (y' <span class="op">-</span> y) <span class="op">-</span> <span class="fu">sin</span> theta <span class="op">*</span> (x' <span class="op">-</span> x))</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>    vshift f (<span class="dt">AngleLine</span> (<span class="dt">Point</span> x' y') theta) <span class="ot">=</span> <span class="dt">AngleLine</span> (<span class="dt">Point</span> x' (y' <span class="op">+</span> f)) theta</span></code></pre></div>
+<div class="sourceCode" id="cb15" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Or this rather boring one:</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    distance ::</span> l <span class="ot">-&gt;</span> <span class="dt">Point</span> <span class="ot">-&gt;</span> <span class="dt">Float</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    vshift ::</span> <span class="dt">Float</span> <span class="ot">-&gt;</span> l <span class="ot">-&gt;</span> l</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">BoringLine</span> <span class="ot">=</span> <span class="dt">BoringLine</span> {<span class="ot">dist ::</span> <span class="dt">Point</span> <span class="ot">-&gt;</span> <span class="dt">Float</span>,<span class="ot"> vs ::</span> <span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">BoringLine</span>} <span class="co">-- BoringLine directly uses the required methods as a definition</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">Line</span> <span class="dt">BoringLine</span> <span class="kw">where</span> </span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>    distance <span class="ot">=</span> dist</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    vshift <span class="ot">=</span> <span class="fu">flip</span> vs</span></code></pre></div>
+<p>Can you think of any more things we can compute for any line? Please add them as methods in the definition of <code>Line</code>.
+Can you give some of them default implementations?</p>
+<div class="sourceCode" id="cb16" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- For example:</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> <span class="dt">Line</span> l <span class="kw">where</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    distance ::</span> l <span class="ot">-&gt;</span> <span class="dt">Point</span> <span class="ot">-&gt;</span> <span class="dt">Float</span> </span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a><span class="ot">    vshift ::</span> <span class="dt">Float</span> <span class="ot">-&gt;</span> l <span class="ot">-&gt;</span> l</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a><span class="ot">    isOn ::</span> l <span class="ot">-&gt;</span> <span class="dt">Point</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span></span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>    isOn l p <span class="ot">=</span> distance l p <span class="op">==</span> <span class="dv">0</span></span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- come up with more methods yourself</span></span></code></pre></div>
+<h2 data-number="8" id="section-2"><span class="header-section-number">8</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span> <span class="tag" data-tag-name="challenging"><span class="smallcaps">challenging</span></span></h2>
+<p>We can use a type class</p>
+<div class="sourceCode" id="cb17"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> <span class="dt">DGraph</span> g <span class="kw">where</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    succs ::</span> <span class="dt">Eq</span> a <span class="ot">=&gt;</span> g a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> [a]</span></code></pre></div>
+<p>for representing directed graphs.
+The idea is that <code>a</code> is a type of vertices, that <code>g a</code> is the type of directed graphs with vertices of type <code>a</code>
+and <code>succs someGraph aVertex</code> gives the list of all successors of <code>aVertex :: a</code> in the graph <code>someGraph :: g a</code>.</p>
+<p>We can define types</p>
+<div class="sourceCode" id="cb18"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">newtype</span> <span class="dt">PList</span> k v <span class="ot">=</span> <span class="dt">PList</span> {<span class="ot">keyValues ::</span> [(k, v)]}</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="kw">newtype</span> <span class="dt">SMPList</span> k <span class="ot">=</span> <span class="dt">SMPList</span> (<span class="dt">PList</span> k [k])</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">RoseTree</span> l <span class="ot">=</span> <span class="dt">RoseTree</span> l [<span class="dt">RoseTree</span> l]</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a><span class="kw">newtype</span> <span class="dt">FRoseTree</span> l <span class="ot">=</span> <span class="dt">FRoseTree</span> [<span class="dt">RoseTree</span> l]</span></code></pre></div>
+<p><code>SMPList</code> and <code>FRoseTree</code> give two different representations of directed graphs.
+For example, the graph</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Directed_graph_no_background.svg/1920px-Directed_graph_no_background.svg.png" width="700" /></p>
+<p>can be represented as</p>
+<div class="sourceCode" id="cb19"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>dgraph1SMPL <span class="ot">=</span> <span class="dt">SMPList</span> <span class="op">$</span> <span class="dt">PList</span> [(<span class="dv">1</span>, [<span class="dv">2</span>, <span class="dv">3</span>]), (<span class="dv">2</span>, []), (<span class="dv">3</span>, [<span class="dv">2</span>, <span class="dv">4</span>]), (<span class="dv">4</span>, [<span class="dv">3</span>])]</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>dgraph1FRT <span class="ot">=</span> <span class="dt">FRoseTree</span> [one] <span class="kw">where</span> </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  one <span class="ot">=</span> <span class="dt">RoseTree</span> <span class="dv">1</span> [two, tree]</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  two <span class="ot">=</span> <span class="dt">RoseTree</span> <span class="dv">2</span> []</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  three <span class="ot">=</span> <span class="dt">RoseTree</span> <span class="dv">3</span> [two, four]</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a>  four <span class="ot">=</span> <span class="dt">RoseTree</span> <span class="dv">4</span> [three]</span></code></pre></div>
+<p>To warm up, please implement the graph</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Tred-G.svg" width="700" /></p>
+<p>in both representations.</p>
+<div class="sourceCode" id="cb20" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>dgraph2SMPL <span class="ot">=</span> <span class="dt">SMPList</span> <span class="op">$</span> <span class="dt">PList</span> [(<span class="ch">'a'</span>, [<span class="ch">'b'</span>, <span class="ch">'d'</span>, <span class="ch">'c'</span>, <span class="ch">'e'</span>]), (<span class="ch">'b'</span>, [<span class="ch">'d'</span>]), (<span class="ch">'d'</span>, [<span class="ch">'e'</span>]), (<span class="ch">'c'</span>, [<span class="ch">'d'</span>, <span class="ch">'e'</span>]), (<span class="ch">'e'</span>, [])]</span></code></pre></div>
+<div class="sourceCode" id="cb21" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>dgraph2FRT <span class="ot">=</span> <span class="dt">FRoseTree</span> [a] <span class="kw">where</span> </span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  a <span class="ot">=</span> <span class="dt">RoseTree</span> <span class="ch">'a'</span> [b, d, c, e]</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  b <span class="ot">=</span> <span class="dt">RoseTree</span> <span class="ch">'b'</span> [d]</span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  d <span class="ot">=</span> <span class="dt">RoseTree</span> <span class="ch">'d'</span> [e]</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  c <span class="ot">=</span> <span class="dt">RoseTree</span> <span class="ch">'c'</span> [d, e]</span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>  e <span class="ot">=</span> <span class="dt">RoseTree</span> <span class="ch">'e'</span> []</span></code></pre></div>
+<p>Please make <code>SMPList</code> and <code>FRoseTree</code> instances of <code>DGraph</code>.</p>
+<div class="sourceCode" id="cb22" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ot">lookup' ::</span> <span class="dt">Eq</span> k <span class="ot">=&gt;</span> k <span class="ot">-&gt;</span> <span class="dt">PList</span> k v <span class="ot">-&gt;</span> <span class="dt">Maybe</span> v </span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>lookup' k (<span class="dt">PList</span> []) <span class="ot">=</span> <span class="dt">Nothing</span> </span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>lookup' k (<span class="dt">PList</span> ((k', v) <span class="op">:</span> kvs)) <span class="op">|</span> k <span class="op">==</span> k' <span class="ot">=</span> <span class="dt">Just</span> v </span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="op">|</span> <span class="fu">otherwise</span> <span class="ot">=</span> lookup' k (<span class="dt">PList</span> kvs)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a><span class="ot">handleMaybeList ::</span> <span class="dt">Maybe</span> [l] <span class="ot">-&gt;</span> [l]</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>handleMaybeList <span class="dt">Nothing</span> <span class="ot">=</span> []</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>handleMaybeList (<span class="dt">Just</span> ls) <span class="ot">=</span> ls </span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">DGraph</span> <span class="dt">SMPList</span> <span class="kw">where</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    succs (<span class="dt">SMPList</span> m) l <span class="ot">=</span> handleMaybeList (lookup' l  m)</span></code></pre></div>
+<div class="sourceCode" id="cb23" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">DGraph</span> <span class="dt">FRoseTree</span> <span class="kw">where</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    succs (<span class="dt">FRoseTree</span> xs) y <span class="ot">=</span> <span class="fu">concatMap</span> (<span class="ot">`succs'`</span> y) xs <span class="kw">where</span> </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>        succs' (<span class="dt">RoseTree</span> x xs) y <span class="op">|</span> x <span class="op">==</span> y <span class="ot">=</span> <span class="fu">map</span> getVal xs</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>                                 <span class="op">|</span> <span class="fu">otherwise</span> <span class="ot">=</span> <span class="fu">foldr</span> (\x acc <span class="ot">-&gt;</span> <span class="kw">if</span> <span class="fu">null</span> acc <span class="kw">then</span> succs' x y <span class="kw">else</span> acc) [] xs</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>        getVal (<span class="dt">RoseTree</span> x _) <span class="ot">=</span> x</span></code></pre></div>
+<p>Can you come up with any more different representations of directed graphs? Please implement them as
+parameterised datatypes and make them an instance of <code>DGraph</code>. To practice some more, you can implement
+your favourite directed graph (for example one of the two above) in your new representations.</p>
+<div class="sourceCode" id="cb24" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- For example:</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="kw">newtype</span> <span class="dt">SPList</span> l <span class="ot">=</span> <span class="dt">SPList</span> (<span class="dt">PList</span> l l) <span class="co">-- lists of pairs of vertices that are connected via an edge</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">DGraph</span> <span class="dt">SPList</span> <span class="kw">where</span> </span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>    succs (<span class="dt">SPList</span> g) a <span class="ot">=</span> [b <span class="op">|</span> (a', b) <span class="ot">&lt;-</span> keyValues g, a'<span class="op">==</span> a ]</span></code></pre></div>
+<div class="sourceCode" id="cb25" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Or this rather boring one:</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a><span class="kw">newtype</span> <span class="dt">NDFun</span> l <span class="ot">=</span> <span class="dt">NDFun</span> {<span class="ot">getSuccs ::</span> l <span class="ot">-&gt;</span> [l]} <span class="co">-- directly using the successor function as a definition</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> <span class="dt">DGraph</span> <span class="dt">NDFun</span> <span class="kw">where</span> </span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    succs <span class="ot">=</span> getSuccs</span></code></pre></div>
+<p>We want to write a function <code>maxPaths</code> that takes a directed graph <code>someGraph</code> – it should accept any representation –
+and a list <code>inits</code> of vertices as inputs and produces a list of all maximal directed paths, i.e. directed paths that cannot be made longer, in <code>someGraph</code> that start from a vertex <code>i</code> in <code>inits</code>.
+Please specify the type signature of <code>maxPaths</code>.</p>
+<div class="sourceCode" id="cb26" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="ot">maxPaths ::</span> (<span class="dt">Eq</span> l, <span class="dt">DGraph</span> g) <span class="ot">=&gt;</span> g l <span class="ot">-&gt;</span> [l] <span class="ot">-&gt;</span> [[l]]</span></code></pre></div>
+<p>Now, please implement <code>maxPaths</code>. You may assume, for simplicity, that it is only ever used on directed graphs without cycles.</p>
+<div class="sourceCode" id="cb27" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>maxPaths _ [] <span class="ot">=</span> [[]]</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>maxPaths someGraph inits <span class="ot">=</span> <span class="fu">concat</span> [<span class="fu">map</span> (i<span class="op">:</span>) (maxPaths someGraph (succs someGraph i)) <span class="op">|</span> i <span class="ot">&lt;-</span> inits] <span class="co">-- concatMap (\i -&gt; map (i:) (maxPaths someGraph (succs someGraph i))) inits</span></span></code></pre></div>
+<p>Can you come up with any more operations that we can perform on any directed graph?</p>
+<div class="sourceCode" id="cb28" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- For example a function depthFrom that calculates length of the longest path starting from a vertex in a graph</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- or a function descendants that computes a (lazy) list of all descendants (transitive closure of successors), infinite in case of cycles</span></span></code></pre></div>
+<p>Please add them to the type class and give their implementations.
+Can you use a default implementation?</p>
+<div class="sourceCode" id="cb29" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- For example </span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> <span class="dt">DGraph</span> g <span class="kw">where</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a><span class="ot">    succs ::</span> <span class="dt">Eq</span> a <span class="ot">=&gt;</span> g a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> [a]</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a><span class="ot">    depthFrom ::</span> <span class="dt">Eq</span> a <span class="ot">=&gt;</span> g a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="co">-- length of the longest path starting from a vertex in a graph</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    depthFrom someGraph x <span class="ot">=</span> <span class="kw">case</span> succs someGraph x <span class="kw">of</span> </span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>            [] <span class="ot">-&gt;</span> <span class="dv">0</span> </span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>            xs <span class="ot">-&gt;</span> <span class="dv">1</span> <span class="op">+</span> <span class="fu">maximum</span> (<span class="fu">map</span> (depthFrom someGraph) xs)</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a><span class="ot">    descendants ::</span> <span class="dt">Eq</span> a <span class="ot">=&gt;</span> g a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> [a] <span class="co">-- (lazy) list of all descendants (transitive closure of successors), infinite in case of cycles</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    descendants someGraph x <span class="ot">=</span> c <span class="op">++</span> <span class="fu">concatMap</span> (descendants someGraph) c <span class="kw">where</span> </span>
+<span id="cb29-10"><a href="#cb29-10" aria-hidden="true" tabindex="-1"></a>        c <span class="ot">=</span> succs someGraph x</span></code></pre></div>
+    </div>
+  </body>
+</html>

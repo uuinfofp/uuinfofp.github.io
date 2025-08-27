@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Functional Programming - Getting Started</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/syntax.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrapify.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+  </head>
+  <body>
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">Functional Programming</a> <!--  -->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!-- <li><a href="/description.html">Description</a></li> -->
+            <li><a href="../lectures.html">Lectures</a></li>
+            <li><a href="../labs.html">Practicals</a></li>
+            <li><a href="../exercises.html">Exercises</a></li>
+            <li><a href="../optional.html">Optional Assignment</a></li>
+            <li><a href="../exams.html">Old Exams</a></li>
+            <!-- <li><a href="projects.html">Projects</a></li> -->
+            <li><a target="_blank" href="https://cursusplanner.uu.nl/course/INFOFP/2025/1">Education page</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container" id="main">
+      <h2>Getting Started</h2>
+
+      <p>Here are some small exercises to get started programming in Haskell;
+the language we will be using throughout the course. In case you have
+not done so:</p>
+<ul>
+<li>Make sure you have installed GHC, the haskell compiler.</li>
+<li>Hand in Practical 0; a demo practical assignment.</li>
+</ul>
+<p>You can then start exploring Haskell using the following exercises. We
+will cover the the material you need in these questions during the
+first lecture, so don’t worry too much if you get stuck; just ask a TA
+for a quick hint if needed, and let your curiosity guide you :).</p>
+<p>Let’s say that a string (= list of characters) is long when it consists
+of at least 10 characters. Here is a little program that, given a list
+of strings, computes the number of long strings:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ot">numLong        ::</span> [<span class="dt">String</span>] <span class="ot">-&gt;</span> <span class="dt">Int</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>numLong []     <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>numLong (s<span class="op">:</span>ss) <span class="ot">=</span> (<span class="kw">if</span> isLong s <span class="kw">then</span> <span class="dv">1</span> <span class="kw">else</span> <span class="dv">0</span>) <span class="op">+</span> numLong ss</span></code></pre></div>
+<p>The first line states the type of our function <code>numLong</code>. As promised,
+it takes a list of <code>String~s, i.e. a value of type ~[String]</code>, as
+input, and produces an <code>Int</code>.</p>
+<p>The second line states that if the input list is the empty list
+(denoted by <code>[]</code>), then there are zero long strings.</p>
+<p>The third line states that if the input list is non-empty, in
+particular, when the first element of the list (the <em>head</em> of the
+list) is a string named s, and the rest of the list (the <em>tail</em> of the
+list) is a list named ss, we can express the number of long strings
+recursively: it is the number of long strings in the list ss plus
+either 1 or 0, depending on whether our string s is long or not.</p>
+<ol type="1">
+<li><p>Implement the function <code>isLong</code>. You may use that a <code>String</code> really
+is just a list of characters (<code>Char</code> s); i.e. <code>String</code> = <code>[Char]</code>,
+and that the standard library (called Prelude) has a function
+<code>length :: [a] -&gt; Int</code> with type <code>[a] -&gt; Int</code>.</p></li>
+<li><p>Implement the function <code>isLong</code> by explicitly using recursion
+(meaning that the implementation of <code>isLong</code> will call the function
+<code>isLong</code> itself, as is done in the <code>numLong</code> example.</p></li>
+<li><p>Adapt the definition of the function <code>numLong</code> to actually return
+all long strings (rather than just count them). What is the type of
+your function?</p></li>
+<li><p>The type of the function <code>numLong</code> is actually a bit more general
+than <code>[String] -&gt; Int</code>. What do you think the type is/should be?
+Argue why.</p></li>
+<li><p>Can you adapt the function so that the “length to be considered
+long” is a parameter of your function? What should the type of your
+new function be?</p></li>
+<li><p>Try to write a function <code>longest</code> that compute the longest string
+in a non-empty list of strings. What should the base case of your
+function be? What is the type of your function? Can you see
+anything “wrong” about it?</p></li>
+</ol>
+    </div>
+  </body>
+</html>

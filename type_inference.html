@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Functional Programming - type_inference</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/syntax.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/bootstrapify.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+  </head>
+  <body>
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="./index.html">Functional Programming</a> <!--  -->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!-- <li><a href="/description.html">Description</a></li> -->
+            <li><a href="./lectures.html">Lectures</a></li>
+            <li><a href="./labs.html">Practicals</a></li>
+            <li><a href="./exercises.html">Exercises</a></li>
+            <li><a href="./optional.html">Optional Assignment</a></li>
+            <li><a href="./exams.html">Old Exams</a></li>
+            <!-- <li><a href="projects.html">Projects</a></li> -->
+            <li><a target="_blank" href="https://cursusplanner.uu.nl/course/INFOFP/2025/1">Education page</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container" id="main">
+      <h2>type_inference</h2>
+
+      <h1 id="determining-the-type-of-map-id">determining the type of ‘map id’</h1>
+<p>We start by writing the types of map and id, each with fresh type
+variables:</p>
+<ul>
+<li>map :: (a -&gt; b) -&gt; [a] -&gt; [b]</li>
+<li>id :: c -&gt; c</li>
+</ul>
+<p>map id :: ?????</p>
+<p>because we apply map to id, we learn that</p>
+<p>the type a -&gt; b better be the same as c -&gt; c
+(which we sometimes write as
+a -&gt; b ~ c -&gt; c
+)</p>
+<p>which means that</p>
+<ul>
+<li>a ~ c and</li>
+<li>b ~ c</li>
+</ul>
+<p>so ‘map’ in ‘map id’ has type: (c -&gt; c) -&gt; [c] -&gt; [c],
+and thus if we fill in ‘id’ as the first argument, what remains is:</p>
+<p>map id :: [c] -&gt; [c]</p>
+<p>Of course we can now freely rename the variable name ‘c’. I.e. we can
+also say tat</p>
+<p>map id :: [frank] -&gt; [frank]</p>
+<p>or</p>
+<p>map id :: [a] -&gt; [a]</p>
+<h1 id="determining-the-type-of-map-replicate">Determining the type of ‘map replicate’</h1>
+<ul>
+<li>map :: (a -&gt; b) -&gt; [a] -&gt; [b]</li>
+<li>replicate :: Int -&gt; c -&gt; [c]</li>
+</ul>
+<p>apparently we can apply map to replicate, so</p>
+<ul>
+<li>a -&gt; b better be Int -&gt; c -&gt; [c]</li>
+<li>a -&gt; b better be Int -&gt; (c -&gt; [c])</li>
+</ul>
+<p>so</p>
+<ul>
+<li>a ~ Int</li>
+<li>b ~ c -&gt; [c]</li>
+</ul>
+<p>so ‘map’ in ‘map replicate’ has type</p>
+<p>(Int -&gt; (c -&gt; [c])) -&gt; [Int] -&gt; [c -&gt; [c]]</p>
+<p>we already filled in the first argument, so</p>
+<p>map replicate :: [Int] -&gt; [c -&gt; [c]]</p>
+<h1 id="determining-the-type-of-map-3">Determining the type of ‘map 3’</h1>
+<ul>
+<li>map :: (a -&gt; b) -&gt; [a] -&gt; [b]</li>
+<li>3 :: Int</li>
+</ul>
+<p>Since we fill in 3 as the first argument to map, their types must
+match.</p>
+<p>so then the type a -&gt; b needs to be the same as Int</p>
+<p>However, this is a type error, since Int is not te same as functions
+from a to b.</p>
+    </div>
+  </body>
+</html>

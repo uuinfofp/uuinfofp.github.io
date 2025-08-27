@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Functional Programming - Higher order Functions</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/syntax.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrapify.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+  </head>
+  <body>
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">Functional Programming</a> <!--  -->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!-- <li><a href="/description.html">Description</a></li> -->
+            <li><a href="../lectures.html">Lectures</a></li>
+            <li><a href="../labs.html">Practicals</a></li>
+            <li><a href="../exercises.html">Exercises</a></li>
+            <li><a href="../optional.html">Optional Assignment</a></li>
+            <li><a href="../exams.html">Old Exams</a></li>
+            <!-- <li><a href="projects.html">Projects</a></li> -->
+            <li><a target="_blank" href="https://cursusplanner.uu.nl/course/INFOFP/2025/1">Education page</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container" id="main">
+      <h2>Higher order Functions</h2>
+
+      <h2 data-number="1" id="parentheses"><span class="header-section-number">1</span> Parentheses!? <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Give examples for functions with the following types:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="dt">Float</span> −<span class="op">&gt;</span> <span class="dt">Float</span>) −<span class="op">&gt;</span> <span class="dt">Float</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">Float</span> −<span class="op">&gt;</span> (<span class="dt">Float</span> −<span class="op">&gt;</span> <span class="dt">Float</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="dt">Float</span> −<span class="op">&gt;</span> <span class="dt">Float</span>) −<span class="op">&gt;</span> (<span class="dt">Float</span> −<span class="op">&gt;</span> <span class="dt">Float</span>)</span></code></pre></div>
+<p>Give an example program <code>p</code> with the following type and explain how the function arrow <code>-&gt;</code> associates:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ot">p ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></span></code></pre></div>
+<p>Give examples of programs <code>foo</code>, <code>bar</code> and <code>baz</code>, such that <code>foo bar baz</code> type checks and please explain how function application associates.</p>
+<p>Can you give examples of programs <code>foo</code>, <code>bar</code> and <code>baz</code>, such that one might expect <code>foo bar baz</code> to be well-typed if function application were to associate in the opposite direction, but such
+that <code>foo bar baz</code> is in reality ill-typed?</p>
+<h2 data-number="2" id="currying"><span class="header-section-number">2</span> Currying <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>Please implement two functions</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curry</span><span class="ot"> ::</span> ((a, b) <span class="ot">-&gt;</span> c) <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> c)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">uncurry</span><span class="ot"> ::</span> (a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> c) <span class="ot">-&gt;</span> ((a, b) <span class="ot">-&gt;</span> c)</span></code></pre></div>
+<p>Can you convince yourself that <code>curry</code> and <code>uncurry</code> are mutually inverse? Try it out on some example functions!</p>
+<p>Please simplify the types of <code>curry</code> and <code>uncurry</code> by removing unnecessary parentheses</p>
+<h2 data-number="3" id="filter"><span class="header-section-number">3</span> Filter <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>The function <code>filter</code> can be defined in terms of <code>concat</code> and <code>map</code>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span> p <span class="ot">=</span> <span class="fu">concat</span> <span class="op">.</span> <span class="fu">map</span> box</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span> box x <span class="ot">=</span> _</span></code></pre></div>
+<p>Complete the definition of <code>box</code>.</p>
+<h2 data-number="4" id="function-composition"><span class="header-section-number">4</span> Function Composition <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Function composition first applies the latter of the supplied
+functions to the argument, the former thereafter. Write a function
+<code>before</code> that can be used to rewrite <code>f . g . h</code> to <code>h `before` g `before` f</code>. What can you say about associativity of <code>(.)</code> and
+<code>before</code>?</p>
+<h2 data-number="5" id="higher-order-data-types"><span class="header-section-number">5</span> Higher order data types <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span> <span class="tag" data-tag-name="challenging"><span class="smallcaps">challenging</span></span></h2>
+<p>We have seen that <code>[...]</code> is a type function that maps types to
+types. Similarly because <code>−&gt;</code> is a type constructor mapping two types
+to a type, for some <code>c</code> also <code>c −&gt;</code> is a type function mapping a type
+<code>a</code> to <code>c −&gt; a</code>. Rewrite the type of <code>map</code> by substituting the type
+function <code>[...]</code> by <code>c −&gt;</code>. Can you derive an implementation from the
+resulting type?</p>
+    </div>
+  </body>
+</html>

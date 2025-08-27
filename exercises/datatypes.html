@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Functional Programming - Data Types and Typeclasses</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/syntax.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrapify.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+  </head>
+  <body>
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">Functional Programming</a> <!--  -->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!-- <li><a href="/description.html">Description</a></li> -->
+            <li><a href="../lectures.html">Lectures</a></li>
+            <li><a href="../labs.html">Practicals</a></li>
+            <li><a href="../exercises.html">Exercises</a></li>
+            <li><a href="../optional.html">Optional Assignment</a></li>
+            <li><a href="../exams.html">Old Exams</a></li>
+            <!-- <li><a href="projects.html">Projects</a></li> -->
+            <li><a target="_blank" href="https://cursusplanner.uu.nl/course/INFOFP/2025/1">Education page</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container" id="main">
+      <h2>Data Types and Typeclasses</h2>
+
+      <h2 data-number="1" id="natural-numbers"><span class="header-section-number">1</span> Natural numbers <span class="tag" data-tag-name="recommended"><span class="smallcaps">recommended</span></span> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Consider the set of natural numbers <span class="math inline">\(\mathbb{N}\)</span>, and observe that:</p>
+<ul>
+<li>zero is a natural number, and</li>
+<li>any other natural number is the successor of some other natural
+number.</li>
+</ul>
+<ol type="1">
+<li><p>Define a data type <code>Nat</code> representing natural numbers using the
+above observation.</p></li>
+<li><p>Write functions <code>toInt :: Nat -&gt; Int</code> and <code>fromInt :: Int -&gt; Nat</code>
+that allows you to convert between <code>Nat</code> and <code>Int</code>.</p></li>
+</ol>
+<h2 data-number="2" id="section-1"><span class="header-section-number">2</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Give a direct definition of the <code>&lt;</code> operator on lists. This definition
+should not use operators like <code>&lt;=</code> for lists.</p>
+<p>When trying out this definition using <code>ghci</code>, do not use the <code>&lt;</code>
+symbol, since it is already defined in the <code>Prelude</code>.</p>
+<h2 data-number="3" id="complex-numbers"><span class="header-section-number">3</span> Complex numbers <span class="tag" data-tag-name="recommended"><span class="smallcaps">recommended</span></span> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<ol type="1">
+<li><p>Write a data type <code>Complex</code> to represent complex numbers. A complex number is defined as a pair of real numbers <span class="math inline">\(a\)</span> and <span class="math inline">\(b\)</span>, and is written as
+<span class="math inline">\(a + b*i\)</span>.</p></li>
+<li><p>Make <code>Complex</code> an instance of <code>Show</code>, <code>Eq</code>, and <code>Num</code> (write the
+instances explicitly rather than deriving them). For more information
+about operations on complex numbers, see <a href="https://en.wikipedia.org/wiki/Complex_number#Relations_and_operations">Wikipedia</a>.</p></li>
+</ol>
+<h2 data-number="4" id="bikes"><span class="header-section-number">4</span> Bikes <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<ol type="1">
+<li><p>Define data types that model the following situation as precisely
+as possible:</p>
+<blockquote>
+<p>A bikeshop sells three kinds of bikes: city bikes, road bikes and
+mountainbikes, in three different sizes. In most cases, bike sizes are
+standardized into (small, medium, and large), however it is also
+possible for bikes to have a custom (integral) size (the size of the
+frame in inches). The mountainbikes and road bikes have gears. They
+have a cassette with many cogs on the rear wheel, and some of them may
+have a second chainring in the front (doubling the number of available
+gears). City bikes do not have gears. However, unlike the other types
+of bikes they have fenders either in the front, the back, or on both
+wheels). Fenders themselves come in two types; they are either made
+from plastic or metal.</p>
+</blockquote></li>
+<li><p>Consider a function <code>getFenders</code> that returns the fenders of a bike,
+if it has any. What would be a good type for this function?</p></li>
+<li><p>Write the function <code>getFenders</code></p></li>
+<li><p>Write a function <code>byGears</code> that lists all bikes available in the
+bikeshop, ordered by number of gears.</p></li>
+</ol>
+<h2 data-number="5" id="sets"><span class="header-section-number">5</span> Sets <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<ol type="1">
+<li><p>Define a type <code>Set a</code> whose values represent sets of elements of
+type <code>a</code>, and define a function <code>subset :: Eq a =&gt; Set a -&gt; Set a   -&gt; Bool</code> which checks whether all the elements in the first set
+also belong to the second.</p></li>
+<li><p>Use the <code>subset</code> function above to define an <code>Eq</code> instance for <code>Set   a</code>.</p></li>
+<li><p>Why do we have to define <code>Set a</code> as its own data type, instead of
+an alias over <code>[a]</code>?</p></li>
+</ol>
+<h2 data-number="6" id="finite"><span class="header-section-number">6</span> <code>Finite</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Define a class <code>Finite</code>. This class has only one method: the list of
+all the elements of that type. The idea is that such list is finite,
+hence the name. Define the following instances for <code>Finite</code>:</p>
+<ul>
+<li><code>Bool</code>.</li>
+<li><code>Char</code>.</li>
+<li><code>(a, b)</code> for finite <code>a</code> and <code>b</code>.</li>
+<li><code>Set a</code>, as defined in the previous exercise, when <code>a</code> is finite.</li>
+<li><code>a -&gt; b</code> whenever <code>a</code> and <code>b</code> are finite and <code>a</code> supports
+equality. Use this to make <code>a -&gt; b</code> an instance of <code>Eq</code>.</li>
+</ul>
+<h2 data-number="7" id="lines"><span class="header-section-number">7</span> Lines <span class="tag" data-tag-name="recommended"><span class="smallcaps">recommended</span></span> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Given the data types</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Point</span> <span class="ot">=</span> <span class="dt">Point</span> <span class="dt">Float</span> <span class="dt">Float</span> <span class="co">-- Point x y is the point with coordinates (x, y) in the plane</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Vector</span> <span class="ot">=</span> <span class="dt">Vector</span> <span class="dt">Float</span> <span class="dt">Float</span> <span class="co">-- Vector dx dy is the 2d vector in the direction (dx, dy)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">EqLine</span> <span class="ot">=</span> <span class="dt">EqLine</span> <span class="dt">Float</span> <span class="dt">Float</span> <span class="dt">Float</span> <span class="co">-- EqLine a b c represents the line a * x + b * y + c = 0</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">VectLine</span> <span class="ot">=</span> <span class="dt">VectLine</span> <span class="dt">Point</span> <span class="dt">Vector</span> <span class="co">-- VectLine p v represents the line through p in the direction v </span></span></code></pre></div>
+<p>define a class <code>Line</code> whose instances <code>l</code> implement a method that calculates the distance from an <code>l</code> to a <code>Point</code>
+and a method <code>vshift</code> that shifts the line vertically by a <code>Float</code> offset.</p>
+<p>Please make <code>EqLine</code> and <code>VectLine</code> instances of <code>Line</code>.</p>
+<p>Can you think of any more, different representations for lines? If so,
+please implement them as a datatype and make them an instance of <code>Line</code>.</p>
+<p>Can you think of any more things we can compute for any line? Please add them as methods in the definition of <code>Line</code>.
+Can you give some of them default implementations?</p>
+<h2 data-number="8" id="section-2"><span class="header-section-number">8</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span> <span class="tag" data-tag-name="challenging"><span class="smallcaps">challenging</span></span></h2>
+<p>We can use a type class</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">class</span> <span class="dt">DGraph</span> g <span class="kw">where</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="ot">    succs ::</span> <span class="dt">Eq</span> a <span class="ot">=&gt;</span> g a <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> [a]</span></code></pre></div>
+<p>for representing directed graphs.
+The idea is that <code>a</code> is a type of vertices, that <code>g a</code> is the type of directed graphs with vertices of type <code>a</code>
+and <code>succs someGraph aVertex</code> gives the list of all successors of <code>aVertex :: a</code> in the graph <code>someGraph :: g a</code>.</p>
+<p>We can define types</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="kw">newtype</span> <span class="dt">PList</span> k v <span class="ot">=</span> <span class="dt">PList</span> {<span class="ot">keyValues ::</span> [(k, v)]}</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="kw">newtype</span> <span class="dt">SMPList</span> k <span class="ot">=</span> <span class="dt">SMPList</span> (<span class="dt">PList</span> k [k])</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">RoseTree</span> l <span class="ot">=</span> <span class="dt">RoseTree</span> l [<span class="dt">RoseTree</span> l]</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="kw">newtype</span> <span class="dt">FRoseTree</span> l <span class="ot">=</span> <span class="dt">FRoseTree</span> [<span class="dt">RoseTree</span> l]</span></code></pre></div>
+<p><code>SMPList</code> and <code>FRoseTree</code> give two different representations of directed graphs.
+For example, the graph</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/23/Directed_graph_no_background.svg/1920px-Directed_graph_no_background.svg.png" width="700" /></p>
+<p>can be represented as</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>dgraph1SMPL <span class="ot">=</span> <span class="dt">SMPList</span> <span class="op">$</span> <span class="dt">PList</span> [(<span class="dv">1</span>, [<span class="dv">2</span>, <span class="dv">3</span>]), (<span class="dv">2</span>, []), (<span class="dv">3</span>, [<span class="dv">2</span>, <span class="dv">4</span>]), (<span class="dv">4</span>, [<span class="dv">3</span>])]</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>dgraph1FRT <span class="ot">=</span> <span class="dt">FRoseTree</span> [one] <span class="kw">where</span> </span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  one <span class="ot">=</span> <span class="dt">RoseTree</span> <span class="dv">1</span> [two, tree]</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  two <span class="ot">=</span> <span class="dt">RoseTree</span> <span class="dv">2</span> []</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>  three <span class="ot">=</span> <span class="dt">RoseTree</span> <span class="dv">3</span> [two, four]</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>  four <span class="ot">=</span> <span class="dt">RoseTree</span> <span class="dv">4</span> [three]</span></code></pre></div>
+<p>To warm up, please implement the graph</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/commons/f/fe/Tred-G.svg" width="700" /></p>
+<p>in both representations.</p>
+<p>Please make <code>SMPList</code> and <code>FRoseTree</code> instances of <code>DGraph</code>.</p>
+<p>Can you come up with any more different representations of directed graphs? Please implement them as
+parameterised datatypes and make them an instance of <code>DGraph</code>. To practice some more, you can implement
+your favourite directed graph (for example one of the two above) in your new representations.</p>
+<p>We want to write a function <code>maxPaths</code> that takes a directed graph <code>someGraph</code> – it should accept any representation –
+and a list <code>inits</code> of vertices as inputs and produces a list of all maximal directed paths, i.e. directed paths that cannot be made longer, in <code>someGraph</code> that start from a vertex <code>i</code> in <code>inits</code>.
+Please specify the type signature of <code>maxPaths</code>.</p>
+<p>Now, please implement <code>maxPaths</code>. You may assume, for simplicity, that it is only ever used on directed graphs without cycles.</p>
+<p>Can you come up with any more operations that we can perform on any directed graph?</p>
+<p>Please add them to the type class and give their implementations.
+Can you use a default implementation?</p>
+    </div>
+  </body>
+</html>

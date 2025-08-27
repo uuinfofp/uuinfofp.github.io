@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Functional Programming - applyAll as a fold</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/syntax.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/bootstrapify.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+  </head>
+  <body>
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="./index.html">Functional Programming</a> <!--  -->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!-- <li><a href="/description.html">Description</a></li> -->
+            <li><a href="./lectures.html">Lectures</a></li>
+            <li><a href="./labs.html">Practicals</a></li>
+            <li><a href="./exercises.html">Exercises</a></li>
+            <li><a href="./optional.html">Optional Assignment</a></li>
+            <li><a href="./exams.html">Old Exams</a></li>
+            <!-- <li><a href="projects.html">Projects</a></li> -->
+            <li><a target="_blank" href="https://cursusplanner.uu.nl/course/INFOFP/2025/1">Education page</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container" id="main">
+      <h2>applyAll as a fold</h2>
+
+      <p>In the lectures we have seen two variants of <code>applyAll</code>, which we would like to express as a fold. Here is a step-by-step explanation on how to reach them.</p>
+<p>As a remainder, here are the definitions of <code>foldl</code> and <code>foldr</code>:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">foldl</span> f v []     <span class="ot">=</span> v                    <span class="co">-- Equation (L1)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">foldl</span> f v (g<span class="op">:</span>gs) <span class="ot">=</span> <span class="fu">foldl</span> f (f v g) gs   <span class="co">-- Equation (L2)</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">foldr</span> f v []     <span class="ot">=</span> v                    <span class="co">-- Equation (R1)</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">foldr</span> f v (g<span class="op">:</span>gs) <span class="ot">=</span> f g (<span class="fu">foldr</span> f v gs)   <span class="co">-- Equation (R2)</span></span></code></pre></div>
+<h4 id="version-with-explicit-application">Version with explicit application</h4>
+<p>The first version of <code>applyAll</code> we derived in the lectures is:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>applyAll []     x <span class="ot">=</span> x                  <span class="co">-- Equation (A1)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>applyAll (g<span class="op">:</span>gs) x <span class="ot">=</span> applyAll gs (g x)  <span class="co">-- Equation (A2)</span></span></code></pre></div>
+<p>From equations (L1) and (A1) we derive:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>  applyAll [] x <span class="ot">=</span> x</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="ot">=</span> <span class="fu">foldl</span> f v []  <span class="ot">=</span> v</span></code></pre></div>
+<p>Thus, the initial value <code>v</code> must coincide with <code>x</code>.</p>
+<p>Now, from equations (L2) and (A2) applied to a list of the form <code>g:gs</code>:</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>  applyAll (g<span class="op">:</span>gs) x <span class="ot">=</span> applyAll gs (g x)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="ot">=</span> <span class="fu">foldl</span> f x (g<span class="op">:</span>gs)  <span class="ot">=</span> <span class="fu">foldl</span> f (f x g) gs</span></code></pre></div>
+<p>Here is the trick: <em>assume</em> that <code>applyAll gs t = foldl f t gs</code> for any <code>t</code> (why this is a sensible thing to do is explained in Lecture 10, <em>Laws and induction</em>). If that is the case, we just need to find an <code>f</code> such that:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>f x g <span class="ot">=</span> g x</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- or written otherwise</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>f     <span class="ot">=</span> \x g <span class="ot">-&gt;</span> g x</span></code></pre></div>
+<p>Now we have the two ingredients to reach the final conclusion:</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>applyAll gs x <span class="ot">=</span> <span class="fu">foldl</span> (\x g <span class="ot">-&gt;</span> g x) x gs</span></code></pre></div>
+<h3 id="point-free-version">Point-free version</h3>
+<p>The other version we discussed in the lectures builds the <code>applyAll</code> by repeated composition:</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>applyAll []     <span class="ot">=</span> <span class="fu">id</span>               <span class="co">-- Equation (B1)</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>applyAll (g<span class="op">:</span>gs) <span class="ot">=</span> applyAll gs <span class="op">.</span> g  <span class="co">-- Equation (B2)</span></span></code></pre></div>
+<p>Let us start again by comparing the empty list case:</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>  applyAll []  <span class="ot">=</span> <span class="fu">id</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="ot">=</span> <span class="fu">foldl</span> f x [] <span class="ot">=</span> x</span></code></pre></div>
+<p>Thus, the initial value in this case is the function <code>id</code>. If this doesn’t make sense to you, remember that now we are returning <em>a function</em> as result, and <code>id</code> is one such function.</p>
+<p>Now to the recursive case. Let us write the equations for a list of the form <code>g:gs</code>:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>  applyAll (g<span class="op">:</span>gs)  <span class="ot">=</span> applyAll gs <span class="op">.</span> g</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="ot">=</span> <span class="fu">foldl</span> f v (g<span class="op">:</span>gs) <span class="ot">=</span> <span class="fu">foldl</span> f (f v g) gs</span></code></pre></div>
+<p>Oh, the do not match! The problem here is that a left-fold <em>accumulates</em> its value on a recursive call. But in this case we use the <em>result</em> of the recursive call <code>applyAll gs</code> to build a larger one. This means we need to look at <code>foldr</code> instead.</p>
+<p>The calculation of <code>x</code> is the same as for <code>foldl</code>. So let us focus on the recursive case:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>  applyAll (g<span class="op">:</span>gs)  <span class="ot">=</span> applyAll gs <span class="op">.</span> g <span class="ot">=</span> (<span class="op">.</span>) (applyAll gs) g</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="ot">=</span> <span class="fu">foldr</span> f v (g<span class="op">:</span>gs) <span class="ot">=</span> f g (<span class="fu">foldr</span> f v gs)</span></code></pre></div>
+<p>As previously, let us assume that <code>applyAll = foldr f v gs</code>. Then we need to find a function such that:</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>f g x <span class="ot">=</span> x <span class="op">.</span> g</span></code></pre></div>
+<p>Here you are! We can just take <code>f = \g x -&gt; x . g</code>, or simplify it to <code>flip (.)</code>, as done in the slides.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>applyAll gs <span class="ot">=</span> <span class="fu">foldr</span> (\g x <span class="ot">-&gt;</span> x <span class="op">.</span> g) <span class="fu">id</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>applyAll gs <span class="ot">=</span> <span class="fu">foldr</span> (<span class="fu">flip</span> (<span class="op">.</span>)) <span class="fu">id</span></span></code></pre></div>
+    </div>
+  </body>
+</html>

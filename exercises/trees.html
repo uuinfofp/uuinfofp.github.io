@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Functional Programming - Trees</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/syntax.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrapify.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+  </head>
+  <body>
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">Functional Programming</a> <!--  -->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!-- <li><a href="/description.html">Description</a></li> -->
+            <li><a href="../lectures.html">Lectures</a></li>
+            <li><a href="../labs.html">Practicals</a></li>
+            <li><a href="../exercises.html">Exercises</a></li>
+            <li><a href="../optional.html">Optional Assignment</a></li>
+            <li><a href="../exams.html">Old Exams</a></li>
+            <!-- <li><a href="projects.html">Projects</a></li> -->
+            <li><a target="_blank" href="https://cursusplanner.uu.nl/course/INFOFP/2025/1">Education page</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container" id="main">
+      <h2>Trees</h2>
+
+      <p>Consider the following Binary Tree type</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Tree</span> a <span class="ot">=</span> <span class="dt">Leaf</span> <span class="op">|</span> <span class="dt">Node</span> (<span class="dt">Tree</span> a) a (<span class="dt">Tree</span> a)</span></code></pre></div>
+<h2 data-number="1" id="section-1"><span class="header-section-number">1</span>  <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>Write the function <code>elemTree</code> that tests if an element <code>x</code> occurs in a
+binary search tree of type <code>Tree a</code>.</p>
+<h2 data-number="2" id="section-2"><span class="header-section-number">2</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Write functions that return all values of type <code>a</code> in a tree of type
+<code>Tree a</code> in depth-first (pre-order), depth-first (in-order), and
+breadth-first order.</p>
+<h2 data-number="3" id="section-3"><span class="header-section-number">3</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Write a function <code>showTree</code> that gives a nice representation as a
+<code>String</code> for a given tree. Every leaf should be placed on a different
+line (separated by <code>"\n"</code>). Leaves that are deeper in the tree should
+be further to the right than leaves higher in the tree.</p>
+<h2 data-number="4" id="section-4"><span class="header-section-number">4</span>  <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>Write a function <code>mapTree</code> and a function <code>foldTree</code> that work on a
+<code>Tree</code>, analoguous to <code>map</code> and <code>foldr</code> on lists. Also give the type
+of these functions.</p>
+<h2 data-number="5" id="section-5"><span class="header-section-number">5</span>  <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>Write a function <code>height</code>, that computes the amount of levels in a
+<code>Tree</code>. Give a definition using recursion, and a different definition
+using <code>foldTree</code>.</p>
+<h2 data-number="6" id="section-6"><span class="header-section-number">6</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Suppose that a tree <code>t</code> has height <code>n</code>. What is the minimal and
+maximal amount of leaves that <code>t</code> could have?</p>
+<h2 data-number="7" id="section-7"><span class="header-section-number">7</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Write a function that computes all paths of type <code>[a]</code> from the root
+up to a leaf for a tree of type <code>Tree a</code>.</p>
+<h2 data-number="8" id="section-8"><span class="header-section-number">8</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Write a function that computes a list of nodes that occur on one of
+the longest paths from the root up to a leaf. Try to keep the solution
+linear with respect to the size of the tree.</p>
+<h2 data-number="9" id="section-9"><span class="header-section-number">9</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Write <code>mapTree</code> using <code>foldTree</code></p>
+<h2 data-number="10" id="section-10"><span class="header-section-number">10</span>  <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>Write a function <code>extractMin</code> that removes the smallest element from a
+binary search tree. Returns the smallest element and the remainder of
+the tree.</p>
+<h2 data-number="11" id="section-11"><span class="header-section-number">11</span>  <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>Write a function <code>delete</code> that deletes an element from the tree. You
+can assume the element appears at most once. Your new tree should
+remain a binary search tree.</p>
+<p>Hint: You may want to use the function <code>extractMin</code> you defined above.</p>
+<h2 data-number="12" id="section-12"><span class="header-section-number">12</span>  <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>Define a binary tree type <code>LeafTree</code> in which leaves store values of
+type <code>a</code> and internal nodes store values of type <code>b</code></p>
+<h2 data-number="13" id="section-13"><span class="header-section-number">13</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Define a function <code>height</code> that given a LeafTree computes the height of
+the <code>LeafTree a b</code>. Leaves have height one.</p>
+<h2 data-number="14" id="section-14"><span class="header-section-number">14</span>  <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>Define a function <code>annotate</code>, that given a <code>LeafTree Int b</code> labels every
+internal node with the minimum and maximum value appearing in the
+leaves in its subtree.</p>
+<p>e.g.</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="dt">Node</span> (<span class="dt">Node</span> (<span class="dt">Leaf</span> <span class="dv">3</span>) <span class="st">&quot;left&quot;</span> (<span class="dt">Leaf</span> <span class="dv">5</span>))</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>     <span class="st">&quot;root&quot;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>     (<span class="dt">Leaf</span> <span class="dv">1</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="ot">-&gt;</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="dt">Node</span> (<span class="dt">Node</span> (<span class="dt">Leaf</span> <span class="dv">3</span>) (<span class="dv">3</span>,<span class="dv">5</span>) (<span class="dt">Leaf</span> <span class="dv">5</span>))</span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>     (<span class="dv">1</span>,<span class="dv">5</span>)</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>     (<span class="dt">Leaf</span> <span class="dv">1</span>)</span></code></pre></div>
+<h2 data-number="15" id="section-15"><span class="header-section-number">15</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Write a function <code>withDepth</code> that annotates the tree by its depth. The
+depth of a node <code>v</code> is the length of the path from the root to <code>v</code>.</p>
+<h2 data-number="16" id="section-16"><span class="header-section-number">16</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Write a function <code>trimWhen :: (a -&gt; Bool) -&gt; (b -&gt; Bool) -&gt; LeafTree a b -&gt; LeafTree (LeafTree a b) b</code> that ‘trims’ the subtree depending on two
+predicates <code>p :: a -&gt; Bool</code> and <code>q :: b -&gt; Bool</code> . In particular,
+predicate <code>p x</code> returns True if and only if we should trim the leaf
+storing some value <code>x</code> and <code>q y</code> returns True if and only if the
+subtree whose root stores a <code>y</code> should be trimmed.</p>
+<h2 data-number="17" id="section-17"><span class="header-section-number">17</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Write a function <code>bimapTree :: (a -&gt; c) -&gt; (b -&gt; d) -&gt; LeafTree a b -&gt; LeafTree c d</code>.</p>
+<h2 data-number="18" id="section-18"><span class="header-section-number">18</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Write a function <code>trim :: Int -&gt; LeafTree a b -&gt; LeafTree (Maybe (LeafTree a b) b)</code> that trims a tree at the given depth.</p>
+<h2 data-number="19" id="section-19"><span class="header-section-number">19</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Define a Tree type <code>TTTree a</code> that models trees in which</p>
+<ul>
+<li>the leaves store values of type <code>a</code>,</li>
+<li>internal nodes either have 2 or 3 children, and</li>
+<li>internal nodes store an ‘Int’ denoting the size (number of
+leaves) in the subtree.</li>
+</ul>
+<h2 data-number="20" id="section-20"><span class="header-section-number">20</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Define a function <code>insert</code> that inserts a new element in a <code>TTTree</code>,
+while maintaining the subtree size invariant, and while keeping the
+height low (e.g. try to avoid increasing the height if possible).</p>
+<h2 data-number="21" id="section-21"><span class="header-section-number">21</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Define <code>mapTTTree</code> and <code>foldTTTree</code> functions for your <code>TTTree</code> data
+type.</p>
+<h2 data-number="22" id="section-22"><span class="header-section-number">22</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Define function <code>sized</code> that, given an <code>Int</code> <span class="math inline">\(n\)</span>, returns all subtrees
+of size <span class="math inline">\(n\)</span>.</p>
+<h2 data-number="23" id="section-23"><span class="header-section-number">23</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>It is not possible to write the <code>sized</code> function directly using
+<code>foldTTTree</code>. However, we can use <code>foldTTTree</code> to do most of the work;
+that is, we can define a function <code>sized'</code> using <code>foldTTTree</code> such
+that</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ot">sized   ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">TTTree</span> a <span class="ot">-&gt;</span> [<span class="dt">TTTree</span> a]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>sized n <span class="ot">=</span> <span class="fu">snd</span> <span class="op">.</span> sized' n</span></code></pre></div>
+<p>write the function <code>sized'</code></p>
+<h2 data-number="24" id="section-24"><span class="header-section-number">24</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>A <code>TTTree</code> is <strong>valid</strong> if all root to leaf paths are equally
+long. Write a function <code>height</code> that computes the height of a <code>TTtree</code>
+if it is valid. Think about a suitable type for your function.</p>
+<h2 data-number="25" id="red-black-trees"><span class="header-section-number">25</span> Red-Black Trees <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Write a function <code>validRBTree :: RBTree a -&gt; Bool</code> that checks if a
+given <code>RBTree a</code> satisfies all red-black tree properties.</p>
+<h2 data-number="26" id="section-25"><span class="header-section-number">26</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Consider the following data type of binary trees <code>BST a</code> that we
+intend to use to implement binary search trees. We will store “real”
+elements (the elements we care about) only in the Leaves of the
+tree. The <code>a</code> field in a <code>Node</code> is used only as a routing element (to
+guide searches).</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">BST</span> a <span class="ot">=</span> <span class="dt">Leaf</span> a</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>           <span class="op">|</span> <span class="dt">Node</span> (<span class="dt">BST</span> a) a (<span class="dt">BST</span> a)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>           <span class="kw">deriving</span> (<span class="dt">Show</span>,<span class="dt">Read</span>,<span class="dt">Eq</span>)</span></code></pre></div>
+<p>We can compute the elements we care about of such a tree as follows:</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ot">elems ::</span> <span class="dt">BST</span> a <span class="ot">-&gt;</span> [a]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>elems (<span class="dt">Leaf</span> x) <span class="ot">=</span> [x]</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>elems (<span class="dt">Node</span> l _ r) <span class="ot">=</span> elems l <span class="op">++</span> elems r</span></code></pre></div>
+<p>An example of such a trees we will care about is</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>exampleTree <span class="ot">=</span> <span class="dt">Node</span> (<span class="dt">Node</span> (<span class="dt">Leaf</span> <span class="dv">1</span>) <span class="dv">3</span> (<span class="dt">Node</span> (<span class="dt">Leaf</span> <span class="dv">4</span>) <span class="dv">6</span> (<span class="dt">Leaf</span> <span class="dv">7</span>))) <span class="dv">8</span> (<span class="dt">Node</span> (<span class="dt">Leaf</span> <span class="dv">9</span>) <span class="dv">10</span> (<span class="dt">Leaf</span> <span class="dv">13</span>))</span></code></pre></div>
+<p>Then <code>elems exampleTree = [1, 4, 7, 9, 13]</code></p>
+<p>Here, the only purpose of the element 8, for example, is to signal
+that all the elements in the left subtree are <span class="math inline">\(\leq 8\)</span> and that all
+the elements in the right subtree are <span class="math inline">\(&gt; 8\)</span>.</p>
+<p><strong>The question</strong>: write a function <code>complete</code> that constructs a complete
+balanced binary search tree out of an sorted list of <span class="math inline">\(2^h\)</span>, with <span class="math inline">\(h
+\geq 0\)</span>, elements (with those elements in the same order as given.).</p>
+<p><strong>Bonus</strong>: Write <code>complete</code> so that it runs in linear time.</p>
+<h2 data-number="27" id="section-26"><span class="header-section-number">27</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Give the type of a function <code>delete</code>, such that, given an element <code>a</code>
+and tree <code>t</code>, <code>delete a t</code> looks whether <code>a</code> is present in <code>t</code> and if
+so, removes <code>a</code> from <code>t</code>. The function delete should always be able to
+produce a valid element of the result type, i.e. it may not produce an
+error.</p>
+<h2 data-number="28" id="section-27"><span class="header-section-number">28</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Please implement the above function <code>delete</code>.</p>
+<h2 data-number="29" id="section-28"><span class="header-section-number">29</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Use higher order functions (i.e. <code>foldr</code>, <code>foldl'</code>, <code>map</code>, <code>filter</code>)
+to write a function <code>batchDelete</code> that removes all elements from a
+given list from a tree. Give the type of this function as well.</p>
+    </div>
+  </body>
+</html>

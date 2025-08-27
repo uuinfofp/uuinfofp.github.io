@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Functional Programming - Fold Exercises</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/syntax.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrapify.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+  </head>
+  <body>
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">Functional Programming</a> <!--  -->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!-- <li><a href="/description.html">Description</a></li> -->
+            <li><a href="../lectures.html">Lectures</a></li>
+            <li><a href="../labs.html">Practicals</a></li>
+            <li><a href="../exercises.html">Exercises</a></li>
+            <li><a href="../optional.html">Optional Assignment</a></li>
+            <li><a href="../exams.html">Old Exams</a></li>
+            <!-- <li><a href="projects.html">Projects</a></li> -->
+            <li><a target="_blank" href="https://cursusplanner.uu.nl/course/INFOFP/2025/1">Education page</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container" id="main">
+      <h2>Fold Exercises</h2>
+
+      <p>Write the following functions using the <code>foldr</code> or <code>foldl</code> function. If no type
+signature is given, also give the type of the function.</p>
+<p>A good strategy to get started is to first write the function using
+explicit recursion, and then somewhat mechanically convert it to using
+<code>foldr</code> or <code>foldl</code>.</p>
+<h2 data-number="1" id="length"><span class="header-section-number">1</span> <code>length</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>length returns the length of a finite list.</p>
+<div class="sourceCode" id="cb1" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span> <span class="ot">=</span> <span class="fu">foldr</span> f e</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>    f _ r <span class="ot">=</span> <span class="dv">1</span> <span class="op">+</span> r</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>    e     <span class="ot">=</span> <span class="dv">0</span></span></code></pre></div>
+<h2 data-number="2" id="section-1"><span class="header-section-number">2</span> <code>(++)</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Append two lists.</p>
+<div class="sourceCode" id="cb2" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>(<span class="op">++</span>) xs ys <span class="ot">=</span> <span class="fu">foldr</span> f e xs</span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>    f x r <span class="ot">=</span> x<span class="op">:</span>r</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>    e <span class="ot">=</span> ys</span></code></pre></div>
+<h2 data-number="3" id="product"><span class="header-section-number">3</span> <code>product</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>The product function computes the product of a finite list of numbers.</p>
+<div class="sourceCode" id="cb3" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">product</span> <span class="ot">=</span> <span class="fu">foldr</span> f e</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>    f x r <span class="ot">=</span> x <span class="op">*</span> r</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>    e     <span class="ot">=</span> <span class="dv">1</span></span></code></pre></div>
+<h2 data-number="4" id="or"><span class="header-section-number">4</span> <code>or</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>or returns the disjunction of a Boolean list.</p>
+<div class="sourceCode" id="cb4" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">or</span> <span class="ot">=</span> <span class="fu">foldr</span> f e</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>    f x r <span class="ot">=</span> x <span class="op">||</span> r</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>    e     <span class="ot">=</span> <span class="dt">False</span></span></code></pre></div>
+<h2 data-number="5" id="any"><span class="header-section-number">5</span> <code>any</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Applied to a predicate and a list, any determines if any element of
+the list satisfies the predicate.</p>
+<div class="sourceCode" id="cb5" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">any</span> p <span class="ot">=</span> <span class="fu">foldr</span> f e</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>    f x r <span class="ot">=</span> p x <span class="op">||</span> r</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>    e     <span class="ot">=</span> <span class="dt">False</span></span></code></pre></div>
+<h2 data-number="6" id="all"><span class="header-section-number">6</span> <code>all</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Applied to a predicate and a list, all determines if all elements of
+the list satisfy the predicate.</p>
+<div class="sourceCode" id="cb6" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">all</span> p <span class="ot">=</span> <span class="fu">foldr</span> f e</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    f x r <span class="ot">=</span> p x <span class="op">&amp;&amp;</span> r</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    e     <span class="ot">=</span> <span class="dt">True</span></span></code></pre></div>
+<h2 data-number="7" id="map"><span class="header-section-number">7</span> <code>map</code> <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<div class="sourceCode" id="cb7" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span> g <span class="ot">=</span> <span class="fu">foldr</span> f e</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>    f x r <span class="ot">=</span> g x <span class="op">:</span> r</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    e     <span class="ot">=</span> []</span></code></pre></div>
+<h2 data-number="8" id="reverse"><span class="header-section-number">8</span> <code>reverse</code> <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>reverse xs returns the elements of xs in reverse order. xs must be finite.</p>
+<div class="sourceCode" id="cb8" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">reverse</span> <span class="ot">=</span> <span class="fu">foldr</span> f e</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>    f x r <span class="ot">=</span> r <span class="op">++</span> [x]</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>    e     <span class="ot">=</span> []</span></code></pre></div>
+<h2 data-number="9" id="concat"><span class="header-section-number">9</span> <code>concat</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Concatenate a list of lists into a single list.</p>
+<div class="sourceCode" id="cb9" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">concat</span> <span class="ot">=</span> <span class="fu">foldr</span> f e</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>    f x r <span class="ot">=</span> x <span class="op">++</span> r</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>    e     <span class="ot">=</span> []</span></code></pre></div>
+<h2 data-number="10" id="concatmap"><span class="header-section-number">10</span> <code>concatMap</code> <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>Map a function over a list and concatenate the results.</p>
+<div class="sourceCode" id="cb10" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">concatMap</span> g <span class="ot">=</span> <span class="fu">foldr</span> f e</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    f x r <span class="ot">=</span> g x <span class="op">++</span> r</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    e     <span class="ot">=</span> []</span></code></pre></div>
+<h2 data-number="11" id="elem-eq-a-a---a---bool"><span class="header-section-number">11</span> <code>elem :: Eq a =&gt; a -&gt; [a] -&gt; Bool</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>elem is the list membership predicate, usually written in infix form,
+e.g., x `elem` xs.</p>
+<div class="sourceCode" id="cb11" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Observe that 'elem y = any (== y)' so this is basically the same as any:</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">elem</span> y <span class="ot">=</span> <span class="fu">foldr</span> f e</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    f x r <span class="ot">=</span> (x <span class="op">==</span> y) <span class="op">||</span> r</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>    e <span class="ot">=</span> <span class="dt">False</span></span></code></pre></div>
+<h2 data-number="12" id="filter"><span class="header-section-number">12</span> <code>filter</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>filter, applied to a predicate and a list, returns the list of those
+elements that satisfy the predicate; i.e.,</p>
+<p><code>filter p xs = [ x | x &lt;- xs, p x]</code> :atHome:</p>
+<div class="sourceCode" id="cb12" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span> p <span class="ot">=</span> <span class="fu">foldr</span> f e</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    f x r <span class="ot">=</span> <span class="kw">if</span> p x <span class="kw">then</span> x<span class="op">:</span>r <span class="kw">else</span> r</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    e <span class="ot">=</span> []</span></code></pre></div>
+<h2 data-number="13" id="maybelast-a---maybe-a"><span class="header-section-number">13</span> <code>maybeLast :: [a] -&gt; Maybe a</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Extract the last element of a list. Returns <code>Nothing</code> if the list is empty.</p>
+<div class="sourceCode" id="cb13" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>maybeLast <span class="ot">=</span> <span class="fu">foldr</span> f e</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    f x r <span class="ot">=</span> <span class="kw">case</span> r <span class="kw">of</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>              <span class="dt">Nothing</span> <span class="ot">-&gt;</span> <span class="dt">Just</span> x</span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>              <span class="dt">Just</span> _  <span class="ot">-&gt;</span> r</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>    e <span class="ot">=</span> <span class="dt">Nothing</span></span></code></pre></div>
+<h2 data-number="14" id="partition"><span class="header-section-number">14</span> <code>partition</code> <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>The partition function takes a predicate a list and returns the pair
+of lists of elements which do and do not satisfy the predicate,
+respectively; i.e.,</p>
+<p><code>partition p xs == (filter p xs, filter (not . p) xs)</code></p>
+<div class="sourceCode" id="cb14" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>partition p <span class="ot">=</span> <span class="fu">foldr</span> f e</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>    f x (ts,fs) <span class="ot">=</span> <span class="kw">if</span> p x <span class="kw">then</span> (x<span class="op">:</span>ts,fs) <span class="kw">else</span> (ts,x<span class="op">:</span>fs)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>    e <span class="ot">=</span> ([],[])</span></code></pre></div>
+<h2 data-number="15" id="unzip-a-b---a-b"><span class="header-section-number">15</span> <code>unzip :: [(a, b)] -&gt; ([a], [b])</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>unzip transforms a list of pairs into a list of first components and a
+list of second components.</p>
+<div class="sourceCode" id="cb15" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unzip</span> <span class="ot">=</span> <span class="fu">foldr</span> f e</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>    f (a,b) (as,bs) <span class="ot">=</span> (a<span class="op">:</span>as,b<span class="op">:</span>bs)</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    e <span class="ot">=</span> ([],[])</span></code></pre></div>
+<h2 data-number="16" id="unlines-string---string"><span class="header-section-number">16</span> <code>unlines :: [String] -&gt; String</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>unlines is an inverse operation to lines. It joins lines, after
+appending a terminating newline to each.</p>
+<div class="sourceCode" id="cb16" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unlines</span> <span class="ot">=</span> <span class="fu">foldr</span> f e</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    f l r <span class="ot">=</span> l <span class="op">++</span> <span class="st">&quot;\n&quot;</span> <span class="op">++</span> r</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>    e <span class="ot">=</span> []</span></code></pre></div>
+<h2 data-number="17" id="nub"><span class="header-section-number">17</span> <code>nub</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>The nub function removes duplicate elements from a list. In
+particular, it keeps only the first occurrence of each element. (The
+name nub means `essence’.)</p>
+<div class="sourceCode" id="cb17" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>nub <span class="ot">=</span> <span class="fu">reverse</span> <span class="op">.</span> <span class="fu">foldl</span> f e <span class="kw">where</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>    f r x <span class="op">|</span> x <span class="ot">`elem`</span> r <span class="ot">=</span> r</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>          <span class="op">|</span> <span class="fu">otherwise</span>  <span class="ot">=</span> x<span class="op">:</span>r</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>    e <span class="ot">=</span> []</span></code></pre></div>
+<h2 data-number="18" id="union-eq-a-a---a---a"><span class="header-section-number">18</span> <code>union :: Eq a =&gt; [a] -&gt; [a] -&gt; [a]</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>The union function returns the list union of the two lists. For example,</p>
+<p><code>"dog" `union` "cow" == "dogcw"</code></p>
+<p>Duplicates, and elements of the first list, are removed from the the
+second list, but if the first list contains duplicates, so will the
+result.</p>
+<div class="sourceCode" id="cb18" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>union xs ys <span class="ot">=</span> <span class="fu">foldr</span> f e ys</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    f y r <span class="op">|</span> y <span class="ot">`elem`</span> r  <span class="ot">=</span> r</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>          <span class="op">|</span> <span class="fu">otherwise</span>   <span class="ot">=</span> r <span class="op">++</span> [y]</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    e <span class="ot">=</span> xs</span></code></pre></div>
+<h2 data-number="19" id="intersect-eq-a-a---a---a"><span class="header-section-number">19</span> <code>intersect :: Eq a =&gt; [a] -&gt; [a] -&gt; [a]</code> <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>The intersect function takes the list intersection of two lists. For example,</p>
+<p><code>[1,2,3,4] `intersect` [2,4,6,8] == [2,4]</code></p>
+<p>If the first list contains duplicates, so will the result.</p>
+<p><code>[1,2,2,3,4] `intersect` [6,4,4,2] == [2,2,4]</code></p>
+<div class="sourceCode" id="cb19" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>intersect ys xs <span class="ot">=</span> <span class="fu">foldr</span> f e ys</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>    f y r <span class="op">|</span> y <span class="ot">`elem`</span> xs <span class="ot">=</span> y<span class="op">:</span>r</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>          <span class="op">|</span> <span class="fu">otherwise</span>  <span class="ot">=</span> r</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>    e <span class="ot">=</span> []</span></code></pre></div>
+<h2 data-number="20" id="sort-ord-a-a---a"><span class="header-section-number">20</span> <code>sort :: Ord a =&gt; [a] -&gt; [a]</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>The sort function implements a stable sorting algorithm.</p>
+<p>You can assume that there is a function <code>insert :: Ord a =&gt; a -&gt; [a] -&gt; [a]</code> that takes an element and a list and inserts the element into
+the list at the last position where it is still less than or equal to
+the next element.</p>
+<div class="sourceCode" id="cb20" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sort</span> <span class="ot">=</span> <span class="fu">foldr</span> f e</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    f x r <span class="ot">=</span> insert x r</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    e <span class="ot">=</span> []</span></code></pre></div>
+<h2 data-number="21" id="null"><span class="header-section-number">21</span> <code>null</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Test whether a list is empty.</p>
+<div class="sourceCode" id="cb21" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">null</span> xs <span class="ot">=</span> <span class="fu">foldr</span> f e xs</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>    f x r <span class="ot">=</span> <span class="dt">False</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    e     <span class="ot">=</span> <span class="dt">True</span></span></code></pre></div>
+<h2 data-number="22" id="intersperse"><span class="header-section-number">22</span> <code>intersperse</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>The intersperse function takes an element and a list and `intersperses’ that element between the elements of the list. For example,</p>
+<p><code>intersperse ',' "abcde" == "a,b,c,d,e"</code></p>
+<div class="sourceCode" id="cb22" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>intersperse c <span class="ot">=</span> <span class="fu">foldr</span> f e</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    f x r <span class="ot">=</span> <span class="kw">case</span> r <span class="kw">of</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>              [] <span class="ot">-&gt;</span> [x]</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>              _  <span class="ot">-&gt;</span> x <span class="op">:</span> c <span class="op">:</span> r</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    e     <span class="ot">=</span> []</span></code></pre></div>
+<h2 data-number="23" id="permutations-a---a"><span class="header-section-number">23</span> <code>permutations :: [a] -&gt; [[a]]</code> <span class="tag" data-tag-name="challenging"><span class="smallcaps">challenging</span></span> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>The permutations function returns the list of all permutations of the
+argument. E.g.:</p>
+<p><code>permutations "abc" == ["abc","bac","bca","acb","cab","cba"]</code></p>
+<p>Note that it is ok if your solution returns the permutations in any
+order. E.g.</p>
+<p><code>permutations "abc" == ["abc","bac","cba","bca","cab","acb"]</code></p>
+<p>is also correct.</p>
+<div class="sourceCode" id="cb23" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ot">permutations ::</span> [a] <span class="ot">-&gt;</span> [[a]]</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>permutations <span class="ot">=</span> <span class="fu">foldr</span> f e</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>    f x r <span class="ot">=</span> <span class="fu">concatMap</span> (insertEverywhere x) r</span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>    e     <span class="ot">=</span> [[]]</span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a><span class="ot">insertEverywhere             ::</span> a <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> [[a]]</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>insertEverywhere x []        <span class="ot">=</span> [[x]]</span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>insertEverywhere x xs<span class="op">@</span>(y<span class="op">:</span>ys) <span class="ot">=</span> (x<span class="op">:</span>xs) <span class="op">:</span> <span class="fu">map</span> (y<span class="op">:</span>) (insertEverywhere x ys)</span></code></pre></div>
+<h2 data-number="24" id="takewhile"><span class="header-section-number">24</span> <code>takeWhile</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>takeWhile, applied to a predicate p and a list xs, returns the longest prefix (possibly empty) of xs of elements that satisfy p:</p>
+<ul>
+<li><code>takeWhile (&lt; 3) [1,2,3,4,1,2,3,4] == [1,2]</code></li>
+<li><code>takeWhile (&lt; 9) [1,2,3] == [1,2,3]</code></li>
+<li><code>takeWhile (&lt; 0) [1,2,3] == []</code></li>
+</ul>
+<div class="sourceCode" id="cb24" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">takeWhile</span> p <span class="ot">=</span> <span class="fu">foldr</span> f e</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    f x r <span class="ot">=</span> <span class="kw">if</span> p x <span class="kw">then</span> x<span class="op">:</span>r <span class="kw">else</span> []</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>    e <span class="ot">=</span> []</span></code></pre></div>
+<h2 data-number="25" id="tails-a---a"><span class="header-section-number">25</span> <code>tails :: [a] -&gt; [[a]]</code> <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>The tails function returns all final segments of the argument, longest first. For example,</p>
+<p><code>tails "abc" == ["abc", "bc", "c",""]</code></p>
+<div class="sourceCode" id="cb25" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>tails <span class="ot">=</span> <span class="fu">foldr</span> f e</span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    f x r <span class="ot">=</span> <span class="kw">case</span> r <span class="kw">of</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>              []     <span class="ot">-&gt;</span> [x]<span class="op">:</span>r</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>              (ys<span class="op">:</span>_) <span class="ot">-&gt;</span> (x<span class="op">:</span>ys)<span class="op">:</span>r</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    e <span class="ot">=</span> []</span></code></pre></div>
+<h2 data-number="26" id="group-eq-a-a---a"><span class="header-section-number">26</span> <code>group :: Eq a =&gt; [a] -&gt; [[a]]</code> <span class="tag" data-tag-name="challenging"><span class="smallcaps">challenging</span></span> <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>The group function takes a list and returns a list of lists such that the concatenation of the result is equal to the argument. Moreover, each sublist in the result contains only equal elements. For example,</p>
+<p><code>group "Mississippi" = ["M","i","ss","i","ss","i","pp","i"]</code></p>
+<div class="sourceCode" id="cb26" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">group</span> <span class="ot">=</span> <span class="fu">foldr</span> f e</span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>    f x r <span class="ot">=</span> <span class="kw">case</span> r <span class="kw">of</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>              [] <span class="ot">-&gt;</span> [x]<span class="op">:</span>r                                <span class="co">-- handling the base case</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>              (ys<span class="op">@</span>(y<span class="op">:</span>_)<span class="op">:</span>rs) <span class="op">|</span> x <span class="op">==</span> y    <span class="ot">-&gt;</span> (x<span class="op">:</span>ys)<span class="op">:</span>rs     <span class="co">-- append to current series</span></span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>                            <span class="op">|</span> <span class="fu">otherwise</span> <span class="ot">-&gt;</span> [x]<span class="op">:</span>r         <span class="co">-- start a new series</span></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a>    e <span class="ot">=</span> []</span></code></pre></div>
+<h2 data-number="27" id="scanr-a---b---b---b---a---b"><span class="header-section-number">27</span> <code>scanr :: (a -&gt; b -&gt; b) -&gt; b -&gt; [a] -&gt; [b]</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>scanr is similar to foldr but returns a list of successive reduced
+values from the right:</p>
+<p><code>scanr g z [x_1, x_2, .., x_n] == [x_1 `g` .., .., x_(n-1) `g` z ,x_n `g` z,z]</code></p>
+<p>That is, it also returns all intermediate answers of a foldr. Note in
+particular that</p>
+<p><code>head (scanr g z xs) == foldr g z xs</code> :athome</p>
+<div class="sourceCode" id="cb27" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">scanr</span> g z <span class="ot">=</span> <span class="fu">foldr</span> f e</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    f x r<span class="op">@</span>(y<span class="op">:</span>_) <span class="ot">=</span> g x y <span class="op">:</span> r</span>
+<span id="cb27-4"><a href="#cb27-4" aria-hidden="true" tabindex="-1"></a>    e <span class="ot">=</span> [z]</span></code></pre></div>
+<h2 data-number="28" id="mapaccumr-acc---x---acc-y---acc---x---acc-y"><span class="header-section-number">28</span> <code>mapAccumR :: (acc -&gt; x -&gt; (acc, y)) -&gt; acc -&gt; [x] -&gt; (acc, [y])</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>The mapAccumR function behaves like a combination of map and foldr; it
+applies a function to each element of a list, passing an accumulating
+parameter from right to left, and returning a final value of this
+accumulator together with the new list.</p>
+<div class="sourceCode" id="cb28" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>mapAccumR g z <span class="ot">=</span> <span class="fu">foldr</span> f e</span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>    f x (ra,ry) <span class="ot">=</span> <span class="kw">let</span> (acc,y) <span class="ot">=</span> g ra x <span class="kw">in</span> (acc,y<span class="op">:</span>ry)</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    e <span class="ot">=</span> (z,[])</span></code></pre></div>
+    </div>
+  </body>
+</html>

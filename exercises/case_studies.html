@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Functional Programming - Case studies</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/syntax.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrapify.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+  </head>
+  <body>
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">Functional Programming</a> <!--  -->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!-- <li><a href="/description.html">Description</a></li> -->
+            <li><a href="../lectures.html">Lectures</a></li>
+            <li><a href="../labs.html">Practicals</a></li>
+            <li><a href="../exercises.html">Exercises</a></li>
+            <li><a href="../optional.html">Optional Assignment</a></li>
+            <li><a href="../exams.html">Old Exams</a></li>
+            <!-- <li><a href="projects.html">Projects</a></li> -->
+            <li><a target="_blank" href="https://cursusplanner.uu.nl/course/INFOFP/2025/1">Education page</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container" id="main">
+      <h2>Case studies</h2>
+
+      <p>Consider the following <code>Prop</code> that models propositions (Boolean
+formulas consisting of Boolean literals, variables, negation, and, or,
+and implication).</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Prop</span> <span class="ot">=</span> <span class="dt">Basic</span> <span class="dt">Bool</span> <span class="op">|</span> <span class="dt">Var</span> <span class="dt">Char</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>          <span class="op">|</span> <span class="dt">Not</span> <span class="dt">Prop</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>          <span class="op">|</span> <span class="dt">Prop</span> <span class="op">:/</span>\<span class="op">:</span> <span class="dt">Prop</span> <span class="op">|</span> <span class="dt">Prop</span> <span class="op">:</span>\<span class="op">/:</span> <span class="dt">Prop</span> <span class="op">|</span> <span class="dt">Prop</span> <span class="op">:=&gt;:</span> <span class="dt">Prop</span></span></code></pre></div>
+<h2 data-number="1" id="section-1"><span class="header-section-number">1</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Define a function <code>printProp :: Prop -&gt; String</code> which turns the
+proposition into a printable <code>String</code>.</p>
+<h2 data-number="2" id="section-2"><span class="header-section-number">2</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Define a new <code>printProp' :: Prop -&gt; String</code> which uses as few
+parentheses as possible. For example, <code>Var 'A' :\/: (Var 'B' :\/: Var 'C')</code> should be printed as <code>A \/ B \/ C</code>.</p>
+<p><strong>Hint:</strong> define an auxiliary function <code>printProp'' :: Prop -&gt; (String, LogicalOp)</code> which remembers the top symbol of the formula.</p>
+<h2 data-number="3" id="section-3"><span class="header-section-number">3</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Define a function <code>satisfiable :: Prop -&gt; Bool</code> which returns <code>True</code>
+is the proposition is satisfiable, that is, if there is at least one
+assignment of truth values to variables which make the proposition
+true.</p>
+<h2 data-number="4" id="section-4"><span class="header-section-number">4</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Refine the function <code>satisFiable</code> to return the assignment which makes
+the proposition satisfiable. Which should be the type given to such a
+function?</p>
+<h2 data-number="5" id="section-5"><span class="header-section-number">5</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Recall the following definitions for the <code>ArithExpr</code> type we used in class:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">ArithOp</span> <span class="ot">=</span> <span class="dt">Plus</span> <span class="op">|</span> <span class="dt">Minus</span> <span class="op">|</span> <span class="dt">Times</span> <span class="op">|</span> <span class="dt">Div</span> <span class="kw">deriving</span> <span class="dt">Show</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">ArithExpr</span> <span class="ot">=</span> <span class="dt">Constant</span> <span class="dt">Integer</span></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>               <span class="op">|</span> <span class="dt">Variable</span> <span class="dt">Char</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>               <span class="op">|</span> <span class="dt">Op</span> <span class="dt">ArithOp</span> <span class="dt">ArithExpr</span> <span class="dt">ArithExpr</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>               <span class="kw">deriving</span> <span class="dt">Show</span></span></code></pre></div>
+<p>Extend the definition of <code>ArithExpr</code> to include exponentiation and
+factorial functions. How should the evaluation function <code>eval :: Map Char Integer -&gt; ArithExpr -&gt; Integer</code> change to support them?</p>
+    </div>
+  </body>
+</html>

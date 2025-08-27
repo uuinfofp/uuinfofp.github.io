@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Functional Programming - Trees</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/syntax.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrapify.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+  </head>
+  <body>
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">Functional Programming</a> <!--  -->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!-- <li><a href="/description.html">Description</a></li> -->
+            <li><a href="../lectures.html">Lectures</a></li>
+            <li><a href="../labs.html">Practicals</a></li>
+            <li><a href="../exercises.html">Exercises</a></li>
+            <li><a href="../optional.html">Optional Assignment</a></li>
+            <li><a href="../exams.html">Old Exams</a></li>
+            <!-- <li><a href="projects.html">Projects</a></li> -->
+            <li><a target="_blank" href="https://cursusplanner.uu.nl/course/INFOFP/2025/1">Education page</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container" id="main">
+      <h2>Trees</h2>
+
+      <p>Consider the following Binary Tree type</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Tree</span> a <span class="ot">=</span> <span class="dt">Leaf</span> <span class="op">|</span> <span class="dt">Node</span> (<span class="dt">Tree</span> a) a (<span class="dt">Tree</span> a)</span></code></pre></div>
+<h2 data-number="1" id="section-1"><span class="header-section-number">1</span>  <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>Write the function <code>elemTree</code> that tests if an element <code>x</code> occurs in a
+binary search tree of type <code>Tree a</code>.</p>
+<div class="sourceCode" id="cb2" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ot">elemTree ::</span> <span class="dt">Ord</span> a <span class="ot">=&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Tree</span> a <span class="ot">-&gt;</span> <span class="dt">Bool</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>elemTree q t <span class="ot">=</span> succOf q t <span class="op">==</span> q</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- or directly:</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="ot">elemTree ::</span> <span class="dt">Ord</span> a <span class="ot">=&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Tree</span> a <span class="ot">-&gt;</span> <span class="dt">Bool</span></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a>elemTree _ <span class="dt">Leaf</span> <span class="ot">=</span> <span class="dt">False</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>elemTree q (<span class="dt">Node</span> l x r) <span class="op">|</span> q <span class="op">&lt;</span> x     <span class="ot">=</span> elemTree q l</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>                        <span class="op">|</span> q <span class="op">==</span> x    <span class="ot">=</span> <span class="dt">True</span></span>
+<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>                        <span class="op">|</span> <span class="fu">otherwise</span> <span class="ot">=</span> elemTree q r</span></code></pre></div>
+<h2 data-number="2" id="section-2"><span class="header-section-number">2</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Write functions that return all values of type <code>a</code> in a tree of type
+<code>Tree a</code> in depth-first (pre-order), depth-first (in-order), and
+breadth-first order.</p>
+<div class="sourceCode" id="cb3" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ot">traverseTree                      ::</span> ([a] <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> [a]) <span class="ot">-&gt;</span> <span class="dt">Tree</span> a <span class="ot">-&gt;</span> [a]</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>traverseTree _       <span class="dt">Leaf</span>         <span class="ot">=</span> []</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>traverseTree combine (<span class="dt">Node</span> l x r) <span class="ot">=</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  combine (traverseTree combine l) x (traverseTree  combine r)</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="ot">preOrderTraversal ::</span> <span class="dt">Tree</span> a <span class="ot">-&gt;</span> [a]</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a>preOrderTraversal <span class="ot">=</span> traverseTree (\l x r <span class="ot">-&gt;</span> x <span class="op">:</span> (l <span class="op">++</span> r))</span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="ot">inOrderTraversal ::</span> <span class="dt">Tree</span> a <span class="ot">-&gt;</span> [a]</span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a>inOrderTraversal <span class="ot">=</span> traverseTree (\l x r <span class="ot">-&gt;</span> l <span class="op">++</span> (x <span class="op">:</span> r))</span></code></pre></div>
+<h2 data-number="3" id="section-3"><span class="header-section-number">3</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Write a function <code>showTree</code> that gives a nice representation as a
+<code>String</code> for a given tree. Every leaf should be placed on a different
+line (separated by <code>"\n"</code>). Leaves that are deeper in the tree should
+be further to the right than leaves higher in the tree.</p>
+<h2 data-number="4" id="section-4"><span class="header-section-number">4</span>  <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>Write a function <code>mapTree</code> and a function <code>foldTree</code> that work on a
+<code>Tree</code>, analoguous to <code>map</code> and <code>foldr</code> on lists. Also give the type
+of these functions.</p>
+<div class="sourceCode" id="cb4" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ot">mapTree                ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> <span class="dt">Tree</span> a <span class="ot">-&gt;</span> <span class="dt">Tree</span> b</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>mapTree _ <span class="dt">Leaf</span>         <span class="ot">=</span> <span class="dt">Leaf</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>mapTree f (<span class="dt">Node</span> l x r) <span class="ot">=</span> <span class="dt">Node</span> (mapTree f l) (f x) (mapTree f r)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="ot">foldTree                  ::</span> (b <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> <span class="dt">Tree</span> a <span class="ot">-&gt;</span> b</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>foldTree _ z <span class="dt">Leaf</span>         <span class="ot">=</span> z</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>foldTree f z (<span class="dt">Node</span> l x r) <span class="ot">=</span> f (foldTree f z l) x (foldTree f z r)</span></code></pre></div>
+<h2 data-number="5" id="section-5"><span class="header-section-number">5</span>  <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>Write a function <code>height</code>, that computes the amount of levels in a
+<code>Tree</code>. Give a definition using recursion, and a different definition
+using <code>foldTree</code>.</p>
+<div class="sourceCode" id="cb5" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>height <span class="ot">=</span> foldTree (\l _ r <span class="ot">-&gt;</span> <span class="dv">1</span> <span class="op">+</span> l <span class="ot">`max`</span> r) <span class="dv">1</span></span></code></pre></div>
+<h2 data-number="6" id="section-6"><span class="header-section-number">6</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Suppose that a tree <code>t</code> has height <code>n</code>. What is the minimal and
+maximal amount of leaves that <code>t</code> could have?</p>
+<h2 data-number="7" id="section-7"><span class="header-section-number">7</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Write a function that computes all paths of type <code>[a]</code> from the root
+up to a leaf for a tree of type <code>Tree a</code>.</p>
+<div class="sourceCode" id="cb6" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ot">paths              ::</span> <span class="dt">Tree</span> a <span class="ot">-&gt;</span> [[a]]</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>paths <span class="dt">Leaf</span>         <span class="ot">=</span> [[]]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>paths (<span class="dt">Node</span> l x r) <span class="ot">=</span> <span class="fu">map</span> (x<span class="op">:</span>) (paths l) <span class="op">++</span> <span class="fu">map</span> (x<span class="op">:</span>) (paths r)</span></code></pre></div>
+<h2 data-number="8" id="section-8"><span class="header-section-number">8</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Write a function that computes a list of nodes that occur on one of
+the longest paths from the root up to a leaf. Try to keep the solution
+linear with respect to the size of the tree.</p>
+<h2 data-number="9" id="section-9"><span class="header-section-number">9</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Write <code>mapTree</code> using <code>foldTree</code></p>
+<div class="sourceCode" id="cb7" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>mapTree f <span class="ot">=</span> foldTree (\l x r <span class="ot">-&gt;</span> <span class="dt">Node</span> l (f x) r) <span class="dt">Leaf</span></span></code></pre></div>
+<h2 data-number="10" id="section-10"><span class="header-section-number">10</span>  <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>Write a function <code>extractMin</code> that removes the smallest element from a
+binary search tree. Returns the smallest element and the remainder of
+the tree.</p>
+<div class="sourceCode" id="cb8" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="ot">extractMin              ::</span> <span class="dt">Tree</span> a <span class="ot">-&gt;</span> <span class="dt">Maybe</span> (a, <span class="dt">Tree</span> a)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>extractMin <span class="dt">Leaf</span>         <span class="ot">=</span> <span class="dt">Nothing</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>extractMin (<span class="dt">Node</span> l k r) <span class="ot">=</span> <span class="kw">case</span> extractMin l <span class="kw">of</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>                            <span class="dt">Nothing</span>     <span class="ot">-&gt;</span> <span class="dt">Just</span> (k, r)</span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                            <span class="dt">Just</span> (m,l') <span class="ot">-&gt;</span> <span class="dt">Just</span> (m, <span class="dt">Node</span> l' k r)</span></code></pre></div>
+<h2 data-number="11" id="section-11"><span class="header-section-number">11</span>  <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>Write a function <code>delete</code> that deletes an element from the tree. You
+can assume the element appears at most once. Your new tree should
+remain a binary search tree.</p>
+<p>Hint: You may want to use the function <code>extractMin</code> you defined above.</p>
+<div class="sourceCode" id="cb9" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="ot">delete                ::</span> <span class="dt">Ord</span> a <span class="ot">=&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">Tree</span> a <span class="ot">-&gt;</span> <span class="dt">Tree</span> a</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>delete _ <span class="dt">Leaf</span>         <span class="ot">=</span> <span class="dt">Leaf</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>delete x (<span class="dt">Node</span> l k r) <span class="ot">=</span> <span class="kw">case</span> x <span class="ot">`compare`</span> k <span class="kw">of</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>                          <span class="dt">LT</span> <span class="ot">-&gt;</span> <span class="dt">Node</span> (delete x l) k r</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                          <span class="dt">EQ</span> <span class="ot">-&gt;</span> <span class="kw">case</span> extractMin r <span class="kw">of</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>                                  <span class="dt">Nothing</span>     <span class="ot">-&gt;</span> l</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>                                  <span class="dt">Just</span> (m,r') <span class="ot">-&gt;</span> <span class="dt">Node</span> l m r'</span>
+<span id="cb9-8"><a href="#cb9-8" aria-hidden="true" tabindex="-1"></a>                                    <span class="co">-- we replace k by its successor.</span></span>
+<span id="cb9-9"><a href="#cb9-9" aria-hidden="true" tabindex="-1"></a>                          <span class="dt">GT</span> <span class="ot">-&gt;</span> <span class="dt">Node</span> l k (delete x r)</span></code></pre></div>
+<h2 data-number="12" id="section-12"><span class="header-section-number">12</span>  <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>Define a binary tree type <code>LeafTree</code> in which leaves store values of
+type <code>a</code> and internal nodes store values of type <code>b</code></p>
+<div class="sourceCode" id="cb10" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">LeafTree</span> a b <span class="ot">=</span> <span class="dt">Leaf</span> a</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                  <span class="op">|</span> <span class="dt">Node</span> (<span class="dt">LeafTree</span> a b) b (<span class="dt">LeafTree</span> a b)</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                  <span class="kw">deriving</span> (<span class="dt">Show</span>,<span class="dt">Eq</span>)</span></code></pre></div>
+<h2 data-number="13" id="section-13"><span class="header-section-number">13</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Define a function <code>height</code> that given a LeafTree computes the height of
+the <code>LeafTree a b</code>. Leaves have height one.</p>
+<div class="sourceCode" id="cb11" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ot">height              ::</span> <span class="dt">LeafTree</span> a b <span class="ot">-&gt;</span> <span class="dt">Int</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>height (<span class="dt">Leaf</span> _)     <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>height (<span class="dt">Node</span> l _ r) <span class="ot">=</span> <span class="dv">1</span> <span class="op">+</span> <span class="fu">max</span> (height l) (height r)</span></code></pre></div>
+<h2 data-number="14" id="section-14"><span class="header-section-number">14</span>  <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>Define a function <code>annotate</code>, that given a <code>LeafTree Int b</code> labels every
+internal node with the minimum and maximum value appearing in the
+leaves in its subtree.</p>
+<p>e.g.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="dt">Node</span> (<span class="dt">Node</span> (<span class="dt">Leaf</span> <span class="dv">3</span>) <span class="st">&quot;left&quot;</span> (<span class="dt">Leaf</span> <span class="dv">5</span>))</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>     <span class="st">&quot;root&quot;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>     (<span class="dt">Leaf</span> <span class="dv">1</span>)</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="ot">-&gt;</span></span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="dt">Node</span> (<span class="dt">Node</span> (<span class="dt">Leaf</span> <span class="dv">3</span>) (<span class="dv">3</span>,<span class="dv">5</span>) (<span class="dt">Leaf</span> <span class="dv">5</span>))</span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>     (<span class="dv">1</span>,<span class="dv">5</span>)</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>     (<span class="dt">Leaf</span> <span class="dv">1</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb13" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ot">annotate   ::</span> <span class="dt">LeafTree</span> <span class="dt">Int</span> b <span class="ot">-&gt;</span> <span class="dt">LeafTree</span> <span class="dt">Int</span> (<span class="dt">Int</span>,<span class="dt">Int</span>)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>annotate t <span class="ot">=</span> <span class="kw">case</span> annotate' t <span class="kw">of</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>               (t',_,_) <span class="ot">-&gt;</span> t'</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a><span class="co">-- | Computes the annotated tree, as well as the minimum and maximum in the tree</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a><span class="ot">annotate'              ::</span> <span class="dt">LeafTree</span> <span class="dt">Int</span> b <span class="ot">-&gt;</span> (<span class="dt">LeafTree</span> <span class="dt">Int</span> (<span class="dt">Int</span>,<span class="dt">Int</span>), <span class="dt">Int</span>, <span class="dt">Int</span>)</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>annotate' (<span class="dt">Leaf</span> x)     <span class="ot">=</span> (<span class="dt">Leaf</span> x, x, x)</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>annotate' (<span class="dt">Node</span> l _ r) <span class="ot">=</span> <span class="kw">let</span> (l',lmin,lmax) <span class="ot">=</span> annotate' l</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>                             (r',rmin,rmax) <span class="ot">=</span> annotate' r</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>                             mi             <span class="ot">=</span> <span class="fu">min</span> lmin rmin</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>                             ma             <span class="ot">=</span> <span class="fu">max</span> lmax rmax</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>                         <span class="kw">in</span> (<span class="dt">Node</span> l' (mi,ma) r', mi, ma)</span></code></pre></div>
+<h2 data-number="15" id="section-15"><span class="header-section-number">15</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Write a function <code>withDepth</code> that annotates the tree by its depth. The
+depth of a node <code>v</code> is the length of the path from the root to <code>v</code>.</p>
+<div class="sourceCode" id="cb14" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="ot">withDepth ::</span> <span class="dt">LeafTree</span> a b <span class="ot">-&gt;</span> <span class="dt">LeafTree</span> (a,<span class="dt">Int</span>) (b,<span class="dt">Int</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>withDepth <span class="ot">=</span> withDepth' <span class="dv">0</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a><span class="ot">withDepth'                ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">LeafTree</span> a b <span class="ot">-&gt;</span> <span class="dt">LeafTree</span> (a,<span class="dt">Int</span>) (b,<span class="dt">Int</span>)</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>withDepth' d (<span class="dt">Leaf</span> x)     <span class="ot">=</span> <span class="dt">Leaf</span> (x,d)</span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>withDepth' d (<span class="dt">Node</span> l x r) <span class="ot">=</span> <span class="dt">Node</span> (withDepth' (d<span class="op">+</span><span class="dv">1</span>) l) (x,d) (withDepth' (d<span class="op">+</span><span class="dv">1</span>) r)</span></code></pre></div>
+<h2 data-number="16" id="section-16"><span class="header-section-number">16</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Write a function <code>trimWhen :: (a -&gt; Bool) -&gt; (b -&gt; Bool) -&gt; LeafTree a b -&gt; LeafTree (LeafTree a b) b</code> that ‘trims’ the subtree depending on two
+predicates <code>p :: a -&gt; Bool</code> and <code>q :: b -&gt; Bool</code> . In particular,
+predicate <code>p x</code> returns True if and only if we should trim the leaf
+storing some value <code>x</code> and <code>q y</code> returns True if and only if the
+subtree whose root stores a <code>y</code> should be trimmed.</p>
+<div class="sourceCode" id="cb15" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="ot">trimWhen       ::</span> (a <span class="ot">-&gt;</span> <span class="dt">Bool</span>) <span class="ot">-&gt;</span> (b <span class="ot">-&gt;</span> <span class="dt">Bool</span>) <span class="ot">-&gt;</span> <span class="dt">LeafTree</span> a b</span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>               <span class="ot">-&gt;</span> <span class="dt">LeafTree</span> (<span class="dt">Maybe</span> (<span class="dt">LeafTree</span> a b)) b</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>trimWhen p q t <span class="ot">=</span> <span class="kw">case</span> t <span class="kw">of</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>                   <span class="dt">Leaf</span> x <span class="op">|</span> p x           <span class="ot">-&gt;</span> <span class="dt">Leaf</span> (<span class="dt">Just</span> t)</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>                          <span class="op">|</span> <span class="fu">otherwise</span>     <span class="ot">-&gt;</span> <span class="dt">Leaf</span> <span class="dt">Nothing</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>                   <span class="dt">Node</span> l y r <span class="op">|</span> q y       <span class="ot">-&gt;</span> <span class="dt">Leaf</span> (<span class="dt">Just</span> t)</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>                              <span class="op">|</span> <span class="fu">otherwise</span> <span class="ot">-&gt;</span> <span class="dt">Node</span> (trimWhen p q l) y (trimWhen p q r)</span></code></pre></div>
+<h2 data-number="17" id="section-17"><span class="header-section-number">17</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Write a function <code>bimapTree :: (a -&gt; c) -&gt; (b -&gt; d) -&gt; LeafTree a b -&gt; LeafTree c d</code>.</p>
+<div class="sourceCode" id="cb16" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="ot">bimapTree       ::</span> (a <span class="ot">-&gt;</span> c) <span class="ot">-&gt;</span> (b <span class="ot">-&gt;</span> d) <span class="ot">-&gt;</span> <span class="dt">LeafTree</span> a b <span class="ot">-&gt;</span> <span class="dt">LeafTree</span> c d</span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>bimapTree f g t <span class="ot">=</span> <span class="kw">case</span> t <span class="kw">of</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                    <span class="dt">Leaf</span> x     <span class="ot">-&gt;</span> <span class="dt">Leaf</span> (f x)</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                    <span class="dt">Node</span> l x r <span class="ot">-&gt;</span> <span class="dt">Node</span> (bimapTree f g l) (g x) (bimapTree f g r)</span></code></pre></div>
+<h2 data-number="18" id="section-18"><span class="header-section-number">18</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Write a function <code>trim :: Int -&gt; LeafTree a b -&gt; LeafTree (Maybe (LeafTree a b) b)</code> that trims a tree at the given depth.</p>
+<div class="sourceCode" id="cb17" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ot">trim   ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">LeafTree</span> a b <span class="ot">-&gt;</span> <span class="dt">LeafTree</span> (<span class="dt">Maybe</span> (<span class="dt">LeafTree</span> a b)) b</span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>trim d <span class="ot">=</span> bimapTree f <span class="fu">fst</span> <span class="op">.</span> trimWhen p p <span class="op">.</span> withDepth</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a><span class="ot">    p        ::</span> (c,<span class="dt">Int</span>) <span class="ot">-&gt;</span> <span class="dt">Bool</span></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>    p (_,d') <span class="ot">=</span> d' <span class="op">==</span> d</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-7"><a href="#cb17-7" aria-hidden="true" tabindex="-1"></a>    f <span class="dt">Nothing</span>  <span class="ot">=</span> <span class="dt">Nothing</span></span>
+<span id="cb17-8"><a href="#cb17-8" aria-hidden="true" tabindex="-1"></a>    f (<span class="dt">Just</span> t) <span class="ot">=</span> <span class="dt">Just</span> <span class="op">$</span> bimapTree <span class="fu">fst</span> <span class="fu">fst</span> t</span></code></pre></div>
+<h2 data-number="19" id="section-19"><span class="header-section-number">19</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Define a Tree type <code>TTTree a</code> that models trees in which</p>
+<ul>
+<li>the leaves store values of type <code>a</code>,</li>
+<li>internal nodes either have 2 or 3 children, and</li>
+<li>internal nodes store an ‘Int’ denoting the size (number of
+leaves) in the subtree.</li>
+</ul>
+<div class="sourceCode" id="cb18" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">TTTree</span> a <span class="ot">=</span> <span class="dt">Leaf</span> a</span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> <span class="dt">Node2</span> <span class="dt">Int</span> (<span class="dt">TTTree</span> a) (<span class="dt">TTTree</span> a)</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>              <span class="op">|</span> <span class="dt">Node3</span> <span class="dt">Int</span> (<span class="dt">TTTree</span> a) (<span class="dt">TTTree</span> a) (<span class="dt">TTTree</span> a)</span></code></pre></div>
+<h2 data-number="20" id="section-20"><span class="header-section-number">20</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Define a function <code>insert</code> that inserts a new element in a <code>TTTree</code>,
+while maintaining the subtree size invariant, and while keeping the
+height low (e.g. try to avoid increasing the height if possible).</p>
+<h2 data-number="21" id="section-21"><span class="header-section-number">21</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Define <code>mapTTTree</code> and <code>foldTTTree</code> functions for your <code>TTTree</code> data
+type.</p>
+<div class="sourceCode" id="cb19" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="ot">foldTTTree           ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> (<span class="dt">Int</span> <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> (<span class="dt">Int</span> <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> <span class="dt">TTTree</span> a <span class="ot">-&gt;</span> b</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>foldTTTree f g2 g3 t <span class="ot">=</span> <span class="kw">case</span> t <span class="kw">of</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>                         <span class="dt">Leaf</span> x        <span class="ot">-&gt;</span> f x</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>                         <span class="dt">Node2</span> s l r   <span class="ot">-&gt;</span> g2 s (foldTTTree f g2 g3 l) (foldTTTree f g2 g3 r)</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>                         <span class="dt">Node3</span> s l m r <span class="ot">-&gt;</span> g3 s (foldTTTree f g2 g3 l) (foldTTTree f g2 g3 m) (foldTTTree f g2 g3 r)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a>mapTTTree f <span class="ot">=</span> foldTTTree (<span class="dt">Leaf</span> <span class="op">.</span> f) <span class="dt">Node2</span> <span class="dt">Node3</span></span></code></pre></div>
+<h2 data-number="22" id="section-22"><span class="header-section-number">22</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Define function <code>sized</code> that, given an <code>Int</code> <span class="math inline">\(n\)</span>, returns all subtrees
+of size <span class="math inline">\(n\)</span>.</p>
+<h2 data-number="23" id="section-23"><span class="header-section-number">23</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>It is not possible to write the <code>sized</code> function directly using
+<code>foldTTTree</code>. However, we can use <code>foldTTTree</code> to do most of the work;
+that is, we can define a function <code>sized'</code> using <code>foldTTTree</code> such
+that</p>
+<div class="sourceCode" id="cb20"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ot">sized   ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">TTTree</span> a <span class="ot">-&gt;</span> [<span class="dt">TTTree</span> a]</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>sized n <span class="ot">=</span> <span class="fu">snd</span> <span class="op">.</span> sized' n</span></code></pre></div>
+<p>write the function <code>sized'</code></p>
+<div class="sourceCode" id="cb21" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ot">sized   ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">TTTree</span> a <span class="ot">-&gt;</span> (<span class="dt">TTTRee</span> a, [<span class="dt">TTTree</span> a])</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>sized n <span class="ot">=</span> foldTTTree f g2 g3</span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    singleton s t <span class="ot">=</span> <span class="kw">if</span> n <span class="op">==</span> s <span class="kw">then</span> [t] <span class="kw">else</span> []</span>
+<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    f x <span class="ot">=</span> <span class="kw">let</span> t <span class="ot">=</span> <span class="dt">Leaf</span> x</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>          <span class="kw">in</span> (t,singleton s t)</span>
+<span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    g2 s (l,ls) (r,rs) <span class="ot">=</span> <span class="kw">let</span> t <span class="ot">=</span> <span class="dt">Node2</span> s l r</span>
+<span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>                         <span class="kw">in</span> (t, singleton s t <span class="op">++</span> ls <span class="op">++</span> rs)</span>
+<span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>    g3 s (l,ls) (m,ms) (r,rs) <span class="ot">=</span> <span class="kw">let</span> t <span class="ot">=</span> <span class="dt">Node3</span> s l m r</span>
+<span id="cb21-13"><a href="#cb21-13" aria-hidden="true" tabindex="-1"></a>                                <span class="kw">in</span> (t, singleton s t <span class="op">++</span> ls <span class="op">++</span> ms <span class="op">++</span> rs)</span></code></pre></div>
+<h2 data-number="24" id="section-24"><span class="header-section-number">24</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>A <code>TTTree</code> is <strong>valid</strong> if all root to leaf paths are equally
+long. Write a function <code>height</code> that computes the height of a <code>TTtree</code>
+if it is valid. Think about a suitable type for your function.</p>
+<div class="sourceCode" id="cb22" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="ot">height ::</span> <span class="dt">TTTree</span> a <span class="ot">-&gt;</span> <span class="dt">Maybe</span> <span class="dt">Int</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>height <span class="ot">=</span> foldTTTree (\_          <span class="ot">-&gt;</span> <span class="dt">Just</span> <span class="dv">0</span>)</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                    (\_ lh rh    <span class="ot">-&gt;</span> inc <span class="op">$</span> lh <span class="op">&lt;.&gt;</span> rh)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>                    (\_ lh mh rh <span class="ot">-&gt;</span> inc <span class="op">$</span> lh <span class="op">&lt;.&gt;</span> mh <span class="op">&lt;.&gt;</span> rh)</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>    inc <span class="dt">Nothing</span>  <span class="ot">=</span> <span class="dt">Nothing</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>    inc (<span class="dt">Just</span> h) <span class="ot">=</span> <span class="dt">Just</span> (h<span class="op">+</span><span class="dv">1</span>)</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Nothing</span> <span class="op">&lt;.&gt;</span> _                   <span class="ot">=</span> <span class="dt">Nothing</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Just</span> h  <span class="op">&lt;.&gt;</span> <span class="dt">Nothing</span>             <span class="ot">=</span> <span class="dt">Nothing</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Just</span> h  <span class="op">&lt;.&gt;</span> <span class="dt">Just</span> hr <span class="op">|</span> h <span class="op">==</span> hr   <span class="ot">=</span> <span class="dt">Just</span> h</span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>                        <span class="op">|</span> <span class="fu">otherwise</span> <span class="ot">=</span> <span class="dt">Nothing</span></span></code></pre></div>
+<h2 data-number="25" id="red-black-trees"><span class="header-section-number">25</span> Red-Black Trees <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Write a function <code>validRBTree :: RBTree a -&gt; Bool</code> that checks if a
+given <code>RBTree a</code> satisfies all red-black tree properties.</p>
+<h2 data-number="26" id="section-25"><span class="header-section-number">26</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Consider the following data type of binary trees <code>BST a</code> that we
+intend to use to implement binary search trees. We will store “real”
+elements (the elements we care about) only in the Leaves of the
+tree. The <code>a</code> field in a <code>Node</code> is used only as a routing element (to
+guide searches).</p>
+<div class="sourceCode" id="cb23"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">BST</span> a <span class="ot">=</span> <span class="dt">Leaf</span> a</span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>           <span class="op">|</span> <span class="dt">Node</span> (<span class="dt">BST</span> a) a (<span class="dt">BST</span> a)</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>           <span class="kw">deriving</span> (<span class="dt">Show</span>,<span class="dt">Read</span>,<span class="dt">Eq</span>)</span></code></pre></div>
+<p>We can compute the elements we care about of such a tree as follows:</p>
+<div class="sourceCode" id="cb24"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="ot">elems ::</span> <span class="dt">BST</span> a <span class="ot">-&gt;</span> [a]</span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>elems (<span class="dt">Leaf</span> x) <span class="ot">=</span> [x]</span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>elems (<span class="dt">Node</span> l _ r) <span class="ot">=</span> elems l <span class="op">++</span> elems r</span></code></pre></div>
+<p>An example of such a trees we will care about is</p>
+<div class="sourceCode" id="cb25"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>exampleTree <span class="ot">=</span> <span class="dt">Node</span> (<span class="dt">Node</span> (<span class="dt">Leaf</span> <span class="dv">1</span>) <span class="dv">3</span> (<span class="dt">Node</span> (<span class="dt">Leaf</span> <span class="dv">4</span>) <span class="dv">6</span> (<span class="dt">Leaf</span> <span class="dv">7</span>))) <span class="dv">8</span> (<span class="dt">Node</span> (<span class="dt">Leaf</span> <span class="dv">9</span>) <span class="dv">10</span> (<span class="dt">Leaf</span> <span class="dv">13</span>))</span></code></pre></div>
+<p>Then <code>elems exampleTree = [1, 4, 7, 9, 13]</code></p>
+<p>Here, the only purpose of the element 8, for example, is to signal
+that all the elements in the left subtree are <span class="math inline">\(\leq 8\)</span> and that all
+the elements in the right subtree are <span class="math inline">\(&gt; 8\)</span>.</p>
+<p><strong>The question</strong>: write a function <code>complete</code> that constructs a complete
+balanced binary search tree out of an sorted list of <span class="math inline">\(2^h\)</span>, with <span class="math inline">\(h
+\geq 0\)</span>, elements (with those elements in the same order as given.).</p>
+<div class="sourceCode" id="cb26" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- | This runs in O(n\log n) time.</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="ot">complete ::</span> [a] <span class="ot">-&gt;</span> <span class="dt">BST</span> a</span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>complete [x] <span class="ot">=</span> <span class="dt">Leaf</span> x</span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>complete xs  <span class="ot">=</span> <span class="kw">let</span> (ls,rs) <span class="ot">=</span> <span class="fu">splitAt</span> (n <span class="ot">`div`</span> <span class="dv">2</span>) xs</span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>                   n       <span class="ot">=</span> <span class="fu">length</span> xs</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a>               <span class="kw">in</span> <span class="dt">Node</span> (complete ls) (<span class="fu">last</span> ls) (complete rs)</span></code></pre></div>
+<p><strong>Bonus</strong>: Write <code>complete</code> so that it runs in linear time.</p>
+<h2 data-number="27" id="section-26"><span class="header-section-number">27</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Give the type of a function <code>delete</code>, such that, given an element <code>a</code>
+and tree <code>t</code>, <code>delete a t</code> looks whether <code>a</code> is present in <code>t</code> and if
+so, removes <code>a</code> from <code>t</code>. The function delete should always be able to
+produce a valid element of the result type, i.e. it may not produce an
+error.</p>
+<div class="sourceCode" id="cb27" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="ot">delete ::</span> <span class="dt">Ord</span> a <span class="ot">=&gt;</span> a <span class="ot">-&gt;</span> <span class="dt">BST</span> a <span class="ot">-&gt;</span> <span class="dt">Maybe</span> (<span class="dt">BST</span> a)</span></code></pre></div>
+<h2 data-number="28" id="section-27"><span class="header-section-number">28</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Please implement the above function <code>delete</code>.</p>
+<div class="sourceCode" id="cb28" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>delete x t <span class="ot">=</span> <span class="kw">case</span> t <span class="kw">of</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Leaf</span> y <span class="op">|</span> x <span class="op">==</span> y        <span class="ot">-&gt;</span> <span class="dt">Nothing</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>         <span class="op">|</span> <span class="fu">otherwise</span>     <span class="ot">-&gt;</span> <span class="dt">Just</span> t</span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>  <span class="dt">Node</span> l k r <span class="op">|</span> x <span class="op">&lt;=</span> k    <span class="ot">-&gt;</span> <span class="dt">Just</span> <span class="op">$</span> <span class="kw">case</span> delete x l <span class="kw">of</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>                              <span class="dt">Nothing</span> <span class="ot">-&gt;</span> r</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>                              <span class="dt">Just</span> l' <span class="ot">-&gt;</span> <span class="dt">Node</span> l' k r</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>             <span class="op">|</span> <span class="fu">otherwise</span> <span class="ot">-&gt;</span> <span class="dt">Just</span> <span class="op">$</span> <span class="kw">case</span> delete x r <span class="kw">of</span></span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>                              <span class="dt">Nothing</span> <span class="ot">-&gt;</span> l</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>                              <span class="dt">Just</span> r' <span class="ot">-&gt;</span> <span class="dt">Node</span> l k r'</span></code></pre></div>
+<h2 data-number="29" id="section-28"><span class="header-section-number">29</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Use higher order functions (i.e. <code>foldr</code>, <code>foldl'</code>, <code>map</code>, <code>filter</code>)
+to write a function <code>batchDelete</code> that removes all elements from a
+given list from a tree. Give the type of this function as well.</p>
+<div class="sourceCode" id="cb29" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="ot">batchDelete      ::</span> <span class="dt">Ord</span> a <span class="ot">=&gt;</span> [a] <span class="ot">-&gt;</span> <span class="dt">BST</span> a <span class="ot">-&gt;</span> <span class="dt">Maybe</span> (<span class="dt">BST</span> a)</span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>batchDelete xs t <span class="ot">=</span> <span class="fu">foldr</span> (\x mt <span class="ot">-&gt;</span> mt <span class="op">&gt;&gt;=</span> \t <span class="ot">-&gt;</span> delete x t) (<span class="dt">Just</span> t) xs</span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- This funny operator is called &quot;bind&quot; and is actually defined in</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- the prelude. It is the part of the Monad instance/definition of</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- the 'Maybe' type.</span></span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a><span class="ot">    (&gt;&gt;=) ::</span> <span class="dt">Maybe</span> a <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> <span class="dt">Maybe</span> b) <span class="ot">-&gt;</span> <span class="dt">Maybe</span> b</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="dt">Nothing</span>  <span class="op">&gt;&gt;=</span> _ <span class="ot">=</span> <span class="dt">Nothing</span></span>
+<span id="cb29-9"><a href="#cb29-9" aria-hidden="true" tabindex="-1"></a>    (<span class="dt">Just</span> x) <span class="op">&gt;&gt;=</span> f <span class="ot">=</span> f x</span></code></pre></div>
+    </div>
+  </body>
+</html>

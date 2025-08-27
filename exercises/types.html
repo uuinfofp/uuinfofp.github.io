@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Functional Programming - Type inference</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/syntax.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrapify.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+  </head>
+  <body>
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">Functional Programming</a> <!--  -->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!-- <li><a href="/description.html">Description</a></li> -->
+            <li><a href="../lectures.html">Lectures</a></li>
+            <li><a href="../labs.html">Practicals</a></li>
+            <li><a href="../exercises.html">Exercises</a></li>
+            <li><a href="../optional.html">Optional Assignment</a></li>
+            <li><a href="../exams.html">Old Exams</a></li>
+            <!-- <li><a href="projects.html">Projects</a></li> -->
+            <li><a target="_blank" href="https://cursusplanner.uu.nl/course/INFOFP/2025/1">Education page</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container" id="main">
+      <h2>Type inference</h2>
+
+      <p>In these exercises you should assume the following types:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ot">(+)    ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">even</span><span class="ot">   ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span><span class="ot">   ::</span> [a] <span class="ot">-&gt;</span> a</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="ot">(++)   ::</span> [a] <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> [a]</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">foldr</span><span class="ot">  ::</span> (a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> b</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span><span class="ot">    ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> [b]</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">concat</span><span class="ot"> ::</span> [[a]] <span class="ot">-&gt;</span> [a]</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="ot">(.)    ::</span> (b <span class="ot">-&gt;</span> c) <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> c</span></code></pre></div>
+<h2 data-number="1" id="section-1"><span class="header-section-number">1</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>What is the type of <code>head ([3, 2] ++ [2])</code>? Give the type derivation.</p>
+<h2 data-number="2" id="section-2"><span class="header-section-number">2</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>What is the type of <code>(+) 3</code>? Give the type derivation.</p>
+<h2 data-number="3" id="section-3"><span class="header-section-number">3</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>What is the type of <code>map even</code>? Give the type derivation.</p>
+<h2 data-number="4" id="section-4"><span class="header-section-number">4</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>What is the type of <code>map concat</code>? Give the type derivation.</p>
+<h2 data-number="5" id="section-5"><span class="header-section-number">5</span>  <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>What is the type of <code>map head</code>? Give the type derivation.</p>
+<h2 data-number="6" id="section-6"><span class="header-section-number">6</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>What is the type of <code>reverse . reverse</code>? Give the type derivation.</p>
+<h2 data-number="7" id="section-7"><span class="header-section-number">7</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>What is the type of <code>foldr (+)</code>? Give the type derivation.</p>
+<h2 data-number="8" id="section-8"><span class="header-section-number">8</span>  <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>What is the type of <code>foldr map</code>? Give the type derivation.</p>
+<ol type="1">
+<li><code>[a] -&gt; [a -&gt; a] -&gt; [a]</code></li>
+<li><code>[a] -&gt; [[a -&gt; a]] -&gt; [a]</code></li>
+<li><code>[a] -&gt; [[a -&gt; a] -&gt; [a]]</code></li>
+<li><code>[[a]] -&gt; [a -&gt; a] -&gt; [a]</code></li>
+</ol>
+<h2 data-number="9" id="section-9"><span class="header-section-number">9</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>What is the type of <code>map . foldr</code>? Give the type derivation.</p>
+<ol type="1">
+<li><code>(a -&gt; a -&gt; a) -&gt; [a] -&gt; [[a] -&gt; a]</code></li>
+<li><code>(a -&gt; a -&gt; a) -&gt; [b] -&gt; [b -&gt; a]</code></li>
+<li><code>(b -&gt; a -&gt; a) -&gt; [a] -&gt; [[b] -&gt; a]</code></li>
+<li><code>(b -&gt; a -&gt; a) -&gt; [b] -&gt; [[a] -&gt; a]</code></li>
+</ol>
+<h2 data-number="10" id="section-10"><span class="header-section-number">10</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Which of the following is the type of <code>concat . concat</code>? Give the type derivation.</p>
+<ol type="1">
+<li><code>[[a]] -&gt; [[a]] -&gt; [[a]]</code></li>
+<li><code>[[a]] -&gt; [[a]] -&gt; [a]</code></li>
+<li><code>[[[a]]] -&gt; [a]</code></li>
+<li><code>[a] -&gt; [[a]] -&gt; [a]</code></li>
+</ol>
+<h2 data-number="11" id="section-11"><span class="header-section-number">11</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>What is the type of <code>map map</code>? Give the type derivation.</p>
+<h2 data-number="12" id="section-12"><span class="header-section-number">12</span>  <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>What is the type of <code>map (map map)</code>? Give the type derivation.</p>
+<ol type="1">
+<li><code>[[a -&gt; b]] -&gt; [[[a] -&gt; [b]]]</code></li>
+<li><code>[a -&gt; b] -&gt; [[[a] -&gt; [b]]]</code></li>
+<li><code>[[a -&gt; b]] -&gt; [[[a -&gt; b]]]</code></li>
+<li><code>[[a -&gt; b] -&gt; [[a] -&gt; [b]]]</code></li>
+</ol>
+<p>Give the type derivation.</p>
+<h2 data-number="13" id="section-13"><span class="header-section-number">13</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Which observation is correct when comparing the types of <code>(map map) map</code> and <code>map (map map)?</code></p>
+<ol type="1">
+<li>The type of the first is less polymorphic than the type of the second.</li>
+<li>The type of the first is more polymorphic than the type of the second.</li>
+<li>The types are the same, since function composition is associative.</li>
+<li>One of the expressions does not have any type at all.</li>
+</ol>
+<h2 data-number="14" id="section-14"><span class="header-section-number">14</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>The function <code>maximum</code> has type <code>Ord a =&gt; [a] -&gt; a</code>. What is the type
+of <code>map maximum</code>? Can you give a derivation?</p>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Functional Programming - Basics</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/syntax.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrapify.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+  </head>
+  <body>
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">Functional Programming</a> <!--  -->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!-- <li><a href="/description.html">Description</a></li> -->
+            <li><a href="../lectures.html">Lectures</a></li>
+            <li><a href="../labs.html">Practicals</a></li>
+            <li><a href="../exercises.html">Exercises</a></li>
+            <li><a href="../optional.html">Optional Assignment</a></li>
+            <li><a href="../exams.html">Old Exams</a></li>
+            <!-- <li><a href="projects.html">Projects</a></li> -->
+            <li><a target="_blank" href="https://cursusplanner.uu.nl/course/INFOFP/2025/1">Education page</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container" id="main">
+      <h2>Basics</h2>
+
+      <h2 data-number="1" id="section-1"><span class="header-section-number">1</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>How do <code>x = 3</code> and <code>x == 3</code> differ in meaning?</p>
+<h2 data-number="2" id="section-2"><span class="header-section-number">2</span>  <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>Given the following definitions:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>thrice x <span class="ot">=</span> [x, x, x]</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>sums (x <span class="op">:</span> y <span class="op">:</span> ys) <span class="ot">=</span> x <span class="op">:</span> sums (x <span class="op">+</span> y <span class="op">:</span> ys)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>sums xs           <span class="ot">=</span> xs</span></code></pre></div>
+<p>What does the expression <code>map thrice (sums [0 .. 4])</code> evaluate to?
+Write down the intermediate steps of your computation.</p>
+<h2 data-number="3" id="section-3"><span class="header-section-number">3</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>A recursive function is only sensible if the value(s) of its
+parameters becomes simpler in each recursive application. Consider
+the following definition of the factorial function:</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fac n <span class="op">|</span> n <span class="op">==</span> <span class="dv">0</span>    <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>      <span class="op">|</span> <span class="fu">otherwise</span> <span class="ot">=</span> n <span class="op">*</span> fac (n − <span class="dv">1</span>)</span></code></pre></div>
+<p>What happens if you evaluate <code>fac (−3)</code>?</p>
+<h2 data-number="4" id="section-4"><span class="header-section-number">4</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Write a function <code>noOfSol</code> that, for some <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, and <span class="math inline">\(c\)</span>,
+determines the number of solutions of the equation <span class="math inline">\(ax^2 + bx + c =
+0\)</span>, using case distinction.</p>
+<h2 data-number="5" id="section-5"><span class="header-section-number">5</span>  <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>Write a function <code>pow2 :: Int -&gt; Int</code> that takes an Int <span class="math inline">\(n\)</span> computes
+<span class="math inline">\(2^n\)</span> using direct recursion.</p>
+<div class="sourceCode" id="cb3" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ot">pow2   ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>pow2 <span class="dv">0</span> <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>pow2 n <span class="ot">=</span> <span class="dv">2</span> <span class="op">*</span> pow2 (n <span class="op">-</span> <span class="dv">1</span>)</span></code></pre></div>
+<h2 data-number="6" id="section-6"><span class="header-section-number">6</span>  <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>Write a recursive function <code>pow</code> that takes two Ints, <span class="math inline">\(x\)</span> and <span class="math inline">\(n\)</span>, and
+computes <span class="math inline">\(x^n\)</span>.</p>
+<h2 data-number="7" id="section-7"><span class="header-section-number">7</span>  <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>For any number <span class="math inline">\(x\)</span>, and any <strong>even</strong> number <span class="math inline">\(n\)</span> it holds that <span class="math inline">\(x^n =
+   (x^{n/2})^2\)</span>. Use this to speed up the implementation of the <code>pow</code>
+function.</p>
+<div class="sourceCode" id="cb4" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="ot">pow       ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">`pow`</span> <span class="dv">0</span> <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">`pow`</span> n <span class="op">|</span> <span class="fu">even</span> n    <span class="ot">=</span> <span class="kw">let</span> y <span class="ot">=</span> x <span class="ot">`pow`</span> (n <span class="ot">`div`</span> <span class="dv">2</span>) <span class="kw">in</span> y <span class="op">*</span> y</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>          <span class="op">|</span> <span class="fu">otherwise</span> <span class="ot">=</span> x  <span class="op">*</span> (x <span class="ot">`pow`</span> (n<span class="op">-</span><span class="dv">1</span>))</span></code></pre></div>
+<h2 data-number="8" id="section-8"><span class="header-section-number">8</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Which intermediate results are being computed for the computation of
+<code>2 `pow` 10</code> in the old and the new definition?</p>
+<h2 data-number="9" id="section-9"><span class="header-section-number">9</span>  <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>A predicate <code>p :: Int -&gt; Bool</code> is <em>monotonic</em> if, for any Int i for
+which the predicate holds (<code>p i == True</code>) the predicate also holds for
+any index j larger than i (i.e. <code>p j</code> is also <code>True</code>).</p>
+<p>Given:</p>
+<ul>
+<li>a monotonic predicate p,</li>
+<li>a lowerbound <code>l :: Int</code> for which <code>p l == False</code>, and</li>
+<li>an upperbound <code>u :: Int</code> for which <code>p u == True</code>,</li>
+</ul>
+<p>implement a function <code>binarySearch</code> that can find the smallest Int
+<code>i</code> for which <code>p i</code> is True in <span class="math inline">\(O(\log (u - l))\)</span> steps.</p>
+<p>Also give the type of your function.</p>
+<div class="sourceCode" id="cb5" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ot">binarySearch                    ::</span> (<span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span>) <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>binarySearch p l u <span class="op">|</span> u <span class="op">-</span> l <span class="op">==</span> <span class="dv">1</span> <span class="ot">=</span> u</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                   <span class="op">|</span> p h        <span class="ot">=</span> binarySearch p l h</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                   <span class="op">|</span> <span class="fu">otherwise</span>  <span class="ot">=</span> binarySearch p h u</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    h <span class="ot">=</span> (l <span class="op">+</span> u) <span class="ot">`div`</span> <span class="dv">2</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
+<h2 data-number="10" id="section-10"><span class="header-section-number">10</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Give the most general type for the function <code>binarySearch</code> you defined
+above.</p>
+<div class="sourceCode" id="cb6" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="ot">binarySearch                    ::</span> <span class="dt">Integral</span> i <span class="ot">=&gt;</span> (i <span class="ot">-&gt;</span> <span class="dt">Bool</span>) <span class="ot">-&gt;</span> i <span class="ot">-&gt;</span> i <span class="ot">-&gt;</span> i</span></code></pre></div>
+<h2 data-number="11" id="section-11"><span class="header-section-number">11</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Determine the types of <code>3</code>, <code>even</code>, and <code>even 3</code>. How can you figure
+out the latter?</p>
+<h2 data-number="12" id="section-12"><span class="header-section-number">12</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Determine also the type of <code>head</code>, <code>[1,2,3]</code>, and <code>head [1,2,3]</code>. What
+happens when applying a polymorphic function (like head) to
+monomorphic arguments (like <code>[1,2,3]</code>)?</p>
+<h2 data-number="13" id="section-13"><span class="header-section-number">13</span>  <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>Write down what you think the type of the following functions is. Do
+not use the interpreter (yet): <code>tail</code>, <code>length</code>, <code>noOfSol</code>, <code>pow2</code>,
+<code>div</code>, <code>(/)</code>, and <code>sqrt</code>?</p>
+<h2 data-number="14" id="section-14"><span class="header-section-number">14</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>How can you query the interpreter (ghci) for the type of an expression?</p>
+<h2 data-number="15" id="section-15"><span class="header-section-number">15</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>How can you explicitly specify the types of functions in your program?</p>
+<h2 data-number="16" id="section-16"><span class="header-section-number">16</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Verify the types of the above expressions with the interpreter. If
+your answers differ, write down why you think that is the
+case. Discuss the answers with your class mates or with your TA.</p>
+<h2 data-number="17" id="section-17"><span class="header-section-number">17</span>  <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span> <span class="tag" data-tag-name="challenging"><span class="smallcaps">challenging</span></span></h2>
+<p>In this (set of) exercises we will write our own implementation of the
+square root function. More precisely, we write a function <code>approxSqrt</code>
+that can approximate <span class="math inline">\(\sqrt x\)</span> for any value <span class="math inline">\(x\)</span>.</p>
+<p>Consider the following two facts about the square root:</p>
+<ol type="1">
+<li>if <span class="math inline">\(y\)</span> is a good approximation of <span class="math inline">\(\sqrt{x}\)</span> then <span class="math inline">\((1/2)(y+x/y)\)</span> is a better approximation.</li>
+<li><span class="math inline">\(1\)</span> is a (not-so) good approximation of <span class="math inline">\(\sqrt{x}\)</span></li>
+</ol>
+<p>We will say that the approximation of <span class="math inline">\(\sqrt{x}\)</span> is <em>good enough</em> when
+<span class="math inline">\(y^2\)</span> is close to <span class="math inline">\(x\)</span>. More specifically, when <span class="math inline">\(|y^2 - x|\)</span> is at most
+some threshold <span class="math inline">\(\varepsilon\)</span>.</p>
+<ol type="1">
+<li><p>Use the above two facts to implement a function <code>approxSqrt ::   Double -&gt; Double -&gt; Double</code> so that <code>approxSqrt eps x</code> returns a
+value <span class="math inline">\(y\)</span> that is a <em>good enough</em> (with respect to the given
+threshold <code>eps</code>).</p>
+<p>Hint: use an recursive helper function.</p>
+<div class="sourceCode" id="cb7" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="ot">approxSqrt       ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>approxSqrt eps x <span class="ot">=</span> go <span class="dv">1</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    go y <span class="ot">=</span> <span class="kw">let</span> y' <span class="ot">=</span> <span class="fl">0.5</span> <span class="op">*</span> (y <span class="op">+</span> x<span class="op">/</span>y)</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>           <span class="kw">in</span> <span class="kw">if</span> goodEnough y <span class="kw">then</span> y' <span class="kw">else</span> go y'</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    goodEnough y <span class="ot">=</span> <span class="fu">abs</span> (y<span class="op">*</span>y <span class="op">-</span> x) <span class="op">&lt;</span> eps</span></code></pre></div></li>
+<li><p>write an alternative implementation of <code>approxSqrt</code> using the
+following function <code>until :: (a -&gt; Bool) -&gt; (a -&gt; a) -&gt; a -&gt; a</code>
+which takes care of the actual iteration/recursion.</p>
+<div class="sourceCode" id="cb8"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">until</span> stop f s <span class="op">|</span> stop s    <span class="ot">=</span> s</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>               <span class="op">|</span> <span class="fu">otherwise</span> <span class="ot">=</span> <span class="fu">until</span> stop f (f s)</span></code></pre></div>
+<p>Starting with the value <code>s</code>, <code>until stop f s</code> repeatedly applies the
+function <code>f</code> to get some new value until the predicate <code>stop</code> returns
+True. Here are some examples:</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">let</span> double x <span class="ot">=</span> <span class="dv">2</span><span class="op">*</span>x <span class="kw">in</span> <span class="fu">until</span> (<span class="op">&gt;</span><span class="dv">1000</span>) double <span class="dv">1</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1024</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="op">&gt;&gt;&gt;</span> <span class="kw">let</span> double x <span class="ot">=</span> <span class="dv">2</span><span class="op">*</span>x <span class="kw">in</span> <span class="fu">until</span> (<span class="op">&gt;</span><span class="dv">0</span>) double <span class="dv">1</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span></span></code></pre></div>
+<div class="sourceCode" id="cb10" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="ot">approxSqrt       ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> <span class="dt">Double</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>approxSqrt eps x <span class="ot">=</span> <span class="fu">until</span> goodEnough refine <span class="dv">1</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    goodEnough y <span class="ot">=</span> <span class="fu">abs</span> (y<span class="op">*</span>y <span class="op">-</span> x) <span class="op">&lt;</span> eps</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    refine y     <span class="ot">=</span> <span class="fl">0.5</span> <span class="op">*</span> (y <span class="op">+</span> x<span class="op">/</span>y)</span></code></pre></div></li>
+<li><p>Maybe we don’t know in advance yet when the approximation is “good
+enough”, and instead we just want a list of ever more precise
+approximations of <span class="math inline">\(\sqrt{x}\)</span>. Write a function <code>approxSqrts ::   Double -&gt; [Double]</code> that produces such a list.</p>
+<div class="sourceCode" id="cb11" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="ot">approxSqrts   ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> [<span class="dt">Double</span>]</span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>approxSqrts x <span class="ot">=</span> go <span class="dv">1</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>    go y <span class="ot">=</span> y <span class="op">:</span> go (<span class="fl">0.5</span> <span class="op">*</span> (y <span class="op">+</span> x<span class="op">/</span>y))</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- or using the prelude function 'iterate':</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="ot">approxSqrts'   ::</span> <span class="dt">Double</span> <span class="ot">-&gt;</span> [<span class="dt">Double</span>]</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>approxSqrts' x <span class="ot">=</span> <span class="fu">iterate</span> refine <span class="dv">1</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>    refine y <span class="ot">=</span> <span class="fl">0.5</span> <span class="op">*</span> (y <span class="op">+</span> x<span class="op">/</span>y)</span></code></pre></div></li>
+</ol>
+    </div>
+  </body>
+</html>

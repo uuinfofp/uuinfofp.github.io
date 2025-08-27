@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Functional Programming - Higher order Functions</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/syntax.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrapify.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+  </head>
+  <body>
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">Functional Programming</a> <!--  -->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!-- <li><a href="/description.html">Description</a></li> -->
+            <li><a href="../lectures.html">Lectures</a></li>
+            <li><a href="../labs.html">Practicals</a></li>
+            <li><a href="../exercises.html">Exercises</a></li>
+            <li><a href="../optional.html">Optional Assignment</a></li>
+            <li><a href="../exams.html">Old Exams</a></li>
+            <!-- <li><a href="projects.html">Projects</a></li> -->
+            <li><a target="_blank" href="https://cursusplanner.uu.nl/course/INFOFP/2025/1">Education page</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container" id="main">
+      <h2>Higher order Functions</h2>
+
+      <h2 data-number="1" id="parentheses"><span class="header-section-number">1</span> Parentheses!? <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Give examples for functions with the following types:</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="dt">Float</span> −<span class="op">&gt;</span> <span class="dt">Float</span>) −<span class="op">&gt;</span> <span class="dt">Float</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">Float</span> −<span class="op">&gt;</span> (<span class="dt">Float</span> −<span class="op">&gt;</span> <span class="dt">Float</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="dt">Float</span> −<span class="op">&gt;</span> <span class="dt">Float</span>) −<span class="op">&gt;</span> (<span class="dt">Float</span> −<span class="op">&gt;</span> <span class="dt">Float</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb2" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- For example (all these expressions have more general polymorphic types, but, in particular, type check at the requested types)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>\f <span class="ot">-&gt;</span> f <span class="fl">2.0</span><span class="ot"> ::</span> (<span class="dt">Float</span> −<span class="op">&gt;</span> <span class="dt">Float</span>) −<span class="op">&gt;</span> <span class="dt">Float</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ot">(*) ::</span> <span class="dt">Float</span> −<span class="op">&gt;</span> (<span class="dt">Float</span> −<span class="op">&gt;</span> <span class="dt">Float</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>(<span class="op">.</span>) (<span class="op">+</span><span class="dv">1</span>)<span class="ot"> ::</span> (<span class="dt">Float</span> −<span class="op">&gt;</span> <span class="dt">Float</span>) −<span class="op">&gt;</span> (<span class="dt">Float</span> −<span class="op">&gt;</span> <span class="dt">Float</span>) </span></code></pre></div>
+<p>Give an example program <code>p</code> with the following type and explain how the function arrow <code>-&gt;</code> associates:</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ot">p ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></span></code></pre></div>
+<div class="sourceCode" id="cb4" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- For example</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>p i b <span class="ot">=</span> <span class="kw">if</span> b <span class="kw">then</span> i <span class="kw">else</span> <span class="op">-</span>i</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- Indeed, the function arrow -&gt; always associates to the right, so this type should be read as </span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co">-- the type Int -&gt; (Bool -&gt; Int) of curried multiple argument functions, rather than the type (Int -&gt; Bool) -&gt; Int of higher order functions</span></span></code></pre></div>
+<p>Give examples of programs <code>foo</code>, <code>bar</code> and <code>baz</code>, such that <code>foo bar baz</code> type checks and please explain how function application associates.</p>
+<div class="sourceCode" id="cb5" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- For example,</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="ot">foo ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">=</span> (<span class="op">+</span>)</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="ot">bar ::</span> <span class="dt">Int</span> </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>bar <span class="ot">=</span> <span class="dv">1</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ot">baz ::</span> <span class="dt">Int</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>baz <span class="ot">=</span> <span class="dv">2</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co">-- Then foo bar baz is well-typed at type Int </span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="co">-- Indeed, function application always associates to the left so the expression should be read as (foo bar) baz</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a><span class="co">-- Another example would be </span></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="ot">foo ::</span> (a <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> [a]) <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> [a]</span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">=</span> <span class="fu">foldr</span> </span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a><span class="ot">bar ::</span> a <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> [a]</span>
+<span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>bar a as <span class="ot">=</span> as <span class="op">++</span> [a] </span>
+<span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="ot">baz ::</span> [a] </span>
+<span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>baz <span class="ot">=</span> []</span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">-- Then, foo bar baz (which should be read as (foo bar) baz) has type [a]</span></span>
+<span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co">-- Note that function application associating to the left and function arrows associating to the right are nice behaviour because it means </span></span>
+<span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">-- that we can implement the default use-case of curried functions of multiple arguments and partial application of such functions without writing many parentheses in either the type or the program.</span></span></code></pre></div>
+<p>Can you give examples of programs <code>foo</code>, <code>bar</code> and <code>baz</code>, such that one might expect <code>foo bar baz</code> to be well-typed if function application were to associate in the opposite direction, but such
+that <code>foo bar baz</code> is in reality ill-typed?</p>
+<div class="sourceCode" id="cb6" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- For example,</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ot">foo ::</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>foo <span class="ot">=</span> <span class="fu">not</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="ot">bar ::</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span> </span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>bar <span class="ot">=</span> <span class="fu">not</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a><span class="ot">baz ::</span> <span class="dt">Bool</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>baz <span class="ot">=</span> <span class="dt">True</span></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a><span class="co">-- Then foo (bar baz) is well-typed at type Bool</span></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">-- However, as function application associates to the left in reality and not to the right, foo bar baz should be parsed as (not not) True, which does not type check.</span></span></code></pre></div>
+<h2 data-number="2" id="currying"><span class="header-section-number">2</span> Currying <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>Please implement two functions</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curry</span><span class="ot"> ::</span> ((a, b) <span class="ot">-&gt;</span> c) <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> c)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">uncurry</span><span class="ot"> ::</span> (a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> c) <span class="ot">-&gt;</span> ((a, b) <span class="ot">-&gt;</span> c)</span></code></pre></div>
+<div class="sourceCode" id="cb8" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curry</span> f a b <span class="ot">=</span> f (a, b)</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">uncurry</span> g (a, b) <span class="ot">=</span> g a b</span></code></pre></div>
+<p>Can you convince yourself that <code>curry</code> and <code>uncurry</code> are mutually inverse? Try it out on some example functions!</p>
+<p>Please simplify the types of <code>curry</code> and <code>uncurry</code> by removing unnecessary parentheses</p>
+<div class="sourceCode" id="cb9" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">curry</span><span class="ot"> ::</span> ((a, b) <span class="ot">-&gt;</span> c) <span class="ot">-&gt;</span> a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> c</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">uncurry</span><span class="ot"> ::</span> (a <span class="ot">-&gt;</span> b <span class="ot">-&gt;</span> c) <span class="ot">-&gt;</span> (a, b) <span class="ot">-&gt;</span> c</span></code></pre></div>
+<h2 data-number="3" id="filter"><span class="header-section-number">3</span> Filter <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>The function <code>filter</code> can be defined in terms of <code>concat</code> and <code>map</code>:</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">filter</span> p <span class="ot">=</span> <span class="fu">concat</span> <span class="op">.</span> <span class="fu">map</span> box</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span> box x <span class="ot">=</span> _</span></code></pre></div>
+<p>Complete the definition of <code>box</code>.</p>
+<div class="sourceCode" id="cb11" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>box x <span class="ot">=</span> <span class="kw">if</span> p x <span class="kw">then</span> [x] <span class="kw">else</span> []</span></code></pre></div>
+<h2 data-number="4" id="function-composition"><span class="header-section-number">4</span> Function Composition <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Function composition first applies the latter of the supplied
+functions to the argument, the former thereafter. Write a function
+<code>before</code> that can be used to rewrite <code>f . g . h</code> to <code>h `before` g `before` f</code>. What can you say about associativity of <code>(.)</code> and
+<code>before</code>?</p>
+<div class="sourceCode" id="cb12" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="ot">before ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> (b <span class="ot">-&gt;</span> c) <span class="ot">-&gt;</span> (a <span class="ot">-&gt;</span> c)</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>before <span class="ot">=</span> <span class="fu">flip</span> (<span class="op">.</span>)</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- both (.) and before are associative operations</span></span></code></pre></div>
+<h2 data-number="5" id="higher-order-data-types"><span class="header-section-number">5</span> Higher order data types <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span> <span class="tag" data-tag-name="challenging"><span class="smallcaps">challenging</span></span></h2>
+<p>We have seen that <code>[...]</code> is a type function that maps types to
+types. Similarly because <code>−&gt;</code> is a type constructor mapping two types
+to a type, for some <code>c</code> also <code>c −&gt;</code> is a type function mapping a type
+<code>a</code> to <code>c −&gt; a</code>. Rewrite the type of <code>map</code> by substituting the type
+function <code>[...]</code> by <code>c −&gt;</code>. Can you derive an implementation from the
+resulting type?</p>
+<div class="sourceCode" id="cb13" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ot">mapFun ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> (c <span class="ot">-&gt;</span> a) <span class="ot">-&gt;</span> (c <span class="ot">-&gt;</span> b)</span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>mapFun <span class="ot">=</span> (<span class="op">.</span>)</span></code></pre></div>
+    </div>
+  </body>
+</html>

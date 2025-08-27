@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Functional Programming - Laws and Induction</title>
+    <link rel="stylesheet" href="../css/bootstrap.min.css">
+    <link rel="stylesheet" href="../css/syntax.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="../js/bootstrap.min.js"></script>
+    <script src="../js/bootstrapify.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js"></script>
+  </head>
+  <body>
+    <!-- Static navbar -->
+    <nav class="navbar navbar-default navbar-static-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="../index.html">Functional Programming</a> <!--  -->
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <!-- <li><a href="/description.html">Description</a></li> -->
+            <li><a href="../lectures.html">Lectures</a></li>
+            <li><a href="../labs.html">Practicals</a></li>
+            <li><a href="../exercises.html">Exercises</a></li>
+            <li><a href="../optional.html">Optional Assignment</a></li>
+            <li><a href="../exams.html">Old Exams</a></li>
+            <!-- <li><a href="projects.html">Projects</a></li> -->
+            <li><a target="_blank" href="https://cursusplanner.uu.nl/course/INFOFP/2025/1">Education page</a></li>
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
+
+    <div class="container" id="main">
+      <h2>Laws and Induction</h2>
+
+      <h2 data-number="1" id="section-1"><span class="header-section-number">1</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Finish the proof of <code>reverse . reverse = id</code> from the lecture.</p>
+<h2 data-number="2" id="section-2"><span class="header-section-number">2</span>  <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>Prove the following laws about list functions.</p>
+<ul>
+<li><p>Hint: if you get stuck, the proofs can be found in Chapter 13 of the <a href="http://www.staff.science.uu.nl/~hage0101/FP-elec.pdf">Lecture Notes</a>.</p>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Laws about list length</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span> <span class="op">.</span> <span class="fu">map</span> f    <span class="ot">=</span> <span class="fu">length</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span> (xs <span class="op">++</span> ys) <span class="ot">=</span> <span class="fu">length</span> xs <span class="op">+</span> <span class="fu">length</span> ys</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">length</span> <span class="op">.</span> <span class="fu">concat</span>   <span class="ot">=</span> <span class="fu">sum</span> <span class="op">.</span> <span class="fu">map</span> <span class="fu">length</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co">-- Laws about sum</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span> (xs <span class="op">++</span> ys) <span class="ot">=</span> <span class="fu">sum</span> xs <span class="op">+</span> <span class="fu">sum</span> ys</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span> <span class="op">.</span> <span class="fu">concat</span>   <span class="ot">=</span> <span class="fu">sum</span> <span class="op">.</span> <span class="fu">map</span> <span class="fu">sum</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a><span class="co">-- Laws about map</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span> f <span class="op">.</span> <span class="fu">concat</span> <span class="ot">=</span> <span class="fu">concat</span> <span class="op">.</span> <span class="fu">map</span> (<span class="fu">map</span> f)  <span class="co">-- Hard!</span></span></code></pre></div></li>
+</ul>
+<h2 data-number="3" id="section-3"><span class="header-section-number">3</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Prove that <code>sum (map (1+) xs) = length xs + sum xs</code> for all lists
+<code>xs</code>.</p>
+<ol type="a">
+<li>State a similar law for a linear function <code>sum (map ((k+) . (n*)) xs) = ??</code>.</li>
+<li>Prove the law from (a).</li>
+<li>Which laws from the previous exercise can be deduced from the general law?</li>
+</ol>
+<h2 data-number="4" id="section-4"><span class="header-section-number">4</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Prove the following law: if <code>op</code> is an associative operator and <code>e</code> its neutral element, then</p>
+<div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">foldr</span> op e <span class="op">.</span> <span class="fu">concat</span> <span class="ot">=</span> <span class="fu">foldr</span> op e <span class="op">.</span> <span class="fu">map</span> (<span class="fu">foldr</span> op e)</span></code></pre></div>
+<h2 data-number="5" id="section-5"><span class="header-section-number">5</span>  <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>Find a function <code>g</code> and a value <code>e</code> such that</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">map</span> f <span class="ot">=</span> <span class="fu">foldr</span> g e</span></code></pre></div>
+<p>Prove the equality between both sides.</p>
+<h2 data-number="6" id="section-6"><span class="header-section-number">6</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Prove that addition is commutative, that is, <code>add n m = add m n</code>.</p>
+<ul>
+<li>Hint: you might need as lemmas that <code>add n Zero = n</code> and <code>add n (Succ m) = Succ (add n m)</code>.</li>
+</ul>
+<h2 data-number="7" id="section-7"><span class="header-section-number">7</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Prove that multiplication is commutative, that is, <code>mult n m = mul m n</code>.</p>
+<ul>
+<li>Hint: you need lemmas similar to the previous exercise.</li>
+</ul>
+<h2 data-number="8" id="section-8"><span class="header-section-number">8</span>  <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
+<p>Prove that for all trees <code>size t = length (enumInfix t)</code>, where</p>
+<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Tree</span> a <span class="ot">=</span> <span class="dt">Leaf</span> a <span class="op">|</span> <span class="dt">Node</span> (<span class="dt">Tree</span> a) a (<span class="dt">Tree</span> a)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ot">size ::</span> <span class="dt">Tree</span> a <span class="ot">-&gt;</span> <span class="dt">Int</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>size <span class="dt">Leaf</span> <span class="ot">=</span> <span class="dv">0</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>size (<span class="dt">Node</span> l x r) <span class="ot">=</span> size l <span class="op">+</span> <span class="dv">1</span> <span class="op">+</span> size r</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="ot">enumInfix ::</span> <span class="dt">Tree</span> a <span class="ot">-&gt;</span> [a]</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>enumInfix <span class="dt">Leaf</span> <span class="ot">=</span> []</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>enumInfix (<span class="dt">Node</span> l x r) <span class="ot">=</span> enumInfix l <span class="op">++</span> [x] <span class="op">++</span> enumInfix r</span></code></pre></div>
+<ul>
+<li>Hint: you might needs some of the laws in exercise 2 as lemmas.</li>
+</ul>
+<h2 data-number="9" id="section-9"><span class="header-section-number">9</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
+<p>Prove that <code>length . catMaybes = length . filter isJust</code>, where</p>
+<div class="sourceCode" id="cb5"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ot">catMaybes ::</span> [<span class="dt">Maybe</span> a] <span class="ot">-&gt;</span> [a]</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>catMaybes []             <span class="ot">=</span> []</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>catMaybes (<span class="dt">Nothing</span> <span class="op">:</span> xs) <span class="ot">=</span> catMaybes xs</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>catMaybes (<span class="dt">Just</span> x  <span class="op">:</span> xs) <span class="ot">=</span> x <span class="op">:</span> catMaybes xs</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a><span class="ot">isJust ::</span> <span class="dt">Maybe</span> a <span class="ot">-&gt;</span> <span class="dt">Bool</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>isJust (<span class="dt">Just</span> _) <span class="ot">=</span> <span class="dt">True</span></span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>isJust <span class="dt">Nothing</span>  <span class="ot">=</span> <span class="dt">False</span></span></code></pre></div>
+<ul>
+<li>Hint: proceed by induction on the list, and in the <code>z:zs</code> case distinguish between <code>z</code> being <code>Nothing</code> or <code>Just w</code>.</li>
+</ul>
+    </div>
+  </body>
+</html>
