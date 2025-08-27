@@ -60,7 +60,7 @@ of strings, computes the number of long strings:</p>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>numLong []     <span class="ot">=</span> <span class="dv">0</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>numLong (s<span class="op">:</span>ss) <span class="ot">=</span> (<span class="kw">if</span> isLong s <span class="kw">then</span> <span class="dv">1</span> <span class="kw">else</span> <span class="dv">0</span>) <span class="op">+</span> numLong ss</span></code></pre></div>
 <p>The first line states the type of our function <code>numLong</code>. As promised,
-it takes a list of <code>String~s, i.e. a value of type ~[String]</code>, as
+it takes a list of <code>String</code> s, i.e. a value of type <code>[String]</code>, as
 input, and produces an <code>Int</code>.</p>
 <p>The second line states that if the input list is the empty list
 (denoted by <code>[]</code>), then there are zero long strings.</p>
