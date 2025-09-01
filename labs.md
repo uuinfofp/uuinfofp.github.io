@@ -48,13 +48,13 @@ that has some small getting started exercises.
 <td><a href="https://prairielearn.science.uu.nl">PrairieLearn</a></td>
 </tr>
 <tr>
-<td>Sun 10 Nov 23:59</td>
+<td>Sun 09 Nov 23:59</td>
 <td><a href="practicals/project.pdf">5. Game, implementation</a></td>
 <td><a href="practicals/gloss-counter.zip">Example game</a></td>
 <td><a href="http://uu.brightspace.com">Brightspace</a></td>
 </tr>
 <tr>
-<td>Sun 12 Jan 23:59</td>
+<td>Sun 11 Jan 23:59</td>
 <td><a href="practicals/RetakeAssignment.pdf">Retake Assignment: Monads</a></td>
 <td><a href="practicals/RetakeAssignment.hs">RetakeAssignment.hs</a></td>
 <td><a href="https://prairielearn.science.uu.nl">PrairieLearn</a></td>
