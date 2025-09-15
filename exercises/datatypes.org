@@ -138,6 +138,56 @@ symbol, since it is already defined in the ~Prelude~.
 3. Why do we have to define ~Set a~ as its own data type, instead of
    an alias over ~[a]~?
 
+** Implementing the  ~Eq~ type class                                :atHome:
+
+Recall that there is an ~Eq~ typeclass which expresses that some type
+~a~ has a notion of equality. In particular, it can be defined as:
+
+#+BEGIN_SRC haskell
+class Eq a where
+  (==) :: a -> a -> Bool
+  (/=) :: a -> a -> Bool
+  x /= y = not (x == y)
+#+END_SRC
+
+Give explicit ~Eq~ instances for the following types. Your
+implementations should have the same behavior as the "default"
+behavior that one would get by deriving ~Eq~ for these types.
+
+1. The ~StandardSize~ and ~BikeSize~ types defined above.
+
+2. The ~Maybe a~ type
+
+  #+BEGIN_SRC haskell :solution
+  instance Eq a => Eq (Maybe a) where
+    Nothing  == Nothing  = True
+    (Just x) == (Just y) = x == y
+    _        == _        = False
+  #+END_SRC
+
+3. The ~[a]~ type
+
+  #+BEGIN_SRC haskell :solution
+  instance Eq a => Eq [a] where
+    []     == []     = True
+    (x:xs) == (y:ys) = x == y && xs == ys
+    _      == _      = False
+  #+END_SRC
+
+4. The ~Either a b~ type, which can be defined as
+
+  #+BEGIN_SRC haskell
+  data Either a b = Left a | Right b
+  #+END_SRC
+   
+  #+BEGIN_SRC haskell :solution
+  instance (Eq a, Eq b) => Eq (Either a b) where
+    (Left x)  == (Left y)  = x == y
+    (Right x) == (Right y) = x == y
+    _         == _         = False
+  #+END_SRC
+
+
 ** ~Finite~ :atHome:
 
 Define a class ~Finite~. This class has only one method: the list of
