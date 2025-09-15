@@ -72,7 +72,7 @@ There is plenty of additional reading material available on the
 internet. In particularly, you may find the following material useful:
 
 - [[https://webspace.science.uu.nl/~hage0101/FP-elec.pdf][Lecture Notes from 2015/2016]], mostly in Dutch
-- [[http://learnyouahaskell.com/][Learn You a Haskell for Great Good]] by Miran Lipovača
+- [[https://learnyouahaskell.github.io/][Learn You a Haskell for Great Good]] by Miran Lipovača
 - [[https://en.wikibooks.org/wiki/Haskell][Haskell Wikibook]]
 
 * Exams
@@ -87,12 +87,11 @@ You can find the exams of several previous years [[./exams.html][here]].
 
 There are two kinds of *mandatory* assignments:
 
-- [[./labs.html][Practical assignments]] pose programming problems
-  with the aim of practicing your Haskell skills. These assignments
-  are automatically corrected by
-  [[https://prairielearn.science.uu.nl/][PrairieLearn]]. You can ask
-  any of the teaching assistants to suggest improvements to your code
-  style during labs sessions.
+
+- [[./labs.html][Practical assignments]] pose programming problems with the aim of
+  practicing your Haskell skills. These assignments are automatically
+  corrected by [[https://prairielearn.science.uu.nl][PrairieLearn]]. You can ask any of the teaching assistants to
+  suggest improvements to your code style during labs sessions.
 - The [[./labs.html][final programming project]] consists of programming a small game
   in Haskell. The code is graded for correctness, design and style.
 
@@ -137,8 +136,7 @@ The *final result* of the course is:
 
 - Not passed with NVD otherwise.
 
-
-* GHC Installation Instructions
+GHC Installation Instructions
 
 To successfully complete the course you will need
 
@@ -149,7 +147,8 @@ To successfully complete the course you will need
 Installing GHC used to be a bit of a hassle. Fortunately, the
 situation has improved a bit with respect to earlier years. We
 currently recommend that you install GHC using a tool called
-'ghcup'. In particular, you can follow [[https://www.haskell.org/ghcup/][these]] instructions to install
+'ghcup'. In particular, you can follow
+[[https://www.haskell.org/ghcup/][these]] instructions to install
 'ghc' and 'cabal'.
 
 If you want as you type error checking and intelligent completions in

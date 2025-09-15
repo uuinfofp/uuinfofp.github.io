@@ -25,7 +25,7 @@ numLong (s:ss) = (if isLong s then 1 else 0) + numLong ss
 #+END_SRC
 
 The first line states the type of our function ~numLong~. As promised,
-it takes a list of ~String~s, i.e. a value of type ~[String]~, as
+it takes a list of ~String~ s, i.e. a value of type ~[String]~, as
 input, and produces an ~Int~.
 
 The second line states that if the input list is the empty list

@@ -19,52 +19,52 @@ that has some small getting started exercises.
 <td></td>
 <td><a href="practicals/Assignment0.pdf">0. Introduction</a></td>
 <td>None</td>
-<td><a href="https://domjudge.uu.nl/fp/domjudge">DOMjudge</a></td>
+<td><a href="https://prairielearn.science.uu.nl">PrairieLearn</a></td>
 </tr>
 <tr>
-<td>Fri 13 Sept 23:59</td>
+<td>Fri 12 Sept 23:59</td>
 <td><a href="practicals/Assignment1.pdf">1. Lists</a></td>
 <td><a href="practicals/Assignment1.hs"><tt>Assignment1.hs</tt></a></td>
-<td><a href="https://domjudge.uu.nl/fp/domjudge">DOMjudge</a></td>
+<td><a href="https://prairielearn.science.uu.nl">PrairieLearn</a></td>
 </tr>
 <tr>
-<td>Wed 25 Sept 23:59</td>
+<td>Wed 24 Sept 23:59</td>
 <td><a href="practicals/Assignment2.pdf">2. Data structures</a></td>
 <td><a href="practicals/Assignment2.hs"><tt>Assignment2.hs</tt></a></td>
-<td><a href="https://domjudge.uu.nl/fp/domjudge">DOMjudge</a></td>
+<td><a href="https://prairielearn.science.uu.nl">PrairieLearn</a></td>
 </tr>
 <tr>
-<td>Wed 9 Oct 23:59</td>
+<td>Wed 8 Oct 23:59</td>
 <td><a href="practicals/project.pdf">3. Game, design document</a></td>
 <td><a href="practicals/gloss-counter.zip">Example game</a><br/>
     <a href="practicals/example_design.pdf">Example design document</a>
 </td>
-<td><a href="http://uu.blackboard.com">Blackboard</a></td>
+<td><a href="http://uu.brightspace.com">Brightspace</a></td>
 </tr>
 <tr>
-<td>Wed 16 Oct 23:59</td>
+<td>Wed 15 Oct 23:59</td>
 <td><a href="practicals/Assignment4.pdf">4. Type classes</a></td>
 <td><a href="practicals/Assignment4.hs"><tt>Assignment4.hs</tt></a></td>
-<td><a href="https://domjudge.uu.nl/fp/domjudge">DOMjudge</a></td>
+<td><a href="https://prairielearn.science.uu.nl">PrairieLearn</a></td>
 </tr>
 <tr>
 <td>Sun 10 Nov 23:59</td>
 <td><a href="practicals/project.pdf">5. Game, implementation</a></td>
 <td><a href="practicals/gloss-counter.zip">Example game</a></td>
-<td><a href="http://uu.blackboard.com">Blackboard</a></td>
+<td><a href="http://uu.brightspace.com">Brightspace</a></td>
 </tr>
 <tr>
 <td>Sun 12 Jan 23:59</td>
 <td><a href="practicals/RetakeAssignment.pdf">Retake Assignment: Monads</a></td>
 <td><a href="practicals/RetakeAssignment.hs">RetakeAssignment.hs</a></td>
-<td><a href="https://domjudge.uu.nl/fp/domjudge">DOMjudge</a></td>
+<td><a href="https://prairielearn.science.uu.nl">PrairieLearn</a></td>
 </tr>
 </table>
 
 ### Practicals from previous years
 
 Even if you passed the practicals last year, you still need to submit
-the solutions via DOMJudge and do a new game practical from
+the solutions via PrairieLearn and do a new game practical from
 scratch.
 
 ### Coding style
@@ -223,9 +223,12 @@ The most important factor that affects readability is proper use and reuse of ex
 
 #### Tools
 
-There are two important tools than can give you feedback on your coding style. The first is HLint, a tool designed by Neil Mitchell specifically for giving feedback on your coding style. The second is `ghc`, the Haskell compiler itself. When you submit your assignment to DOMjudge both tools will be run on your program. You can view the results of these tools by clicking on your assignment in the list of submission you made on in DOMjudge.
-
-You can install HLint by opening a command prompt and typing:
+There are two important tools than can give you feedback on your
+coding style. The first is `ghc`, the Haskell compiler itself. It will
+give warnings about e.g. missing cases etc. Generally, it is a good
+idea to address these. The second is `HLint`, a tool designed by Neil
+Mitchell specifically for giving feedback on your coding style. You
+can install HLint by opening a command prompt and typing:
 
 ```
 cabal update && cabal install hlint
@@ -237,12 +240,20 @@ After HLint has been installed you can run it on your source code (which we'll a
 hlint Assignment.hs
 ```
 
-HLint will then output a list of suggestions for improving your coding style. Most, although not all, of these suggestions will help to improve your coding style and thus your grade. Of course, computer programs sometimes mistake about subjective issues like coding style, so always use your common sense as well. For example, hlint will always suggest you change `map f (map g)` xs into `map (f . g) xs` (this is called map fusion). If `f` and `g` are simple expressions this will generally be an improvement, but if they are already quite complex, this may not help to improve readability.
+HLint will then output a list of suggestions for improving your coding
+style. Most, although not all, of these suggestions will help to
+improve your coding style. Of course, computer programs sometimes
+mistake about subjective issues like coding style, so always use your
+common sense as well. For example, hlint will always suggest you
+change `map f (map g)` xs into `map (f . g) xs` (this is called map
+fusion). If `f` and `g` are simple expressions this will generally be
+an improvement, but if they are already quite complex, this may not
+help to improve readability.
 
 #### "bad" functions
 
-For the assignments 0, 1, 2, and 4, try to avoid using the following functions/expressions as they 
-are (usually) bad form/style:
+For the assignments 0, 1, 2, and 4, try to avoid using the following
+functions/expressions as they are (usually) bad form/style:
 
 ```
 Conditionals => use guards over if-then-else
