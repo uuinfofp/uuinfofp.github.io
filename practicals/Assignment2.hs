@@ -121,7 +121,7 @@ gameTreeComplexity = undefined
 
 -- * Scores
 
-data Score = Win | Draw | Lose
+data Score = Lose | Draw | Win
   deriving (Eq, Ord)
 
 instance Show Score where
