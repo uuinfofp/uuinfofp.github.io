@@ -19,17 +19,7 @@ main = hakyllWith myConfiguration $ do
     match "practicals/*.zip" copyAsIs
     match "exams/*.pdf" copyAsIs
     match "exams/*.hs" copyAsIs
-
-    -- Password-protected
-    {-
-    match "pw/*.html" copyAsIs
-    match "pw/htaccess" $ do
-        route   (constRoute "pw/.htaccess")
-        compile copyFileCompiler
-    match "pw/htpasswd" $ do
-        route   (constRoute "pw/.htpasswd")
-        compile copyFileCompiler
-    -}
+    match "exercises/*.tar.gz" copyAsIs
 
     match "js/*.js" copyAsIs
 
@@ -64,8 +54,6 @@ main = hakyllWith myConfiguration $ do
         compile $ exerciseCompiler WithSolutions
             >>= loadAndApplyTemplate "templates/default.html" defaultContext
             >>= relativizeUrls
-
-
 
     match "templates/*" $
         compile templateCompiler

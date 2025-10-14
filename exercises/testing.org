@@ -4,11 +4,16 @@ title: Testing
 
 For the exercises below you may want to consult the functions provided
 by the [[hackage.haskell.org/package/QuickCheck-2.4.2/docs/Test-QuickCheck.html][QuickCheck library]], in particular functions such as ~choose~,
-~sized~, ~elements~ and ~frequency~. We encourage experimenting with
-your code in an interpreter session. To be able to experiment with
-QuickCheck, the first two exercises work better if you can ~show~
-functions. For that you can add the following instance definition to
-your code:
+~sized~, ~elements~ and ~frequency~.
+
+We encourage experimenting with your code in an interpreter
+session. To be able to experiment with QuickCheck, the first two
+exercises work better if you can ~show~ functions. For that you can
+add the following definitions to your code. We've also packaged up
+these helper definitions in a [[file:qcExercises-0.1.0.0.tar.gz][small
+cabal package]]. You can run the code using ~cabal run~, or start an
+interpeter using ~cabal repl Main.hs~. Alternatively, include this at
+the top of your file:
 
 #+BEGIN_SRC haskell
 {-# LANGUAGE FlexibleInstances #-} -- put this at the top of your file
