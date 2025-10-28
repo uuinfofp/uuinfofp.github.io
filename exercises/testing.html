@@ -44,11 +44,14 @@
 
       <p>For the exercises below you may want to consult the functions provided
 by the <span class="spurious-link" target="hackage.haskell.org/package/QuickCheck-2.4.2/docs/Test-QuickCheck.html"><em>QuickCheck library</em></span>, in particular functions such as <code>choose</code>,
-<code>sized</code>, <code>elements</code> and <code>frequency</code>. We encourage experimenting with
-your code in an interpreter session. To be able to experiment with
-QuickCheck, the first two exercises work better if you can <code>show</code>
-functions. For that you can add the following instance definition to
-your code:</p>
+<code>sized</code>, <code>elements</code> and <code>frequency</code>.</p>
+<p>We encourage experimenting with your code in an interpreter
+session. To be able to experiment with QuickCheck, the first two
+exercises work better if you can <code>show</code> functions. For that you can
+add the following definitions to your code. We’ve also packaged up
+these helper definitions in a <a href="qcExercises-0.1.0.0.tar.gz">small cabal package</a>. You can run the code using <code>cabal run</code>, or start an
+interpeter using <code>cabal repl Main.hs</code>. Alternatively, include this at
+the top of your file:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ot">{-# LANGUAGE FlexibleInstances #-}</span> <span class="co">-- put this at the top of your file</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> (<span class="dt">Enum</span> a, <span class="dt">Bounded</span> a, <span class="dt">Show</span>  a) <span class="ot">=&gt;</span> <span class="dt">Show</span> (a <span class="ot">-&gt;</span> <span class="dt">Bool</span>) <span class="kw">where</span></span>
