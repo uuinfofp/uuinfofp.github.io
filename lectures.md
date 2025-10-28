@@ -168,6 +168,8 @@ currently still subject to change.
       <td>44</td>
       <td>Tue 28 Oct<br /></td>
       <td>Q&A session (for exam prep)
+        <br><a href="slides/QandA2025.hs">Example
+  code & Questions/solutions used</a>
         <!-- <br><a href="slides/Test.hs">Example questions</a> -->
         <!-- <br><a href="slides/Test-Answers.hs">Example questions solutions</a> -->
       </td>
