@@ -136,7 +136,7 @@ The *final result* of the course is:
 
 - Not passed with NVD otherwise.
 
-GHC Installation Instructions
+* GHC Installation Instructions
 
 To successfully complete the course you will need
 
