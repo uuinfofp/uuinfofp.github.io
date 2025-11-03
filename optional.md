@@ -19,7 +19,7 @@ If you have a package or extension in mind that you would like to make
 a video about, please contact <a href="mailto:F.Staals@uu.nl">Frank
 Staals</a> or <a href="mailto:m.i.l.vakar@uu.nl">Matthijs Vákár</a>
 **before the midterm on 02 October 2025** to ensure that the choice is
-appropriate.  The final video should be submitted **by Fri 31 Oct
+appropriate.  The final video should be handed in on Brightspace **by Fri 31 Oct
 23:59**.
 
 ### Some examples
