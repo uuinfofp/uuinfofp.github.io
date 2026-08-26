@@ -2,7 +2,7 @@
 title: Practicals
 ---
 
-During the very first practical on Tuesday 2 September, you can have a
+During the very first practical on Tuesday 8 September, you can have a
 look at the [getting started](exercises/getting_started.html) page
 that has some small getting started exercises.
 
@@ -22,19 +22,19 @@ that has some small getting started exercises.
 <td><a href="https://prairielearn.science.uu.nl">PrairieLearn</a></td>
 </tr>
 <tr>
-<td>Fri 12 Sept 23:59</td>
+<td>Fri 18 Sept 23:59</td>
 <td><a href="practicals/Assignment1.pdf">1. Lists</a></td>
 <td><a href="practicals/Assignment1.hs"><tt>Assignment1.hs</tt></a></td>
 <td><a href="https://prairielearn.science.uu.nl">PrairieLearn</a></td>
 </tr>
 <tr>
-<td>Wed 24 Sept 23:59</td>
+<td>Wed 30 Sept 23:59</td>
 <td><a href="practicals/Assignment2.pdf">2. Data structures</a></td>
 <td><a href="practicals/Assignment2.hs"><tt>Assignment2.hs</tt></a></td>
 <td><a href="https://prairielearn.science.uu.nl">PrairieLearn</a></td>
 </tr>
 <tr>
-<td>Wed 8 Oct 23:59</td>
+<td>Wed 14 Oct 23:59</td>
 <td><a href="practicals/project.pdf">3. Game, design document</a></td>
 <td><a href="practicals/gloss-counter.zip">Example game</a><br/>
     <a href="practicals/example_design.pdf">Example design document</a>
@@ -42,23 +42,23 @@ that has some small getting started exercises.
 <td><a href="http://uu.brightspace.com">Brightspace</a></td>
 </tr>
 <tr>
-<td>Wed 15 Oct 23:59</td>
+<td>Wed 21 Oct 23:59</td>
 <td><a href="practicals/Assignment4.pdf">4. Type classes</a></td>
 <td><a href="practicals/Assignment4.hs"><tt>Assignment4.hs</tt></a></td>
 <td><a href="https://prairielearn.science.uu.nl">PrairieLearn</a></td>
 </tr>
 <tr>
-<td>Sun 09 Nov 23:59</td>
+<td>Fri 06 Nov 23:59</td>
 <td><a href="practicals/project.pdf">5. Game, implementation</a></td>
 <td><a href="practicals/gloss-counter.zip">Example game</a></td>
 <td><a href="http://uu.brightspace.com">Brightspace</a></td>
 </tr>
-<tr>
-<td>Sun 11 Jan 23:59</td>
-<td><a href="practicals/RetakeAssignment.pdf">Retake Assignment: Monads</a></td>
-<td><a href="practicals/RetakeAssignment.hs">RetakeAssignment.hs</a></td>
-<td><a href="https://prairielearn.science.uu.nl">PrairieLearn</a></td>
-</tr>
+<!-- <tr> -->
+<!-- <td>Sun 11 Jan 23:59</td> -->
+<!-- <td><a href="practicals/RetakeAssignment.pdf">Retake Assignment: Monads</a></td> -->
+<!-- <td><a href="practicals/RetakeAssignment.hs">RetakeAssignment.hs</a></td> -->
+<!-- <td><a href="https://prairielearn.science.uu.nl">PrairieLearn</a></td> -->
+<!-- </tr> -->
 </table>
 
 ### Practicals from previous years
