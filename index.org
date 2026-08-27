@@ -141,7 +141,9 @@ Installing GHC used to be a bit of a hassle. Fortunately, the
 situation has improved a bit with respect to earlier years. We
 currently recommend that you install GHC using a tool called
 'ghcup'. In particular, you can follow [[https://www.haskell.org/ghcup/][these]] instructions to install
-'ghc' and 'cabal'.
+'ghc' and 'cabal'.  It does not matter too much which version of GHC
+you install; sticking to the "recommended" versions by ghcup should
+suffice.
 
 If you want as you type error checking and intelligent completions in
 your editor, you may also want to install HLS, the Haskell Language
