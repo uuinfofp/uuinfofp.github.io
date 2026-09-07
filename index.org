@@ -129,6 +129,13 @@ To qualify for the retake exam:
 
 You cannot retake the final programming assignment.
 
+* AI Policy
+
+Any form of AI help in their assignments is *not* allowed: the [[https://www.uu.nl/en/organisation/ai-policy/students/ai-index][AI
+Index]] for Functional Programming is 1. You are expected to rely on
+your own understanding, reasoning ability and skills to complete the
+work in the course.
+
 * GHC Installation Instructions
 
 To successfully complete the course you will need
