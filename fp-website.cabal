@@ -11,5 +11,5 @@ executable fp-website
   ghc-options:         -threaded
   build-depends:       base >= 4.7 && < 5,
                        hakyll >= 4.13,
-                       pandoc,
+                       pandoc >= 3.11 && < 3.12,
                        pandoc-types

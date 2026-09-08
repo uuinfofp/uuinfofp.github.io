@@ -65,7 +65,7 @@ copyAsIs = do
 
 -- use mathjax
 defaultWriterOptons = defaultHakyllWriterOptions {
-                        writerHTMLMathMethod = MathJax defaultMathJaxURL
+                        writerMathMethod = MathJax defaultMathJaxURL
                       }
 
 data WithSolutions = NoSolutions | WithSolutions deriving (Show,Eq)
