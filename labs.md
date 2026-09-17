@@ -19,19 +19,19 @@ that has some small getting started exercises.
 <td></td>
 <td><a href="practicals/Assignment0.pdf">0. Introduction</a></td>
 <td>None</td>
-<td><a href="https://prairielearn.science.uu.nl">PrairieLearn</a></td>
+<td><a href="https://prairielearn.science.uu.nl/pl/course_instance/38">PrairieLearn</a></td>
 </tr>
 <tr>
 <td>Fri 18 Sept 23:59</td>
 <td><a href="practicals/Assignment1.pdf">1. Lists</a></td>
 <td><a href="practicals/Assignment1.hs"><tt>Assignment1.hs</tt></a></td>
-<td><a href="https://prairielearn.science.uu.nl">PrairieLearn</a></td>
+<td><a href="https://prairielearn.science.uu.nl/pl/course_instance/38">PrairieLearn</a></td>
 </tr>
 <tr>
 <td>Wed 30 Sept 23:59</td>
 <td><a href="practicals/Assignment2.pdf">2. Data structures</a></td>
 <td><a href="practicals/Assignment2.hs"><tt>Assignment2.hs</tt></a></td>
-<td><a href="https://prairielearn.science.uu.nl">PrairieLearn</a></td>
+<td><a href="https://prairielearn.science.uu.nl/pl/course_instance/38">PrairieLearn</a></td>
 </tr>
 <tr>
 <td>Wed 14 Oct 23:59</td>
@@ -45,7 +45,7 @@ that has some small getting started exercises.
 <td>Wed 21 Oct 23:59</td>
 <td><a href="practicals/Assignment4.pdf">4. Type classes</a></td>
 <td><a href="practicals/Assignment4.hs"><tt>Assignment4.hs</tt></a></td>
-<td><a href="https://prairielearn.science.uu.nl">PrairieLearn</a></td>
+<td><a href="https://prairielearn.science.uu.nl/pl/course_instance/38">PrairieLearn</a></td>
 </tr>
 <tr>
 <td>Fri 06 Nov 23:59</td>
