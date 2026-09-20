@@ -97,6 +97,7 @@ title: Functors, monads, applicatives and traversables
    application with the arguments swapped: 
 
     #+BEGIN_SRC haskell
+      infixl 1 &
       (&) :: a -> (a -> b) -> b 
       (&) = flip ($)
     #+END_SRC
@@ -179,8 +180,8 @@ title: Functors, monads, applicatives and traversables
 
     #+BEGIN_SRC haskell :solution
     instance Functor (Error m) where
-    fmap f (OK a)    = OK (f a)
-    fmap _ (Error m) = Error m
+      fmap f (OK a)    = OK (f a)
+      fmap _ (Error m) = Error m
 
     -- This instance applies a function f to an OK value and otherwise propagates the error message.
     #+END_SRC
@@ -255,6 +256,13 @@ title: Functors, monads, applicatives and traversables
 
 
     #+BEGIN_SRC haskell :solution
+    instance Functor (State s) where
+      fmap f m = m >>= (return . f)
+
+    instance Applicative (State s) where
+      pure = return
+      mf <*> ma = mf >>= \f -> ma >>= \a -> return (f a)
+
     instance Monad (State s) where 
       return = unStatePass id
       (>>=) f g = unStatePass' (statePass g . statePass' f)
@@ -274,8 +282,8 @@ title: Functors, monads, applicatives and traversables
     = (def return)
     unStatePass id a
     = (def unStatePass)
-    State $ \s -> g (a, s)
-    = (def ($))
+    State $ \s -> id (a, s)
+    = (def ($) and id)
     State (\s -> (a, s))
     #+END_SRC
 
@@ -368,6 +376,13 @@ title: Functors, monads, applicatives and traversables
   Give a ~Monad~ instance for ~Cont r~. Hint: you may want to use the functions we defined previously.
 
     #+BEGIN_SRC haskell :solution
+    instance Functor (Cont r) where
+        fmap f m = m >>= (return . f)
+
+    instance Applicative (Cont r) where
+        pure = return
+        mf <*> ma = mf >>= \f -> ma >>= \a -> return (f a)
+
     instance Monad (Cont r) where 
         return = unContPass id
         (>>=) f g = unContPass' (contPass' f . contPass g)

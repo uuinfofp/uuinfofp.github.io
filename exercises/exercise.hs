@@ -64,5 +64,4 @@ decode = concatMap (\(x,i) -> replicate i x)
 
 
 nub [] = []
-nub (x:xs) | x `elem` xs = nub xs
-           | otherwise   = x : nub xs
+nub (x:xs) = x : nub (filter (/= x) xs)

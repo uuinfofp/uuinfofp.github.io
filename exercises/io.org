@@ -81,7 +81,7 @@ input/output behaviour (the ~3~ has been typed in by the user):
 
 ** :atHome:
 
-Write a function of type ~[FilePath] −> FilePath −> IO ()~ which
+Write a function of type ~[FilePath] -> FilePath -> IO ()~ which
 concatenates a list of files to a specific target file: the first
 parameter is a list of filenames and the second parameter the name of
 the target file. Do not use the function ~appendFile~.
@@ -113,7 +113,7 @@ representation as given by Show) of a ~Tree Int~.
 
 We will write a short program ~main :: IO ()~ that:
 
-   1. Loads the tree from "myTree.hs" in memory
+   1. Loads the tree from "myTree.txt" in memory
    2. asks the user for an number (an Int) ~q~
    3. prints if ~q~ appears in the tree or not.
 
@@ -149,6 +149,10 @@ Now write a full implementation of ~main :: IO ()~ that uses
 ~readTree~ and performs all steps of the program sketched above.
 
      #+begin_src haskell :solution
+     elems :: Tree a -> [a]
+     elems (Leaf x) = [x]
+     elems (Node l x r) = elems l ++ [x] ++ elems r
+
      main :: IO ()
      main = do
         t <- readTree

@@ -225,9 +225,9 @@ second list, but if the first list contains duplicates, so will the
 result.
 
 #+BEGIN_SRC haskell :solution
-union xs ys = foldr f e ys
+union xs ys = foldl f e ys
   where
-    f y r | y `elem` r  = r
+    f r y | y `elem` r  = r
           | otherwise   = r ++ [y]
     e = xs
 #+END_SRC
@@ -345,7 +345,7 @@ tails = foldr f e
     f x r = case r of
               []     -> [x]:r
               (ys:_) -> (x:ys):r
-    e = []
+    e = [[]]
 #+END_SRC
 ** ~group :: Eq a => [a] -> [[a]]~ :challenging:inClass:
 
@@ -368,7 +368,7 @@ group = foldr f e
 scanr is similar to foldr but returns a list of successive reduced
  values from the right:
 
-~scanr g z [x_1, x_2, .., x_n] == [x_1 `g` .., .., x_(n-1) `g` z ,x_n `g` z,z]~
+~scanr g z [x_1, x_2, .., x_n] == [x_1 `g` .., .., x_(n-1) `g` (x_n `g` z), x_n `g` z, z]~
 
 That is, it also returns all intermediate answers of a foldr. Note in
 particular that

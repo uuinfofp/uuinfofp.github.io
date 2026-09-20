@@ -211,7 +211,7 @@ depth of a node ~v~ is the length of the path from the root to ~v~.
 ** :atHome:
 
 Write a function ~trimWhen :: (a -> Bool) -> (b -> Bool) -> LeafTree a b
--> LeafTree (LeafTree a b) b~ that 'trims' the subtree depending on two
+-> LeafTree (Maybe (LeafTree a b)) b~ that 'trims' the subtree depending on two
 predicates ~p :: a -> Bool~ and ~q :: b -> Bool~ . In particular,
 predicate ~p x~ returns True if and only if we should trim the leaf
 storing some value ~x~ and ~q y~ returns True if and only if the
@@ -240,8 +240,8 @@ Write a function ~bimapTree :: (a -> c) -> (b -> d) -> LeafTree a b -> LeafTree 
 
 ** :atHome:
 
-Write a function ~trim :: Int -> LeafTree a b -> LeafTree (Maybe (LeafTree a b)
-b)~ that trims a tree at the given depth.
+Write a function ~trim :: Int -> LeafTree a b -> LeafTree (Maybe (LeafTree a b))
+b~ that trims a tree at the given depth.
 
    #+begin_src haskell :solution
    trim   :: Int -> LeafTree a b -> LeafTree (Maybe (LeafTree a b)) b
@@ -307,13 +307,13 @@ that
 write the function ~sized'~
 
   #+BEGIN_SRC haskell :solution
-  sized   :: Int -> TTTree a -> (TTTRee a, [TTTree a])
-  sized n = foldTTTree f g2 g3
+  sized'   :: Int -> TTTree a -> (TTTree a, [TTTree a])
+  sized' n = foldTTTree f g2 g3
     where
       singleton s t = if n == s then [t] else []
 
       f x = let t = Leaf x
-            in (t,singleton s t)
+            in (t,singleton 1 t)
 
       g2 s (l,ls) (r,rs) = let t = Node2 s l r
                            in (t, singleton s t ++ ls ++ rs)

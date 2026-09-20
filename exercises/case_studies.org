@@ -57,7 +57,7 @@ true.
 
 ** :atHome:
 
-Refine the function ~satisFiable~ to return the assignment which makes
+Refine the function ~satisfiable~ to return the assignment which makes
 the proposition satisfiable. Which should be the type given to such a
 function?
 
@@ -65,7 +65,7 @@ function?
    -- we can use the function find :: (a -> Bool) -> [a] -> Maybe a to
    -- return the assignment which makes the proposition true.
    satisfiable :: Prop -> Maybe (Map Char Bool)
-   satisfiable = find (\as -> tv as p) (assigns (vars p))
+   satisfiable p = find (\as -> tv as p) (assigns (vars p))
    #+END_SRC
 
 ** :atHome:
@@ -104,5 +104,5 @@ eval m (BinOp o x y) = evalBinOp o (eval m x) (eval m y)
         evalBinOp Minus = (-)
         evalBinOp Times = (*)
         evalBinOp Div   = div
-        evalBinOp Exp   = (^^)
+        evalBinOp Exp   = (^)
 #+END_SRC

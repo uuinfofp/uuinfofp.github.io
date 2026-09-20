@@ -39,11 +39,11 @@ When trying out this definition using ~ghci~, do not use the ~<~
 symbol, since it is already defined in the ~Prelude~.
 
 #+BEGIN_SRC haskell :solution
-(<)         :: Ord a => [a] -> [a] -> Bool
-[]     < []     = False
-[]     < _      = True
-(_:_)  < []     = False
-(x:xs) < (y:ys) = x < y && xs < ys
+ltList :: Ord a => [a] -> [a] -> Bool
+ltList []     []     = False
+ltList []     _      = True
+ltList (_:_)  []     = False
+ltList (x:xs) (y:ys) = x < y || (x == y && ltList xs ys)
 #+END_SRC
 
 ** Complex numbers :recommended:atHome:
@@ -65,7 +65,9 @@ symbol, since it is already defined in the ~Prelude~.
      (C a b) - (C x y) = C (a - x)    (b - y)
      (C a b) * (C x y) = C (a*x-b*y)  (a*y+b*x)
      negate (C a b)    = C (negate a) (negate b)
-     abs    (C a b)    = C (a*a+b*b)  0
+     abs    (C a b)    = C (sqrt (a*a+b*b)) 0
+     signum (C 0 0)    = C 0 0
+     signum (C a b)    = let r = sqrt (a*a+b*b) in C (a/r) (b/r)
      fromInteger i     = C (fromInteger i) 0
    #+END_SRC
 
@@ -215,13 +217,14 @@ instance (Finite a, Finite b) => Finite (a, b) where
 -- Computes all subsets for the given elements,
 -- that is, all combinations where each element
 -- in the list may or may not appear
-allSubsets :: [a] -> [Set a]
+-- Here we use the representation newtype Set a = Set [a] from the Sets exercise.
+allSubsets :: [a] -> [[a]]
 allSubsets []     = [[]]
 allSubsets (v:vs) = let ss = allSubsets vs
                      in ss ++ [v:s | s <- ss]
 
 instance Finite a => Finite (Set a) where
-  elements = allSubsets elements
+  elements = map Set (allSubsets elements)
 
 -- Auxiliary definition for Finite (a -> b)
 -- Computes all key-value pairs from two lists,
@@ -293,8 +296,6 @@ instance Line AngleLine where
 #+END_SRC
 #+BEGIN_SRC haskell  :solution
 -- Or this rather boring one:
-    distance :: l -> Point -> Float
-    vshift :: Float -> l -> l
 data BoringLine = BoringLine {dist :: Point -> Float, vs :: Float -> BoringLine} -- BoringLine directly uses the required methods as a definition
 instance Line BoringLine where 
     distance = dist
@@ -349,7 +350,7 @@ can be represented as
 #+BEGIN_SRC haskell
 dgraph1SMPL = SMPList $ PList [(1, [2, 3]), (2, []), (3, [2, 4]), (4, [3])]
 dgraph1FRT = FRoseTree [one] where 
-  one = RoseTree 1 [two, tree]
+  one = RoseTree 1 [two, three]
   two = RoseTree 2 []
   three = RoseTree 3 [two, four]
   four = RoseTree 4 [three]
@@ -389,9 +390,12 @@ instance DGraph SMPList where
 #+END_SRC
 #+BEGIN_SRC haskell  :solution
 instance DGraph FRoseTree where
-    succs (FRoseTree xs) y = concatMap (`succs'` y) xs where 
-        succs' (RoseTree x xs) y | x == y = map getVal xs
-                                 | otherwise = foldr (\x acc -> if null acc then succs' x y else acc) [] xs
+    succs (FRoseTree xs) y = search [] xs where
+        search _ [] = []
+        search seen (RoseTree x children : rest)
+          | x == y = map getVal children
+          | x `elem` seen = search seen rest
+          | otherwise = search (x:seen) (children ++ rest)
         getVal (RoseTree x _) = x
 #+END_SRC
 
@@ -426,8 +430,11 @@ maxPaths :: (Eq l, DGraph g) => g l -> [l] -> [[l]]
 
 Now, please implement ~maxPaths~. You may assume, for simplicity, that it is only ever used on directed graphs without cycles.
 #+BEGIN_SRC haskell  :solution
-maxPaths _ [] = [[]]
-maxPaths someGraph inits = concat [map (i:) (maxPaths someGraph (succs someGraph i)) | i <- inits] -- concatMap (\i -> map (i:) (maxPaths someGraph (succs someGraph i))) inits
+maxPaths someGraph inits = concatMap pathsFrom inits
+  where
+    pathsFrom i = case succs someGraph i of
+                    [] -> [[i]]
+                    js -> map (i:) (maxPaths someGraph js)
 #+END_SRC
 
 Can you come up with any more operations that we can perform on any directed graph?
@@ -447,6 +454,7 @@ class DGraph g where
             [] -> 0 
             xs -> 1 + maximum (map (depthFrom someGraph) xs)
     descendants :: Eq a => g a -> a -> [a] -- (lazy) list of all descendants (transitive closure of successors), infinite in case of cycles
-    descendants someGraph x = c ++ concatMap (descendants someGraph) c where 
-        c = succs someGraph x
+    descendants someGraph x = visit (succs someGraph x) where
+        visit [] = []
+        visit (y:ys) = y : visit (ys ++ succs someGraph y)
 #+END_SRC
