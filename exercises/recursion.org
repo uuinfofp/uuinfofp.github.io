@@ -145,7 +145,7 @@ has fewer than i elements, the entire input list is returned.
 
 #+BEGIN_SRC haskell :solution
 take          :: Int -> [a] -> [a]
-take 0 _      = []
+take n _ | n <= 0 = []
 take n []     = []
 take n (x:xs) = x : take (n-1) xs
 #+END_SRC
@@ -194,8 +194,8 @@ elements from a list. For example
 #+BEGIN_SRC haskell :solution
 remSuccessiveduplicates []                   = []
 remSuccessiveduplicates [x]                  = [x]
-remSuccessiveduplicates (x:y:xs) | x == y    = remsuccessiveduplicates (y:xs)
-                                 | otherwise = x : remsuccessiveduplicates (y:xs)
+remSuccessiveduplicates (x:y:xs) | x == y    = remSuccessiveduplicates (y:xs)
+                                 | otherwise = x : remSuccessiveduplicates (y:xs)
 #+END_SRC
 
 * :atHome:
@@ -242,7 +242,7 @@ Extract the last element of a list. Returns ~Nothing~ if the list is empty.
 
 #+BEGIN_SRC haskell :solution
 maybeLast []     = Nothing
-maybeList (x:xs) = case maybeList xs of
+maybeLast (x:xs) = case maybeLast xs of
                      Nothing -> Just x
                      jl      -> jl
 #+END_SRC
@@ -291,7 +291,7 @@ starting from value 'z'.
 Your implementation should satisfy:
 
 - ~foldr (+) 0 xs == sum xs~, for any list of numbers xs, and
-- ~let f i s = chr i : s in foldr f "" [65..70] == "ABCDE"~
+- ~let f i s = chr i : s in foldr f "" [65..70] == "ABCDEF"~
 
 #+BEGIN_SRC haskell :solution
 foldr _ z []     = z
@@ -304,7 +304,7 @@ foldr f z (x:xs) = f x (foldr f z xs)
 scanr is similar to foldr but returns a list of successive reduced
 values from the right:
 
-~scanr f z [x_1, x_2, .., x_n] == [x_1 `f` .., .., x_(n-1) `f` z ,x_n `f` z,z]~
+~scanr f z [x_1, x_2, .., x_n] == [x_1 `f` .., .., x_(n-1) `f` (x_n `f` z), x_n `f` z, z]~
 
 That is, it also returns all intermediate answers of a foldr. Note in
 particular that
@@ -392,7 +392,7 @@ y~. If the lists have different length, the lengths are truncated to
 the shortest list. For example:
 
 - ~zipWith (,) [1,2,3,4] ["a","b","c","d","e"] == [(1,"a"),(2,"b"),(3,"c"),(4,"d")]~
-- ~zipWith (+) [1,2,3] [100,200,300,400] == [1001,2002,3003]~
+- ~zipWith (+) [1,2,3] [100,200,300,400] == [101,202,303]~
 
 #+BEGIN_SRC haskell :solution
 zipWith f (x:xs) (y:ys) = (f x y) : zipWith f xs ys
@@ -441,6 +441,8 @@ sum/ of ~l~ is the maximum sum over all possible segments of ~l~.
    re-implemented in the exercises above)
 
    #+begin_src haskell :solution
+   import qualified Data.List as List
+
    segments :: [Int] -> [[Int]]
    segments = ([] :) . concatMap (tail . List.inits) . List.tails
    #+end_src
@@ -475,7 +477,7 @@ sum/ of ~l~ is the maximum sum over all possible segments of ~l~.
    ~maxPrefixSum~ and ~maxSegSum~. Exploit that to obtain a linear
    time implementation ~maxSegSum~ for the maximum segment sum.
 
-   Hint: Write a function ~maxPrefixAndSegSum : [Int] -> (Int,Int)~ that
+   Hint: Write a function ~maxPrefixAndSegSum :: [Int] -> (Int,Int)~ that
    /simultaneously/ computes the maximum prefix sum and the maximum
    segment sum. I.e. Your function should satisfy the specification:
 
@@ -500,7 +502,7 @@ sum/ of ~l~ is the maximum sum over all possible segments of ~l~.
 
 * :atHome:
 
-Let ~countTrues :: [Bool] -> [int]~ be a function such that ~countTrues bs~ computes, for
+Let ~countTrues :: [Bool] -> [Int]~ be a function such that ~countTrues bs~ computes, for
 each prefix of the list ~bs~, the number of ~True~ s in the list.
 
 1. Write ~countTrues~ using direct recursion.
@@ -532,7 +534,8 @@ each prefix of the list ~bs~, the number of ~True~ s in the list.
    countTrues :: [Bool] -> [Int]
    countTrues = count [0]
      where
-       -- invariant: count acc xs == (reverse acc) ++ countTrues xs
+       -- invariant (acc nonempty, cur = head acc):
+       -- count acc xs == reverse acc ++ map (+cur) (tail (countTrues xs))
        count acc          []        = reverse acc
        count acc@(cur:_) (True:bs)  = count (cur+1 : acc) bs
        count acc@(cur:_) (False:bs) = count (cur   : acc) bs

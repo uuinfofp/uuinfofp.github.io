@@ -246,7 +246,7 @@ Prove that addition is commutative, that is, ~add n m = add m n~.
 
 ** :atHome:
 
-Prove that multiplication is commutative, that is, ~mult n m = mul m n~.
+Prove that multiplication is commutative, that is, ~mult n m = mult m n~.
 
 - Hint: you need lemmas similar to the previous exercise.
 
@@ -255,7 +255,7 @@ Prove that multiplication is commutative, that is, ~mult n m = mul m n~.
 Prove that for all trees ~size t = length (enumInfix t)~, where
 
     #+BEGIN_SRC haskell
-    data Tree a = Leaf a | Node (Tree a) a (Tree a)
+    data Tree a = Leaf | Node (Tree a) a (Tree a)
 
     size :: Tree a -> Int
     size Leaf = 0

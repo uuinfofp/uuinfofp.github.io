@@ -6,16 +6,16 @@ title: Higher order Functions
 Give examples for functions with the following types:
 
 #+BEGIN_SRC haskell
-(Float −> Float) −> Float
-Float −> (Float −> Float)
-(Float −> Float) −> (Float −> Float)
+(Float -> Float) -> Float
+Float -> (Float -> Float)
+(Float -> Float) -> (Float -> Float)
 #+END_SRC
 
 #+BEGIN_SRC haskell  :solution
 -- For example (all these expressions have more general polymorphic types, but, in particular, type check at the requested types)
-\f -> f 2.0 :: (Float −> Float) −> Float 
-(*) :: Float −> (Float −> Float)
-(.) (+1) :: (Float −> Float) −> (Float −> Float) 
+(\f -> f 2.0) :: (Float -> Float) -> Float 
+(*) :: Float -> (Float -> Float)
+(.) (+1) :: (Float -> Float) -> (Float -> Float) 
 #+END_SRC
 
 Give an example program ~p~ with the following type and explain how the function arrow ~->~ associates:
@@ -47,7 +47,7 @@ bar :: a -> [a] -> [a]
 bar a as = as ++ [a] 
 baz :: [a] 
 baz = []
--- Then, foo bar baz (which should be read as (foo bar) baz) has type [a]
+-- Then, foo bar baz (which should be read as (foo bar) baz) has type [a] -> [a]
 -- Note that function application associating to the left and function arrows associating to the right are nice behaviour because it means 
 -- that we can implement the default use-case of curried functions of multiple arguments and partial application of such functions without writing many parentheses in either the type or the program.
 #+END_SRC
@@ -122,10 +122,10 @@ before = flip (.)
 ** Higher order data types :atHome:challenging:
 
 We have seen that ~[...]~ is a type function that maps types to
-types. Similarly because ~−>~ is a type constructor mapping two types
-to a type, for some ~c~ also ~c −>~ is a type function mapping a type
-~a~ to ~c −> a~. Rewrite the type of ~map~ by substituting the type
-function ~[...]~ by ~c −>~. Can you derive an implementation from the
+types. Similarly because ~->~ is a type constructor mapping two types
+to a type, for some ~c~ also ~c ->~ is a type function mapping a type
+~a~ to ~c -> a~. Rewrite the type of ~map~ by substituting the type
+function ~[...]~ by ~c ->~. Can you derive an implementation from the
 resulting type?
 
 #+BEGIN_SRC haskell :solution

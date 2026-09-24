@@ -18,6 +18,9 @@ the top of your file:
 #+BEGIN_SRC haskell
 {-# LANGUAGE FlexibleInstances #-} -- put this at the top of your file
 
+import Test.QuickCheck
+import Data.List (intercalate, permutations, isSubsequenceOf)
+
 instance (Enum a, Bounded a, Show  a) => Show (a -> Bool) where
   show f = intercalate "\n" (map (\x -> "f " ++ show x ++ " = " ++ show (f x)) [minBound .. maxBound])
 #+END_SRC
@@ -38,9 +41,9 @@ runTests = do
   putStrLn "\nExercise 14.2"
   quickCheck (propMapLength :: (Bool -> Bool) -> [Bool] -> Bool)
   putStrLn "\nExercise 14.3"
-  quickCheck $ once (propPermsLength   :: [Int] -> Bool)
-  quickCheck $ once (propPermsArePerms :: [Int] -> Bool)
-  quickCheck $ once (propPermsCorrect  :: [Int] -> Bool)
+  quickCheck $ mapSize (const 6) (propPermsLength   :: [Int] -> Bool)
+  quickCheck $ mapSize (const 6) (propPermsArePerms :: [Int] -> Bool)
+  quickCheck $ mapSize (const 6) (propPermsCorrect  :: [Int] -> Bool)
   putStrLn "\nExercise 14.5"
   quickCheck (forAll genBSTI isSearchTree)    -- Use forAll to use custom generator
   quickCheck (forAll genBSTI propInsertIsTree)
@@ -78,27 +81,22 @@ that you can formulate for the input-output behaviour of ~filter~.
     - Formulate a set of QuickCheck properties to completely characterize the ~filter~ function (you may choose  also from among the three you have just implemented). Make sure to remove properties that are implied by (a subset of) the other properties.
 
       #+BEGIN_SRC haskell :solution
-      -- If some element of xs satisfies p it should be in the result
+      -- Every occurrence of an element satisfying p must be retained.
       propAllPresent      :: Eq a => (a -> Bool) -> [a] -> Bool
       propAllPresent p xs = all notSatisfiedOrPresent xs
         where
           ys = filter p xs
-          notSatisfiedOrPresent x = not (p x) || x `elem` ys
+          notSatisfiedOrPresent x = not (p x) || occurrences x ys == occurrences x xs
+          occurrences x zs = length [z | z <- zs, z == x]
 
-       -- note that this already implies the propFilterAllElements property,
-       -- moreover prevents duplicates (since isIncreasing is strict)
-       propSameOrder      :: (a -> Bool) -> [a] -> Bool
-       propSameOrder p xs = isIncreasing
-                          . map snd
-                          . filter (p . fst)
-                          $ zip xs [0..]
-         where
-           isIncreasing ys = all (\(x,y) -> x < y) $ zip ys (tail ys)
+      -- A subsequence preserves order and cannot invent elements or occurrences.
+      propSameOrder      :: Eq a => (a -> Bool) -> [a] -> Bool
+      propSameOrder p xs = isSubsequenceOf (filter p xs) xs
 
-       propFilterCorrect p xs = all (\p' -> p' p xs) [ propSameOrder
-                                                     , propFilterAllSatisfy
-                                                     , propAllPresent
-                                                     ]
+      propFilterCorrect p xs = all (\p' -> p' p xs) [ propSameOrder
+                                                    , propFilterAllSatisfy
+                                                    , propAllPresent
+                                                    ]
       #+END_SRC
 
 ** :atHome:      
@@ -159,6 +157,7 @@ shall want to use to implement binary search trees:
 
    #+BEGIN_SRC haskell
    data Tree a = Branch a (Tree a) (Tree a) | Leaf
+               deriving Show
    #+END_SRC
 
    Write a function ~isSearchTree :: Ord a => Tree a -> Bool~ that verifies

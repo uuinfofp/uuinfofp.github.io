@@ -28,10 +28,10 @@ A recursive function is only sensible if the value(s) of its
 
    #+BEGIN_SRC haskell
    fac n | n == 0    = 1
-         | otherwise = n * fac (n − 1)
+         | otherwise = n * fac (n - 1)
    #+END_SRC
 
-   What happens if you evaluate ~fac (−3)~?
+   What happens if you evaluate ~fac (-3)~?
 
 ** :atHome:
 
@@ -95,7 +95,7 @@ Also give the type of your function.
                       | p h        = binarySearch p l h
                       | otherwise  = binarySearch p h u
      where
-       h = (l + u) `div` 2
+       h = fromInteger ((toInteger l + toInteger u) `div` 2)
 
    #+end_src
 
@@ -166,7 +166,7 @@ some threshold $\varepsilon$.
    approxSqrt eps x = go 1
      where
        go y = let y' = 0.5 * (y + x/y)
-              in if goodEnough y then y' else go y'
+              in if goodEnough y then y else go y'
 
        goodEnough y = abs (y*y - x) < eps
    #+end_src
