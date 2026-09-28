@@ -78,6 +78,13 @@ currently still subject to change.
     <tr>
       <td>40</td>
       <td>Tue 28 Sep</td>
+      <td><a href="slides/fp-08-project-design.pdf">Project management and design</a></td>
+      <td></td>
+      <td>Frank</td>
+    </tr>
+    <tr>
+      <td></td>
+      <td>Thu 1 Oct</td>
       <td><a href="slides/fp-07-case-studies.pdf">Case studies</a>
         <br><a href="slides/fp-qa-midterm.pdf">Q&A session</a>
         <!-- <br/><a href="trees.html">The problem statements for the Tree exercises</a> -->
@@ -86,21 +93,14 @@ currently still subject to change.
       <td>Mathijs</td>
     </tr>
     <tr>
-      <td></td>
-      <td>Thu 1 Oct</td>
+      <td>41</td>
+      <td>Tue 6 Oct<br /></td>
       <td><a href="slides/fp-09-io.pdf">Input and output</a>
         <br><a href="slides/Lecture9.hs">Example code from lecture</a>
         </td>
       <td>Chapter 10</td>
       <td>Matthijs</td>
-    </tr>
-    <tr>
-      <td>41</td>
-      <td>Tue 6 Oct<br /></td>
-      <td><a href="slides/fp-08-project-design.pdf">Project management and design</a></td>
-      <td></td>
-      <td>Frank</td>
-    </tr>
+    </tr>    
     <tr class="warning">
       <td></td>
       <td>Thu 8 Oct 13:30-15:30</td>
