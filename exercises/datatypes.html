@@ -160,7 +160,7 @@ For example, the graph</p>
 <p>can be represented as</p>
 <div class="sourceCode" id="cb6"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>dgraph1SMPL <span class="ot">=</span> <span class="dt">SMPList</span> <span class="op">$</span> <span class="dt">PList</span> [(<span class="dv">1</span>, [<span class="dv">2</span>, <span class="dv">3</span>]), (<span class="dv">2</span>, []), (<span class="dv">3</span>, [<span class="dv">2</span>, <span class="dv">4</span>]), (<span class="dv">4</span>, [<span class="dv">3</span>])]</span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>dgraph1FRT <span class="ot">=</span> <span class="dt">FRoseTree</span> [one] <span class="kw">where</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  one <span class="ot">=</span> <span class="dt">RoseTree</span> <span class="dv">1</span> [two, tree]</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  one <span class="ot">=</span> <span class="dt">RoseTree</span> <span class="dv">1</span> [two, three]</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  two <span class="ot">=</span> <span class="dt">RoseTree</span> <span class="dv">2</span> []</span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  three <span class="ot">=</span> <span class="dt">RoseTree</span> <span class="dv">3</span> [two, four]</span>
 <span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  four <span class="ot">=</span> <span class="dt">RoseTree</span> <span class="dv">4</span> [three]</span></code></pre></div>

@@ -124,7 +124,7 @@ than or equal to the next element.</p>
 <p>take i returns the first i elements from the input list. If the list
 has fewer than i elements, the entire input list is returned.</p>
 <div class="sourceCode" id="cb8" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">take</span><span class="ot">          ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> [a]</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">take</span> <span class="dv">0</span> _      <span class="ot">=</span> []</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">take</span> n _ <span class="op">|</span> n <span class="op">&lt;=</span> <span class="dv">0</span> <span class="ot">=</span> []</span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="fu">take</span> n []     <span class="ot">=</span> []</span>
 <span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="fu">take</span> n (x<span class="op">:</span>xs) <span class="ot">=</span> x <span class="op">:</span> <span class="fu">take</span> (n<span class="op">-</span><span class="dv">1</span>) xs</span></code></pre></div>
 <h1 data-number="16" id="section-16"><span class="header-section-number">16</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h1>
@@ -157,8 +157,8 @@ elements from a list. For example</p>
 <p><code>remSuccessiveduplicates [1, 2, 2, 3, 2, 4] == [1, 2, 3, 2, 4]</code></p>
 <div class="sourceCode" id="cb11" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>remSuccessiveduplicates []                   <span class="ot">=</span> []</span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>remSuccessiveduplicates [x]                  <span class="ot">=</span> [x]</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>remSuccessiveduplicates (x<span class="op">:</span>y<span class="op">:</span>xs) <span class="op">|</span> x <span class="op">==</span> y    <span class="ot">=</span> remsuccessiveduplicates (y<span class="op">:</span>xs)</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                                 <span class="op">|</span> <span class="fu">otherwise</span> <span class="ot">=</span> x <span class="op">:</span> remsuccessiveduplicates (y<span class="op">:</span>xs)</span></code></pre></div>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>remSuccessiveduplicates (x<span class="op">:</span>y<span class="op">:</span>xs) <span class="op">|</span> x <span class="op">==</span> y    <span class="ot">=</span> remSuccessiveduplicates (y<span class="op">:</span>xs)</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                                 <span class="op">|</span> <span class="fu">otherwise</span> <span class="ot">=</span> x <span class="op">:</span> remSuccessiveduplicates (y<span class="op">:</span>xs)</span></code></pre></div>
 <h1 data-number="19" id="section-19"><span class="header-section-number">19</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h1>
 <p><code>nub</code></p>
 <p>The nub function removes duplicate elements from a list. In
@@ -186,7 +186,7 @@ result.</p>
 <p><code>maybeLast :: [a] -&gt; Maybe a</code></p>
 <p>Extract the last element of a list. Returns <code>Nothing</code> if the list is empty.</p>
 <div class="sourceCode" id="cb13" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>maybeLast []     <span class="ot">=</span> <span class="dt">Nothing</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>maybeList (x<span class="op">:</span>xs) <span class="ot">=</span> <span class="kw">case</span> maybeList xs <span class="kw">of</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>maybeLast (x<span class="op">:</span>xs) <span class="ot">=</span> <span class="kw">case</span> maybeLast xs <span class="kw">of</span></span>
 <span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>                     <span class="dt">Nothing</span> <span class="ot">-&gt;</span> <span class="dt">Just</span> x</span>
 <span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                     jl      <span class="ot">-&gt;</span> jl</span></code></pre></div>
 <h1 data-number="23" id="section-23"><span class="header-section-number">23</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span> <span class="tag" data-tag-name="challenging"><span class="smallcaps">challenging</span></span></h1>
@@ -216,7 +216,7 @@ starting from value ‘z’.</p>
 <p>Your implementation should satisfy:</p>
 <ul>
 <li><code>foldr (+) 0 xs == sum xs</code>, for any list of numbers xs, and</li>
-<li><code>let f i s = chr i : s in foldr f "" [65..70] == "ABCDE"</code></li>
+<li><code>let f i s = chr i : s in foldr f "" [65..70] == "ABCDEF"</code></li>
 </ul>
 <div class="sourceCode" id="cb16" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">foldr</span> _ z []     <span class="ot">=</span> z</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">foldr</span> f z (x<span class="op">:</span>xs) <span class="ot">=</span> f x (<span class="fu">foldr</span> f z xs)</span></code></pre></div>
@@ -224,7 +224,7 @@ starting from value ‘z’.</p>
 <p><code>scanr :: (a -&gt; b -&gt; b) -&gt; b -&gt; [a] -&gt; [b]</code></p>
 <p>scanr is similar to foldr but returns a list of successive reduced
 values from the right:</p>
-<p><code>scanr f z [x_1, x_2, .., x_n] == [x_1 `f` .., .., x_(n-1) `f` z ,x_n `f` z,z]</code></p>
+<p><code>scanr f z [x_1, x_2, .., x_n] == [x_1 `f` .., .., x_(n-1) `f` (x_n `f` z), x_n `f` z, z]</code></p>
 <p>That is, it also returns all intermediate answers of a foldr. Note in
 particular that</p>
 <p><code>head (scanr f z xs) == foldr f z xs</code>.</p>
@@ -284,7 +284,7 @@ respectively, the <span class="math inline">\(^i\mathrm{th}\)</span> element in 
 the shortest list. For example:</p>
 <ul>
 <li><code>zipWith (,) [1,2,3,4] ["a","b","c","d","e"] == [(1,"a"),(2,"b"),(3,"c"),(4,"d")]</code></li>
-<li><code>zipWith (+) [1,2,3] [100,200,300,400] == [1001,2002,3003]</code></li>
+<li><code>zipWith (+) [1,2,3] [100,200,300,400] == [101,202,303]</code></li>
 </ul>
 <div class="sourceCode" id="cb21" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">zipWith</span> f (x<span class="op">:</span>xs) (y<span class="op">:</span>ys) <span class="ot">=</span> (f x y) <span class="op">:</span> <span class="fu">zipWith</span> f xs ys</span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a><span class="fu">zipWith</span> _ _      _      <span class="ot">=</span> []</span></code></pre></div>
@@ -321,8 +321,10 @@ sum</em> of <code>l</code> is the maximum sum over all possible segments of <cod
 <li><p>Write the function <code>segments</code> that computes all segments of a list
 by combine existing functions from Data.List (which you have
 re-implemented in the exercises above)</p>
-<div class="sourceCode" id="cb23" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="ot">segments ::</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> [[<span class="dt">Int</span>]]</span>
-<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>segments <span class="ot">=</span> ([] <span class="op">:</span>) <span class="op">.</span> <span class="fu">concatMap</span> (<span class="fu">tail</span> <span class="op">.</span> List.inits) <span class="op">.</span> List.tails</span></code></pre></div></li>
+<div class="sourceCode" id="cb23" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="kw">qualified</span> <span class="dt">Data.List</span> <span class="kw">as</span> <span class="dt">List</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a><span class="ot">segments ::</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> [[<span class="dt">Int</span>]]</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>segments <span class="ot">=</span> ([] <span class="op">:</span>) <span class="op">.</span> <span class="fu">concatMap</span> (<span class="fu">tail</span> <span class="op">.</span> List.inits) <span class="op">.</span> List.tails</span></code></pre></div></li>
 <li><p>implement <code>maximumSegmentSum</code> using a combination of existing List functions.</p>
 <div class="sourceCode" id="cb24" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>maxSegSumSpec <span class="ot">=</span> <span class="fu">maximum</span> <span class="op">.</span> <span class="fu">map</span> <span class="fu">sum</span> <span class="op">.</span> segments</span></code></pre></div></li>
 <li><p>The above implementation is simple, but actually very slow
@@ -339,7 +341,7 @@ computes the maximum among all prefixes of a list.</p>
 <li><p>Hopefully you can notice some commonality in the implementation of
 <code>maxPrefixSum</code> and <code>maxSegSum</code>. Exploit that to obtain a linear
 time implementation <code>maxSegSum</code> for the maximum segment sum.</p>
-<p>Hint: Write a function <code>maxPrefixAndSegSum : [Int] -&gt; (Int,Int)</code> that
+<p>Hint: Write a function <code>maxPrefixAndSegSum :: [Int] -&gt; (Int,Int)</code> that
 <em>simultaneously</em> computes the maximum prefix sum and the maximum
 segment sum. I.e. Your function should satisfy the specification:</p>
 <div class="sourceCode" id="cb27"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>maxPrefixAndSegSum xs <span class="ot">=</span> (maxPrefixSum xs, maxSegSum xs)</span></code></pre></div>
@@ -355,7 +357,7 @@ segment sum. I.e. Your function should satisfy the specification:</p>
 <span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>maxSegSum <span class="ot">=</span> <span class="fu">snd</span> <span class="op">.</span> maxPrefixAndSegSum</span></code></pre></div></li>
 </ol>
 <h1 data-number="33" id="section-32"><span class="header-section-number">33</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h1>
-<p>Let <code>countTrues :: [Bool] -&gt; [int]</code> be a function such that <code>countTrues bs</code> computes, for
+<p>Let <code>countTrues :: [Bool] -&gt; [Int]</code> be a function such that <code>countTrues bs</code> computes, for
 each prefix of the list <code>bs</code>, the number of <code>True</code> s in the list.</p>
 <ol type="1">
 <li><p>Write <code>countTrues</code> using direct recursion.</p>
@@ -376,10 +378,11 @@ implementation runs in linear time.</p>
 <div class="sourceCode" id="cb31" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="ot">countTrues ::</span> [<span class="dt">Bool</span>] <span class="ot">-&gt;</span> [<span class="dt">Int</span>]</span>
 <span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>countTrues <span class="ot">=</span> count [<span class="dv">0</span>]</span>
 <span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
-<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- invariant: count acc xs == (reverse acc) ++ countTrues xs</span></span>
-<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    count acc          []        <span class="ot">=</span> <span class="fu">reverse</span> acc</span>
-<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    count acc<span class="op">@</span>(cur<span class="op">:</span>_) (<span class="dt">True</span><span class="op">:</span>bs)  <span class="ot">=</span> count (cur<span class="op">+</span><span class="dv">1</span> <span class="op">:</span> acc) bs</span>
-<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>    count acc<span class="op">@</span>(cur<span class="op">:</span>_) (<span class="dt">False</span><span class="op">:</span>bs) <span class="ot">=</span> count (cur   <span class="op">:</span> acc) bs</span></code></pre></div></li>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- invariant (acc nonempty, cur = head acc):</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    <span class="co">-- count acc xs == reverse acc ++ map (+cur) (tail (countTrues xs))</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    count acc          []        <span class="ot">=</span> <span class="fu">reverse</span> acc</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>    count acc<span class="op">@</span>(cur<span class="op">:</span>_) (<span class="dt">True</span><span class="op">:</span>bs)  <span class="ot">=</span> count (cur<span class="op">+</span><span class="dv">1</span> <span class="op">:</span> acc) bs</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    count acc<span class="op">@</span>(cur<span class="op">:</span>_) (<span class="dt">False</span><span class="op">:</span>bs) <span class="ot">=</span> count (cur   <span class="op">:</span> acc) bs</span></code></pre></div></li>
 <li><p>Write an alternative implementation of <code>countTrues</code> (not using an
 accumulator) that also runs in linear time.</p>
 <div class="sourceCode" id="cb32" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="ot">countTrues ::</span> [<span class="dt">Bool</span>] <span class="ot">-&gt;</span> [<span class="dt">Int</span>]</span>

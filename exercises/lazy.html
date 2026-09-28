@@ -69,8 +69,8 @@ upon evaluation, indicate this.</p>
 <div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>(<span class="dv">1</span> <span class="op">+</span> <span class="dv">5</span>) <span class="op">:</span> <span class="fu">succ</span> <span class="dv">4</span> <span class="op">:</span> <span class="fu">map</span> (<span class="op">+</span><span class="dv">1</span>) [<span class="dv">1</span>,<span class="dv">2</span>]</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>isNothing (<span class="dt">Just</span> <span class="dv">4</span>)</span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>\a b c <span class="ot">-&gt;</span> <span class="fu">and</span> b</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">foldr</span> <span class="fu">undefined</span> e []</span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span> <span class="fu">fmap</span></span></code></pre></div></li>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="fu">foldr</span> <span class="fu">undefined</span> <span class="dt">True</span> []</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">seq</span> (<span class="fu">fmap</span><span class="ot"> ::</span> (<span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Int</span>) <span class="ot">-&gt;</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> [<span class="dt">Int</span>])</span></code></pre></div></li>
 <li><p>Implement the Sieve of Eratosthenes for computing prime numbers in
 Haskell. Recall that the algorithm works as follows. Start from
 the natural numbers greater than or equal to 2, keep 2 as it is a

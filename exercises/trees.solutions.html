@@ -178,7 +178,7 @@ depth of a node <code>v</code> is the length of the path from the root to <code>
 <span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>withDepth' d (<span class="dt">Leaf</span> x)     <span class="ot">=</span> <span class="dt">Leaf</span> (x,d)</span>
 <span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>withDepth' d (<span class="dt">Node</span> l x r) <span class="ot">=</span> <span class="dt">Node</span> (withDepth' (d<span class="op">+</span><span class="dv">1</span>) l) (x,d) (withDepth' (d<span class="op">+</span><span class="dv">1</span>) r)</span></code></pre></div>
 <h2 data-number="16" id="section-16"><span class="header-section-number">16</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
-<p>Write a function <code>trimWhen :: (a -&gt; Bool) -&gt; (b -&gt; Bool) -&gt; LeafTree a b -&gt; LeafTree (LeafTree a b) b</code> that ‘trims’ the subtree depending on two
+<p>Write a function <code>trimWhen :: (a -&gt; Bool) -&gt; (b -&gt; Bool) -&gt; LeafTree a b -&gt; LeafTree (Maybe (LeafTree a b)) b</code> that ‘trims’ the subtree depending on two
 predicates <code>p :: a -&gt; Bool</code> and <code>q :: b -&gt; Bool</code> . In particular,
 predicate <code>p x</code> returns True if and only if we should trim the leaf
 storing some value <code>x</code> and <code>q y</code> returns True if and only if the
@@ -197,7 +197,7 @@ subtree whose root stores a <code>y</code> should be trimmed.</p>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                    <span class="dt">Leaf</span> x     <span class="ot">-&gt;</span> <span class="dt">Leaf</span> (f x)</span>
 <span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                    <span class="dt">Node</span> l x r <span class="ot">-&gt;</span> <span class="dt">Node</span> (bimapTree f g l) (g x) (bimapTree f g r)</span></code></pre></div>
 <h2 data-number="18" id="section-18"><span class="header-section-number">18</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
-<p>Write a function <code>trim :: Int -&gt; LeafTree a b -&gt; LeafTree (Maybe (LeafTree a b) b)</code> that trims a tree at the given depth.</p>
+<p>Write a function <code>trim :: Int -&gt; LeafTree a b -&gt; LeafTree (Maybe (LeafTree a b)) b</code> that trims a tree at the given depth.</p>
 <div class="sourceCode" id="cb17" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="ot">trim   ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">LeafTree</span> a b <span class="ot">-&gt;</span> <span class="dt">LeafTree</span> (<span class="dt">Maybe</span> (<span class="dt">LeafTree</span> a b)) b</span>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>trim d <span class="ot">=</span> bimapTree f <span class="fu">fst</span> <span class="op">.</span> trimWhen p p <span class="op">.</span> withDepth</span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
@@ -242,13 +242,13 @@ that</p>
 <div class="sourceCode" id="cb20"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="ot">sized   ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">TTTree</span> a <span class="ot">-&gt;</span> [<span class="dt">TTTree</span> a]</span>
 <span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>sized n <span class="ot">=</span> <span class="fu">snd</span> <span class="op">.</span> sized' n</span></code></pre></div>
 <p>write the function <code>sized'</code></p>
-<div class="sourceCode" id="cb21" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ot">sized   ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">TTTree</span> a <span class="ot">-&gt;</span> (<span class="dt">TTTRee</span> a, [<span class="dt">TTTree</span> a])</span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>sized n <span class="ot">=</span> foldTTTree f g2 g3</span>
+<div class="sourceCode" id="cb21" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="ot">sized'   ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">TTTree</span> a <span class="ot">-&gt;</span> (<span class="dt">TTTree</span> a, [<span class="dt">TTTree</span> a])</span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>sized' n <span class="ot">=</span> foldTTTree f g2 g3</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>    singleton s t <span class="ot">=</span> <span class="kw">if</span> n <span class="op">==</span> s <span class="kw">then</span> [t] <span class="kw">else</span> []</span>
 <span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>    f x <span class="ot">=</span> <span class="kw">let</span> t <span class="ot">=</span> <span class="dt">Leaf</span> x</span>
-<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>          <span class="kw">in</span> (t,singleton s t)</span>
+<span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>          <span class="kw">in</span> (t,singleton <span class="dv">1</span> t)</span>
 <span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>    g2 s (l,ls) (r,rs) <span class="ot">=</span> <span class="kw">let</span> t <span class="ot">=</span> <span class="dt">Node2</span> s l r</span>
 <span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>                         <span class="kw">in</span> (t, singleton s t <span class="op">++</span> ls <span class="op">++</span> rs)</span>

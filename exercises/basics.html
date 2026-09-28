@@ -56,8 +56,8 @@ Write down the intermediate steps of your computation.</p>
 parameters becomes simpler in each recursive application. Consider
 the following definition of the factorial function:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fac n <span class="op">|</span> n <span class="op">==</span> <span class="dv">0</span>    <span class="ot">=</span> <span class="dv">1</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>      <span class="op">|</span> <span class="fu">otherwise</span> <span class="ot">=</span> n <span class="op">*</span> fac (n − <span class="dv">1</span>)</span></code></pre></div>
-<p>What happens if you evaluate <code>fac (−3)</code>?</p>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>      <span class="op">|</span> <span class="fu">otherwise</span> <span class="ot">=</span> n <span class="op">*</span> fac (n <span class="op">-</span> <span class="dv">1</span>)</span></code></pre></div>
+<p>What happens if you evaluate <code>fac (-3)</code>?</p>
 <h2 data-number="4" id="section-4"><span class="header-section-number">4</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
 <p>Write a function <code>noOfSol</code> that, for some <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, and <span class="math inline">\(c\)</span>,
 determines the number of solutions of the equation <span class="math inline">\(ax^2 + bx + c =

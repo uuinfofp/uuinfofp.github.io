@@ -43,13 +43,13 @@
 
       <h2 data-number="1" id="parentheses"><span class="header-section-number">1</span> Parentheses!? <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
 <p>Give examples for functions with the following types:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="dt">Float</span> −<span class="op">&gt;</span> <span class="dt">Float</span>) −<span class="op">&gt;</span> <span class="dt">Float</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">Float</span> −<span class="op">&gt;</span> (<span class="dt">Float</span> −<span class="op">&gt;</span> <span class="dt">Float</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="dt">Float</span> −<span class="op">&gt;</span> <span class="dt">Float</span>) −<span class="op">&gt;</span> (<span class="dt">Float</span> −<span class="op">&gt;</span> <span class="dt">Float</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Float</span>) <span class="ot">-&gt;</span> <span class="dt">Float</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">Float</span> <span class="ot">-&gt;</span> (<span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Float</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Float</span>) <span class="ot">-&gt;</span> (<span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Float</span>)</span></code></pre></div>
 <div class="sourceCode" id="cb2" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- For example (all these expressions have more general polymorphic types, but, in particular, type check at the requested types)</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>\f <span class="ot">-&gt;</span> f <span class="fl">2.0</span><span class="ot"> ::</span> (<span class="dt">Float</span> −<span class="op">&gt;</span> <span class="dt">Float</span>) −<span class="op">&gt;</span> <span class="dt">Float</span> </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ot">(*) ::</span> <span class="dt">Float</span> −<span class="op">&gt;</span> (<span class="dt">Float</span> −<span class="op">&gt;</span> <span class="dt">Float</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>(<span class="op">.</span>) (<span class="op">+</span><span class="dv">1</span>)<span class="ot"> ::</span> (<span class="dt">Float</span> −<span class="op">&gt;</span> <span class="dt">Float</span>) −<span class="op">&gt;</span> (<span class="dt">Float</span> −<span class="op">&gt;</span> <span class="dt">Float</span>) </span></code></pre></div>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>(\f <span class="ot">-&gt;</span> f <span class="fl">2.0</span>)<span class="ot"> ::</span> (<span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Float</span>) <span class="ot">-&gt;</span> <span class="dt">Float</span> </span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="ot">(*) ::</span> <span class="dt">Float</span> <span class="ot">-&gt;</span> (<span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Float</span>)</span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>(<span class="op">.</span>) (<span class="op">+</span><span class="dv">1</span>)<span class="ot"> ::</span> (<span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Float</span>) <span class="ot">-&gt;</span> (<span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Float</span>) </span></code></pre></div>
 <p>Give an example program <code>p</code> with the following type and explain how the function arrow <code>-&gt;</code> associates:</p>
 <div class="sourceCode" id="cb3"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="ot">p ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></span></code></pre></div>
 <div class="sourceCode" id="cb4" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- For example</span></span>
@@ -73,7 +73,7 @@
 <span id="cb5-14"><a href="#cb5-14" aria-hidden="true" tabindex="-1"></a>bar a as <span class="ot">=</span> as <span class="op">++</span> [a] </span>
 <span id="cb5-15"><a href="#cb5-15" aria-hidden="true" tabindex="-1"></a><span class="ot">baz ::</span> [a] </span>
 <span id="cb5-16"><a href="#cb5-16" aria-hidden="true" tabindex="-1"></a>baz <span class="ot">=</span> []</span>
-<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">-- Then, foo bar baz (which should be read as (foo bar) baz) has type [a]</span></span>
+<span id="cb5-17"><a href="#cb5-17" aria-hidden="true" tabindex="-1"></a><span class="co">-- Then, foo bar baz (which should be read as (foo bar) baz) has type [a] -&gt; [a]</span></span>
 <span id="cb5-18"><a href="#cb5-18" aria-hidden="true" tabindex="-1"></a><span class="co">-- Note that function application associating to the left and function arrows associating to the right are nice behaviour because it means </span></span>
 <span id="cb5-19"><a href="#cb5-19" aria-hidden="true" tabindex="-1"></a><span class="co">-- that we can implement the default use-case of curried functions of multiple arguments and partial application of such functions without writing many parentheses in either the type or the program.</span></span></code></pre></div>
 <p>Can you give examples of programs <code>foo</code>, <code>bar</code> and <code>baz</code>, such that one might expect <code>foo bar baz</code> to be well-typed if function application were to associate in the opposite direction, but such
@@ -113,10 +113,10 @@ functions to the argument, the former thereafter. Write a function
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- both (.) and before are associative operations</span></span></code></pre></div>
 <h2 data-number="5" id="higher-order-data-types"><span class="header-section-number">5</span> Higher order data types <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span> <span class="tag" data-tag-name="challenging"><span class="smallcaps">challenging</span></span></h2>
 <p>We have seen that <code>[...]</code> is a type function that maps types to
-types. Similarly because <code>−&gt;</code> is a type constructor mapping two types
-to a type, for some <code>c</code> also <code>c −&gt;</code> is a type function mapping a type
-<code>a</code> to <code>c −&gt; a</code>. Rewrite the type of <code>map</code> by substituting the type
-function <code>[...]</code> by <code>c −&gt;</code>. Can you derive an implementation from the
+types. Similarly because <code>-&gt;</code> is a type constructor mapping two types
+to a type, for some <code>c</code> also <code>c -&gt;</code> is a type function mapping a type
+<code>a</code> to <code>c -&gt; a</code>. Rewrite the type of <code>map</code> by substituting the type
+function <code>[...]</code> by <code>c -&gt;</code>. Can you derive an implementation from the
 resulting type?</p>
 <div class="sourceCode" id="cb13" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="ot">mapFun ::</span> (a <span class="ot">-&gt;</span> b) <span class="ot">-&gt;</span> (c <span class="ot">-&gt;</span> a) <span class="ot">-&gt;</span> (c <span class="ot">-&gt;</span> b)</span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>mapFun <span class="ot">=</span> (<span class="op">.</span>)</span></code></pre></div>

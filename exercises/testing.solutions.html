@@ -53,8 +53,11 @@ interpeter using <code>cabal repl Main.hs</code>. Alternatively, include this at
 the top of your file:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="ot">{-# LANGUAGE FlexibleInstances #-}</span> <span class="co">-- put this at the top of your file</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> (<span class="dt">Enum</span> a, <span class="dt">Bounded</span> a, <span class="dt">Show</span>  a) <span class="ot">=&gt;</span> <span class="dt">Show</span> (a <span class="ot">-&gt;</span> <span class="dt">Bool</span>) <span class="kw">where</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">show</span> f <span class="ot">=</span> intercalate <span class="st">&quot;\n&quot;</span> (<span class="fu">map</span> (\x <span class="ot">-&gt;</span> <span class="st">&quot;f &quot;</span> <span class="op">++</span> <span class="fu">show</span> x <span class="op">++</span> <span class="st">&quot; = &quot;</span> <span class="op">++</span> <span class="fu">show</span> (f x)) [<span class="fu">minBound</span> <span class="op">..</span> <span class="fu">maxBound</span>])</span></code></pre></div>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="dt">Test.QuickCheck</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="kw">import</span> <span class="dt">Data.List</span> (intercalate, permutations, isSubsequenceOf)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="kw">instance</span> (<span class="dt">Enum</span> a, <span class="dt">Bounded</span> a, <span class="dt">Show</span>  a) <span class="ot">=&gt;</span> <span class="dt">Show</span> (a <span class="ot">-&gt;</span> <span class="dt">Bool</span>) <span class="kw">where</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">show</span> f <span class="ot">=</span> intercalate <span class="st">&quot;\n&quot;</span> (<span class="fu">map</span> (\x <span class="ot">-&gt;</span> <span class="st">&quot;f &quot;</span> <span class="op">++</span> <span class="fu">show</span> x <span class="op">++</span> <span class="st">&quot; = &quot;</span> <span class="op">++</span> <span class="fu">show</span> (f x)) [<span class="fu">minBound</span> <span class="op">..</span> <span class="fu">maxBound</span>])</span></code></pre></div>
 <p>Also when you run your tests, you sometimes need to specialize the
 types a bit. For example, the following code calls all kinds of test
 functions that the exercises below (except for 4) expect you to come
@@ -69,9 +72,9 @@ up with.</p>
 <span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">putStrLn</span> <span class="st">&quot;\nExercise 14.2&quot;</span></span>
 <span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a>  quickCheck (<span class="ot">propMapLength ::</span> (<span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span>) <span class="ot">-&gt;</span> [<span class="dt">Bool</span>] <span class="ot">-&gt;</span> <span class="dt">Bool</span>)</span>
 <span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">putStrLn</span> <span class="st">&quot;\nExercise 14.3&quot;</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  quickCheck <span class="op">$</span> once (<span class="ot">propPermsLength   ::</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> <span class="dt">Bool</span>)</span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  quickCheck <span class="op">$</span> once (<span class="ot">propPermsArePerms ::</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> <span class="dt">Bool</span>)</span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  quickCheck <span class="op">$</span> once (<span class="ot">propPermsCorrect  ::</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> <span class="dt">Bool</span>)</span>
+<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a>  quickCheck <span class="op">$</span> mapSize (<span class="fu">const</span> <span class="dv">6</span>) (<span class="ot">propPermsLength   ::</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> <span class="dt">Bool</span>)</span>
+<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a>  quickCheck <span class="op">$</span> mapSize (<span class="fu">const</span> <span class="dv">6</span>) (<span class="ot">propPermsArePerms ::</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> <span class="dt">Bool</span>)</span>
+<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a>  quickCheck <span class="op">$</span> mapSize (<span class="fu">const</span> <span class="dv">6</span>) (<span class="ot">propPermsCorrect  ::</span> [<span class="dt">Int</span>] <span class="ot">-&gt;</span> <span class="dt">Bool</span>)</span>
 <span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">putStrLn</span> <span class="st">&quot;\nExercise 14.5&quot;</span></span>
 <span id="cb2-15"><a href="#cb2-15" aria-hidden="true" tabindex="-1"></a>  quickCheck (forAll genBSTI isSearchTree)    <span class="co">-- Use forAll to use custom generator</span></span>
 <span id="cb2-16"><a href="#cb2-16" aria-hidden="true" tabindex="-1"></a>  quickCheck (forAll genBSTI propInsertIsTree)</span>
@@ -92,27 +95,22 @@ result list are present in the input list.</p>
 <div class="sourceCode" id="cb5" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="ot">propFilterAllElements      ::</span> <span class="dt">Eq</span> a <span class="ot">=&gt;</span> (a <span class="ot">-&gt;</span> <span class="dt">Bool</span>) <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> <span class="dt">Bool</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>propFilterAllElements p xs <span class="ot">=</span> <span class="fu">all</span> (<span class="ot">`elem`</span> xs) <span class="op">$</span> <span class="fu">filter</span> p xs</span></code></pre></div></li>
 <li><p>Formulate a set of QuickCheck properties to completely characterize the <code>filter</code> function (you may choose also from among the three you have just implemented). Make sure to remove properties that are implied by (a subset of) the other properties.</p>
-<div class="sourceCode" id="cb6" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- If some element of xs satisfies p it should be in the result</span></span>
+<div class="sourceCode" id="cb6" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- Every occurrence of an element satisfying p must be retained.</span></span>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="ot">propAllPresent      ::</span> <span class="dt">Eq</span> a <span class="ot">=&gt;</span> (a <span class="ot">-&gt;</span> <span class="dt">Bool</span>) <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> <span class="dt">Bool</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>propAllPresent p xs <span class="ot">=</span> <span class="fu">all</span> notSatisfiedOrPresent xs</span>
 <span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
 <span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    ys <span class="ot">=</span> <span class="fu">filter</span> p xs</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    notSatisfiedOrPresent x <span class="ot">=</span> <span class="fu">not</span> (p x) <span class="op">||</span> x <span class="ot">`elem`</span> ys</span>
-<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a> <span class="co">-- note that this already implies the propFilterAllElements property,</span></span>
-<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a> <span class="co">-- moreover prevents duplicates (since isIncreasing is strict)</span></span>
-<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="ot"> propSameOrder      ::</span> (a <span class="ot">-&gt;</span> <span class="dt">Bool</span>) <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> <span class="dt">Bool</span></span>
-<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a> propSameOrder p xs <span class="ot">=</span> isIncreasing</span>
-<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>                    <span class="op">.</span> <span class="fu">map</span> <span class="fu">snd</span></span>
-<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>                    <span class="op">.</span> <span class="fu">filter</span> (p <span class="op">.</span> <span class="fu">fst</span>)</span>
-<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>                    <span class="op">$</span> <span class="fu">zip</span> xs [<span class="dv">0</span><span class="op">..</span>]</span>
-<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>   <span class="kw">where</span></span>
-<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>     isIncreasing ys <span class="ot">=</span> <span class="fu">all</span> (\(x,y) <span class="ot">-&gt;</span> x <span class="op">&lt;</span> y) <span class="op">$</span> <span class="fu">zip</span> ys (<span class="fu">tail</span> ys)</span>
-<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a> propFilterCorrect p xs <span class="ot">=</span> <span class="fu">all</span> (\p' <span class="ot">-&gt;</span> p' p xs) [ propSameOrder</span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>                                               , propFilterAllSatisfy</span>
-<span id="cb6-20"><a href="#cb6-20" aria-hidden="true" tabindex="-1"></a>                                               , propAllPresent</span>
-<span id="cb6-21"><a href="#cb6-21" aria-hidden="true" tabindex="-1"></a>                                               ]</span></code></pre></div></li>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    notSatisfiedOrPresent x <span class="ot">=</span> <span class="fu">not</span> (p x) <span class="op">||</span> occurrences x ys <span class="op">==</span> occurrences x xs</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>    occurrences x zs <span class="ot">=</span> <span class="fu">length</span> [z <span class="op">|</span> z <span class="ot">&lt;-</span> zs, z <span class="op">==</span> x]</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a><span class="co">-- A subsequence preserves order and cannot invent elements or occurrences.</span></span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a><span class="ot">propSameOrder      ::</span> <span class="dt">Eq</span> a <span class="ot">=&gt;</span> (a <span class="ot">-&gt;</span> <span class="dt">Bool</span>) <span class="ot">-&gt;</span> [a] <span class="ot">-&gt;</span> <span class="dt">Bool</span></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>propSameOrder p xs <span class="ot">=</span> isSubsequenceOf (<span class="fu">filter</span> p xs) xs</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>propFilterCorrect p xs <span class="ot">=</span> <span class="fu">all</span> (\p' <span class="ot">-&gt;</span> p' p xs) [ propSameOrder</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>                                              , propFilterAllSatisfy</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>                                              , propAllPresent</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>                                              ]</span></code></pre></div></li>
 </ul>
 <h2 data-number="2" id="section-2"><span class="header-section-number">2</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
 <p>Try to come up with a number of QuickCheck-verifiable properties for
@@ -151,7 +149,8 @@ QuickCheck properties.</p></li>
 <h2 data-number="5" id="section-5"><span class="header-section-number">5</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
 <p>Consider the following datatype definition for binary trees that we
 shall want to use to implement binary search trees:</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Tree</span> a <span class="ot">=</span> <span class="dt">Branch</span> a (<span class="dt">Tree</span> a) (<span class="dt">Tree</span> a) <span class="op">|</span> <span class="dt">Leaf</span></span></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Tree</span> a <span class="ot">=</span> <span class="dt">Branch</span> a (<span class="dt">Tree</span> a) (<span class="dt">Tree</span> a) <span class="op">|</span> <span class="dt">Leaf</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>            <span class="kw">deriving</span> <span class="dt">Show</span></span></code></pre></div>
 <p>Write a function <code>isSearchTree :: Ord a =&gt; Tree a -&gt; Bool</code> that verifies
 that its argument is a binary search tree. Then write a function
 <code>genBSTI :: Gen (Tree Int)</code> that generates binary search trees. Now test the property

@@ -168,9 +168,9 @@ name nub means `essence’.)</p>
 <p>Duplicates, and elements of the first list, are removed from the the
 second list, but if the first list contains duplicates, so will the
 result.</p>
-<div class="sourceCode" id="cb18" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>union xs ys <span class="ot">=</span> <span class="fu">foldr</span> f e ys</span>
+<div class="sourceCode" id="cb18" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>union xs ys <span class="ot">=</span> <span class="fu">foldl</span> f e ys</span>
 <span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    f y r <span class="op">|</span> y <span class="ot">`elem`</span> r  <span class="ot">=</span> r</span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>    f r y <span class="op">|</span> y <span class="ot">`elem`</span> r  <span class="ot">=</span> r</span>
 <span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>          <span class="op">|</span> <span class="fu">otherwise</span>   <span class="ot">=</span> r <span class="op">++</span> [y]</span>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>    e <span class="ot">=</span> xs</span></code></pre></div>
 <h2 data-number="19" id="intersect-eq-a-a---a---a"><span class="header-section-number">19</span> <code>intersect :: Eq a =&gt; [a] -&gt; [a] -&gt; [a]</code> <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
@@ -243,7 +243,7 @@ order. E.g.</p>
 <span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>    f x r <span class="ot">=</span> <span class="kw">case</span> r <span class="kw">of</span></span>
 <span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>              []     <span class="ot">-&gt;</span> [x]<span class="op">:</span>r</span>
 <span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>              (ys<span class="op">:</span>_) <span class="ot">-&gt;</span> (x<span class="op">:</span>ys)<span class="op">:</span>r</span>
-<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    e <span class="ot">=</span> []</span></code></pre></div>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    e <span class="ot">=</span> [[]]</span></code></pre></div>
 <h2 data-number="26" id="group-eq-a-a---a"><span class="header-section-number">26</span> <code>group :: Eq a =&gt; [a] -&gt; [[a]]</code> <span class="tag" data-tag-name="challenging"><span class="smallcaps">challenging</span></span> <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
 <p>The group function takes a list and returns a list of lists such that the concatenation of the result is equal to the argument. Moreover, each sublist in the result contains only equal elements. For example,</p>
 <p><code>group "Mississippi" = ["M","i","ss","i","ss","i","pp","i"]</code></p>
@@ -257,7 +257,7 @@ order. E.g.</p>
 <h2 data-number="27" id="scanr-a---b---b---b---a---b"><span class="header-section-number">27</span> <code>scanr :: (a -&gt; b -&gt; b) -&gt; b -&gt; [a] -&gt; [b]</code> <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
 <p>scanr is similar to foldr but returns a list of successive reduced
 values from the right:</p>
-<p><code>scanr g z [x_1, x_2, .., x_n] == [x_1 `g` .., .., x_(n-1) `g` z ,x_n `g` z,z]</code></p>
+<p><code>scanr g z [x_1, x_2, .., x_n] == [x_1 `g` .., .., x_(n-1) `g` (x_n `g` z), x_n `g` z, z]</code></p>
 <p>That is, it also returns all intermediate answers of a foldr. Note in
 particular that</p>
 <p><code>head (scanr g z xs) == foldr g z xs</code> :athome</p>

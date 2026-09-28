@@ -43,9 +43,9 @@
 
       <h2 data-number="1" id="parentheses"><span class="header-section-number">1</span> Parentheses!? <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
 <p>Give examples for functions with the following types:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="dt">Float</span> −<span class="op">&gt;</span> <span class="dt">Float</span>) −<span class="op">&gt;</span> <span class="dt">Float</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">Float</span> −<span class="op">&gt;</span> (<span class="dt">Float</span> −<span class="op">&gt;</span> <span class="dt">Float</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="dt">Float</span> −<span class="op">&gt;</span> <span class="dt">Float</span>) −<span class="op">&gt;</span> (<span class="dt">Float</span> −<span class="op">&gt;</span> <span class="dt">Float</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>(<span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Float</span>) <span class="ot">-&gt;</span> <span class="dt">Float</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="dt">Float</span> <span class="ot">-&gt;</span> (<span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Float</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>(<span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Float</span>) <span class="ot">-&gt;</span> (<span class="dt">Float</span> <span class="ot">-&gt;</span> <span class="dt">Float</span>)</span></code></pre></div>
 <p>Give an example program <code>p</code> with the following type and explain how the function arrow <code>-&gt;</code> associates:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="ot">p ::</span> <span class="dt">Int</span> <span class="ot">-&gt;</span> <span class="dt">Bool</span> <span class="ot">-&gt;</span> <span class="dt">Int</span></span></code></pre></div>
 <p>Give examples of programs <code>foo</code>, <code>bar</code> and <code>baz</code>, such that <code>foo bar baz</code> type checks and please explain how function application associates.</p>
@@ -69,10 +69,10 @@ functions to the argument, the former thereafter. Write a function
 <code>before</code>?</p>
 <h2 data-number="5" id="higher-order-data-types"><span class="header-section-number">5</span> Higher order data types <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span> <span class="tag" data-tag-name="challenging"><span class="smallcaps">challenging</span></span></h2>
 <p>We have seen that <code>[...]</code> is a type function that maps types to
-types. Similarly because <code>−&gt;</code> is a type constructor mapping two types
-to a type, for some <code>c</code> also <code>c −&gt;</code> is a type function mapping a type
-<code>a</code> to <code>c −&gt; a</code>. Rewrite the type of <code>map</code> by substituting the type
-function <code>[...]</code> by <code>c −&gt;</code>. Can you derive an implementation from the
+types. Similarly because <code>-&gt;</code> is a type constructor mapping two types
+to a type, for some <code>c</code> also <code>c -&gt;</code> is a type function mapping a type
+<code>a</code> to <code>c -&gt; a</code>. Rewrite the type of <code>map</code> by substituting the type
+function <code>[...]</code> by <code>c -&gt;</code>. Can you derive an implementation from the
 resulting type?</p>
     </div>
   </body>

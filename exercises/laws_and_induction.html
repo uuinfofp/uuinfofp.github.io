@@ -80,13 +80,13 @@
 <li>Hint: you might need as lemmas that <code>add n Zero = n</code> and <code>add n (Succ m) = Succ (add n m)</code>.</li>
 </ul>
 <h2 data-number="7" id="section-7"><span class="header-section-number">7</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
-<p>Prove that multiplication is commutative, that is, <code>mult n m = mul m n</code>.</p>
+<p>Prove that multiplication is commutative, that is, <code>mult n m = mult m n</code>.</p>
 <ul>
 <li>Hint: you need lemmas similar to the previous exercise.</li>
 </ul>
 <h2 data-number="8" id="section-8"><span class="header-section-number">8</span>  <span class="tag" data-tag-name="inClass"><span class="smallcaps">inClass</span></span></h2>
 <p>Prove that for all trees <code>size t = length (enumInfix t)</code>, where</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Tree</span> a <span class="ot">=</span> <span class="dt">Leaf</span> a <span class="op">|</span> <span class="dt">Node</span> (<span class="dt">Tree</span> a) a (<span class="dt">Tree</span> a)</span>
+<div class="sourceCode" id="cb4"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">Tree</span> a <span class="ot">=</span> <span class="dt">Leaf</span> <span class="op">|</span> <span class="dt">Node</span> (<span class="dt">Tree</span> a) a (<span class="dt">Tree</span> a)</span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ot">size ::</span> <span class="dt">Tree</span> a <span class="ot">-&gt;</span> <span class="dt">Int</span></span>
 <span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>size <span class="dt">Leaf</span> <span class="ot">=</span> <span class="dv">0</span></span>

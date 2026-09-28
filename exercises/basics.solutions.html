@@ -56,8 +56,8 @@ Write down the intermediate steps of your computation.</p>
 parameters becomes simpler in each recursive application. Consider
 the following definition of the factorial function:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>fac n <span class="op">|</span> n <span class="op">==</span> <span class="dv">0</span>    <span class="ot">=</span> <span class="dv">1</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>      <span class="op">|</span> <span class="fu">otherwise</span> <span class="ot">=</span> n <span class="op">*</span> fac (n − <span class="dv">1</span>)</span></code></pre></div>
-<p>What happens if you evaluate <code>fac (−3)</code>?</p>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>      <span class="op">|</span> <span class="fu">otherwise</span> <span class="ot">=</span> n <span class="op">*</span> fac (n <span class="op">-</span> <span class="dv">1</span>)</span></code></pre></div>
+<p>What happens if you evaluate <code>fac (-3)</code>?</p>
 <h2 data-number="4" id="section-4"><span class="header-section-number">4</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
 <p>Write a function <code>noOfSol</code> that, for some <span class="math inline">\(a\)</span>, <span class="math inline">\(b\)</span>, and <span class="math inline">\(c\)</span>,
 determines the number of solutions of the equation <span class="math inline">\(ax^2 + bx + c =
@@ -100,7 +100,7 @@ any index j larger than i (i.e. <code>p j</code> is also <code>True</code>).</p>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                   <span class="op">|</span> p h        <span class="ot">=</span> binarySearch p l h</span>
 <span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>                   <span class="op">|</span> <span class="fu">otherwise</span>  <span class="ot">=</span> binarySearch p h u</span>
 <span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    h <span class="ot">=</span> (l <span class="op">+</span> u) <span class="ot">`div`</span> <span class="dv">2</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    h <span class="ot">=</span> <span class="fu">fromInteger</span> ((<span class="fu">toInteger</span> l <span class="op">+</span> <span class="fu">toInteger</span> u) <span class="ot">`div`</span> <span class="dv">2</span>)</span>
 <span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span></code></pre></div>
 <h2 data-number="10" id="section-10"><span class="header-section-number">10</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
 <p>Give the most general type for the function <code>binarySearch</code> you defined
@@ -146,7 +146,7 @@ threshold <code>eps</code>).</p>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>approxSqrt eps x <span class="ot">=</span> go <span class="dv">1</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="kw">where</span></span>
 <span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>    go y <span class="ot">=</span> <span class="kw">let</span> y' <span class="ot">=</span> <span class="fl">0.5</span> <span class="op">*</span> (y <span class="op">+</span> x<span class="op">/</span>y)</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>           <span class="kw">in</span> <span class="kw">if</span> goodEnough y <span class="kw">then</span> y' <span class="kw">else</span> go y'</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>           <span class="kw">in</span> <span class="kw">if</span> goodEnough y <span class="kw">then</span> y <span class="kw">else</span> go y'</span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>    goodEnough y <span class="ot">=</span> <span class="fu">abs</span> (y<span class="op">*</span>y <span class="op">-</span> x) <span class="op">&lt;</span> eps</span></code></pre></div></li>
 <li><p>write an alternative implementation of <code>approxSqrt</code> using the

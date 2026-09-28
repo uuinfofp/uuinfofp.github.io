@@ -108,7 +108,7 @@ leaves in its subtree.</p>
 <p>Write a function <code>withDepth</code> that annotates the tree by its depth. The
 depth of a node <code>v</code> is the length of the path from the root to <code>v</code>.</p>
 <h2 data-number="16" id="section-16"><span class="header-section-number">16</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
-<p>Write a function <code>trimWhen :: (a -&gt; Bool) -&gt; (b -&gt; Bool) -&gt; LeafTree a b -&gt; LeafTree (LeafTree a b) b</code> that ‘trims’ the subtree depending on two
+<p>Write a function <code>trimWhen :: (a -&gt; Bool) -&gt; (b -&gt; Bool) -&gt; LeafTree a b -&gt; LeafTree (Maybe (LeafTree a b)) b</code> that ‘trims’ the subtree depending on two
 predicates <code>p :: a -&gt; Bool</code> and <code>q :: b -&gt; Bool</code> . In particular,
 predicate <code>p x</code> returns True if and only if we should trim the leaf
 storing some value <code>x</code> and <code>q y</code> returns True if and only if the
@@ -116,7 +116,7 @@ subtree whose root stores a <code>y</code> should be trimmed.</p>
 <h2 data-number="17" id="section-17"><span class="header-section-number">17</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
 <p>Write a function <code>bimapTree :: (a -&gt; c) -&gt; (b -&gt; d) -&gt; LeafTree a b -&gt; LeafTree c d</code>.</p>
 <h2 data-number="18" id="section-18"><span class="header-section-number">18</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
-<p>Write a function <code>trim :: Int -&gt; LeafTree a b -&gt; LeafTree (Maybe (LeafTree a b) b)</code> that trims a tree at the given depth.</p>
+<p>Write a function <code>trim :: Int -&gt; LeafTree a b -&gt; LeafTree (Maybe (LeafTree a b)) b</code> that trims a tree at the given depth.</p>
 <h2 data-number="19" id="section-19"><span class="header-section-number">19</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
 <p>Define a Tree type <code>TTTree a</code> that models trees in which</p>
 <ul>

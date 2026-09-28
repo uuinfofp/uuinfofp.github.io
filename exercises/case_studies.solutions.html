@@ -75,13 +75,13 @@ true.</p>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co">-- or using any :: (a -&gt; Bool) -&gt; [a] -&gt; Bool</span></span>
 <span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>satisfiable p <span class="ot">=</span> <span class="fu">any</span> (\as <span class="ot">-&gt;</span> tv as p) (assigns (vars p))</span></code></pre></div>
 <h2 data-number="4" id="section-4"><span class="header-section-number">4</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
-<p>Refine the function <code>satisFiable</code> to return the assignment which makes
+<p>Refine the function <code>satisfiable</code> to return the assignment which makes
 the proposition satisfiable. Which should be the type given to such a
 function?</p>
 <div class="sourceCode" id="cb4" data-solution="yes"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co">-- we can use the function find :: (a -&gt; Bool) -&gt; [a] -&gt; Maybe a to</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="co">-- return the assignment which makes the proposition true.</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="ot">satisfiable ::</span> <span class="dt">Prop</span> <span class="ot">-&gt;</span> <span class="dt">Maybe</span> (<span class="dt">Map</span> <span class="dt">Char</span> <span class="dt">Bool</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>satisfiable <span class="ot">=</span> find (\as <span class="ot">-&gt;</span> tv as p) (assigns (vars p))</span></code></pre></div>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>satisfiable p <span class="ot">=</span> find (\as <span class="ot">-&gt;</span> tv as p) (assigns (vars p))</span></code></pre></div>
 <h2 data-number="5" id="section-5"><span class="header-section-number">5</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h2>
 <p>Recall the following definitions for the <code>ArithExpr</code> type we used in class:</p>
 <div class="sourceCode" id="cb5"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="kw">data</span> <span class="dt">ArithOp</span> <span class="ot">=</span> <span class="dt">Plus</span> <span class="op">|</span> <span class="dt">Minus</span> <span class="op">|</span> <span class="dt">Times</span> <span class="op">|</span> <span class="dt">Div</span> <span class="kw">deriving</span> <span class="dt">Show</span></span>
@@ -110,7 +110,7 @@ factorial functions. How should the evaluation function <code>eval :: Map Char I
 <span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>        evalBinOp <span class="dt">Minus</span> <span class="ot">=</span> (<span class="op">-</span>)</span>
 <span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>        evalBinOp <span class="dt">Times</span> <span class="ot">=</span> (<span class="op">*</span>)</span>
 <span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a>        evalBinOp <span class="dt">Div</span>   <span class="ot">=</span> <span class="fu">div</span></span>
-<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        evalBinOp <span class="dt">Exp</span>   <span class="ot">=</span> (<span class="op">^^</span>)</span></code></pre></div>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a>        evalBinOp <span class="dt">Exp</span>   <span class="ot">=</span> (<span class="op">^</span>)</span></code></pre></div>
     </div>
   </body>
 </html>

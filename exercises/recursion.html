@@ -169,13 +169,13 @@ starting from value ‘z’.</p>
 <p>Your implementation should satisfy:</p>
 <ul>
 <li><code>foldr (+) 0 xs == sum xs</code>, for any list of numbers xs, and</li>
-<li><code>let f i s = chr i : s in foldr f "" [65..70] == "ABCDE"</code></li>
+<li><code>let f i s = chr i : s in foldr f "" [65..70] == "ABCDEF"</code></li>
 </ul>
 <h1 data-number="26" id="section-26"><span class="header-section-number">26</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h1>
 <p><code>scanr :: (a -&gt; b -&gt; b) -&gt; b -&gt; [a] -&gt; [b]</code></p>
 <p>scanr is similar to foldr but returns a list of successive reduced
 values from the right:</p>
-<p><code>scanr f z [x_1, x_2, .., x_n] == [x_1 `f` .., .., x_(n-1) `f` z ,x_n `f` z,z]</code></p>
+<p><code>scanr f z [x_1, x_2, .., x_n] == [x_1 `f` .., .., x_(n-1) `f` (x_n `f` z), x_n `f` z, z]</code></p>
 <p>That is, it also returns all intermediate answers of a foldr. Note in
 particular that</p>
 <p><code>head (scanr f z xs) == foldr f z xs</code>.</p>
@@ -208,7 +208,7 @@ respectively, the <span class="math inline">\(^i\mathrm{th}\)</span> element in 
 the shortest list. For example:</p>
 <ul>
 <li><code>zipWith (,) [1,2,3,4] ["a","b","c","d","e"] == [(1,"a"),(2,"b"),(3,"c"),(4,"d")]</code></li>
-<li><code>zipWith (+) [1,2,3] [100,200,300,400] == [1001,2002,3003]</code></li>
+<li><code>zipWith (+) [1,2,3] [100,200,300,400] == [101,202,303]</code></li>
 </ul>
 <h1 data-number="31" id="section-31"><span class="header-section-number">31</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span> <span class="tag" data-tag-name="challenging"><span class="smallcaps">challenging</span></span></h1>
 <p><code>transpose :: [[a]] -&gt; [[a]]</code></p>
@@ -237,13 +237,13 @@ computes the maximum among all prefixes of a list.</p></li>
 <li><p>Hopefully you can notice some commonality in the implementation of
 <code>maxPrefixSum</code> and <code>maxSegSum</code>. Exploit that to obtain a linear
 time implementation <code>maxSegSum</code> for the maximum segment sum.</p>
-<p>Hint: Write a function <code>maxPrefixAndSegSum : [Int] -&gt; (Int,Int)</code> that
+<p>Hint: Write a function <code>maxPrefixAndSegSum :: [Int] -&gt; (Int,Int)</code> that
 <em>simultaneously</em> computes the maximum prefix sum and the maximum
 segment sum. I.e. Your function should satisfy the specification:</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode haskell"><code class="sourceCode haskell"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>maxPrefixAndSegSum xs <span class="ot">=</span> (maxPrefixSum xs, maxSegSum xs)</span></code></pre></div></li>
 </ol>
 <h1 data-number="33" id="section-32"><span class="header-section-number">33</span>  <span class="tag" data-tag-name="atHome"><span class="smallcaps">atHome</span></span></h1>
-<p>Let <code>countTrues :: [Bool] -&gt; [int]</code> be a function such that <code>countTrues bs</code> computes, for
+<p>Let <code>countTrues :: [Bool] -&gt; [Int]</code> be a function such that <code>countTrues bs</code> computes, for
 each prefix of the list <code>bs</code>, the number of <code>True</code> s in the list.</p>
 <ol type="1">
 <li><p>Write <code>countTrues</code> using direct recursion.</p>
